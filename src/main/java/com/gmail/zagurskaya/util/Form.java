@@ -1,4 +1,4 @@
-package com.gmail.zagurskaya.controller;
+package com.gmail.zagurskaya.util;
 
 import com.gmail.zagurskaya.exception.ProjectException;
 
@@ -12,10 +12,6 @@ public class Form {
         return req.getMethod().
                 equalsIgnoreCase("post");
         }
-
-    public  static String getString(HttpServletRequest req, String name) throws ProjectException {
-        return getString(req,name,".*");
-    }
 
     public static String getString(HttpServletRequest req, String name, String pattern) throws ProjectException {
         try {
@@ -49,7 +45,6 @@ public class Form {
         long[] longs = new long[value.length];
         for (int i = 0 ; i < value.length; i++) {
             longs[i] = Long.parseLong(value[i]);
-//            longs[i] = Long.valueOf(value[i]);
         }
         return longs;
     }

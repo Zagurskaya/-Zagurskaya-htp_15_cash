@@ -1,5 +1,9 @@
 package com.gmail.zagurskaya.controller;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class FrontController extends HttpServlet {
+
+    static final Logger logger = LogManager.getLogger(FrontController.class);
+
     @Override
     public void init() {
     }
@@ -23,7 +30,6 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setAttribute("resp", response);
         request.setAttribute("response", response);
         Action action = Action.define(request);
         try {
@@ -35,7 +41,7 @@ public class FrontController extends HttpServlet {
                 response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "exception", e);
         }
     }
 
