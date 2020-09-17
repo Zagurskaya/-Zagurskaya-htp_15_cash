@@ -20,15 +20,12 @@ public class ConnectionPool {
     private static Lock lock = new ReentrantLock();
     private LinkedBlockingQueue<Connection> availableConnection;
     private ArrayDeque<Connection> usedConnection;
-
     private static final int MIN_POOL_SIZE = 20;
-    private static final int MAX_POOL_SIZE = 30;
 
-    static final String DRIVER = "com.mysql.jdbc.Driver";
-    static final String URL = "jdbc:mysql://127.0.0.1:2016/zagurskaya" +
-            "?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    static final String USER = "root";
-    static final String PASSWORD = "";
+    private static final String DRIVER = DatabaseProperty.getInstance().getProperties().getProperty("database.driver.name");
+    private static final String URL = DatabaseProperty.getInstance().getProperties().getProperty("database.url");
+    private static final String USER = DatabaseProperty.getInstance().getProperties().getProperty("database.username");
+    private static final String PASSWORD = DatabaseProperty.getInstance().getProperties().getProperty("database.password");
 
     static {
         try {
@@ -104,4 +101,5 @@ public class ConnectionPool {
             }
         }
     }
+
 }
