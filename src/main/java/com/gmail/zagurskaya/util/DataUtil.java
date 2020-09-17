@@ -1,6 +1,6 @@
 package com.gmail.zagurskaya.util;
 
-import com.gmail.zagurskaya.beans.User;
+import com.gmail.zagurskaya.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

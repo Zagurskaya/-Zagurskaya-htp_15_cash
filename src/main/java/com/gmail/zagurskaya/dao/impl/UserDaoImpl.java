@@ -1,7 +1,6 @@
 package com.gmail.zagurskaya.dao.impl;
 
-import com.gmail.zagurskaya.beans.User;
-import com.gmail.zagurskaya.connection.ConnCreator;
+import com.gmail.zagurskaya.entity.User;
 import com.gmail.zagurskaya.dao.AbstractDao;
 import com.gmail.zagurskaya.dao.UserDao;
 import com.gmail.zagurskaya.exception.DAOException;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +28,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final String FIELD_PASSWORD = "password";
     private static final String FIELD_ROLE_ID = "roleId";
 
-//    private Connection connection ;
     private PreparedStatement preparedStatement = null;
     private Statement statement = null;
 
@@ -38,7 +35,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public List<User> getAll() throws DAOException {
         List<User> users = new ArrayList<>();
         try {
-//            connection = ConnCreator.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (resultSet.next()) {
@@ -54,7 +50,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             throw new DAOException("Database exception during fiend all user", e);
         } finally {
             close(preparedStatement);
-//            close(connection);
         }
         return users;
     }
@@ -63,7 +58,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public User getById(Long id) throws DAOException {
         User user = new User();
         try {
-//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -78,7 +72,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             throw new DAOException("Database exception during fiend user by id", e);
         } finally {
             close(preparedStatement);
-//            close(connection);
         }
         return user;
     }
@@ -123,6 +116,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.setRoleId(resultSet.getLong(FIELD_ROLE_ID));
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new DAOException("Database exception during fiend user by login and password", e);
         } finally {
             close(preparedStatement);

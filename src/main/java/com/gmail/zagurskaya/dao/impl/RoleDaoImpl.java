@@ -1,7 +1,6 @@
 package com.gmail.zagurskaya.dao.impl;
 
-import com.gmail.zagurskaya.beans.Role;
-import com.gmail.zagurskaya.connection.ConnCreator;
+import com.gmail.zagurskaya.entity.Role;
 import com.gmail.zagurskaya.dao.AbstractDao;
 import com.gmail.zagurskaya.dao.RoleDao;
 import com.gmail.zagurskaya.exception.DAOException;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +26,6 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     private static final String FIELD_ID = "id";
     private static final String FIELD_NAME = "name";
 
-//    private Connection connection ;
     private PreparedStatement preparedStatement = null;
     private Statement statement = null;
 
@@ -36,7 +33,6 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     public List<Role> getAll() throws DAOException {
         List<Role> roles = new ArrayList<>();
         try {
-//            connection = ConnCreator.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_ROLES);
             while (resultSet.next()) {
@@ -50,7 +46,6 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
             throw new DAOException("Database exception during fiend all role", e);
         } finally {
             close(preparedStatement);
-//            close(connection);
         }
         return roles;
     }
@@ -59,7 +54,6 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     public Role getById(Long id) throws DAOException {
         Role role = new Role();
         try {
-//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_ROLE_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -72,7 +66,6 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
             throw new DAOException("Database exception during fiend role by id", e);
         } finally {
             close(preparedStatement);
-//            close(connection);
         }
         return role;
     }

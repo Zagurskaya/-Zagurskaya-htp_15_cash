@@ -1,6 +1,6 @@
 package com.gmail.zagurskaya.service.impl;
 
-import com.gmail.zagurskaya.beans.Role;
+import com.gmail.zagurskaya.entity.Role;
 import com.gmail.zagurskaya.dao.RoleDao;
 import com.gmail.zagurskaya.dao.impl.RoleDaoImpl;
 import com.gmail.zagurskaya.exception.DAOException;
@@ -19,7 +19,6 @@ public class RoleServiceImpl implements RoleService {
     static final Logger logger = LogManager.getLogger(RoleServiceImpl.class);
     private RoleDao roleDao = new RoleDaoImpl();
     private EntityTransaction transaction = new EntityTransaction();
-//    private Connection connection = null;
 
     @Override
     public List<Role> getAll() throws ServiceException {

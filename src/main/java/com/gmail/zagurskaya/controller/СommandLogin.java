@@ -1,6 +1,6 @@
 package com.gmail.zagurskaya.controller;
 
-import com.gmail.zagurskaya.beans.User;
+import com.gmail.zagurskaya.entity.User;
 import com.gmail.zagurskaya.service.UserService;
 import com.gmail.zagurskaya.service.impl.UserServiceImpl;
 import com.gmail.zagurskaya.util.Form;

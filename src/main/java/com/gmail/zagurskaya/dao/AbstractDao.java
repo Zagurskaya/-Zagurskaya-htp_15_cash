@@ -14,18 +14,6 @@ public abstract class AbstractDao {
     static final Logger logger = LogManager.getLogger(AbstractDao.class);
     protected Connection connection = null;
 
-
-    public void close(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-                throw new DataBaseConnectionException("Database exception during connection", e);
-            }
-        }
-    }
-
     public void close(Statement statement) {
         if (statement != null) {
             try {

@@ -1,6 +1,6 @@
 package com.gmail.zagurskaya.service.impl;
 
-import com.gmail.zagurskaya.beans.User;
+import com.gmail.zagurskaya.entity.User;
 import com.gmail.zagurskaya.dao.UserDao;
 import com.gmail.zagurskaya.dao.impl.UserDaoImpl;
 import com.gmail.zagurskaya.exception.DAOException;

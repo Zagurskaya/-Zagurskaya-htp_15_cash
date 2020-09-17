@@ -1,7 +1,7 @@
 package com.gmail.zagurskaya.controller;
 
-import com.gmail.zagurskaya.beans.Role;
-import com.gmail.zagurskaya.beans.User;
+import com.gmail.zagurskaya.entity.Role;
+import com.gmail.zagurskaya.entity.User;
 import com.gmail.zagurskaya.service.RoleService;
 import com.gmail.zagurskaya.service.UserService;
 import com.gmail.zagurskaya.service.impl.RoleServiceImpl;

@@ -1,5 +1,6 @@
 package com.gmail.zagurskaya.connection;
 
+import com.gmail.zagurskaya.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,14 +30,12 @@ public class ConnectionPool {
     static final String USER = "root";
     static final String PASSWORD = "";
 
-    static final int initConnectionCount = 30;
-
     static {
         try {
             Class.forName(DRIVER);
         } catch (Exception e) {
             logger.log(Level.ERROR, "Driver not registered", e);
-            throw new RuntimeException("Driver not registered", e);
+            throw new DataBaseConnectionException("Driver not registered", e);
         }
     }
 
@@ -66,7 +65,7 @@ public class ConnectionPool {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
             logger.log(Level.ERROR, "Driver not registered", e);
-            throw new RuntimeException("Driver not registered", e);
+            throw new DataBaseConnectionException("Driver not registered", e);
         }
         return connection;
     }
@@ -77,7 +76,7 @@ public class ConnectionPool {
             newConnection = availableConnection.take();
         } catch (InterruptedException e) {
             logger.log(Level.ERROR, "Connection not found", e);
-            throw new RuntimeException("Connection not found", e);
+            throw new DataBaseConnectionException("Connection not found", e);
         }
         usedConnection.add(newConnection);
         return newConnection;
@@ -88,6 +87,7 @@ public class ConnectionPool {
             if (usedConnection.remove(connection)) {
                 availableConnection.add(connection);
             } else {
+                logger.log(Level.ERROR, "Connection not in the usedConnection array");
                 throw new NullPointerException("Connection not in the usedConnection array");
             }
         }
@@ -100,7 +100,7 @@ public class ConnectionPool {
                 connection.close();
             } catch (Exception e) {
                 logger.log(Level.ERROR, "Exception during destroy poll", e);
-                throw new RuntimeException("Exception during destroy poll", e);
+                throw new DataBaseConnectionException("Exception during destroy poll", e);
             }
         }
     }

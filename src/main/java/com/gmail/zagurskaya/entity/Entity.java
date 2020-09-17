@@ -1,4 +1,4 @@
-package com.gmail.zagurskaya.beans;
+package com.gmail.zagurskaya.entity;
 
 public interface Entity {
 
