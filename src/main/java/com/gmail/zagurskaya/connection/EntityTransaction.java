@@ -1,6 +1,5 @@
-package com.gmail.zagurskaya.service;
+package com.gmail.zagurskaya.connection;
 
-import com.gmail.zagurskaya.connection.ConnectionPool;
 import com.gmail.zagurskaya.dao.Dao;
 import com.gmail.zagurskaya.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;

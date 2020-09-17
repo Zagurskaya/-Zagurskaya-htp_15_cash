@@ -5,7 +5,7 @@ import com.gmail.zagurskaya.dao.UserDao;
 import com.gmail.zagurskaya.dao.impl.UserDaoImpl;
 import com.gmail.zagurskaya.exception.DAOException;
 import com.gmail.zagurskaya.exception.ServiceException;
-import com.gmail.zagurskaya.service.EntityTransaction;
+import com.gmail.zagurskaya.connection.EntityTransaction;
 import com.gmail.zagurskaya.service.UserService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
