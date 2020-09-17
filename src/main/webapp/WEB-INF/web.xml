@@ -6,7 +6,7 @@
     <display-name>Сервлеты zagurskaya</display-name>
     <servlet>
         <servlet-name>FrontController</servlet-name>
-        <servlet-class>com.gmail.zagurskaya.controller.FrontController</servlet-class>
+        <servlet-class>com.zagurskaya.cash.controller.FrontController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
