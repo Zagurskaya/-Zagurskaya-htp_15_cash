@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
 
-    static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
 
     private static ConnectionPool instance;
     private static Lock lock = new ReentrantLock();
@@ -60,8 +60,8 @@ public class ConnectionPool {
     }
 
     private ProxyConnection createConnection() {
-        Connection connection = null;
-        ProxyConnection proxyConnection = null;
+        Connection connection;
+        ProxyConnection proxyConnection;
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             proxyConnection = new ProxyConnection(connection);
@@ -73,7 +73,7 @@ public class ConnectionPool {
     }
 
     public synchronized Connection retrieve() {
-        ProxyConnection newConnection = null;
+        ProxyConnection newConnection;
         try {
             newConnection = availableConnection.take();
         } catch (InterruptedException e) {
@@ -98,8 +98,8 @@ public class ConnectionPool {
     public void destroyPoll() {
         for (int i = 0; i < availableConnection.size(); i++) {
             try {
-                Connection connection = availableConnection.take();
-                connection.close();
+                ProxyConnection connection = availableConnection.take();
+                connection.closeConnection();
             } catch (Exception e) {
                 logger.log(Level.ERROR, "Exception during destroy poll", e);
                 throw new DataBaseConnectionException("Exception during destroy poll", e);

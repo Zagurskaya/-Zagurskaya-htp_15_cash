@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class EntityTransaction {
 
-    static final Logger logger = LogManager.getLogger(EntityTransaction.class);
+    private static final Logger logger = LogManager.getLogger(EntityTransaction.class);
     private Connection connection;
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 

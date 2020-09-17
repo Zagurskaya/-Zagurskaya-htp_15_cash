@@ -17,7 +17,7 @@ import java.util.List;
 
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
-    static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
+    private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM `users`";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM `users` WHERE id= ? ";

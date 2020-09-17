@@ -67,7 +67,7 @@ public class ProxyConnection implements Connection {
     }
 
     @Override
-    public void close() throws SQLException {
+    public void close() {
         ConnectionPool.getInstance().putBack(connection);
     }
 

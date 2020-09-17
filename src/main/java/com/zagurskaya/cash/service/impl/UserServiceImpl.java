@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
-    static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private UserDao userDao = new UserDaoImpl();
     private EntityTransaction transaction = new EntityTransaction();
 

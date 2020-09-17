@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class DatabaseProperty {
-    static final Logger logger = LogManager.getLogger(ConnectionPool.class);
+    private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private static DatabaseProperty instance;
     private static Properties properties;
 

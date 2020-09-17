@@ -16,7 +16,7 @@ import java.util.List;
 
 public class RoleServiceImpl implements RoleService {
 
-    static final Logger logger = LogManager.getLogger(RoleServiceImpl.class);
+    private static final Logger logger = LogManager.getLogger(RoleServiceImpl.class);
     private RoleDao roleDao = new RoleDaoImpl();
     private EntityTransaction transaction = new EntityTransaction();
 

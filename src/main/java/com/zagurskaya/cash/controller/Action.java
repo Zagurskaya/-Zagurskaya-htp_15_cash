@@ -33,9 +33,9 @@ public enum Action {
         return "/jsp/" + PATH + name().toLowerCase() + ".jsp";
     }
 
-    static Action define(HttpServletRequest req) {
+    static Action define(HttpServletRequest request) {
         try {
-            String command = req.getParameter("command").toUpperCase();
+            String command = request.getParameter("command").toUpperCase();
             return Action.valueOf(command);
         } catch (Exception e) {
             return Action.INDEX;

@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public abstract class AbstractDao {
 
-    static final Logger logger = LogManager.getLogger(AbstractDao.class);
+    private static final Logger logger = LogManager.getLogger(AbstractDao.class);
     protected Connection connection = null;
 
     public void close(Statement statement) {
