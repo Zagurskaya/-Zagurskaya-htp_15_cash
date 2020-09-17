@@ -33,7 +33,10 @@ public class RoleServiceImpl extends AbstractService implements RoleService {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend all role", e);
             throw new ServiceException("Database exception during fiend all role", e);
-        }    }
+        } finally {
+            transaction.end();
+        }
+    }
 
     @Override
     public Role getById(Long id) throws ServiceException {
@@ -46,6 +49,8 @@ public class RoleServiceImpl extends AbstractService implements RoleService {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
+        } finally {
+            transaction.end();
         }
     }
 

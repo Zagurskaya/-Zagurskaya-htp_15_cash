@@ -32,6 +32,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
+        } finally {
+            transaction.end();
         }
     }
 
@@ -46,6 +48,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
+        } finally {
+            transaction.end();
         }
     }
 
@@ -60,6 +64,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
+        } finally {
+            transaction.end();
         }
     }
 
