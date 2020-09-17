@@ -6,8 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayDeque;
+import java.util.Enumeration;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -18,8 +21,10 @@ public class ConnectionPool {
 
     private static ConnectionPool instance;
     private static Lock lock = new ReentrantLock();
-    private LinkedBlockingQueue<Connection> availableConnection;
-    private ArrayDeque<Connection> usedConnection;
+//    private LinkedBlockingQueue<Connection> availableConnection;
+//    private ArrayDeque<Connection> usedConnection;
+    private LinkedBlockingQueue<ProxyConnection> availableConnection;
+    private ArrayDeque<ProxyConnection> usedConnection;
     private static final int MIN_POOL_SIZE = 20;
 
     private static final String DRIVER = DatabaseProperty.getInstance().getProperties().getProperty("database.driver.name");
@@ -56,19 +61,21 @@ public class ConnectionPool {
         }
     }
 
-    private Connection createConnection() {
+    private ProxyConnection createConnection() {
         Connection connection = null;
+        ProxyConnection proxyConnection = null;
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            proxyConnection = new ProxyConnection(connection);
         } catch (Exception e) {
             logger.log(Level.ERROR, "Driver not registered", e);
             throw new DataBaseConnectionException("Driver not registered", e);
         }
-        return connection;
+        return proxyConnection;
     }
 
     public synchronized Connection retrieve() {
-        Connection newConnection = null;
+        ProxyConnection newConnection = null;
         try {
             newConnection = availableConnection.take();
         } catch (InterruptedException e) {
@@ -81,8 +88,8 @@ public class ConnectionPool {
 
     public synchronized void putBack(Connection connection) throws NullPointerException {
         if (connection != null) {
-            if (usedConnection.remove(connection)) {
-                availableConnection.add(connection);
+            if (connection instanceof ProxyConnection && usedConnection.remove(connection)) {
+                availableConnection.add((ProxyConnection) connection);
             } else {
                 logger.log(Level.ERROR, "Connection not in the usedConnection array");
                 throw new NullPointerException("Connection not in the usedConnection array");
@@ -98,6 +105,20 @@ public class ConnectionPool {
             } catch (Exception e) {
                 logger.log(Level.ERROR, "Exception during destroy poll", e);
                 throw new DataBaseConnectionException("Exception during destroy poll", e);
+            }
+        }
+        deregisterDrivers();
+    }
+
+    private void deregisterDrivers() {
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            Driver driver = drivers.nextElement();
+            try {
+                DriverManager.deregisterDriver(driver);
+            } catch (SQLException e) {
+                logger.log(Level.ERROR, "Exception during deregister Drivers", e);
+                throw new DataBaseConnectionException("Exception during deregister Drivers", e);
             }
         }
     }
