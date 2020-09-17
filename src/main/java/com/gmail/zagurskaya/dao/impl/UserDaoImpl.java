@@ -112,7 +112,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public User getUserByLoginAndPassword(String login, String password) throws DAOException {
         User user = new User();
         try {
-//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
@@ -127,7 +126,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             throw new DAOException("Database exception during fiend user by login and password", e);
         } finally {
             close(preparedStatement);
-//            close(connection);
         }
         return user;
     }

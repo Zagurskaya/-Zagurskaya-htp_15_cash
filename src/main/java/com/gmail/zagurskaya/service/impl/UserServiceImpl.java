@@ -5,7 +5,6 @@ import com.gmail.zagurskaya.dao.UserDao;
 import com.gmail.zagurskaya.dao.impl.UserDaoImpl;
 import com.gmail.zagurskaya.exception.DAOException;
 import com.gmail.zagurskaya.exception.ServiceException;
-import com.gmail.zagurskaya.service.AbstractService;
 import com.gmail.zagurskaya.service.EntityTransaction;
 import com.gmail.zagurskaya.service.UserService;
 import org.apache.logging.log4j.Level;
@@ -15,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 
-public class UserServiceImpl extends AbstractService implements UserService {
+public class UserServiceImpl implements UserService {
 
     static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private UserDao userDao = new UserDaoImpl();

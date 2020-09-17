@@ -2,9 +2,9 @@ package com.gmail.zagurskaya.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CmdIndex implements Cmd {
+public class СommandIndex implements Сommand {
     @Override
-    public Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest request) {
         Action.INDEX.setPATH("/");
         return Action.INDEX;
     }

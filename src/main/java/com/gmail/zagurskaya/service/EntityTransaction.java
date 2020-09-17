@@ -1,6 +1,7 @@
 package com.gmail.zagurskaya.service;
 
-import com.gmail.zagurskaya.connection.ConnCreator;
+//import com.gmail.zagurskaya.connection.ConnCreator;
+import com.gmail.zagurskaya.connection.ConnectionPool;
 import com.gmail.zagurskaya.dao.Dao;
 import com.gmail.zagurskaya.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;
@@ -14,12 +15,12 @@ public class EntityTransaction {
 
     static final Logger logger = LogManager.getLogger(EntityTransaction.class);
     private Connection connection;
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     public void init(Dao dao, Dao... daos) {
         if (connection == null) {
             try {
-                //connection get from pool
-                connection = ConnCreator.getConnection();
+                connection = connectionPool.retrieve();
                 connection.setAutoCommit(false);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Database exception during init connection", e);
@@ -36,12 +37,11 @@ public class EntityTransaction {
         if (connection != null) {
             try {
                 connection.setAutoCommit(true);
+                connectionPool.putBack(connection);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Database exception during end connection", e);
                 throw new DataBaseConnectionException("Database exception during end connection", e);
             }
-            // connection to pool!!!!!
-            //todo
             connection = null;
         }
     }

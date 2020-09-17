@@ -5,7 +5,6 @@ import com.gmail.zagurskaya.dao.RoleDao;
 import com.gmail.zagurskaya.dao.impl.RoleDaoImpl;
 import com.gmail.zagurskaya.exception.DAOException;
 import com.gmail.zagurskaya.exception.ServiceException;
-import com.gmail.zagurskaya.service.AbstractService;
 import com.gmail.zagurskaya.service.EntityTransaction;
 import com.gmail.zagurskaya.service.RoleService;
 import org.apache.logging.log4j.Level;
@@ -15,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.List;
 
 
-public class RoleServiceImpl extends AbstractService implements RoleService {
+public class RoleServiceImpl implements RoleService {
 
     static final Logger logger = LogManager.getLogger(RoleServiceImpl.class);
     private RoleDao roleDao = new RoleDaoImpl();

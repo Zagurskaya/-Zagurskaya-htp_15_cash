@@ -3,14 +3,14 @@ import javax.servlet.http.HttpServletRequest;
 
 public enum Action {
 
-    INDEX(new CmdIndex()),
-    ERROR(new CmdError()),
-    LOGIN(new CmdLogin()),
-    PROFILE(new CmdProfile()),
+    INDEX(new СommandIndex()),
+    ERROR(new СommandError()),
+    LOGIN(new СommandLogin()),
+    PROFILE(new СommandProfile()),
 
     ;
 
-    Cmd command;
+    Сommand command;
     String PATH = "";
 
     Action(String PATH) {
@@ -25,7 +25,7 @@ public enum Action {
         this.PATH = PATH;
     }
 
-    Action(Cmd command) {
+    Action(Сommand command) {
         this.command = command;
     }
 
