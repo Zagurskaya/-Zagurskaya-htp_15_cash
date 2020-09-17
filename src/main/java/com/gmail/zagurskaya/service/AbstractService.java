@@ -1,4 +1,4 @@
-package com.gmail.zagurskaya.dao;
+package com.gmail.zagurskaya.service;
 
 import com.gmail.zagurskaya.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;
@@ -9,11 +9,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public abstract class AbstractDao {
+public abstract class AbstractService {
+    protected Connection connection;
 
-    static final Logger logger = LogManager.getLogger(AbstractDao.class);
-    protected Connection connection = null;
-
+    static final Logger logger = LogManager.getLogger(AbstractService.class);
 
     public void close(Connection connection) {
         if (connection != null) {

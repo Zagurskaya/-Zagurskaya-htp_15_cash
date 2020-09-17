@@ -19,6 +19,7 @@ import java.util.List;
 
 
 public class RoleDaoImpl extends AbstractDao implements RoleDao {
+
     static final Logger logger = LogManager.getLogger(RoleDaoImpl.class);
 
     private static final String SQL_SELECT_ALL_ROLES = "SELECT * FROM `roles`";
@@ -27,7 +28,7 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     private static final String FIELD_ID = "id";
     private static final String FIELD_NAME = "name";
 
-    private Connection connection = null;
+//    private Connection connection ;
     private PreparedStatement preparedStatement = null;
     private Statement statement = null;
 
@@ -35,7 +36,7 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     public List<Role> getAll() throws DAOException {
         List<Role> roles = new ArrayList<>();
         try {
-            connection = ConnCreator.getConnection();
+//            connection = ConnCreator.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_ROLES);
             while (resultSet.next()) {
@@ -45,14 +46,11 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
                 roles.add(role);
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all role", e);
             throw new DAOException("Database exception during fiend all role", e);
         } finally {
-            try {
-                close(preparedStatement);
-                close(connection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-            }
+            close(preparedStatement);
+//            close(connection);
         }
         return roles;
     }
@@ -61,7 +59,7 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     public Role getById(Long id) throws DAOException {
         Role role = new Role();
         try {
-            connection = ConnCreator.getConnection();
+//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_ROLE_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -70,14 +68,11 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
                 role.setName(resultSet.getString(FIELD_NAME));
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend role by id", e);
             throw new DAOException("Database exception during fiend role by id", e);
         } finally {
-            try {
-                close(preparedStatement);
-                close(connection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-            }
+            close(preparedStatement);
+//            close(connection);
         }
         return role;
     }

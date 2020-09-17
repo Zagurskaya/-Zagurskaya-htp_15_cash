@@ -30,7 +30,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final String FIELD_PASSWORD = "password";
     private static final String FIELD_ROLE_ID = "roleId";
 
-    private Connection connection = null;
+//    private Connection connection ;
     private PreparedStatement preparedStatement = null;
     private Statement statement = null;
 
@@ -38,7 +38,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public List<User> getAll() throws DAOException {
         List<User> users = new ArrayList<>();
         try {
-            connection = ConnCreator.getConnection();
+//            connection = ConnCreator.getConnection();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (resultSet.next()) {
@@ -50,14 +50,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new DAOException("Database exception during fiend all user", e);
         } finally {
-            try {
-                close(preparedStatement);
-                close(connection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-            }
+            close(preparedStatement);
+//            close(connection);
         }
         return users;
     }
@@ -66,7 +63,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public User getById(Long id) throws DAOException {
         User user = new User();
         try {
-            connection = ConnCreator.getConnection();
+//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -77,14 +74,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.setRoleId(resultSet.getLong(FIELD_ROLE_ID));
             }
         } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new DAOException("Database exception during fiend user by id", e);
         } finally {
-            try {
-                close(preparedStatement);
-                close(connection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-            }
+            close(preparedStatement);
+//            close(connection);
         }
         return user;
     }
@@ -118,7 +112,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public User getUserByLoginAndPassword(String login, String password) throws DAOException {
         User user = new User();
         try {
-            connection = ConnCreator.getConnection();
+//            connection = ConnCreator.getConnection();
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD);
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
@@ -132,12 +126,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } catch (SQLException e) {
             throw new DAOException("Database exception during fiend user by login and password", e);
         } finally {
-            try {
-                close(preparedStatement);
-                close(connection);
-            } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-            }
+            close(preparedStatement);
+//            close(connection);
         }
         return user;
     }
