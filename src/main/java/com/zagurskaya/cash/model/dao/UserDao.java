@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.dao;
+package com.zagurskaya.cash.model.dao;
 
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.DAOException;

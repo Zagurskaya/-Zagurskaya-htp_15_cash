@@ -1,11 +1,13 @@
-package com.zagurskaya.cash.controller;
+package com.zagurskaya.cash.controller.command.impl;
 
+import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.Сommand;
 import com.zagurskaya.cash.entity.Role;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.service.RoleService;
-import com.zagurskaya.cash.service.UserService;
-import com.zagurskaya.cash.service.impl.RoleServiceImpl;
-import com.zagurskaya.cash.service.impl.UserServiceImpl;
+import com.zagurskaya.cash.model.service.RoleService;
+import com.zagurskaya.cash.model.service.UserService;
+import com.zagurskaya.cash.model.service.impl.RoleServiceImpl;
+import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
 
 import javax.servlet.http.HttpServletRequest;

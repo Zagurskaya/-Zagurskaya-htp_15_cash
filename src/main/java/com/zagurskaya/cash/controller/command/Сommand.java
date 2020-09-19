@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller;
+package com.zagurskaya.cash.controller.command;
 
 import javax.servlet.http.HttpServletRequest;
 

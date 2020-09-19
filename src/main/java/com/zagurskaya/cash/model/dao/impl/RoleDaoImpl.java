@@ -1,8 +1,8 @@
-package com.zagurskaya.cash.dao.impl;
+package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.Role;
-import com.zagurskaya.cash.dao.AbstractDao;
-import com.zagurskaya.cash.dao.RoleDao;
+import com.zagurskaya.cash.model.dao.AbstractDao;
+import com.zagurskaya.cash.model.dao.RoleDao;
 import com.zagurskaya.cash.exception.DAOException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

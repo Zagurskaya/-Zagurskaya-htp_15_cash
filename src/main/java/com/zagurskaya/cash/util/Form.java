@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.util;
 
-import com.zagurskaya.cash.exception.ProjectException;
+import com.zagurskaya.cash.exception.ConnectionPoolException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -13,13 +13,13 @@ public class Form {
                 equalsIgnoreCase("post");
         }
 
-    public static String getString(HttpServletRequest req, String name, String pattern) throws ProjectException {
+    public static String getString(HttpServletRequest req, String name, String pattern) throws ConnectionPoolException {
         try {
             String value = new String(req.getParameter(name).getBytes("ISO-8859-1"), StandardCharsets.UTF_8);
             if (value.matches(pattern))
                 return value;
             else
-                throw new ProjectException("Value "+value+" incorrect");
+                throw new ConnectionPoolException("Value "+value+" incorrect");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

@@ -1,7 +1,6 @@
-package com.zagurskaya.cash.connection;
+package com.zagurskaya.cash.model.pool;
 
-import com.zagurskaya.cash.dao.Dao;
-import com.zagurskaya.cash.exception.DataBaseConnectionException;
+import com.zagurskaya.cash.model.dao.Dao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,8 +20,8 @@ public class EntityTransaction {
                 connection = connectionPool.retrieve();
                 connection.setAutoCommit(false);
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during init connection", e);
-                throw new DataBaseConnectionException("Database exception during init connection", e);
+                logger.log(Level.ERROR, "Database exception during init pool", e);
+                throw new RuntimeException("Database exception during init pool", e);
             }
             dao.setConnection(connection);
             for (Dao daoElement : daos) {
@@ -37,8 +36,8 @@ public class EntityTransaction {
                 connection.setAutoCommit(true);
                 connectionPool.putBack(connection);
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during end connection", e);
-                throw new DataBaseConnectionException("Database exception during end connection", e);
+                logger.log(Level.ERROR, "Database exception during end pool", e);
+                throw new RuntimeException("Database exception during end pool", e);
             }
             connection = null;
         }
@@ -49,8 +48,8 @@ public class EntityTransaction {
             try {
                 connection.commit();
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during commit connection", e);
-                throw new DataBaseConnectionException("Database exception during commit connection", e);
+                logger.log(Level.ERROR, "Database exception during commit pool", e);
+                throw new RuntimeException("Database exception during commit pool", e);
             }
         }
     }
@@ -60,8 +59,8 @@ public class EntityTransaction {
             try {
                 connection.rollback();
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during rollback connection", e);
-                throw new DataBaseConnectionException("Database exception during rollback connection", e);
+                logger.log(Level.ERROR, "Database exception during rollback pool", e);
+                throw new RuntimeException("Database exception during rollback pool", e);
             }
             connection = null;
         }

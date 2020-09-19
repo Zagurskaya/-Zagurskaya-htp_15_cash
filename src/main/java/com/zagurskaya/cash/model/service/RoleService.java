@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.service;
+package com.zagurskaya.cash.model.service;
 
 import com.zagurskaya.cash.entity.Role;
 

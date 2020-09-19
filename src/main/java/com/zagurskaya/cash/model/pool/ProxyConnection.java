@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.connection;
+package com.zagurskaya.cash.model.pool;
 
 import java.sql.Array;
 import java.sql.Blob;

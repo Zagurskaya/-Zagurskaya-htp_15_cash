@@ -1,6 +1,5 @@
-package com.zagurskaya.cash.connection;
+package com.zagurskaya.cash.model.pool;
 
-import com.zagurskaya.cash.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +34,7 @@ public class DatabaseProperty {
 
             if (input == null) {
                 logger.log(Level.ERROR, "no properties file found");
-                throw new DataBaseConnectionException("no properties file found");
+                throw new RuntimeException("no properties file found");
             }
 
             Properties properties = new Properties();
@@ -43,7 +42,7 @@ public class DatabaseProperty {
             return properties;
         } catch (IOException ex) {
             logger.log(Level.ERROR, "no properties file found");
-            throw new DataBaseConnectionException("no properties file found");
+            throw new RuntimeException("no properties file found");
         }
     }
 

@@ -1,4 +1,9 @@
-package com.zagurskaya.cash.controller;
+package com.zagurskaya.cash.controller.command;
+import com.zagurskaya.cash.controller.command.impl.СommandError;
+import com.zagurskaya.cash.controller.command.impl.СommandIndex;
+import com.zagurskaya.cash.controller.command.impl.СommandLogin;
+import com.zagurskaya.cash.controller.command.impl.СommandProfile;
+
 import javax.servlet.http.HttpServletRequest;
 
 public enum Action {
@@ -10,7 +15,7 @@ public enum Action {
 
     ;
 
-    Сommand command;
+    public Сommand command;
     String PATH = "";
 
     Action(String PATH) {
@@ -29,11 +34,11 @@ public enum Action {
         this.command = command;
     }
 
-    String getJsp() {
+    public String getJsp() {
         return "/jsp/" + PATH + name().toLowerCase() + ".jsp";
     }
 
-    static Action define(HttpServletRequest request) {
+    public static Action define(HttpServletRequest request) {
         try {
             String command = request.getParameter("command").toUpperCase();
             return Action.valueOf(command);

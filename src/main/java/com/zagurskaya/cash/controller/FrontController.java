@@ -1,6 +1,7 @@
 package com.zagurskaya.cash.controller;
 
-import com.zagurskaya.cash.connection.ConnectionPool;
+import com.zagurskaya.cash.model.pool.ConnectionPool;
+import com.zagurskaya.cash.controller.command.Action;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

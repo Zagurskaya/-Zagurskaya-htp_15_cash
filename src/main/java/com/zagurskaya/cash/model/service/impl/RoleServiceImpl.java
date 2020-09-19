@@ -1,12 +1,12 @@
-package com.zagurskaya.cash.service.impl;
+package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.entity.Role;
-import com.zagurskaya.cash.dao.RoleDao;
-import com.zagurskaya.cash.dao.impl.RoleDaoImpl;
+import com.zagurskaya.cash.model.dao.RoleDao;
+import com.zagurskaya.cash.model.dao.impl.RoleDaoImpl;
 import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.connection.EntityTransaction;
-import com.zagurskaya.cash.service.RoleService;
+import com.zagurskaya.cash.model.pool.EntityTransaction;
+import com.zagurskaya.cash.model.service.RoleService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

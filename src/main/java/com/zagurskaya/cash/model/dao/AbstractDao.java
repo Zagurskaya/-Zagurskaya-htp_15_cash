@@ -1,6 +1,5 @@
-package com.zagurskaya.cash.dao;
+package com.zagurskaya.cash.model.dao;
 
-import com.zagurskaya.cash.exception.DataBaseConnectionException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,8 +18,8 @@ public abstract class AbstractDao {
             try {
                 statement.close();
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Database exception during connection", e);
-                throw new DataBaseConnectionException("Database exception during connection", e);
+                logger.log(Level.ERROR, "Database exception during pool", e);
+                throw new RuntimeException("Database exception during pool", e);
             }
         }
     }
