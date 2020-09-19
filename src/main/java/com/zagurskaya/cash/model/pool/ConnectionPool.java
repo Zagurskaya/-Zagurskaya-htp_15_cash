@@ -1,6 +1,5 @@
 package com.zagurskaya.cash.model.pool;
 
-import com.zagurskaya.cash.exception.ConnectionPoolException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,9 +26,6 @@ public class ConnectionPool {
 
     private static final int MIN_POOL_SIZE = 20;
     private static final String DRIVER = DatabaseProperty.getInstance().getDriver();
-    private static final String URL = DatabaseProperty.getInstance().getUrl();
-    private static final String USER = DatabaseProperty.getInstance().getUser();
-    private static final String PASSWORD = DatabaseProperty.getInstance().getPassword();
 
     static {
         try {
@@ -55,30 +51,15 @@ public class ConnectionPool {
         return instance;
     }
 
-    public ConnectionPool() {
+    private ConnectionPool() {
         availableConnection = new LinkedBlockingQueue<>(MIN_POOL_SIZE);
         usedConnection = new LinkedBlockingQueue<>(MIN_POOL_SIZE);
         for (int i = 0; i < MIN_POOL_SIZE; i++) {
-            availableConnection.offer(createConnection());
+            availableConnection.offer(ConnectionCreator.create());
         }
     }
 
-    //перенести
-    //todo
-    private ProxyConnection createConnection() {
-        Connection connection;
-        ProxyConnection proxyConnection;
-        try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            proxyConnection = new ProxyConnection(connection);
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, "Driver not registered", e);
-            throw new RuntimeException("Driver not registered", e);
-        }
-        return proxyConnection;
-    }
-
-    public Connection retrieve() {
+    Connection retrieve() {
         ProxyConnection newConnection = null;
         try {
             newConnection = availableConnection.take();
@@ -90,7 +71,7 @@ public class ConnectionPool {
         return newConnection;
     }
 
-    public void putBack(Connection connection) {
+    void putBack(Connection connection) {
         if (connection != null) {
             if (connection instanceof ProxyConnection && usedConnection.remove(connection)) {
                 try {
@@ -131,5 +112,4 @@ public class ConnectionPool {
             }
         }
     }
-
 }

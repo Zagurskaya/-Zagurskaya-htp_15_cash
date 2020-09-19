@@ -71,7 +71,7 @@ public class ProxyConnection implements Connection {
         ConnectionPool.getInstance().putBack(connection);
     }
 
-    public void closeConnection() throws SQLException {
+    void closeConnection() throws SQLException {
         connection.close();
     }
 
