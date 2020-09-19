@@ -13,6 +13,11 @@ public class DatabaseProperty {
     private static DatabaseProperty instance;
     private static Properties properties;
 
+    private static final String PROPERTY_NAME = "database.properties";
+    private static final String DRIVER = "database.driver.name";
+    private static final String URL = "database.url";
+    private static final String USER = "database.username";
+    private static final String PASSWORD = "database.password";
 
     private DatabaseProperty() {
     }
@@ -20,16 +25,33 @@ public class DatabaseProperty {
     public static DatabaseProperty getInstance() {
         if (instance == null) {
             instance = new DatabaseProperty();
+            createProperties();
             return instance;
         }
         return instance;
     }
 
-    public Properties getProperties() {
-        return readProperties("database.properties");
+    public String getDriver() {
+        return properties.getProperty(DRIVER);
     }
 
-    private Properties readProperties(String propertiesFilePath) {
+    public String getUrl() {
+        return properties.getProperty(URL);
+    }
+
+    public String getUser() {
+        return properties.getProperty(USER);
+    }
+
+    public String getPassword() {
+        return properties.getProperty(PASSWORD);
+    }
+
+    private static void createProperties() {
+        properties = readProperties(PROPERTY_NAME);
+    }
+
+    private static Properties readProperties(String propertiesFilePath) {
         try (InputStream input = ConnectionPool.class.getClassLoader().getResourceAsStream(propertiesFilePath)) {
 
             if (input == null) {
@@ -45,5 +67,4 @@ public class DatabaseProperty {
             throw new RuntimeException("no properties file found");
         }
     }
-
 }

@@ -24,12 +24,12 @@ public class ConnectionPool {
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
     private LinkedBlockingQueue<ProxyConnection> availableConnection;
     private LinkedBlockingQueue<ProxyConnection> usedConnection;
-    private static final int MIN_POOL_SIZE = 20;
 
-    private static final String DRIVER = DatabaseProperty.getInstance().getProperties().getProperty("database.driver.name");
-    private static final String URL = DatabaseProperty.getInstance().getProperties().getProperty("database.url");
-    private static final String USER = DatabaseProperty.getInstance().getProperties().getProperty("database.username");
-    private static final String PASSWORD = DatabaseProperty.getInstance().getProperties().getProperty("database.password");
+    private static final int MIN_POOL_SIZE = 20;
+    private static final String DRIVER = DatabaseProperty.getInstance().getDriver();
+    private static final String URL = DatabaseProperty.getInstance().getUrl();
+    private static final String USER = DatabaseProperty.getInstance().getUser();
+    private static final String PASSWORD = DatabaseProperty.getInstance().getPassword();
 
     static {
         try {
