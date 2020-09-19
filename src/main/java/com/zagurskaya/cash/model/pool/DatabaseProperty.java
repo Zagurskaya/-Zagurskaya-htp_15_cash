@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class DatabaseProperty {
+class DatabaseProperty {
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
     private static DatabaseProperty instance;
     private static Properties properties;
@@ -22,7 +22,7 @@ public class DatabaseProperty {
     private DatabaseProperty() {
     }
 
-    public static DatabaseProperty getInstance() {
+    static DatabaseProperty getInstance() {
         if (instance == null) {
             instance = new DatabaseProperty();
             createProperties();
@@ -31,28 +31,28 @@ public class DatabaseProperty {
         return instance;
     }
 
-    public String getDriver() {
+    String getDriver() {
         return properties.getProperty(DRIVER);
     }
 
-    public String getUrl() {
+    String getUrl() {
         return properties.getProperty(URL);
     }
 
-    public String getUser() {
+    String getUser() {
         return properties.getProperty(USER);
     }
 
-    public String getPassword() {
+    String getPassword() {
         return properties.getProperty(PASSWORD);
     }
 
     private static void createProperties() {
-        properties = readProperties(PROPERTY_NAME);
+        properties = readProperties();
     }
 
-    private static Properties readProperties(String propertiesFilePath) {
-        try (InputStream input = ConnectionPool.class.getClassLoader().getResourceAsStream(propertiesFilePath)) {
+    private static Properties readProperties() {
+        try (InputStream input = ConnectionPool.class.getClassLoader().getResourceAsStream(DatabaseProperty.PROPERTY_NAME)) {
 
             if (input == null) {
                 logger.log(Level.ERROR, "no properties file found");
