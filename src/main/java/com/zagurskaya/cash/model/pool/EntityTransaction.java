@@ -62,7 +62,6 @@ public class EntityTransaction {
                 logger.log(Level.ERROR, "Database exception during rollback pool", e);
                 throw new RuntimeException("Database exception during rollback pool", e);
             }
-            connection = null;
         }
     }
 }

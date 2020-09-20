@@ -10,7 +10,7 @@ import com.zagurskaya.cash.util.Form;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class СommandLogin implements Сommand {
+public class LoginСommand implements Сommand {
     private UserService userService = new UserServiceImpl();
 
     @Override

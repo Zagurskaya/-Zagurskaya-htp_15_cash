@@ -5,7 +5,7 @@ import com.zagurskaya.cash.controller.command.Сommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class СommandIndex implements Сommand {
+public class IndexСommand implements Сommand {
     @Override
     public Action execute(HttpServletRequest request) {
         Action.INDEX.setPATH("/");

@@ -24,7 +24,7 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> getAll() throws ServiceException {
         transaction.init(roleDao);
         try {
-            List<Role> roles = roleDao.getAll();
+            List<Role> roles = roleDao.findAll();
             transaction.commit();
             return roles;
         } catch (DAOException e) {
@@ -40,7 +40,7 @@ public class RoleServiceImpl implements RoleService {
     public Role getById(Long id) throws ServiceException {
         transaction.init(roleDao);
         try {
-            Role role = roleDao.getById(id);
+            Role role = roleDao.findById(id);
             transaction.commit();
             return role;
         } catch (DAOException e) {

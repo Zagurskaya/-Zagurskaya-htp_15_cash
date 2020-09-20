@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface Dao<T> {
-    List<T> getAll() throws DAOException;
+    List<T> findAll() throws DAOException;
 
-    T getById(Long id) throws DAOException;
+    T findById(Long id) throws DAOException;
 
     boolean create(T t) throws DAOException;
 
@@ -18,7 +18,7 @@ public interface Dao<T> {
 
     boolean delete(T t) throws DAOException;
 
-    List<T> getAll(String where) throws DAOException;
+    List<T> findAll(String where) throws DAOException;
 
     void setConnection(Connection connection);
 }

@@ -5,7 +5,7 @@ import com.zagurskaya.cash.controller.command.Сommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class СommandError implements Сommand {
+public class ErrorСommand implements Сommand {
 
     @Override
     public Action execute(HttpServletRequest request) {

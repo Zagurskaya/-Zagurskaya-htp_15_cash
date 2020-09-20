@@ -20,46 +20,42 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
 
     static final Logger logger = LogManager.getLogger(RoleDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_ROLES = "SELECT * FROM `roles`";
-    private static final String SQL_SELECT_ROLE_BY_ID = "SELECT * FROM `roles` WHERE id= ? ";
-
-    private static final String FIELD_ID = "id";
-    private static final String FIELD_NAME = "name";
-
-    private PreparedStatement preparedStatement = null;
-    private Statement statement = null;
+    private static final String SQL_SELECT_ALL_ROLES = "SELECT id, name FROM `roles`";
+    private static final String SQL_SELECT_ROLE_BY_ID = "SELECT id, name FROM `roles` WHERE id= ? ";
 
     @Override
-    public List<Role> getAll() throws DAOException {
+    public List<Role> findAll() throws DAOException {
+        Statement statement = null;
         List<Role> roles = new ArrayList<>();
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_ROLES);
             while (resultSet.next()) {
                 Role role = new Role();
-                role.setId(resultSet.getLong(FIELD_ID));
-                role.setName(resultSet.getString(FIELD_NAME));
+                role.setId(resultSet.getLong(ColumnName.ROLE_ID));
+                role.setName(resultSet.getString(ColumnName.ROLE_NAME));
                 roles.add(role);
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all role", e);
             throw new DAOException("Database exception during fiend all role", e);
         } finally {
-            close(preparedStatement);
+            close(statement);
         }
         return roles;
     }
 
     @Override
-    public Role getById(Long id) throws DAOException {
+    public Role findById(Long id) throws DAOException {
+        PreparedStatement preparedStatement = null;
         Role role = new Role();
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_ROLE_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                role.setId(resultSet.getLong(FIELD_ID));
-                role.setName(resultSet.getString(FIELD_NAME));
+                role.setId(resultSet.getLong(ColumnName.ROLE_ID));
+                role.setName(resultSet.getString(ColumnName.ROLE_NAME));
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend role by id", e);
@@ -91,7 +87,7 @@ public class RoleDaoImpl extends AbstractDao implements RoleDao {
     }
 
     @Override
-    public List<Role> getAll(String where) throws DAOException {
+    public List<Role> findAll(String where) throws DAOException {
         return null;
     }
 }

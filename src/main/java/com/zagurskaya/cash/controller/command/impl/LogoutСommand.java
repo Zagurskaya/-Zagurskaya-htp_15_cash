@@ -5,7 +5,7 @@ import com.zagurskaya.cash.controller.command.Сommand;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class СommandLogout implements Сommand {
+public class LogoutСommand implements Сommand {
     @Override
     public Action execute(HttpServletRequest request) {
         request.getSession().invalidate();

@@ -19,53 +19,47 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM `users`";
-    private static final String SQL_SELECT_USER_BY_ID = "SELECT * FROM `users` WHERE id= ? ";
-    private static final String SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM `users` WHERE `login`= ? AND `password`= ?";
-
-    private static final String FIELD_ID = "id";
-    private static final String FIELD_LOGIN = "login";
-    private static final String FIELD_PASSWORD = "password";
-    private static final String FIELD_ROLE_ID = "roleId";
-
-    private PreparedStatement preparedStatement = null;
-    private Statement statement = null;
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, roleId FROM `users`";
+    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, roleId FROM `users` WHERE id= ? ";
+    private static final String SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, roleId FROM `users` WHERE `login`= ? AND `password`= ?";
 
     @Override
-    public List<User> getAll() throws DAOException {
+    public List<User> findAll() throws DAOException {
+        Statement statement = null;
         List<User> users = new ArrayList<>();
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_USERS);
             while (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getLong(FIELD_ID));
-                user.setLogin(resultSet.getString(FIELD_LOGIN));
-                user.setPassword(resultSet.getString(FIELD_PASSWORD));
-                user.setRoleId(resultSet.getLong(FIELD_ROLE_ID));
+                user.setId(resultSet.getLong(ColumnName.USER_ID));
+                user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
+                user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
+                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
                 users.add(user);
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new DAOException("Database exception during fiend all user", e);
         } finally {
-            close(preparedStatement);
+            close(statement);
         }
         return users;
     }
 
     @Override
-    public User getById(Long id) throws DAOException {
+    public User findById(Long id) throws DAOException {
+        PreparedStatement preparedStatement = null;
         User user = new User();
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getLong(FIELD_ID));
-                user.setLogin(resultSet.getString(FIELD_LOGIN));
-                user.setPassword(resultSet.getString(FIELD_PASSWORD));
-                user.setRoleId(resultSet.getLong(FIELD_ROLE_ID));
+                user.setId(resultSet.getLong(ColumnName.USER_ID));
+                user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
+                user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
+                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
@@ -97,12 +91,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     @Override
-    public List<User> getAll(String where) throws DAOException {
+    public List<User> findAll(String where) throws DAOException {
         return null;
     }
 
     @Override
     public User getUserByLoginAndPassword(String login, String password) throws DAOException {
+        PreparedStatement preparedStatement = null;
         User user = new User();
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD);
@@ -110,10 +105,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                user.setId(resultSet.getLong(FIELD_ID));
-                user.setLogin(resultSet.getString(FIELD_LOGIN));
-                user.setPassword(resultSet.getString(FIELD_PASSWORD));
-                user.setRoleId(resultSet.getLong(FIELD_ROLE_ID));
+                user.setId(resultSet.getLong(ColumnName.USER_ID));
+                user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
+                user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
+                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);

@@ -1,17 +1,17 @@
 package com.zagurskaya.cash.controller.command;
-import com.zagurskaya.cash.controller.command.impl.СommandError;
-import com.zagurskaya.cash.controller.command.impl.СommandIndex;
-import com.zagurskaya.cash.controller.command.impl.СommandLogin;
-import com.zagurskaya.cash.controller.command.impl.СommandProfile;
+import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
+import com.zagurskaya.cash.controller.command.impl.IndexСommand;
+import com.zagurskaya.cash.controller.command.impl.LoginСommand;
+import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
 
 import javax.servlet.http.HttpServletRequest;
 
 public enum Action {
 
-    INDEX(new СommandIndex()),
-    ERROR(new СommandError()),
-    LOGIN(new СommandLogin()),
-    PROFILE(new СommandProfile()),
+    INDEX(new IndexСommand()),
+    ERROR(new ErrorСommand()),
+    LOGIN(new LoginСommand()),
+    PROFILE(new ProfileСommand()),
 
     ;
 

@@ -17,11 +17,12 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-    private UserDao userDao = new UserDaoImpl();
-    private EntityTransaction transaction = new EntityTransaction();
+
 
     @Override
     public User getUserByLoginAndPassword(String login, String password) throws ServiceException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
         transaction.init(userDao);
         try {
             User user = userDao.getUserByLoginAndPassword(login, password);
@@ -38,9 +39,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() throws ServiceException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
         transaction.init(userDao);
         try {
-            List<User> users = userDao.getAll();
+            List<User> users = userDao.findAll();
             transaction.commit();
             return users;
         } catch (DAOException e) {
@@ -54,9 +57,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getById(Long id) throws ServiceException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
         transaction.init(userDao);
         try {
-            User user = userDao.getById(id);
+            User user = userDao.findById(id);
             transaction.commit();
             return user;
         } catch (DAOException e) {
