@@ -5,7 +5,7 @@ import com.zagurskaya.cash.model.dao.RoleDao;
 import com.zagurskaya.cash.model.dao.impl.RoleDaoImpl;
 import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.model.pool.EntityTransaction;
+import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.RoleService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -22,17 +22,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> getAll() throws ServiceException {
-        transaction.init(roleDao);
+        transaction.initSingleRequest(roleDao);
         try {
             List<Role> roles = roleDao.findAll();
-            transaction.commit();
             return roles;
         } catch (DAOException e) {
-            transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend all role", e);
             throw new ServiceException("Database exception during fiend all role", e);
         } finally {
-            transaction.end();
+            transaction.endSingleRequest();
         }
     }
 

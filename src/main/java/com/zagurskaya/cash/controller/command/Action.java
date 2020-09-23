@@ -1,4 +1,5 @@
 package com.zagurskaya.cash.controller.command;
+
 import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
 import com.zagurskaya.cash.controller.command.impl.IndexСommand;
 import com.zagurskaya.cash.controller.command.impl.LoginСommand;
@@ -18,13 +19,13 @@ public enum Action {
     public Сommand command;
     String PATH = "";
 
-    Action(String PATH) {
-        this.PATH = PATH;
-    }
-
-    public String getPATH() {
-        return PATH;
-    }
+//    Action(String PATH) {
+//        this.PATH = PATH;
+//    }
+//
+//    public String getPATH() {
+//        return PATH;
+//    }
 
     public void setPATH(String PATH) {
         this.PATH = PATH;
@@ -33,6 +34,12 @@ public enum Action {
     Action(Сommand command) {
         this.command = command;
     }
+
+    Action(Сommand command, String path) {
+        this.command = command;
+        this.PATH = path;
+    }
+
 
     public String getJsp() {
         return "/jsp/" + PATH + name().toLowerCase() + ".jsp";

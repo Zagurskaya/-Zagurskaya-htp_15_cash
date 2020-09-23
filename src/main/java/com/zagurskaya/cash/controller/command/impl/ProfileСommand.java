@@ -21,11 +21,9 @@ public class ProfileСommand implements Сommand {
     public Action execute(HttpServletRequest request) throws Exception {
         User user = DataUtil.findUser(request);
         if (user != null) {
-//            List<Role> roles = new RoleDaoImpl().findAll();
             List<Role> roles = roleService.getAll();
             request.setAttribute("roles", roles);
 
-//            List<User> users = new UserDaoImpl().findAll();
             List<User> users = userService.getAll();
             request.setAttribute("users", users);
 

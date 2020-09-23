@@ -5,7 +5,7 @@ import com.zagurskaya.cash.model.dao.UserDao;
 import com.zagurskaya.cash.model.dao.impl.UserDaoImpl;
 import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.model.pool.EntityTransaction;
+import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.UserService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -23,17 +23,15 @@ public class UserServiceImpl implements UserService {
     public User getUserByLoginAndPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.init(userDao);
+        transaction.initSingleRequest(userDao);
         try {
             User user = userDao.getUserByLoginAndPassword(login, password);
-            transaction.commit();
             return user;
         } catch (DAOException e) {
-            transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
         } finally {
-            transaction.end();
+            transaction.endSingleRequest();
         }
     }
 
@@ -41,17 +39,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.init(userDao);
+        transaction.initSingleRequest(userDao);
         try {
             List<User> users = userDao.findAll();
-            transaction.commit();
+//            transaction.commit();
             return users;
         } catch (DAOException e) {
-            transaction.rollback();
+//            transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
         } finally {
-            transaction.end();
+            transaction.endSingleRequest();
         }
     }
 
@@ -59,17 +57,15 @@ public class UserServiceImpl implements UserService {
     public User getById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.init(userDao);
+        transaction.initSingleRequest(userDao);
         try {
             User user = userDao.findById(id);
-            transaction.commit();
             return user;
         } catch (DAOException e) {
-            transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
         } finally {
-            transaction.end();
+            transaction.endSingleRequest();
         }
     }
 

@@ -59,7 +59,7 @@ public class ConnectionPool {
         }
     }
 
-    Connection retrieve() {
+    public Connection retrieve() {
         ProxyConnection newConnection = null;
         try {
             newConnection = availableConnection.take();
@@ -71,7 +71,7 @@ public class ConnectionPool {
         return newConnection;
     }
 
-    void putBack(Connection connection) {
+    public void putBack(Connection connection) {
         if (connection != null) {
             if (connection instanceof ProxyConnection && usedConnection.remove(connection)) {
                 try {

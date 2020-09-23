@@ -9,7 +9,6 @@ public class ErrorСommand implements Сommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
-        Action.ERROR.setPATH("/");
         return Action.ERROR;
     }
 }
