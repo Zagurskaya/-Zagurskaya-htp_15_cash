@@ -7,11 +7,8 @@ public class ColumnName {
     public static final String USER_ID = "id";
     public static final String USER_LOGIN = "login";
     public static final String USER_PASSWORD = "password";
-    public static final String USER_ROLE_ID = "roleId";
+    public static final String USER_ROLE = "role";
 
-    // table 'role'
-    public static final String ROLE_ID = "id";
-    public static final String ROLE_NAME = "name";
 
     private ColumnName() {
     }

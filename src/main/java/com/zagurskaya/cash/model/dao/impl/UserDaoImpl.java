@@ -19,9 +19,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, roleId FROM `users`";
-    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, roleId FROM `users` WHERE id= ? ";
-    private static final String SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, roleId FROM `users` WHERE `login`= ? AND `password`= ?";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, role FROM `user`";
+    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, role FROM `user` WHERE id= ? ";
+    private static final String SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, role FROM `user` WHERE `login`= ? AND `password`= ?";
 
     @Override
     public List<User> findAll() throws DAOException {
@@ -35,7 +35,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.setId(resultSet.getLong(ColumnName.USER_ID));
                 user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                 user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
+                user.setRole(resultSet.getString(ColumnName.USER_ROLE));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -59,7 +59,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.setId(resultSet.getLong(ColumnName.USER_ID));
                 user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                 user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
+                user.setRole(resultSet.getString(ColumnName.USER_ROLE));
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
@@ -108,7 +108,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.setId(resultSet.getLong(ColumnName.USER_ID));
                 user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                 user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                user.setRoleId(resultSet.getLong(ColumnName.USER_ROLE_ID));
+                user.setRole(resultSet.getString(ColumnName.USER_ROLE));
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);

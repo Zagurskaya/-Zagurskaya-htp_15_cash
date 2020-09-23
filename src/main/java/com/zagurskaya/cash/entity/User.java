@@ -4,16 +4,16 @@ public class User implements Entity {
     private long id;
     private String login;
     private String password;
-    private long roleId;
+    private String role;
 
     public User() {
     }
 
-    public User(long id, String login, String password, long roleId) {
+    public User(long id, String login, String password, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.roleId = roleId;
+        this.role = role;
     }
 
     @Override
@@ -41,12 +41,12 @@ public class User implements Entity {
         this.password = password;
     }
 
-    public long getRoleId() {
-        return roleId;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class User implements Entity {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", roleId=" + roleId +
+                ", role=" + role +
                 '}';
     }
 }

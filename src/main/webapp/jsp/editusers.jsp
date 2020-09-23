@@ -31,9 +31,9 @@
                 </div>
 
                 <div class="col-md-2">
-                    <select id="roleId" name="roleId" class="form-control">
+                    <select id="role" name="role" class="form-control">
                         <c:forEach items="${roles}" var="role">
-                        <option value="${role.id}" ${user.roleId==role.id?"selected":""}>${role.name}</option>
+                        <option value="${role.id}" ${user.role==role.id?"selected":""}>${role.name}</option>
                         </c:forEach>
                     </select>
                 </div>

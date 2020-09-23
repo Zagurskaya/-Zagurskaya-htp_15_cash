@@ -30,9 +30,9 @@
 
             <!-- Select Basic -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="roleId">Роль</label>
+              <label class="col-md-4 control-label" for="role">Роль</label>
               <div class="col-md-4">
-                <select id="roleId" name="roleId" class="form-control">
+                <select id="role" name="role" class="form-control">
                   <option value="2">kassir</option>
                   <option value="1">admin</option>
                 </select>
