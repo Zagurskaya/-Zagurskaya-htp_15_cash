@@ -7,13 +7,13 @@
 
     User: ${user}
     <br>
+    ${error}
+    <br>
 
     <form class="form-horizontal" action="do?command=Login" method="post">
         <fieldset>
-
             <!-- Form Name -->
             <legend>Login</legend>
-
 
             <!-- Text input-->
             <div class="form-group">

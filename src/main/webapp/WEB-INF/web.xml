@@ -4,6 +4,14 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Сервлеты zagurskaya</display-name>
+    <filter>
+        <filter-name>ExceptionHandlerFilter</filter-name>
+        <filter-class>com.zagurskaya.cash.filter.ExceptionHandlerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ExceptionHandlerFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>com.zagurskaya.cash.controller.FrontController</servlet-class>

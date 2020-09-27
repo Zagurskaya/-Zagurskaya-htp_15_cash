@@ -13,7 +13,7 @@ public class Role implements Entity{
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

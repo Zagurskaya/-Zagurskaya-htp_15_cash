@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="../include/head.jsp" %>
+<%@ include file="../../include/head.jsp" %>
 <body>
 <div class="container">
-    <%@ include file="../include/menu.jsp" %>
+    <%@ include file="../../include/menuadmin.jsp" %>
     <br>
     <H4>Пользователи</H4>
     <div class="row">
@@ -31,11 +31,8 @@
                 </div>
 
                 <div class="col-md-2">
-                    <select id="role" name="role" class="form-control">
-                        <c:forEach items="${roles}" var="role">
-                        <option value="${role.id}" ${user.role==role.id?"selected":""}>${role.name}</option>
-                        </c:forEach>
-                    </select>
+                    <input id="role" name="role" type="role" placeholder="" class="form-control input-md"
+                           required="" value="${user.role}">
                 </div>
 
                 <!-- Button (Double) -->

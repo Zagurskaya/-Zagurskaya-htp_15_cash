@@ -10,20 +10,9 @@
         <div class="navbar-nav">
             <c:choose>
                 <c:when test="${user!=null}">
-                    <a class="nav-item nav-link" href="do?command=Profile">Профайл</a>
-                    <c:choose>
-                        <c:when test="${user.role=='admin'}">
-                            <a class="nav-item nav-link" href="do?command=Admin">Админка </a>
-                        </c:when>
-                        <c:when test="${user.role=='kassir'}">
-                            <a class="nav-item nav-link" href="do?command=Main">Cash</a>
-                        </c:when>
-                    </c:choose>
+                    <a class="nav-item nav-link" href="do?command=EditUsers">Пользователи</a>
+                    <a class="nav-item nav-link" href="do?command=CreateUser">Добавить пользователя</a>
                 </c:when>
-                <c:otherwise>
-                    <a class="nav-item nav-link" href="do?command=Login">Войти</a>
-                    <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
-                </c:otherwise>
             </c:choose>
         </div>
     </div>

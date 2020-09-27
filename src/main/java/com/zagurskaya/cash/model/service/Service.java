@@ -1,21 +1,22 @@
 package com.zagurskaya.cash.model.service;
 
+import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.util.List;
 
 public interface Service<T> {
-    List<T> getAll() throws ServiceException;
+    List<T> findAll() throws ServiceException;
 
-    T getById(Long id) throws ServiceException;
+    T findById(Long id) throws ServiceException;
 
-    boolean create(T t) throws ServiceException;
+    boolean create(T t) throws ServiceException, ServiceConstraintViolationException;
 
     T read(long id) throws ServiceException;
 
-    boolean update(T t) throws ServiceException;
+    boolean update(T t) throws ServiceException, ServiceConstraintViolationException;
 
     boolean delete(T t) throws ServiceException;
 
-    List<T> getAll(String where) throws ServiceException;
+    List<T> findAll(String where) throws ServiceException;
 }

@@ -1,5 +1,7 @@
 package com.zagurskaya.cash.controller;
 
+import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
+import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.Action;
 import org.apache.logging.log4j.Level;
@@ -7,12 +9,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 public class FrontController extends HttpServlet {
-
     private static final Logger logger = LogManager.getLogger(FrontController.class);
 
     @Override
@@ -20,30 +24,41 @@ public class FrontController extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         process(request, response);
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) {
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setAttribute("response", response);
-        Action action = Action.define(request);
+        Action currentAction = Action.define(request);
         try {
-            Action nextAction = action.command.execute(request);
-            if (nextAction == action) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher(action.getJsp());
+            Action nextAction = currentAction.command.execute(request);
+            if (nextAction == currentAction) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
                 requestDispatcher.forward(request, response);
             } else {
+                HttpSession session = request.getSession(false);
+                Action previousAction = currentAction;
+                session.setAttribute("previousAction", previousAction);
                 response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
             }
+        } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
+            String error = e.getMessage();
+            request.setAttribute("error", error);
+            logger.log(Level.ERROR, error, e);
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
+            requestDispatcher.forward(request, response);
         } catch (Exception e) {
-            logger.log(Level.ERROR, "exception", e);
+            logger.log(Level.ERROR, e);
         }
     }
+
 
     @Override
     public void destroy() {

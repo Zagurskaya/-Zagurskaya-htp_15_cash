@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.entity;
 
 public class User implements Entity {
-    private long id;
+    private Long id;
     private String login;
     private String password;
     private String role;
@@ -9,7 +9,7 @@ public class User implements Entity {
     public User() {
     }
 
-    public User(long id, String login, String password, String role) {
+    public User(Long id, String login, String password, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -17,11 +17,11 @@ public class User implements Entity {
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

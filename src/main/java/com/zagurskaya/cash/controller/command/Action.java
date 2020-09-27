@@ -3,46 +3,38 @@ package com.zagurskaya.cash.controller.command;
 import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
 import com.zagurskaya.cash.controller.command.impl.IndexСommand;
 import com.zagurskaya.cash.controller.command.impl.LoginСommand;
+import com.zagurskaya.cash.controller.command.impl.PathConstant;
 import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
+import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
+import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
+import com.zagurskaya.cash.controller.command.impl.admin.EditUsersCommand;
+import com.zagurskaya.cash.controller.command.impl.admin.UpdateUserCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
 public enum Action {
+//  root
+    INDEX(new IndexСommand(PathConstant.PATH_ROOT)),
+    ERROR(new ErrorСommand(PathConstant.PATH_ROOT)),
+    LOGIN(new LoginСommand(PathConstant.PATH_ROOT)),
+    PROFILE(new ProfileСommand(PathConstant.PATH_ROOT)),
+//  admin
+    ADMIN(new AdminCommand(PathConstant.PATH_ADMIN)),
+    EDITUSERS(new EditUsersCommand(PathConstant.PATH_ADMIN)),
+    CREATEUSER(new CreateUserCommand(PathConstant.PATH_ADMIN)),
+    UPDATEUSER(new UpdateUserCommand(PathConstant.PATH_ADMIN)),
 
-    INDEX(new IndexСommand()),
-    ERROR(new ErrorСommand()),
-    LOGIN(new LoginСommand()),
-    PROFILE(new ProfileСommand()),
 
     ;
 
     public Сommand command;
-    String PATH = "";
-
-//    Action(String PATH) {
-//        this.PATH = PATH;
-//    }
-//
-//    public String getPATH() {
-//        return PATH;
-//    }
-
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
-    }
 
     Action(Сommand command) {
         this.command = command;
     }
 
-    Action(Сommand command, String path) {
-        this.command = command;
-        this.PATH = path;
-    }
-
-
     public String getJsp() {
-        return "/jsp/" + PATH + name().toLowerCase() + ".jsp";
+        return command.getPath() + name().toLowerCase() + ".jsp";
     }
 
     public static Action define(HttpServletRequest request) {
@@ -53,6 +45,4 @@ public enum Action {
             return Action.INDEX;
         }
     }
-
-
 }

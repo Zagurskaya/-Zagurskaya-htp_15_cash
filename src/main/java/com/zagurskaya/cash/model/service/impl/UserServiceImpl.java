@@ -1,6 +1,8 @@
 package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.model.dao.UserDao;
 import com.zagurskaya.cash.model.dao.impl.UserDaoImpl;
 import com.zagurskaya.cash.exception.DAOException;
@@ -36,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAll() throws ServiceException {
+    public List<User> findAll() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) throws ServiceException {
+    public User findById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
@@ -70,27 +72,79 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean create(User user) throws ServiceException {
-        return false;
+    public boolean create(User user) throws ServiceException, ServiceConstraintViolationException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            if (userDao.findByLogin(user.getLogin()) == null) {
+                return userDao.create(user);
+            } else {
+                logger.log(Level.ERROR, "Duplicate data user's login ");
+                throw new ServiceConstraintViolationException("Duplicate data user's login ");
+            }
+        } catch (RepositoryConstraintViolationException e) {
+            logger.log(Level.ERROR, "Duplicate data user ", e);
+            throw new ServiceConstraintViolationException("Duplicate data user ", e);
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during create user ", e);
+            throw new ServiceException("Database exception during create user ", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
     }
 
     @Override
     public User read(long id) throws ServiceException {
-        return null;
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            User user = userDao.read(id);
+            return user;
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during read user by id", e);
+            throw new ServiceException("Database exception during read user by id", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
     }
 
     @Override
-    public boolean update(User user) throws ServiceException {
-        return false;
+    public boolean update(User user) throws ServiceException, ServiceConstraintViolationException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            return userDao.update(user);
+        } catch (RepositoryConstraintViolationException e) {
+            logger.log(Level.ERROR, "Duplicate data user ", e);
+            throw new ServiceConstraintViolationException("Duplicate data user ", e);
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during update user ", e);
+            throw new ServiceException("Database exception during update user ", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
     }
 
     @Override
     public boolean delete(User user) throws ServiceException {
-        return false;
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            return userDao.delete(user);
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during delete user ", e);
+            throw new ServiceException("Database exception during delete user ", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
     }
 
     @Override
-    public List<User> getAll(String where) throws ServiceException {
+    public List<User> findAll(String where) throws ServiceException {
         return null;
     }
 }
