@@ -24,7 +24,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, role FROM `user`";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, role FROM `user` WHERE id= ? ";
     private static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, login, password, role FROM `user` WHERE login= ? ";
-    private static final String SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD = "SELECT id, login, password, role FROM `user` WHERE `login`= ? AND `password`= ?";
     private static final String SQL_INSERT_USER = "INSERT INTO user(login, password, role) VALUES (?, ?, ?)";
     private static final String SQL_UPDATE_USER = "UPDATE user SET login=?, password=?, role=? WHERE id= ?";
     private static final String SQL_DELETE_USER = "DELETE FROM user WHERE id=?";
@@ -139,35 +138,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             close(preparedStatement);
         }
         return 1 == result;
-    }
-
-    @Override
-    public List<User> findAll(String where) throws DAOException {
-        return null;
-    }
-
-    @Override
-    public User getUserByLoginAndPassword(String login, String password) throws DAOException {
-        PreparedStatement preparedStatement = null;
-        User user = new User();
-        try {
-            preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_LOGIN_AND_PASSWORD);
-            preparedStatement.setString(1, login);
-            preparedStatement.setString(2, password);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                user.setId(resultSet.getLong(ColumnName.USER_ID));
-                user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
-                user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                user.setRole(resultSet.getString(ColumnName.USER_ROLE));
-            }
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
-            throw new DAOException("Database exception during fiend user by login and password", e);
-        } finally {
-            close(preparedStatement);
-        }
-        return user;
     }
 
     @Override

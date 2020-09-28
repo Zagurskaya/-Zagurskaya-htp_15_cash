@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class CreateUserCommand extends AbstractСommand {
     private final UserService userService = new UserServiceImpl();
@@ -27,6 +28,7 @@ public class CreateUserCommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
+        final HttpSession session = request.getSession(false);
 
         if (DataUtil.isCreateUpdateDeleteOperation(request)) {
 
@@ -51,6 +53,7 @@ public class CreateUserCommand extends AbstractСommand {
                     userService.create(newUser);
                     return Action.EDITUSERS;
                 } catch (ServiceException e) {
+                    session.setAttribute("error", e);
                     logger.log(Level.ERROR, e);
                     return Action.ERROR;
                 }

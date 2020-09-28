@@ -5,7 +5,6 @@
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
 
-    User: ${user}
     <br>
     ${error}
     <br>

@@ -56,6 +56,7 @@ public class UpdateUserCommand extends AbstractСommand {
                     userService.update(updateUser);
                     return Action.EDITUSERS;
                 } catch (ServiceException e) {
+                    session.setAttribute("error", e);
                     logger.log(Level.ERROR, e);
                     return Action.ERROR;
                 }

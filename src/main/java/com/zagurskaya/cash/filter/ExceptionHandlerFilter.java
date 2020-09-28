@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -28,10 +27,6 @@ public class ExceptionHandlerFilter implements Filter {
         } catch (Exception e) {
             ((HttpServletResponse) response).sendError(500, "Internal server error");
             logger.log(Level.ERROR, "Internal server error", e);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/jsp/error.jsp");
-            String error = e.getMessage();
-            request.setAttribute("error", error);
-            requestDispatcher.forward(request, response);
         }
     }
 

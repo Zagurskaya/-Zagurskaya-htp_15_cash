@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class ProfileСommand extends AbstractСommand {
@@ -24,6 +25,8 @@ public class ProfileСommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
+        final HttpSession session = request.getSession(false);
+
         User user = DataUtil.findUser(request);
         try {
             if (user != null) {
@@ -33,6 +36,7 @@ public class ProfileСommand extends AbstractСommand {
                 return Action.PROFILE;
             }
         } catch (ServiceException e) {
+            session.setAttribute("error", e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

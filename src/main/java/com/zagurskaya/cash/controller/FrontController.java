@@ -18,7 +18,6 @@ import java.io.IOException;
 
 public class FrontController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FrontController.class);
-
     @Override
     public void init() {
     }
@@ -34,18 +33,20 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
 
         request.setAttribute("response", response);
         Action currentAction = Action.define(request);
         try {
             Action nextAction = currentAction.command.execute(request);
+            Action previousAction = currentAction;
+            session.setAttribute("previousAction", previousAction);
             if (nextAction == currentAction) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
                 requestDispatcher.forward(request, response);
             } else {
-                HttpSession session = request.getSession(false);
-                Action previousAction = currentAction;
-                session.setAttribute("previousAction", previousAction);
+//                Action previousAction = currentAction;
+//                session.setAttribute("previousAction", previousAction);
                 response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
             }
         } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
@@ -55,10 +56,11 @@ public class FrontController extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
+            session.setAttribute("error", e);
             logger.log(Level.ERROR, e);
+            response.sendRedirect("do?command=error");
         }
     }
-
 
     @Override
     public void destroy() {

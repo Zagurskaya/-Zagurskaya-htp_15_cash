@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Пароль</label>
                 <div class="col-md-4">
-                    <input id="password" name="password" value="${user.password}" type="text" placeholder=""
+                    <input id="password" name="password" value="${user.password}" type="password" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
                     >
                 </div>

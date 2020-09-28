@@ -6,18 +6,19 @@ import com.zagurskaya.cash.controller.command.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class ErrorСommand extends AbstractСommand {
+public class LocalRuСommand extends AbstractСommand {
 
-    public ErrorСommand(String path) {
+    public LocalRuСommand(String path) {
         super(path);
     }
 
     @Override
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
+        Action previousAction = (Action) session.getAttribute("previousAction");
 
-        request.setAttribute("error", session.getAttribute("error"));
-        session.removeAttribute("error");
-        return Action.ERROR;
+        session.getAttribute("previousAction");
+        session.setAttribute("local", "ru");
+        return previousAction;
     }
 }

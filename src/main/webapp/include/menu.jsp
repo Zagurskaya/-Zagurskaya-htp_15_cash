@@ -1,32 +1,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<fmt:setLocale value="${local}"/>
+<fmt:setBundle basename="properties.pagecontent"/>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href=".">Главная</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" href="."><fmt:message key="header.home"/></a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <c:choose>
                 <c:when test="${user!=null}">
-                    <a class="nav-item nav-link" href="do?command=Profile">Профайл</a>
+                    <a class="nav-item nav-link" href="do?command=Profile"><fmt:message key="header.profile"/></a>
                     <c:choose>
                         <c:when test="${user.role=='admin'}">
-                            <a class="nav-item nav-link" href="do?command=Admin">Админка </a>
+                            <a class="nav-item nav-link" href="do?command=Admin"><fmt:message key="header.admin"/></a>
                         </c:when>
                         <c:when test="${user.role=='kassir'}">
-                            <a class="nav-item nav-link" href="do?command=Main">Cash</a>
+                            <a class="nav-item nav-link" href="do?command=Main"><fmt:message key="header.cash"/></a>
                         </c:when>
                     </c:choose>
                 </c:when>
                 <c:otherwise>
-                    <a class="nav-item nav-link" href="do?command=Login">Войти</a>
-                    <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
+                    <a class="nav-item nav-link" href="do?command=Login"><fmt:message key="header.login"/></a>
                 </c:otherwise>
             </c:choose>
         </div>
     </div>
-    <a class="nav-item nav-link" href="do?command=Logout">Выход</a>
+    local ${local}
+    <a class="nav-item nav-link" href="do?command=LocalEN"><fmt:message key="header.localen"/></a>
+    <a class="nav-item nav-link" href="do?command=LocalRU"><fmt:message key="header.localru"/></a>
+    <a class="nav-item nav-link" href="do?command=Logout"><fmt:message key="header.logout"/></a>
 </nav>
 

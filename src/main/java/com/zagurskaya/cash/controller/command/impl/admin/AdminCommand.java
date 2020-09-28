@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class AdminCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(AdminCommand.class);
@@ -19,10 +20,13 @@ public class AdminCommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
+        final HttpSession session = request.getSession(false);
+
         User user = DataUtil.findUser(request);
         if (user != null) {
             return Action.ADMIN;
         } else {
+            session.setAttribute("error", "null user");
             logger.log(Level.ERROR, "null user");
             return Action.ERROR;
         }

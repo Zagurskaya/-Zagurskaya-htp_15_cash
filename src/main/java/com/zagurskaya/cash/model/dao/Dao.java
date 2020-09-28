@@ -19,7 +19,5 @@ public interface Dao<T> {
 
     boolean delete(T t) throws DAOException;
 
-    List<T> findAll(String where) throws DAOException;
-
     void setConnection(Connection connection);
 }

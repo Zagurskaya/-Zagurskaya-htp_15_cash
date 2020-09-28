@@ -18,5 +18,4 @@ public interface Service<T> {
 
     boolean delete(T t) throws ServiceException;
 
-    List<T> findAll(String where) throws ServiceException;
 }

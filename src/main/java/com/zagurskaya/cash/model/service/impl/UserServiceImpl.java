@@ -13,22 +13,26 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
 public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-
+    private static final String HASH_ALGORITHM = "SHA-512";
 
     @Override
-    public User getUserByLoginAndPassword(String login, String password) throws ServiceException {
+    public User getUserByLoginAndValidPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
+        User user;
         try {
-            User user = userDao.getUserByLoginAndPassword(login, password);
-            return user;
+            user = userDao.findByLogin(login);
+            return user != null && user.getPassword().equals(getHash(password)) ? user : null;
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
@@ -78,6 +82,8 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
+                String hashPassword = getHash(user.getPassword());
+                user.setPassword(hashPassword);
                 return userDao.create(user);
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
@@ -143,8 +149,21 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public List<User> findAll(String where) throws ServiceException {
-        return null;
+    public static String getHash(String password) throws ServiceException {
+        String hashPassword;
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance(HASH_ALGORITHM);
+            byte[] bytesMessageDigest = messageDigest.digest(password.getBytes());
+            BigInteger no = new BigInteger(1, bytesMessageDigest);
+            hashPassword = no.toString(16);
+            while (hashPassword.length() < 32) {
+                hashPassword = "0" + hashPassword;
+            }
+
+        } catch (NoSuchAlgorithmException e) {
+            logger.log(Level.ERROR, "No such algorithm " + HASH_ALGORITHM, e);
+            throw new ServiceException("No such algorithm " + HASH_ALGORITHM, e);
+        }
+        return hashPassword;
     }
 }

@@ -28,18 +28,20 @@ public class LoginСommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException {
+        final HttpSession session = request.getSession(false);
+
         if (DataUtil.isCreateUpdateDeleteOperation(request)) {
             String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
             String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
             User user;
             try {
-                user = userService.getUserByLoginAndPassword(login, password);
+                user = userService.getUserByLoginAndValidPassword(login, password);
                 if (user != null) {
-                    HttpSession session = request.getSession();
                     session.setAttribute("user", user);
                     return Action.PROFILE;
                 }
             } catch (ServiceException e) {
+                session.setAttribute("error", e);
                 logger.log(Level.ERROR, e);
                 return Action.ERROR;
             }
