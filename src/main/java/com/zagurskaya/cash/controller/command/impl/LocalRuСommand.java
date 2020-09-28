@@ -16,9 +16,9 @@ public class LocalRuСommand extends AbstractСommand {
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         Action previousAction = (Action) session.getAttribute("previousAction");
+        Action action = previousAction == null ? Action.INDEX : previousAction;
 
-        session.getAttribute("previousAction");
         session.setAttribute("local", "ru");
-        return previousAction;
+        return action;
     }
 }

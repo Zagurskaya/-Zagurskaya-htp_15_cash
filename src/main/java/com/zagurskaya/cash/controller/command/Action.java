@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public enum Action {
 //  root
-    INDEX(new IndexСommand(PathConstant.PATH_ROOT)),
+    INDEX(new IndexСommand(PathConstant.PATH_INDEX)),
     ERROR(new ErrorСommand(PathConstant.PATH_ROOT)),
     LOGIN(new LoginСommand(PathConstant.PATH_ROOT)),
     LOCALEN(new LocalEnСommand(PathConstant.PATH_ROOT)),

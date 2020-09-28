@@ -4,6 +4,7 @@ import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.util.HtmlCharsConverter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class FrontController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FrontController.class);
+
     @Override
     public void init() {
     }
@@ -45,12 +47,10 @@ public class FrontController extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
                 requestDispatcher.forward(request, response);
             } else {
-//                Action previousAction = currentAction;
-//                session.setAttribute("previousAction", previousAction);
                 response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
             }
         } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
-            String error = e.getMessage();
+            String error = HtmlCharsConverter.convertHtmlSpecialChars(e.getMessage());
             request.setAttribute("error", error);
             logger.log(Level.ERROR, error, e);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
