@@ -5,19 +5,15 @@
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
     <br>
-    <H4>Пользователь ${user.login} с правами ${user.role}</H4>
-     <br>
+    <H4><fmt:message key="page.profile.user"/> <span style="color:#2f3dff">${user.login}</span>
+        <fmt:message key="page.profile.role"/> <span style="color:#2f3dff">${user.role}</span>
+    </H4>
+    <br>
     <form class="form-horizontal" action="do?command=Logout" method="post">
         <fieldset>
-
-            <legend>Logout</legend>
-
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="logoutButton"></label>
-                <div class="col-md-4">
-                    <button id="logoutButton" name="logoutButton" class="btn btn-primary">Logout</button>
-                </div>
-            </div>
+            <button id="logoutButton" name="logoutButton" class="btn btn-primary">
+                <fmt:message key="page.profile.button.logout"/>
+            </button>
         </fieldset>
     </form>
 </div>

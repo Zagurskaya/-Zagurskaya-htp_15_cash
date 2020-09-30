@@ -1,7 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<fmt:setLocale value="${local}"/>
+<c:choose>
+    <c:when test="${cookie.local.value==null}">
+        <fmt:setLocale value="ru"/>
+    </c:when>
+    <c:otherwise>
+        <fmt:setLocale value="${cookie.local.value}"/>
+    </c:otherwise>
+</c:choose>
 <fmt:setBundle basename="properties.pagecontent"/>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="."><fmt:message key="header.home"/></a>
@@ -25,9 +32,8 @@
             </c:choose>
         </div>
     </div>
-    local ${local}
-    <a class="nav-item nav-link" href="do?command=LocalEN"><fmt:message key="header.localen"/></a>
-    <a class="nav-item nav-link" href="do?command=LocalRU"><fmt:message key="header.localru"/></a>
-    <a class="nav-item nav-link" href="do?command=Logout"><fmt:message key="header.logout"/></a>
+    <a class="nav-item nav-link" href="do?command=LocalEN"><fmt:message key="header.localEn"/></a>
+    <a class="nav-item nav-link" href="do?command=LocalRU"><fmt:message key="header.localRu"/></a>
+    <%--    <a class="nav-item nav-link" href="do?command=Logout"><fmt:message key="header.logout"/></a>--%>
 </nav>
 

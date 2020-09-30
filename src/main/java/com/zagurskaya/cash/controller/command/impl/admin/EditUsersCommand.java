@@ -8,6 +8,7 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
+import com.zagurskaya.cash.util.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -31,14 +32,14 @@ public class EditUsersCommand extends AbstractСommand {
         final HttpSession session = request.getSession(false);
 
         if (DataUtil.isCreateUpdateDeleteOperation(request)) {
-            Long id = DataUtil.getLong(request, "id");
+            Long id = DataUtil.getLong(request, AttributeConstant.ID);
 
             try {
                 if (DataUtil.isUpdateOperation(request)) {
                     if (userService.findById(id) != null) {
                         final User updateUser = userService.findById(id);
-                        session.setAttribute("user", updateUser);
-                        session.setAttribute("id", id);
+                        session.setAttribute(AttributeConstant.USER, updateUser);
+                        session.setAttribute(AttributeConstant.ID, id);
                         return Action.UPDATEUSER;
                     }
                 } else if (DataUtil.isDeleteOperation(request)) {
@@ -47,7 +48,7 @@ public class EditUsersCommand extends AbstractСommand {
                         userService.delete(deleteUser);
                 }
             } catch (ServiceException e) {
-                session.setAttribute("error", e);
+                session.setAttribute(AttributeConstant.ERROR, e);
                 logger.log(Level.ERROR, e);
                 return Action.ERROR;
             }
@@ -55,11 +56,11 @@ public class EditUsersCommand extends AbstractСommand {
         try {
             List<User> users = new ArrayList<>();
             users.addAll(userService.findAll());
-            request.setAttribute("users", users);
+            request.setAttribute(AttributeConstant.USERS, users);
             return Action.EDITUSERS;
 
         } catch (ServiceException e) {
-            session.setAttribute("error", e);
+            session.setAttribute(AttributeConstant.ERROR, e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

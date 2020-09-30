@@ -12,6 +12,7 @@ public class IndexСommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
+
         return Action.INDEX;
     }
 }

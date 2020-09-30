@@ -7,11 +7,12 @@
 
     <form class="form-horizontal" method="post">
         <fieldset>
-            <legend>Добавить сотрудника</legend>
+            <legend><fmt:message key="page.createuser.label.description"/></legend>
             <p><span style="color:red">${error}</span></p>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Логин</label>
+                <label class="col-md-4 control-label" for="login"><fmt:message
+                        key="page.createuser.label.login"/></label>
                 <div class="col-md-4">
                     <input id="login" value="${user.login}" name="login" type="text" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
@@ -20,7 +21,8 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Пароль</label>
+                <label class="col-md-4 control-label" for="password"><fmt:message
+                        key="page.createuser.label.password"/></label>
                 <div class="col-md-4">
                     <input id="password" name="password" value="${user.password}" type="password" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
@@ -29,19 +31,22 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="role">Должность</label>
+                <label class="col-md-4 control-label" for="role"><fmt:message
+                        key="page.createuser.label.position"/></label>
                 <div class="col-md-4">
                     <select id="role" name="role" type="text" placeholder="">
-                        <option value="admin">Админ</option>
-                        <option value="kassir">Кассир</option>
+                        <option value="admin"><fmt:message key="page.createuser.label.position.admin"/></option>
+                        <option value="kassir"><fmt:message key="page.createuser.label.position.cashier"/></option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4">
-                    <button id="save" name="save" class="btn btn-success">Сохранить</button>
-                    <button id="cancel" name="cancel" class="btn btn-danger">Отмена</button>
+                    <button id="save" name="save" class="btn btn-success"><fmt:message
+                            key="page.createuser.button.save"/></button>
+                    <button id="cancel" name="cancel" class="btn btn-danger"><fmt:message
+                            key="page.createuser.button.cancel"/></button>
                 </div>
             </div>
         </fieldset>

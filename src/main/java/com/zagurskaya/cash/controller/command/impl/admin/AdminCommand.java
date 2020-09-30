@@ -3,6 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.util.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +27,7 @@ public class AdminCommand extends AbstractСommand {
         if (user != null) {
             return Action.ADMIN;
         } else {
-            session.setAttribute("error", "null user");
+            session.setAttribute(AttributeConstant.ERROR, "null user");
             logger.log(Level.ERROR, "null user");
             return Action.ERROR;
         }

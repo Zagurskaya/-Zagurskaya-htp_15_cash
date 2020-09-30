@@ -101,22 +101,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(long id) throws ServiceException {
-        UserDao userDao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
-        try {
-            User user = userDao.read(id);
-            return user;
-        } catch (DAOException e) {
-            logger.log(Level.ERROR, "Database exception during read user by id", e);
-            throw new ServiceException("Database exception during read user by id", e);
-        } finally {
-            transaction.endSingleRequest();
-        }
-    }
-
-    @Override
     public boolean update(User user) throws ServiceException, ServiceConstraintViolationException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();

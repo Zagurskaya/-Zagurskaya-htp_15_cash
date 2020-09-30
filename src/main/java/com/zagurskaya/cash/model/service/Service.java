@@ -12,8 +12,6 @@ public interface Service<T> {
 
     boolean create(T t) throws ServiceException, ServiceConstraintViolationException;
 
-    T read(long id) throws ServiceException;
-
     boolean update(T t) throws ServiceException, ServiceConstraintViolationException;
 
     boolean delete(T t) throws ServiceException;

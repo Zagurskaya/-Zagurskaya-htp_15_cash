@@ -6,11 +6,11 @@
 <div class="container">
     <%@ include file="../../include/menuadmin.jsp" %>
     <br>
-    <H4>Пользователи</H4>
+    <H4><fmt:message key="page.editusers.label.description"/></H4>
     <div class="row">
-        <div class=col-md-2>Логин</div>
-        <div class=col-md-2>Пароль</div>
-        <div class=col-md-2>Роль</div>
+        <div class=col-md-2><fmt:message key="page.editusers.label.login"/></div>
+        <div class=col-md-2><fmt:message key="page.editusers.label.password"/></div>
+        <div class=col-md-2><fmt:message key="page.editusers.label.position"/></div>
     </div>
     <c:forEach items="${users}" var="user">
         <form class="form-horizontal-${user.id}" action="do?command=EditUsers" method="post">
@@ -35,16 +35,15 @@
                            required="" value="${user.role}">
                 </div>
 
-                <!-- Button (Double) -->
                 <div class="col-md-4">
-                    <button id="update" name="update" class="btn btn-success">Обновить</button>
-                    <button id="delete" name="delete" class="btn btn-danger">Удалить</button>
+                    <button id="update" name="update" class="btn btn-success"><fmt:message
+                            key="page.editusers.button.update"/></button>
+                    <button id="delete" name="delete" class="btn btn-danger"><fmt:message
+                            key="page.editusers.button.delete"/></button>
                 </div>
             </div>
         </form>
     </c:forEach>
-
-
 </div>
 </body>
 </html>

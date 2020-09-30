@@ -4,7 +4,7 @@ import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.util.HtmlCharsConverter;
+import com.zagurskaya.cash.util.AttributeConstant;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,12 +37,12 @@ public class FrontController extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        request.setAttribute("response", response);
+        request.setAttribute(AttributeConstant.RESPONSE, response);
         Action currentAction = Action.define(request);
         try {
             Action nextAction = currentAction.command.execute(request);
             Action previousAction = currentAction;
-            session.setAttribute("previousAction", previousAction);
+            session.setAttribute(AttributeConstant.PREVIOUS_ACTION, previousAction);
             if (nextAction == currentAction) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
                 requestDispatcher.forward(request, response);
@@ -50,13 +50,13 @@ public class FrontController extends HttpServlet {
                 response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
             }
         } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
-            String error = HtmlCharsConverter.convertHtmlSpecialChars(e.getMessage());
-            request.setAttribute("error", error);
+            String error = e.getMessage();
+            request.setAttribute(AttributeConstant.ERROR, error);
             logger.log(Level.ERROR, error, e);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
-            session.setAttribute("error", e);
+            session.setAttribute(AttributeConstant.ERROR, e);
             logger.log(Level.ERROR, e);
             response.sendRedirect("do?command=error");
         }

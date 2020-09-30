@@ -13,9 +13,7 @@ public interface Dao<T> {
 
     boolean create(T t) throws RepositoryConstraintViolationException, DAOException;
 
-    T read(long id) throws DAOException;
-
-    boolean update(T t) throws DAOException, RepositoryConstraintViolationException;
+    boolean update(T t) throws RepositoryConstraintViolationException, DAOException;
 
     boolean delete(T t) throws DAOException;
 

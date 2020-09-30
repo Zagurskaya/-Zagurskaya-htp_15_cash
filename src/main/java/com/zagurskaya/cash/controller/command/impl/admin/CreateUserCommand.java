@@ -8,6 +8,7 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
+import com.zagurskaya.cash.util.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
 import com.zagurskaya.cash.util.PatternConstant;
 import com.zagurskaya.cash.util.UserExtractor;
@@ -21,6 +22,9 @@ import javax.servlet.http.HttpSession;
 public class CreateUserCommand extends AbstractСommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
+    private static final String LOGIN = "login";
+    private static final String PASSWORD = "password";
+    private static final String ROLE = "role";
 
     public CreateUserCommand(String path) {
         super(path);
@@ -39,11 +43,11 @@ public class CreateUserCommand extends AbstractСommand {
 
                 User createdUser = new User();
                 UserExtractor.setUserNotCheckedFieldsToUser(request, createdUser);
-                request.setAttribute("user", createdUser);
+                request.setAttribute(AttributeConstant.USER, createdUser);
 
-                String login = DataUtil.getString(request, "login", PatternConstant.LOGIN_VALIDATE_PATTERN);
-                String password = DataUtil.getString(request, "password", PatternConstant.PASSWORD_VALIDATE_PATTERN);
-                String role = DataUtil.getString(request, "role", PatternConstant.ROLE_VALIDATE_PATTERN);
+                String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
+                String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
+                String role = DataUtil.getString(request, ROLE, PatternConstant.ROLE_VALIDATE_PATTERN);
 
                 User newUser = new User();
                 newUser.setLogin(login);
@@ -53,14 +57,14 @@ public class CreateUserCommand extends AbstractСommand {
                     userService.create(newUser);
                     return Action.EDITUSERS;
                 } catch (ServiceException e) {
-                    session.setAttribute("error", e);
+                    session.setAttribute(AttributeConstant.ERROR, e);
                     logger.log(Level.ERROR, e);
                     return Action.ERROR;
                 }
             }
         }
         final User user = new User();
-        request.setAttribute("user", user);
+        request.setAttribute(AttributeConstant.USER, user);
         return Action.CREATEUSER;
     }
 }

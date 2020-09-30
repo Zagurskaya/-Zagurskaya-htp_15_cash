@@ -4,42 +4,39 @@
 <body>
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
-
     <br>
-    ${error}
+    <p><span style="color:red">${error}</span></p>
     <br>
-
     <form class="form-horizontal" action="do?command=Login" method="post">
         <fieldset>
-            <!-- Form Name -->
-            <legend>Login</legend>
+            <legend><fmt:message key="page.login.label.description"/></legend>
 
-            <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Логин</label>
+                <label class="col-md-4 control-label" for="login"><fmt:message key="page.login.label.login"/></label>
                 <div class="col-md-4">
-                    <input id="login" name="login" value="testLogin" type="text" placeholder="" class="form-control input-md" required="">
+                    <input id="login" name="login" value="testLogin" type="text" placeholder=""
+                           class="form-control input-md" required="">
 
                 </div>
             </div>
 
-            <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Пароль</label>
+                <label class="col-md-4 control-label" for="password"><fmt:message
+                        key="page.login.label.password"/></label>
                 <div class="col-md-4">
-                    <input id="password" name="password" value="testPassword" type="password" placeholder="" class="form-control input-md" required="">
+                    <input id="password" name="password" value="testPassword" type="password" placeholder=""
+                           class="form-control input-md" required="">
 
                 </div>
             </div>
 
-            <!-- Button -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="loginButton"></label>
                 <div class="col-md-4">
-                    <button id="loginButton" name="loginButton" class="btn btn-primary">Войти</button>
+                    <button id="loginButton" name="loginButton" class="btn btn-primary"><fmt:message
+                            key="page.login.button.login"/></button>
                 </div>
             </div>
-
         </fieldset>
     </form>
 </div>

@@ -2,7 +2,10 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.util.DataUtil;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,10 +18,11 @@ public class LocalEnСommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
-        Action previousAction = (Action) session.getAttribute("previousAction");
+        Action previousAction = (Action) session.getAttribute(AttributeConstant.PREVIOUS_ACTION);
         Action action = previousAction == null ? Action.INDEX : previousAction;
 
-        session.setAttribute("local", "en");
+        Cookie localCookie = new Cookie(AttributeConstant.LOCAL, "en");
+        DataUtil.setCookie(request, localCookie);
         return action;
     }
 }

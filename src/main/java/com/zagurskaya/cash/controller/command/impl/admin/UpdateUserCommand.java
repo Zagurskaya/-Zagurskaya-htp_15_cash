@@ -8,6 +8,7 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
+import com.zagurskaya.cash.util.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
 import com.zagurskaya.cash.util.PatternConstant;
 import com.zagurskaya.cash.util.UserExtractor;
@@ -29,8 +30,8 @@ public class UpdateUserCommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
-        final User updatedUser = (User) session.getAttribute("user");
-        final Long id = (Long) session.getAttribute("id");
+        final User updatedUser = (User) session.getAttribute(AttributeConstant.USER);
+        final Long id = (Long) session.getAttribute(AttributeConstant.ID);
         if (updatedUser == null || id == null) return Action.INDEX;
 
         if (DataUtil.isCreateUpdateDeleteOperation(request)) {
@@ -41,7 +42,7 @@ public class UpdateUserCommand extends AbstractСommand {
             } else if (DataUtil.isSaveOperation(request)) {
 
                 UserExtractor.setUserNotCheckedFieldsToUser(request, updatedUser);
-                request.setAttribute("user", updatedUser);
+                request.setAttribute(AttributeConstant.USER, updatedUser);
 
                 String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.LOGIN_VALIDATE_PATTERN);
                 String password = DataUtil.getString(updatedUser.getPassword(), PatternConstant.PASSWORD_VALIDATE_PATTERN);
@@ -56,7 +57,7 @@ public class UpdateUserCommand extends AbstractСommand {
                     userService.update(updateUser);
                     return Action.EDITUSERS;
                 } catch (ServiceException e) {
-                    session.setAttribute("error", e);
+                    session.setAttribute(AttributeConstant.ERROR, e);
                     logger.log(Level.ERROR, e);
                     return Action.ERROR;
                 }
@@ -66,7 +67,7 @@ public class UpdateUserCommand extends AbstractСommand {
         Action returnAction = Action.INDEX;
         try {
             if (userService.findById(id) != null) {
-                request.setAttribute("user", updatedUser);
+                request.setAttribute(AttributeConstant.USER, updatedUser);
                 returnAction = Action.UPDATEUSER;
             }
         } catch (ServiceException e) {
