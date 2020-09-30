@@ -51,11 +51,17 @@ public class User implements Entity {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("User{")
+                .append("id=")
+                .append(id)
+                .append(", login=")
+                .append(login)
+                .append(", password=")
+                .append(password)
+                .append(", role=")
+                .append(role)
+                .append("}");
+        return sb.toString();
     }
 }
