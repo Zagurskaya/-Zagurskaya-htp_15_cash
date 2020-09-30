@@ -16,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditUsersCommand extends AbstractСommand {
@@ -54,8 +53,16 @@ public class EditUsersCommand extends AbstractСommand {
             }
         }
         try {
-            List<User> users = new ArrayList<>();
-            users.addAll(userService.findAll());
+
+            int page = 1;
+            if (request.getParameter(AttributeConstant.PAGE) != null)
+                page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
+
+            int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+            List<User> users = userService.onePartOfUsersListOnPage(page);
+
+            request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
+            request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
             request.setAttribute(AttributeConstant.USERS, users);
             return Action.EDITUSERS;
 

@@ -6,7 +6,7 @@ import com.zagurskaya.cash.exception.ServiceException;
 import java.util.List;
 
 public interface Service<T> {
-    List<T> findAll() throws ServiceException;
+//    List<T> findAll() throws ServiceException;
 
     T findById(Long id) throws ServiceException;
 

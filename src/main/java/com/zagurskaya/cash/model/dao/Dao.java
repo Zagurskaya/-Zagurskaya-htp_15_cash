@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 
 public interface Dao<T> {
-    List<T> findAll() throws DAOException;
+    List<T> findAll(int limit, int startPosition) throws DAOException;
 
     T findById(Long id) throws DAOException;
 

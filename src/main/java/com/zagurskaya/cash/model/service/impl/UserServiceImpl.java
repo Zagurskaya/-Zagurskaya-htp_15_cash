@@ -9,6 +9,7 @@ import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.UserService;
+import com.zagurskaya.cash.util.AttributeConstant;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -41,23 +43,22 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public List<User> findAll() throws ServiceException {
-        UserDao userDao = new UserDaoImpl();
-        EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
-        try {
-            List<User> users = userDao.findAll();
-//            transaction.commit();
-            return users;
-        } catch (DAOException e) {
-//            transaction.rollback();
-            logger.log(Level.ERROR, "Database exception during fiend all user", e);
-            throw new ServiceException("Database exception during fiend all user", e);
-        } finally {
-            transaction.endSingleRequest();
-        }
-    }
+//    private List<User> findAll(int limit, int startPosition) throws ServiceException {
+//        UserDao userDao = new UserDaoImpl();
+//        EntityTransaction transaction = new EntityTransaction();
+//        transaction.initSingleRequest(userDao);
+//        try {
+//            List<User> users = userDao.findAll(limit, startPosition);
+////            transaction.commit();
+//            return users;
+//        } catch (DAOException e) {
+////            transaction.rollback();
+//            logger.log(Level.ERROR, "Database exception during fiend all user", e);
+//            throw new ServiceException("Database exception during fiend all user", e);
+//        } finally {
+//            transaction.endSingleRequest();
+//        }
+//    }
 
     @Override
     public User findById(Long id) throws ServiceException {
@@ -132,6 +133,42 @@ public class UserServiceImpl implements UserService {
             transaction.endSingleRequest();
         }
     }
+
+    @Override
+    public Long countRows() throws ServiceException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            Long count = userDao.countRows();
+            return count;
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during fiend count users row", e);
+            throw new ServiceException("Database exception during fiend count users row", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
+    }
+
+    @Override
+    public List<User> onePartOfUsersListOnPage(int page) throws ServiceException {
+        List users = new ArrayList();
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
+            users.addAll(userDao.findAll(recordsPerPage, startRecord));
+            return users;
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all user", e);
+            throw new ServiceException("Database exception during fiend all user", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
+    }
+
 
     public static String getHash(String password) throws ServiceException {
         String hashPassword;

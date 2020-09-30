@@ -9,7 +9,6 @@ import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.util.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.util.HtmlCharsConverter;
 import com.zagurskaya.cash.util.PatternConstant;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

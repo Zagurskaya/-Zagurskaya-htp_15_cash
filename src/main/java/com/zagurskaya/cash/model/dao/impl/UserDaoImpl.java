@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +20,22 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, role FROM `user`";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, role FROM `user`  ORDER BY login LIMIT ? Offset ? ";
     private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, role FROM `user` WHERE id= ? ";
     private static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, login, password, role FROM `user` WHERE login= ? ";
     private static final String SQL_INSERT_USER = "INSERT INTO user(login, password, role) VALUES (?, ?, ?)";
     private static final String SQL_UPDATE_USER = "UPDATE user SET login=?, password=?, role=? WHERE id= ?";
     private static final String SQL_DELETE_USER = "DELETE FROM user WHERE id=?";
+    private static final String SQL_SELECT_COUNT_USERS = "SELECT COUNT(login) FROM `user`";
 
     @Override
-    public List<User> findAll() throws DAOException {
+    public List<User> findAll(int limit, int startPosition) throws DAOException {
         List<User> users = new ArrayList<>();
         try {
-            try (Statement statement = connection.createStatement()) {
-                ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL_USERS);
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USERS)) {
+                preparedStatement.setLong(1, limit);
+                preparedStatement.setLong(2, startPosition);
+                ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     User user = new User();
                     user.setId(resultSet.getLong(ColumnName.USER_ID));
@@ -145,5 +147,21 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             throw new DAOException("Database exception during fiend user by login", e);
         }
         return user;
+    }
+
+    @Override
+    public Long countRows() throws DAOException {
+        Long count;
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_USERS)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+                count = resultSet.getLong(1);
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend count users row", e);
+            throw new DAOException("Database exception during fiend count users row", e);
+        }
+        return count;
     }
 }
