@@ -20,6 +20,8 @@ public enum Action {
     INDEX(new IndexСommand(PathConstant.PATH_INDEX)),
     ERROR(new ErrorСommand(PathConstant.PATH_ROOT)),
     LOGIN(new LoginСommand(PathConstant.PATH_ROOT)),
+    LOCALRU(new LocalRuСommand(PathConstant.PATH_ROOT)),
+    LOCALEN(new LocalEnСommand(PathConstant.PATH_ROOT)),
     PROFILE(new ProfileСommand(PathConstant.PATH_ROOT)),
 //  admin
     ADMIN(new AdminCommand(PathConstant.PATH_ADMIN)),
