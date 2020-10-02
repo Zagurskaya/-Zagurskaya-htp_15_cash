@@ -35,7 +35,7 @@ public class DataUtil {
             return null;
         }
         User user = (User) oUser;
-        if (!user.getLogin().equals(login) || !user.getRole().equals(role)) {
+        if (!user.getLogin().equals(login) || !user.getRole().getValue().equals(role)) {
             return null;
         } else {
             return user;

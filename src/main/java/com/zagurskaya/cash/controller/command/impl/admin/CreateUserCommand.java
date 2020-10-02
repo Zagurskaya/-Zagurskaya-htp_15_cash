@@ -2,6 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -34,37 +35,43 @@ public class CreateUserCommand extends AbstractСommand {
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
 
-        if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+        Action action = actionAfterValidationUserAndPermission(request, Action.CREATEUSER);
+        if (action == Action.CREATEUSER) {
+            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
 
-            if (DataUtil.isCancelOperation(request)) {
-                return Action.EDITUSERS;
-
-            } else if (DataUtil.isSaveOperation(request)) {
-
-                User createdUser = new User();
-                UserExtractor.setUserNotCheckedFieldsToUser(request, createdUser);
-                request.setAttribute(AttributeConstant.USER, createdUser);
-
-                String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
-                String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
-                String role = DataUtil.getString(request, ROLE, PatternConstant.ROLE_VALIDATE_PATTERN);
-
-                User newUser = new User();
-                newUser.setLogin(login);
-                newUser.setPassword(password);
-                newUser.setRole(role);
-                try {
-                    userService.create(newUser);
+                if (DataUtil.isCancelOperation(request)) {
                     return Action.EDITUSERS;
-                } catch (ServiceException e) {
-                    session.setAttribute(AttributeConstant.ERROR, e);
-                    logger.log(Level.ERROR, e);
-                    return Action.ERROR;
+
+                } else if (DataUtil.isSaveOperation(request)) {
+
+                    User createdUser = new User();
+                    UserExtractor.setUserNotCheckedFieldsToUser(request, createdUser);
+                    request.setAttribute(AttributeConstant.USER, createdUser);
+
+                    String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
+                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(request, ROLE, PatternConstant.ROLE_VALIDATE_PATTERN);
+
+                    User newUser = new User();
+                    newUser.setLogin(login);
+                    newUser.setPassword(password);
+                    newUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                    try {
+                        userService.create(newUser);
+                        return Action.EDITUSERS;
+                    } catch (ServiceException e) {
+                        session.setAttribute(AttributeConstant.ERROR, e);
+                        logger.log(Level.ERROR, e);
+                        return Action.ERROR;
+                    }
                 }
             }
+
+            final User newUser = new User();
+            request.setAttribute(AttributeConstant.USER, newUser);
+            return Action.CREATEUSER;
+        } else {
+            return action;
         }
-        final User user = new User();
-        request.setAttribute(AttributeConstant.USER, user);
-        return Action.CREATEUSER;
     }
 }

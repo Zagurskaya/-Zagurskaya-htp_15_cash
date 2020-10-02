@@ -1,4 +1,3 @@
-<%--@elvariable id="user" type="java.util.List<com.qulix.zagurskaya.trainingtask.web.service.model.UserDTO>"--%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <html>
 <%@ include file="/include/head.jsp" %>
@@ -45,8 +44,10 @@
                 <label class="col-md-4 control-label" for="role">Должность</label>
                 <div class="col-md-4">
                     <select id="role" name="role" type="text" placeholder="">
-                        <option value="admin">Админ</option>
-                        <option value="kassir">Кассир</option>
+                        <option value="admin"><fmt:message key="page.createuser.label.position.admin"/></option>
+                        <option value="kassir"><fmt:message key="page.createuser.label.position.cashier"/></option>
+                        <option value="controller"><fmt:message
+                                key="page.createuser.label.position.controller"/></option>
                     </select>
                 </div>
             </div>

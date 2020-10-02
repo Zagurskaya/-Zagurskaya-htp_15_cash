@@ -2,6 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -30,50 +31,60 @@ public class UpdateUserCommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
-        final User updatedUser = (User) session.getAttribute(AttributeConstant.USER);
         final Long id = (Long) session.getAttribute(AttributeConstant.ID);
-        if (updatedUser == null || id == null) return Action.INDEX;
+        if (id == null) return Action.INDEX;
 
-        if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+        Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
+        if (action == Action.EDITUSERS) {
 
-            if (DataUtil.isCancelOperation(request)) {
-                return Action.EDITUSERS;
 
-            } else if (DataUtil.isSaveOperation(request)) {
+            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
 
-                UserExtractor.setUserNotCheckedFieldsToUser(request, updatedUser);
-                request.setAttribute(AttributeConstant.USER, updatedUser);
-
-                String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.LOGIN_VALIDATE_PATTERN);
-                String password = DataUtil.getString(updatedUser.getPassword(), PatternConstant.PASSWORD_VALIDATE_PATTERN);
-                String role = DataUtil.getString(updatedUser.getRole(), PatternConstant.ROLE_VALIDATE_PATTERN);
-
-                User updateUser = new User();
-                updateUser.setId(id);
-                updateUser.setLogin(login);
-                updateUser.setPassword(password);
-                updateUser.setRole(role);
-                try {
-                    userService.update(updateUser);
+                if (DataUtil.isCancelOperation(request)) {
                     return Action.EDITUSERS;
-                } catch (ServiceException e) {
-                    session.setAttribute(AttributeConstant.ERROR, e);
-                    logger.log(Level.ERROR, e);
-                    return Action.ERROR;
+
+                } else if (DataUtil.isSaveOperation(request)) {
+                    User updatedUser = new User();
+                    UserExtractor.setUserNotCheckedFieldsToUser(request, updatedUser);
+                    request.setAttribute(AttributeConstant.USER, updatedUser);
+
+                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.LOGIN_VALIDATE_PATTERN);
+                    String password = DataUtil.getString(updatedUser.getPassword(), PatternConstant.PASSWORD_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ROLE_VALIDATE_PATTERN);
+
+                    User updateUser = new User();
+                    updateUser.setId(id);
+                    updateUser.setLogin(login);
+                    updateUser.setPassword(password);
+                    updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                    try {
+                        userService.update(updateUser);
+                        return Action.EDITUSERS;
+                    } catch (ServiceException e) {
+                        session.setAttribute(AttributeConstant.ERROR, e);
+                        logger.log(Level.ERROR, e);
+                        return Action.ERROR;
+                    }
                 }
             }
-        }
 
-        Action returnAction = Action.INDEX;
-        try {
-            if (userService.findById(id) != null) {
-                request.setAttribute(AttributeConstant.USER, updatedUser);
-                returnAction = Action.UPDATEUSER;
+            Action returnAction ;
+            try {
+                User updatedUser = userService.findById(id);
+                if (updatedUser != null) {
+                    request.setAttribute(AttributeConstant.USER, updatedUser);
+                    returnAction = Action.UPDATEUSER;
+                } else {
+                    logger.log(Level.ERROR, "null user");
+                    returnAction = Action.ERROR;
+                }
+            } catch (ServiceException e) {
+                logger.log(Level.ERROR, e);
+                returnAction = Action.ERROR;
             }
-        } catch (ServiceException e) {
-            logger.log(Level.ERROR, e);
-            returnAction = Action.ERROR;
+            return returnAction;
+        } else {
+            return action;
         }
-        return returnAction;
     }
 }

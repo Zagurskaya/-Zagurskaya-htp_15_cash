@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.model.dao.impl;
 
+import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
@@ -41,7 +42,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                     user.setId(resultSet.getLong(ColumnName.USER_ID));
                     user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                     user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setRole(resultSet.getString(ColumnName.USER_ROLE));
+                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
                     users.add(user);
                 }
             }
@@ -63,7 +64,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                     user.setId(resultSet.getLong(ColumnName.USER_ID));
                     user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                     user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setRole(resultSet.getString(ColumnName.USER_ROLE));
+                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
                 }
             }
         } catch (SQLException e) {
@@ -80,7 +81,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER);) {
                 preparedStatement.setString(1, user.getLogin());
                 preparedStatement.setString(2, user.getPassword());
-                preparedStatement.setString(3, user.getRole());
+                preparedStatement.setString(3, user.getRole().getValue());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -99,7 +100,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER)) {
                 preparedStatement.setString(1, user.getLogin());
                 preparedStatement.setString(2, user.getPassword());
-                preparedStatement.setString(3, user.getRole());
+                preparedStatement.setString(3, user.getRole().getValue());
                 preparedStatement.setLong(4, user.getId());
                 result = preparedStatement.executeUpdate();
             }
@@ -139,7 +140,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                     user.setId(resultSet.getLong(ColumnName.USER_ID));
                     user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
                     user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setRole(resultSet.getString(ColumnName.USER_ROLE));
+                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
                 }
             }
         } catch (SQLException e) {

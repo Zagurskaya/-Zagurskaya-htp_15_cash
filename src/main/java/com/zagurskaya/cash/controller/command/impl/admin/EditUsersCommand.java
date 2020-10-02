@@ -27,45 +27,46 @@ public class EditUsersCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
+    public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
-
-        if (DataUtil.isCreateUpdateDeleteOperation(request)) {
-            Long id = DataUtil.getLong(request, AttributeConstant.ID);
-
-            try {
-                if (DataUtil.isUpdateOperation(request)) {
-                    if (userService.findById(id) != null) {
-                        final User updateUser = userService.findById(id);
-                        session.setAttribute(AttributeConstant.USER, updateUser);
-                        session.setAttribute(AttributeConstant.ID, id);
-                        return Action.UPDATEUSER;
-                    }
-                } else if (DataUtil.isDeleteOperation(request)) {
-                    User deleteUser = userService.findById(id);
-                    if (deleteUser != null)
-                        userService.delete(deleteUser);
-                }
-            } catch (ServiceException e) {
-                session.setAttribute(AttributeConstant.ERROR, e);
-                logger.log(Level.ERROR, e);
-                return Action.ERROR;
-            }
-        }
         try {
+            Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
+            if (action == Action.EDITUSERS) {
+                if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+                    Long id = DataUtil.getLong(request, AttributeConstant.ID);
 
-            int page = 1;
-            if (request.getParameter(AttributeConstant.PAGE) != null)
-                page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
+                    try {
+                        if (DataUtil.isUpdateOperation(request)) {
+                            if (userService.findById(id) != null) {
+                                session.setAttribute(AttributeConstant.ID, id);
+                                return Action.UPDATEUSER;
+                            }
+                        } else if (DataUtil.isDeleteOperation(request)) {
+                            User deleteUser = userService.findById(id);
+                            if (deleteUser != null)
+                                userService.delete(deleteUser);
+                        }
+                    } catch (ServiceException e) {
+                        session.setAttribute(AttributeConstant.ERROR, e);
+                        logger.log(Level.ERROR, e);
+                        return Action.ERROR;
+                    }
+                }
 
-            int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
-            List<User> users = userService.onePartOfUsersListOnPage(page);
+                int page = 1;
+                if (request.getParameter(AttributeConstant.PAGE) != null)
+                    page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
 
-            request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
-            request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
-            request.setAttribute(AttributeConstant.USERS, users);
-            return Action.EDITUSERS;
+                int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+                List<User> users = userService.onePartOfUsersListOnPage(page);
 
+                request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
+                request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
+                request.setAttribute(AttributeConstant.USERS, users);
+                return Action.EDITUSERS;
+            } else {
+                return action;
+            }
         } catch (ServiceException e) {
             session.setAttribute(AttributeConstant.ERROR, e);
             logger.log(Level.ERROR, e);

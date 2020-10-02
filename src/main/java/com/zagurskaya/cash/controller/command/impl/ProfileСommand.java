@@ -24,18 +24,17 @@ public class ProfileСommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
-        final HttpSession session = request.getSession(false);
-        if (DataUtil.isCreateUpdateDeleteOperation(request)) {
-//            session.removeAttribute(AttributeConstant.USER);
-//            request.getSession().invalidate();
-            DataUtil.deleteCookie(request, AttributeConstant.LOGIN);
-            DataUtil.deleteCookie(request, AttributeConstant.ROLE);
-            request.getSession().removeAttribute(AttributeConstant.USER);
-            request.getSession().invalidate();
-            return Action.INDEX;
-        }
         User user = DataUtil.findUser(request);
+
         if (user != null) {
+            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+
+                DataUtil.deleteCookie(request, AttributeConstant.LOGIN);
+                DataUtil.deleteCookie(request, AttributeConstant.ROLE);
+                request.getSession().removeAttribute(AttributeConstant.USER);
+                request.getSession().invalidate();
+                return Action.INDEX;
+            }
             return Action.PROFILE;
         } else {
             return Action.LOGIN;

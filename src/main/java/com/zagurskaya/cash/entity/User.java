@@ -4,7 +4,7 @@ public class User implements Entity {
     private Long id;
     private String login;
     private String password;
-    private String role;
+    private RoleEnum role;
 
     public User() {
     }
@@ -13,7 +13,8 @@ public class User implements Entity {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.role = role;
+//        this.role = role;
+        this.role = RoleEnum.valueOf(role);
     }
 
     @Override
@@ -41,11 +42,11 @@ public class User implements Entity {
         this.password = password;
     }
 
-    public String getRole() {
+    public RoleEnum getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(RoleEnum role) {
         this.role = role;
     }
 

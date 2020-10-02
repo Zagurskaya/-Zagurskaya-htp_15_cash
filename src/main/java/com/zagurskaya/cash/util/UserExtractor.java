@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.util;
 
+import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 
@@ -14,6 +15,6 @@ public class UserExtractor {
 
         user.setLogin(login);
         user.setPassword(password);
-        user.setRole(role);
+        user.setRole(RoleEnum.valueOf(role.toUpperCase()));
     }
 }

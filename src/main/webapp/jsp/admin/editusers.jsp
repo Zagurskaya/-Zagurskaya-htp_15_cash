@@ -23,7 +23,7 @@
                     <input id="id" name="id" type="hidden" readonly placeholder="" class="form-control input-md"
                            required="" value="${user.id}">
                     <td><c:out value="${user.login}"/></td>
-                    <td><c:out value="${user.role}"/></td>
+                    <td><c:out value="${user.role.value}"/></td>
                     <td>
                         <button id="update" name="update" class="btn btn-success">
                             <fmt:message key="page.editusers.button.update"/></button>

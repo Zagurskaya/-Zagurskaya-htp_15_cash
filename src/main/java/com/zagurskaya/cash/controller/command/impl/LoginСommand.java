@@ -43,7 +43,7 @@ public class LoginСommand extends AbstractСommand {
                     session.setAttribute(AttributeConstant.USER, user);
                     Cookie loginCookie = new Cookie(LOGIN, user.getLogin());
                     DataUtil.setCookie(request, loginCookie);
-                    Cookie roleCookie = new Cookie(ROLE, user.getRole());
+                    Cookie roleCookie = new Cookie(ROLE, user.getRole().getValue());
                     DataUtil.setCookie(request, roleCookie);
                     return Action.PROFILE;
                 } else {

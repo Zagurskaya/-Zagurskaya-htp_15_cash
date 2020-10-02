@@ -2,8 +2,9 @@ package com.zagurskaya.cash.entity;
 
 public enum RoleEnum {
 
-    ADMIN ("Admin"),
-    KASSIR ("Kassir");
+    ADMIN("admin"),
+    KASSIR("kassir"),
+    CONTROLLER("controller");
 
     private String value;
 

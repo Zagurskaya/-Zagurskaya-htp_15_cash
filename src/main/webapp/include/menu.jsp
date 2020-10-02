@@ -18,10 +18,10 @@
                 <c:when test="${user!=null}">
                     <a class="nav-item nav-link" href="do?command=Profile"><fmt:message key="header.profile"/></a>
                     <c:choose>
-                        <c:when test="${user.role=='admin'}">
+                        <c:when test="${user.role.value=='admin'}">
                             <a class="nav-item nav-link" href="do?command=Admin"><fmt:message key="header.admin"/></a>
                         </c:when>
-                        <c:when test="${user.role=='kassir'}">
+                        <c:when test="${user.role.value=='kassir'}">
                             <a class="nav-item nav-link" href="do?command=Main"><fmt:message key="header.cash"/></a>
                         </c:when>
                     </c:choose>
