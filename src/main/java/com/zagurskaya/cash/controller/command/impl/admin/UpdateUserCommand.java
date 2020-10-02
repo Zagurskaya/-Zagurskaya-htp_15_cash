@@ -45,17 +45,15 @@ public class UpdateUserCommand extends AbstractСommand {
 
                 } else if (DataUtil.isSaveOperation(request)) {
                     User updatedUser = new User();
-                    UserExtractor.setUserNotCheckedFieldsToUser(request, updatedUser);
+                    UserExtractor.setUpdateUserNotCheckedFieldsToUser(request, updatedUser);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 
                     String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.LOGIN_VALIDATE_PATTERN);
-                    String password = DataUtil.getString(updatedUser.getPassword(), PatternConstant.PASSWORD_VALIDATE_PATTERN);
                     String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ROLE_VALIDATE_PATTERN);
 
                     User updateUser = new User();
                     updateUser.setId(id);
                     updateUser.setLogin(login);
-                    updateUser.setPassword(password);
                     updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
                     try {
                         userService.update(updateUser);

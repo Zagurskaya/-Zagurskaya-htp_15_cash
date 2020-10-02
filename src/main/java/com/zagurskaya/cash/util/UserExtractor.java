@@ -17,4 +17,11 @@ public class UserExtractor {
         user.setPassword(password);
         user.setRole(RoleEnum.valueOf(role.toUpperCase()));
     }
+    public static void setUpdateUserNotCheckedFieldsToUser(HttpServletRequest request, User user) throws SiteDataValidationException {
+        String login = DataUtil.getString(request, "login");
+        String role = DataUtil.getString(request, "role");
+
+        user.setLogin(login);
+        user.setRole(RoleEnum.valueOf(role.toUpperCase()));
+    }
 }

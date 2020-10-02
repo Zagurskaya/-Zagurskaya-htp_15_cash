@@ -32,15 +32,6 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Пароль</label>
-                <div class="col-md-4">
-                    <input id="password" name="password" value="${user.password}" type="password"
-                           class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
-                    >
-                </div>
-            </div>
-
-            <div class="form-group">
                 <label class="col-md-4 control-label" for="role">Должность</label>
                 <div class="col-md-4">
                     <select id="role" name="role" type="text" placeholder="">
