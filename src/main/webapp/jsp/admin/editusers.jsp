@@ -32,8 +32,10 @@
                             <fmt:message key="page.editusers.button.update"/></button>
                     </td>
                     <td>
-                        <button id="delete" name="delete" class="btn btn-danger">
-                            <fmt:message key="page.editusers.button.delete"/></button>
+                        <c:if test="${user.id!='1'}">
+                            <button id="delete" name="delete" class="btn btn-danger">
+                                <fmt:message key="page.editusers.button.delete"/></button>
+                        </c:if>
                     </td>
                 </tr>
             </form>
