@@ -50,10 +50,10 @@ public class CreateUserCommand extends AbstractСommand {
                     UserExtractor.setUserNotCheckedFieldsToUser(request, createdUser);
                     request.setAttribute(AttributeConstant.USER, createdUser);
 
-                    String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
                     String fullName = DataUtil.getString(request, FULL_NAME, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(request, ROLE, PatternConstant.ALPHABET_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(request, ROLE, PatternConstant.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
                         User newUser = new User();

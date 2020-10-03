@@ -49,9 +49,9 @@ public class UpdateUserCommand extends AbstractСommand {
                     UserExtractor.setUpdateUserNotCheckedFieldsToUser(request, updatedUser);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 
-                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
                     String fullName = DataUtil.getString(updatedUser.getFullName(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
                         User updateUser = new User();
