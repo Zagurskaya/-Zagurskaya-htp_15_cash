@@ -39,22 +39,29 @@ public class DataValidation {
     }
 
     public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws SiteDataValidationException {
-
-        String username = DataUtil.getString(request, "login");
-        if (username.length() > FieldsLengthConstant.LENGTH_USER_LOGIN) {
-            throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_LOGIN + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(username));
+        if (request.getParameter("login") != null) {
+            String username = DataUtil.getString(request, "login");
+            if (username.length() > FieldsLengthConstant.LENGTH_USER_LOGIN) {
+                throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_LOGIN + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(username));
+            }
         }
-        String surname = DataUtil.getString(request, "password");
-        if (surname.length() > FieldsLengthConstant.LENGTH_USER_PASSWORD) {
-            throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_PASSWORD + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(surname));
+        if (request.getParameter("password") != null) {
+            String surname = DataUtil.getString(request, "password");
+            if (surname.length() > FieldsLengthConstant.LENGTH_USER_PASSWORD) {
+                throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_PASSWORD + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(surname));
+            }
         }
-        String patronymic = DataUtil.getString(request, "fullname");
-        if (patronymic.length() > FieldsLengthConstant.LENGTH_USER_FULL_NAME) {
-            throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_FULL_NAME + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
+        if (request.getParameter("fullname") != null) {
+            String patronymic = DataUtil.getString(request, "fullname");
+            if (patronymic.length() > FieldsLengthConstant.LENGTH_USER_FULL_NAME) {
+                throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_FULL_NAME + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
+            }
         }
-        String userPosition = DataUtil.getString(request, "role");
-        if (userPosition.length() > FieldsLengthConstant.LENGTH_USER_ROLE) {
-            throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_ROLE + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition));
+        if (request.getParameter("role") != null) {
+            String userPosition = DataUtil.getString(request, "role");
+            if (userPosition.length() > FieldsLengthConstant.LENGTH_USER_ROLE) {
+                throw new SiteDataValidationException(" Длина данных превышает допустимое значение (" + FieldsLengthConstant.LENGTH_USER_ROLE + " символов):" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition));
+            }
         }
         return true;
     }

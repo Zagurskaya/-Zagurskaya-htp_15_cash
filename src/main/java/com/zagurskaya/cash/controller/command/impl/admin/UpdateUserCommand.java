@@ -34,6 +34,7 @@ public class UpdateUserCommand extends AbstractСommand {
         final HttpSession session = request.getSession(false);
         final Long id = (Long) session.getAttribute(AttributeConstant.ID);
         if (id == null) return Action.INDEX;
+        session.removeAttribute("message");
 
         Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
         if (action == Action.EDITUSERS) {
@@ -61,6 +62,7 @@ public class UpdateUserCommand extends AbstractСommand {
                         updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
                         try {
                             userService.update(updateUser);
+                            session.setAttribute(AttributeConstant.MESSAGE, "Изменен пользователь " + updatedUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeConstant.ERROR, e);

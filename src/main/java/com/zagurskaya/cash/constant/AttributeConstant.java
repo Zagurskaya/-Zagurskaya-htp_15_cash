@@ -2,6 +2,7 @@ package com.zagurskaya.cash.constant;
 
 public class AttributeConstant {
     public static final String ERROR = "error";
+    public static final String MESSAGE = "message";
     public static final String RESPONSE = "response";
     public static final String LOCAL = "local";
     public static final String PREVIOUS_ACTION = "previousAction";

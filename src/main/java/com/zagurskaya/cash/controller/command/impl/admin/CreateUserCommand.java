@@ -36,6 +36,7 @@ public class CreateUserCommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
+        session.removeAttribute("message");
 
         Action action = actionAfterValidationUserAndPermission(request, Action.CREATEUSER);
         if (action == Action.CREATEUSER) {
@@ -63,6 +64,7 @@ public class CreateUserCommand extends AbstractСommand {
                         newUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
                         try {
                             userService.create(newUser);
+                            session.setAttribute(AttributeConstant.MESSAGE, "Добавлен новый пользователь " + newUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeConstant.ERROR, e);
