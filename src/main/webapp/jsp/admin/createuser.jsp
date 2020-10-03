@@ -31,6 +31,16 @@
             </div>
 
             <div class="form-group">
+                <label class="col-md-4 control-label" for="fullname">
+                    <fmt:message key="page.createuser.label.fullname"/></label>
+                <div class="col-md-4">
+                    <input id="fullname" value="${user.fullName}" name="fullname" type="text" placeholder=""
+                           class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label class="col-md-4 control-label" for="role">
                     <fmt:message key="page.createuser.label.position"/></label>
                 <div class="col-md-4">

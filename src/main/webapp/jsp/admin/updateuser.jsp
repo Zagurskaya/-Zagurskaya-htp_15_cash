@@ -2,7 +2,6 @@
 <html>
 <%@ include file="/include/head.jsp" %>
 <head>
-    <title>Сотрудники</title>
 </head>
 <body>
 <div class="container">
@@ -11,7 +10,7 @@
     <form class="form-horizontal" method="post">
         <fieldset>
 
-            <legend>Изменить сотрудника</legend>
+            <legend><fmt:message key="page.updateuser.title"/></legend>
 
             <p><span style="color:red">${error}</span></p>
 
@@ -23,7 +22,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Логин</label>
+                <label class="col-md-4 control-label" for="login"><fmt:message key="page.editusers.label.login"/></label>
                 <div class="col-md-4">
                     <input id="login" name="login" value="${user.login}" type="text" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
@@ -32,7 +31,16 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-4 control-label" for="role">Должность</label>
+                <label class="col-md-4 control-label" for="fullname"><fmt:message key="page.editusers.label.fullname"/></label>
+                <div class="col-md-4">
+                    <input id="fullname" name="fullname" value="${user.fullName}" type="text" placeholder=""
+                           class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="role"><fmt:message key="page.editusers.label.position"/></label>
                 <div class="col-md-4">
                     <select id="role" name="role" type="text" placeholder="">
                         <option value="admin"><fmt:message key="page.createuser.label.position.admin"/></option>

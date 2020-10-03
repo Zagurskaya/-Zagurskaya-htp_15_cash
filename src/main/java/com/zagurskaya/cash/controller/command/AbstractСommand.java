@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command;
 
 import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

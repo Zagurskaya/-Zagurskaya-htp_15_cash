@@ -7,9 +7,10 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.util.PatternConstant;
+import com.zagurskaya.cash.constant.PatternConstant;
+import com.zagurskaya.cash.validation.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,9 +34,9 @@ public class LoginСommand extends AbstractСommand {
     public Action execute(HttpServletRequest request) throws SiteDataValidationException {
         final HttpSession session = request.getSession(false);
 
-        if (DataUtil.isCreateUpdateDeleteOperation(request)) {
-            String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
-            String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
+        if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+            String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+            String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
             User user;
             try {
                 user = userService.getUserByLoginAndValidPassword(login, password);

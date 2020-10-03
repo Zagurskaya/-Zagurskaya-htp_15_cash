@@ -3,20 +3,13 @@ package com.zagurskaya.cash.controller.command.impl;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.model.service.UserService;
-import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.zagurskaya.cash.validation.DataValidation;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 public class ProfileСommand extends AbstractСommand {
-    private static final Logger logger = LogManager.getLogger(LoginСommand.class);
-    private UserService userService = new UserServiceImpl();
-
 
     public ProfileСommand(String path) {
         super(path);
@@ -27,7 +20,7 @@ public class ProfileСommand extends AbstractСommand {
         User user = DataUtil.findUser(request);
 
         if (user != null) {
-            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
                 DataUtil.deleteCookie(request, AttributeConstant.LOGIN);
                 DataUtil.deleteCookie(request, AttributeConstant.ROLE);

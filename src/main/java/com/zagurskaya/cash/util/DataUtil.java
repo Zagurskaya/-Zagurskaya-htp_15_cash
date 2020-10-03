@@ -1,5 +1,7 @@
 package com.zagurskaya.cash.util;
 
+import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.constant.PatternConstant;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import org.apache.logging.log4j.Level;
@@ -12,15 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class DataUtil {
     private static final Logger logger = LogManager.getLogger(DataUtil.class);
-    private static final String POST = "post";
-    private static final String SAVE = "save";
-    private static final String CANCEL = "cancel";
-    private static final String UPDATE = "update";
-    private static final String DELETE = "delete";
 
     public static User findUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -78,26 +74,6 @@ public class DataUtil {
         DataUtil.setCookie(request, readCookie);
     }
 
-    public static boolean isCreateUpdateDeleteOperation(HttpServletRequest req) {
-        return req.getMethod().
-                equalsIgnoreCase(POST);
-    }
-
-    public static boolean isSaveOperation(HttpServletRequest request) {
-        return request.getParameter(SAVE) != null;
-    }
-
-    public static boolean isCancelOperation(HttpServletRequest request) {
-        return request.getParameter(CANCEL) != null;
-    }
-
-    public static boolean isUpdateOperation(HttpServletRequest request) {
-        return request.getParameter(UPDATE) != null;
-    }
-
-    public static boolean isDeleteOperation(HttpServletRequest request) {
-        return request.getParameter(DELETE) != null;
-    }
 
     public static String getString(HttpServletRequest req, String name, String pattern) throws SiteDataValidationException {
         try {

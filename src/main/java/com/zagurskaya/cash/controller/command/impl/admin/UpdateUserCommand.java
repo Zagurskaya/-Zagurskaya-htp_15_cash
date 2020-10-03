@@ -9,10 +9,11 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.util.PatternConstant;
+import com.zagurskaya.cash.constant.PatternConstant;
 import com.zagurskaya.cash.util.UserExtractor;
+import com.zagurskaya.cash.validation.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,35 +39,39 @@ public class UpdateUserCommand extends AbstractСommand {
         if (action == Action.EDITUSERS) {
 
 
-            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
-                if (DataUtil.isCancelOperation(request)) {
+                if (DataValidation.isCancelOperation(request)) {
                     return Action.EDITUSERS;
 
-                } else if (DataUtil.isSaveOperation(request)) {
+                } else if (DataValidation.isSaveOperation(request)) {
                     User updatedUser = new User();
                     UserExtractor.setUpdateUserNotCheckedFieldsToUser(request, updatedUser);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 
-                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.LOGIN_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ROLE_VALIDATE_PATTERN);
+                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String fullName = DataUtil.getString(updatedUser.getFullName(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
 
-                    User updateUser = new User();
-                    updateUser.setId(id);
-                    updateUser.setLogin(login);
-                    updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
-                    try {
-                        userService.update(updateUser);
-                        return Action.EDITUSERS;
-                    } catch (ServiceException e) {
-                        session.setAttribute(AttributeConstant.ERROR, e);
-                        logger.log(Level.ERROR, e);
-                        return Action.ERROR;
+                    if (DataValidation.isUserLengthFieldsValid(request)) {
+                        User updateUser = new User();
+                        updateUser.setId(id);
+                        updateUser.setLogin(login);
+                        updateUser.setFullName(fullName);
+                        updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                        try {
+                            userService.update(updateUser);
+                            return Action.EDITUSERS;
+                        } catch (ServiceException e) {
+                            session.setAttribute(AttributeConstant.ERROR, e);
+                            logger.log(Level.ERROR, e);
+                            return Action.ERROR;
+                        }
                     }
                 }
             }
 
-            Action returnAction ;
+            Action returnAction;
             try {
                 User updatedUser = userService.findById(id);
                 if (updatedUser != null) {

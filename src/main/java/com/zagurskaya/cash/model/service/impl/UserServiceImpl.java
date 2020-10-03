@@ -9,7 +9,7 @@ import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.UserService;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -3,8 +3,6 @@ package com.zagurskaya.cash.model.service;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 
-import java.util.List;
-
 public interface Service<T> {
 //    List<T> findAll() throws ServiceException;
 

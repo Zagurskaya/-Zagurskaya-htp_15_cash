@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

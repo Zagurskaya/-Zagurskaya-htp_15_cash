@@ -4,17 +4,18 @@ public class User implements Entity {
     private Long id;
     private String login;
     private String password;
+    private String fullName;
     private RoleEnum role;
 
     public User() {
     }
 
-    public User(Long id, String login, String password, String role) {
+    public User(Long id, String login, String password, String fullName, RoleEnum role) {
         this.id = id;
         this.login = login;
         this.password = password;
-//        this.role = role;
-        this.role = RoleEnum.valueOf(role);
+        this.fullName = fullName;
+        this.role = role;
     }
 
     @Override
@@ -42,6 +43,14 @@ public class User implements Entity {
         this.password = password;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public RoleEnum getRole() {
         return role;
     }
@@ -60,6 +69,8 @@ public class User implements Entity {
                 .append(login)
                 .append(", password=")
                 .append(password)
+                .append(", fullName=")
+                .append(fullName)
                 .append(", role=")
                 .append(role)
                 .append("}");

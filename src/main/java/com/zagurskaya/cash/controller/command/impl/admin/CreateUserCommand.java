@@ -9,10 +9,11 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.util.PatternConstant;
+import com.zagurskaya.cash.constant.PatternConstant;
 import com.zagurskaya.cash.util.UserExtractor;
+import com.zagurskaya.cash.validation.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +25,7 @@ public class CreateUserCommand extends AbstractСommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
     private static final String LOGIN = "login";
+    private static final String FULL_NAME = "fullname";
     private static final String PASSWORD = "password";
     private static final String ROLE = "role";
 
@@ -37,32 +39,36 @@ public class CreateUserCommand extends AbstractСommand {
 
         Action action = actionAfterValidationUserAndPermission(request, Action.CREATEUSER);
         if (action == Action.CREATEUSER) {
-            if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
-                if (DataUtil.isCancelOperation(request)) {
+                if (DataValidation.isCancelOperation(request)) {
                     return Action.EDITUSERS;
 
-                } else if (DataUtil.isSaveOperation(request)) {
+                } else if (DataValidation.isSaveOperation(request)) {
 
                     User createdUser = new User();
                     UserExtractor.setUserNotCheckedFieldsToUser(request, createdUser);
                     request.setAttribute(AttributeConstant.USER, createdUser);
 
-                    String login = DataUtil.getString(request, LOGIN, PatternConstant.LOGIN_VALIDATE_PATTERN);
-                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.PASSWORD_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(request, ROLE, PatternConstant.ROLE_VALIDATE_PATTERN);
+                    String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String fullName = DataUtil.getString(request, FULL_NAME, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(request, ROLE, PatternConstant.ALPHABET_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
 
-                    User newUser = new User();
-                    newUser.setLogin(login);
-                    newUser.setPassword(password);
-                    newUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
-                    try {
-                        userService.create(newUser);
-                        return Action.EDITUSERS;
-                    } catch (ServiceException e) {
-                        session.setAttribute(AttributeConstant.ERROR, e);
-                        logger.log(Level.ERROR, e);
-                        return Action.ERROR;
+                    if (DataValidation.isUserLengthFieldsValid(request)) {
+                        User newUser = new User();
+                        newUser.setLogin(login);
+                        newUser.setPassword(password);
+                        newUser.setFullName(fullName);
+                        newUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                        try {
+                            userService.create(newUser);
+                            return Action.EDITUSERS;
+                        } catch (ServiceException e) {
+                            session.setAttribute(AttributeConstant.ERROR, e);
+                            logger.log(Level.ERROR, e);
+                            return Action.ERROR;
+                        }
                     }
                 }
             }

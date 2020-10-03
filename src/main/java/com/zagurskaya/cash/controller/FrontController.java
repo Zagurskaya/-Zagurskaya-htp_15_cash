@@ -4,7 +4,7 @@ import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

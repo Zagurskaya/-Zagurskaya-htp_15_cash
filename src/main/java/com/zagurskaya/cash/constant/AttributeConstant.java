@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.util;
+package com.zagurskaya.cash.constant;
 
 public class AttributeConstant {
     public static final String ERROR = "error";

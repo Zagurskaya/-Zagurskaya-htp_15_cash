@@ -3,13 +3,12 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.util.AttributeConstant;
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.util.DataUtil;
+import com.zagurskaya.cash.validation.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,16 +31,16 @@ public class EditUsersCommand extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
             if (action == Action.EDITUSERS) {
-                if (DataUtil.isCreateUpdateDeleteOperation(request)) {
+                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     Long id = DataUtil.getLong(request, AttributeConstant.ID);
 
                     try {
-                        if (DataUtil.isUpdateOperation(request)) {
+                        if (DataValidation.isUpdateOperation(request)) {
                             if (userService.findById(id) != null) {
                                 session.setAttribute(AttributeConstant.ID, id);
                                 return Action.UPDATEUSER;
                             }
-                        } else if (DataUtil.isDeleteOperation(request)) {
+                        } else if (DataValidation.isDeleteOperation(request)) {
                             User deleteUser = userService.findById(id);
                             if (deleteUser != null)
                                 userService.delete(deleteUser);
