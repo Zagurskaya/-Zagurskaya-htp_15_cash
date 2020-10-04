@@ -13,12 +13,12 @@
 <div class="menu-nav">
     <ul>
         <li class="first"><a href="do?command=Main"><fmt:message key="header.home"/></a></li>
-        <li><a href="do?command=Duties">Смены</a></li>
-        <li><a href="#" style="padding-right:43px">Валюта</a>
+        <li><a href="do?command=Duties"><fmt:message key="cash.duties"/></a></li>
+        <li><a href="#" style="padding-right:43px"><fmt:message key="cash.currency"/></a>
             <ul>
                 <li><a href="do?command=AllCurrency"><fmt:message key="cash.currencyDirectory"/></a></li>
-                <li><a href="do?command=RateNB"><fmt:message key="cash.RateNB"/></a></li>
-                <li><a href="do?command=RateCB"><fmt:message key="cash.RateCB"/></a></li>
+                <li><a href="do?command=RateNB"><fmt:message key="cash.rateNB"/></a></li>
+                <li><a href="do?command=RateCB"><fmt:message key="cash.rateCB"/></a></li>
             </ul>
         </li>
         <li><a href="#" style="padding-right:26px"><fmt:message key="cash.operations"/></a>
@@ -40,8 +40,9 @@
                 <li><a href="do?command=Report3"><fmt:message key="cash.report3"/></a></li>
             </ul>
         </li>
-        <li class="last"><a href="do?command=LocalEN"><fmt:message key="header.localEn"/></a></li>
-        <li class="last"><a href="do?command=LocalRU"><fmt:message key="header.localRu"/></a></li>
+
+        <li class="local"><a href="do?command=LocalEN"><fmt:message key="header.localEn"/></a></li>
+        <li class="local"><a href="do?command=LocalRU"><fmt:message key="header.localRu"/></a></li>
         <li class="last"><a href="do?command=Logout"><fmt:message key="header.logout"/></a></li>
     </ul>
 </div>

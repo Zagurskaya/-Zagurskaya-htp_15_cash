@@ -56,6 +56,9 @@
 .menu-nav li.last{
     float: right;
 }
+/*.menu-nav li.local{*/
+/*    float: right;*/
+/*}*/
 .menu-nav li.last a {
     border-radius: 0 8px 8px 0;
     -moz-border-radius: 0 8px 8px 0;
