@@ -12,6 +12,7 @@ import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.EditUsersCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.UpdateUserCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.MainCommand;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,6 +29,8 @@ public enum Action {
     EDITUSERS(new EditUsersCommand(PathConstant.PATH_ADMIN)),
     CREATEUSER(new CreateUserCommand(PathConstant.PATH_ADMIN)),
     UPDATEUSER(new UpdateUserCommand(PathConstant.PATH_ADMIN)),
+//cash
+    MAIN(new MainCommand(PathConstant.PATH_CASH)),
 
 
     ;
