@@ -1,6 +1,5 @@
 package com.zagurskaya.cash.model.dao.impl;
 
-import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
@@ -38,12 +37,19 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 preparedStatement.setLong(2, startPosition);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    User user = new User();
-                    user.setId(resultSet.getLong(ColumnName.USER_ID));
-                    user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
-                    user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setFullName(resultSet.getString(ColumnName.USER_FULL_NAME));
-                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
+                    Long id = resultSet.getLong(ColumnName.USER_ID);
+                    String login = resultSet.getString(ColumnName.USER_LOGIN);
+                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
+                    String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
+                    String role = resultSet.getString(ColumnName.USER_ROLE);
+                    User user = new User
+                            .Builder()
+                            .addId(id)
+                            .addLogin(login)
+                            .addPassword(password)
+                            .addFullName(fullName)
+                            .addRole(role)
+                            .build();
                     users.add(user);
                 }
             }
@@ -56,17 +62,23 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public User findById(Long id) throws DAOException {
-        User user = new User();
+        User user = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_ID)) {
                 preparedStatement.setLong(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    user.setId(resultSet.getLong(ColumnName.USER_ID));
-                    user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
-                    user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setFullName(resultSet.getString(ColumnName.USER_FULL_NAME));
-                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
+                    String login = resultSet.getString(ColumnName.USER_LOGIN);
+                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
+                    String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
+                    String role = resultSet.getString(ColumnName.USER_ROLE);
+                    user = new User.Builder()
+                            .addId(id)
+                            .addLogin(login)
+                            .addPassword(password)
+                            .addFullName(fullName)
+                            .addRole(role)
+                            .build();
                 }
             }
         } catch (SQLException e) {
@@ -139,12 +151,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 preparedStatement.setString(1, login);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    user = new User();
-                    user.setId(resultSet.getLong(ColumnName.USER_ID));
-                    user.setLogin(resultSet.getString(ColumnName.USER_LOGIN));
-                    user.setPassword(resultSet.getString(ColumnName.USER_PASSWORD));
-                    user.setFullName(resultSet.getString(ColumnName.USER_FULL_NAME));
-                    user.setRole(RoleEnum.valueOf(resultSet.getString(ColumnName.USER_ROLE).toUpperCase()));
+                    Long id = resultSet.getLong(ColumnName.USER_ID);
+                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
+                    String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
+                    String role = resultSet.getString(ColumnName.USER_ROLE);
+                    user = new User.Builder()
+                            .addId(id)
+                            .addLogin(login)
+                            .addPassword(password)
+                            .addFullName(fullName)
+                            .addRole(role)
+                            .build();
                 }
             }
         } catch (SQLException e) {

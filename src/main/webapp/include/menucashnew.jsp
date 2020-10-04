@@ -40,9 +40,8 @@
                 <li><a href="do?command=Report3"><fmt:message key="cash.report3"/></a></li>
             </ul>
         </li>
-
-        <li class="local"><a href="do?command=LocalEN"><fmt:message key="header.localEn"/></a></li>
-        <li class="local"><a href="do?command=LocalRU"><fmt:message key="header.localRu"/></a></li>
         <li class="last"><a href="do?command=Logout"><fmt:message key="header.logout"/></a></li>
+        <li style="float: right;"><a href="do?command=LocalEN"><fmt:message key="header.localEn"/></a></li>
+        <li style="float: right;"><a href="do?command=LocalRU"><fmt:message key="header.localRu"/></a></li>
     </ul>
 </div>
