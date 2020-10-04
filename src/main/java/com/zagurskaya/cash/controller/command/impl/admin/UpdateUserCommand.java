@@ -55,11 +55,13 @@ public class UpdateUserCommand extends AbstractСommand {
                     String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User updateUser = new User();
-                        updateUser.setId(id);
-                        updateUser.setLogin(login);
-                        updateUser.setFullName(fullName);
-                        updateUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                        User updateUser = new User
+                                .Builder()
+                                .addId(id)
+                                .addLogin(login)
+                                .addFullName(fullName)
+                                .addRole(role)
+                                .build();
                         try {
                             userService.update(updateUser);
                             session.setAttribute(AttributeConstant.MESSAGE, "Изменен пользователь " + updatedUser.getLogin());

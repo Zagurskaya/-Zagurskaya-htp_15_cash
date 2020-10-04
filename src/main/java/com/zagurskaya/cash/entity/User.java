@@ -76,4 +76,46 @@ public class User implements Entity {
                 .append("}");
         return sb.toString();
     }
+
+    public static class Builder {
+        private User newUser;
+
+        public Builder() {
+            newUser = new User();
+        }
+
+        public Builder addId(Long id) {
+            newUser.id = id;
+            return this;
+        }
+
+        public Builder addLogin(String login) {
+            newUser.login = login;
+            return this;
+        }
+
+        public Builder addPassword(String password) {
+            newUser.password = password;
+            return this;
+        }
+
+        public Builder addFullName(String fullName) {
+            newUser.fullName = fullName;
+            return this;
+        }
+
+        public Builder addRole(RoleEnum role) {
+            newUser.role = role;
+            return this;
+        }
+
+        public Builder addRole(String role) {
+            newUser.role = RoleEnum.valueOf(role.toUpperCase());
+            return this;
+        }
+
+        public User build() {
+            return newUser;
+        }
+    }
 }

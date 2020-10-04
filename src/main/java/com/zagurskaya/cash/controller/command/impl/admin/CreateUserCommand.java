@@ -57,11 +57,13 @@ public class CreateUserCommand extends AbstractСommand {
                     String role = DataUtil.getString(request, ROLE, PatternConstant.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User newUser = new User();
-                        newUser.setLogin(login);
-                        newUser.setPassword(password);
-                        newUser.setFullName(fullName);
-                        newUser.setRole(RoleEnum.valueOf(role.toUpperCase()));
+                        User newUser = new User
+                                .Builder()
+                                .addLogin(login)
+                                .addPassword(password)
+                                .addFullName(fullName)
+                                .addRole(role)
+                                .build();
                         try {
                             userService.create(newUser);
                             session.setAttribute(AttributeConstant.MESSAGE, "Добавлен новый пользователь " + newUser.getLogin());
