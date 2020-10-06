@@ -21,7 +21,28 @@
         <url-pattern>/do</url-pattern>
     </servlet-mapping>
 
-<!--    <filter>-->
+    <error-page>
+        <error-code>401</error-code>
+        <location>/jsp/errors/error401.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/errors/error403.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/errors/error404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/errors/error500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/jsp/errors/error503.jsp</location>
+    </error-page>
+
+    <!--    <filter>-->
 <!--        <filter-name>Auth</filter-name>-->
 <!--        <filter-class>by.it.zagurskaya.project.java.filters.Auth</filter-class>-->
 <!--    </filter>-->

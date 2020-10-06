@@ -2,7 +2,6 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.entity.RoleEnum;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -46,8 +45,7 @@ public class UpdateUserCommand extends AbstractСommand {
                     return Action.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
-                    User updatedUser = new User();
-                    UserExtractor.setUpdateUserNotCheckedFieldsToUser(request, updatedUser);
+                    User updatedUser = UserExtractor.updateUserNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 
                     String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
