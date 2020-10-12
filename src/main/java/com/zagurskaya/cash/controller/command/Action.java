@@ -2,10 +2,9 @@ package com.zagurskaya.cash.controller.command;
 
 import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
 import com.zagurskaya.cash.controller.command.impl.IndexСommand;
-import com.zagurskaya.cash.controller.command.impl.LocalEnСommand;
-import com.zagurskaya.cash.controller.command.impl.LocalRuСommand;
+import com.zagurskaya.cash.controller.command.impl.LocaleEnСommand;
+import com.zagurskaya.cash.controller.command.impl.LocaleRuСommand;
 import com.zagurskaya.cash.controller.command.impl.LoginСommand;
-import com.zagurskaya.cash.controller.command.impl.LogoutСommand;
 import com.zagurskaya.cash.controller.command.impl.PathConstant;
 import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
 import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
@@ -21,8 +20,8 @@ public enum Action {
     INDEX(new IndexСommand(PathConstant.PATH_INDEX)),
     ERROR(new ErrorСommand(PathConstant.PATH_ROOT)),
     LOGIN(new LoginСommand(PathConstant.PATH_ROOT)),
-    LOCALRU(new LocalRuСommand(PathConstant.PATH_ROOT)),
-    LOCALEN(new LocalEnСommand(PathConstant.PATH_ROOT)),
+    LOCALRU(new LocaleRuСommand(PathConstant.PATH_ROOT)),
+    LOCALEN(new LocaleEnСommand(PathConstant.PATH_ROOT)),
     PROFILE(new ProfileСommand(PathConstant.PATH_ROOT)),
 //  admin
     ADMIN(new AdminCommand(PathConstant.PATH_ADMIN)),

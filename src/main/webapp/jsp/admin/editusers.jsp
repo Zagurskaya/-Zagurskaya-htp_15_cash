@@ -6,8 +6,8 @@
 <div class="container">
     <%@ include file="../../include/menuadmin.jsp" %>
     <br>
-    <H4><fmt:message key="page.editusers.label.description"/></H4
-    <p><span style="color:#08ff11">${message}</span></p>
+    <H4><fmt:message key="page.editusers.label.description"/></H4>
+    <%@ include file="/include/infomessage.jsp" %>
     <table class="table table-bordered table-hover table-striped">
         <thead>
         <tr>

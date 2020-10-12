@@ -28,6 +28,7 @@ public class EditUsersCommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
+        session.removeAttribute("error");
 
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
@@ -45,7 +46,8 @@ public class EditUsersCommand extends AbstractСommand {
                             User deleteUser = userService.findById(id);
                             if (deleteUser != null) {
                                 userService.delete(deleteUser);
-                                session.setAttribute(AttributeConstant.MESSAGE, "Удален пользователь пользователь " + deleteUser.getLogin());
+                                logger.log(Level.INFO, "Delete user " + deleteUser.getLogin());
+                                session.setAttribute(AttributeConstant.MESSAGE, "106 " + deleteUser.getLogin());
                             }
                         }
                     } catch (ServiceException e) {

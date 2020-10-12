@@ -9,9 +9,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class LocalRuСommand extends AbstractСommand {
+public class LocaleEnСommand extends AbstractСommand {
 
-    public LocalRuСommand(String path) {
+    public LocaleEnСommand(String path) {
         super(path);
     }
 
@@ -21,8 +21,8 @@ public class LocalRuСommand extends AbstractСommand {
         Action previousAction = (Action) session.getAttribute(AttributeConstant.PREVIOUS_ACTION);
         Action action = previousAction == null ? Action.INDEX : previousAction;
 
-        Cookie localEnCookie = new Cookie(AttributeConstant.LOCAL, "ru");
-        DataUtil.setCookie(request,localEnCookie);
+        Cookie localCookie = new Cookie(AttributeConstant.LOCAL, "en");
+        DataUtil.setCookie(request, localCookie);
         return action;
     }
 }

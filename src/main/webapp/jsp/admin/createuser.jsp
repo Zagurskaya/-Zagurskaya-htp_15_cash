@@ -4,11 +4,10 @@
 <body>
 <div class="container">
     <%@ include file="../../include/menuadmin.jsp" %>
-
     <form class="form-horizontal" method="post">
         <fieldset>
             <legend><fmt:message key="page.createuser.label.description"/></legend>
-            <p><span style="color:red">${error}</span></p>
+            <%@ include file="/include/errormessage.jsp" %>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">

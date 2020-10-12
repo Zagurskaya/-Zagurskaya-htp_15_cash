@@ -8,6 +8,7 @@ import com.zagurskaya.cash.util.DataUtil;
 import com.zagurskaya.cash.validation.DataValidation;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ProfileСommand extends AbstractСommand {
 
@@ -17,6 +18,9 @@ public class ProfileСommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
+        final HttpSession session = request.getSession(false);
+        session.removeAttribute("message");
+        session.removeAttribute("error");
         User user = DataUtil.findUser(request);
 
         if (user != null) {

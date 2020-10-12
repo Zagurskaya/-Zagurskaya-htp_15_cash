@@ -16,6 +16,9 @@ public class LogoutСommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
+        session.removeAttribute("message");
+        session.removeAttribute("error");
+
         session.removeAttribute(AttributeConstant.USER);
         request.getSession().invalidate();
 //        DataUtil.deleteCookie(request, AttributeConstant.LOGIN);

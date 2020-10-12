@@ -81,12 +81,12 @@ public class DataUtil {
             if (value.matches(pattern))
                 return HtmlCharsConverter.convertHtmlSpecialChars(value);
             else {
-                logger.log(Level.ERROR, "Value " + HtmlCharsConverter.convertHtmlSpecialChars(value) + " incorrect");
-                throw new SiteDataValidationException("Value " + HtmlCharsConverter.convertHtmlSpecialChars(value) + " incorrect");
+                logger.log(Level.ERROR, "Value  incorrect " + HtmlCharsConverter.convertHtmlSpecialChars(value));
+                throw new SiteDataValidationException("102 " + HtmlCharsConverter.convertHtmlSpecialChars(value));
             }
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
-            throw new SiteDataValidationException("Value incorrect", e);
+            throw new SiteDataValidationException("102", e);
         }
     }
 
@@ -96,7 +96,7 @@ public class DataUtil {
             return HtmlCharsConverter.convertHtmlSpecialChars(value);
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
-            throw new SiteDataValidationException("Value incorrect", e);
+            throw new SiteDataValidationException("102", e);
         }
     }
 
@@ -104,8 +104,8 @@ public class DataUtil {
         if (value.matches(pattern))
             return HtmlCharsConverter.convertHtmlSpecialChars(value);
         else {
-            logger.log(Level.ERROR, "Value " + HtmlCharsConverter.convertHtmlSpecialChars(value) + " incorrect");
-            throw new SiteDataValidationException("Value " + HtmlCharsConverter.convertHtmlSpecialChars(value) + " incorrect");
+            logger.log(Level.ERROR, "Value  incorrect" + HtmlCharsConverter.convertHtmlSpecialChars(value));
+            throw new SiteDataValidationException("102" + HtmlCharsConverter.convertHtmlSpecialChars(value));
         }
     }
 

@@ -29,13 +29,13 @@ public abstract class AbstractСommand implements Сommand {
 
         User user = DataUtil.findUser(request);
         if (user == null) {
-            session.setAttribute(AttributeConstant.ERROR, "null user");
+            session.setAttribute(AttributeConstant.ERROR, "104 ");
             logger.log(Level.ERROR, "null user");
             return Action.ERROR;
         }
-        if (user != null && !(user.getRole() == actionPermission)) {
-            session.setAttribute(AttributeConstant.ERROR, "permission denied to the admin's directory");
-            logger.log(Level.ERROR, "permission denied to the admin's directory");
+        if (user.getRole() != actionPermission) {
+            session.setAttribute(AttributeConstant.ERROR, "103 ");
+            logger.log(Level.ERROR, "permission denied ");
             return Action.INDEX;
         }
         return action;

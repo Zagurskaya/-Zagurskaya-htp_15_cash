@@ -34,6 +34,7 @@ public class UpdateUserCommand extends AbstractСommand {
         final Long id = (Long) session.getAttribute(AttributeConstant.ID);
         if (id == null) return Action.INDEX;
         session.removeAttribute("message");
+        session.removeAttribute("error");
 
         Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
         if (action == Action.EDITUSERS) {
@@ -45,7 +46,8 @@ public class UpdateUserCommand extends AbstractСommand {
                     return Action.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
-                    User updatedUser = UserExtractor.updateUserNotCheckedFieldsToUser(request);
+                    UserExtractor userExtractor =  new UserExtractor();
+                    User updatedUser = userExtractor.updateUserNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 
                     String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
@@ -62,7 +64,8 @@ public class UpdateUserCommand extends AbstractСommand {
                                 .build();
                         try {
                             userService.update(updateUser);
-                            session.setAttribute(AttributeConstant.MESSAGE, "Изменен пользователь " + updatedUser.getLogin());
+                            logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
+                            session.setAttribute(AttributeConstant.MESSAGE, "105 " + updatedUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeConstant.ERROR, e);

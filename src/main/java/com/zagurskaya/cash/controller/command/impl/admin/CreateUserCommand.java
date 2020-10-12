@@ -36,6 +36,7 @@ public class CreateUserCommand extends AbstractСommand {
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
+        session.removeAttribute("error");
 
         Action action = actionAfterValidationUserAndPermission(request, Action.CREATEUSER);
         if (action == Action.CREATEUSER) {
@@ -45,7 +46,8 @@ public class CreateUserCommand extends AbstractСommand {
                     return Action.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
-                    User createdUser = UserExtractor.userNotCheckedFieldsToUser(request);
+                    UserExtractor userExtractor =  new UserExtractor();
+                    User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeConstant.USER, createdUser);
 
                     String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
@@ -63,7 +65,8 @@ public class CreateUserCommand extends AbstractСommand {
                                 .build();
                         try {
                             userService.create(newUser);
-                            session.setAttribute(AttributeConstant.MESSAGE, "Добавлен новый пользователь " + newUser.getLogin());
+                            logger.log(Level.INFO, "Add new user " + newUser.getLogin());
+                            session.setAttribute(AttributeConstant.MESSAGE, "107 " + newUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeConstant.ERROR, e);

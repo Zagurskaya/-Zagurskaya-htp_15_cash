@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class UserExtractor {
 
-    public static User userNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
+    public User userNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
         String login = DataUtil.getString(request, "login");
         String password = DataUtil.getString(request, "password");
         String fullName = DataUtil.getString(request, "fullname");
@@ -22,7 +22,7 @@ public class UserExtractor {
         return user;
     }
 
-    public static User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
+    public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
         String login = DataUtil.getString(request, "login");
         String fullName = DataUtil.getString(request, "fullname");
         String role = DataUtil.getString(request, "role");

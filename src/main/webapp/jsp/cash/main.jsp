@@ -5,7 +5,8 @@
     <div class="container">
         <%@ include file="/include/menucashnew.jsp" %>
          <br>
-         <br>
+        <%@ include file="../../include/errormessage.jsp" %>
+        <br>
          <br>
          <br>
          <br>

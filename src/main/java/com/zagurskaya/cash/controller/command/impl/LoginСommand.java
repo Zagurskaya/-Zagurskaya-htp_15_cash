@@ -49,7 +49,7 @@ public class LoginСommand extends AbstractСommand {
                     return Action.PROFILE;
                 } else {
                     logger.log(Level.ERROR, "Value incorrect");
-                    throw new SiteDataValidationException("Value incorrect");
+                    throw new SiteDataValidationException("102 ");
                 }
             } catch (ServiceException e) {
                 session.setAttribute(AttributeConstant.ERROR, e);

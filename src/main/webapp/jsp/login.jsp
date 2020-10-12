@@ -5,7 +5,7 @@
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
     <br>
-    <p><span style="color:red">${error}</span></p>
+    <%@ include file="../include/errormessage.jsp" %>
     <br>
     <form class="form-horizontal" action="do?command=Login" method="post">
         <fieldset>
@@ -16,7 +16,6 @@
                 <div class="col-md-4">
                     <input id="login" name="login" value="testLogin" type="text" placeholder=""
                            class="form-control input-md" required="">
-
                 </div>
             </div>
 
@@ -26,7 +25,6 @@
                 <div class="col-md-4">
                     <input id="password" name="password" value="testPassword" type="password" placeholder=""
                            class="form-control input-md" required="">
-
                 </div>
             </div>
 
