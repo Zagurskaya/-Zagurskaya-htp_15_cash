@@ -7,10 +7,9 @@
 </head>
 <%@ include file="/include/head.jsp" %>
 <body>
-<h1>401 Unauthorized.</h1>
+<h1> Unauthorized.</h1>
 <br />
 <p><b>Error code:</b> ${pageContext.errorData.statusCode}</p>
-<p><b>Request URI:</b> ${pageContext.request.scheme}://${header.host}${pageContext.errorData.requestURI}</p>
 <br />
 </body>
 </html>
