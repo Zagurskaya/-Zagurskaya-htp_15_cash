@@ -1,5 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl;
 
+/**
+ * Путь действий.
+ */
 public class PathConstant {
     public static final String PATH_INDEX = "";
     public static final String PATH_ROOT = "/jsp/";

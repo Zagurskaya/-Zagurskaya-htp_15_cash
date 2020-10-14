@@ -6,8 +6,15 @@ import com.zagurskaya.cash.controller.command.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Главная страница кассира".
+ */
 public class MainCommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public MainCommand(String path) {
         super(path);
     }

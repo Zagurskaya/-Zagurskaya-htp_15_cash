@@ -9,12 +9,20 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Управленеи транзакциями
+ */
 public class EntityTransaction {
 
     private static final Logger logger = LogManager.getLogger(EntityTransaction.class);
     private Connection connection;
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
+    /**
+     * Передача соединения в одно Dao
+     *
+     * @param dao - Dao
+     */
     public void initSingleRequest(Dao dao) {
         if (connection == null) {
             connection = connectionPool.retrieve();
@@ -22,6 +30,9 @@ public class EntityTransaction {
         }
     }
 
+    /**
+     * Возврат соединения в пул соединений с одним Dao
+     */
     public void endSingleRequest() {
         if (connection != null) {
             connectionPool.putBack(connection);
@@ -29,6 +40,11 @@ public class EntityTransaction {
         }
     }
 
+    /**
+     * Передача соединения в одно или больше Dao
+     *
+     * @param dao - Dao
+     */
     public void init(Dao dao, Dao... daos) {
         if (connection == null) {
             try {
@@ -45,6 +61,9 @@ public class EntityTransaction {
         }
     }
 
+    /**
+     * Возврат соединения в пул соединений с одно или более Dao
+     */
     public void end() {
         if (connection != null) {
             try {
@@ -58,6 +77,9 @@ public class EntityTransaction {
         }
     }
 
+    /**
+     * Совершить транзакцию
+     */
     public void commit() {
         if (connection != null) {
             try {
@@ -69,6 +91,9 @@ public class EntityTransaction {
         }
     }
 
+    /**
+     * Отмена транзакцию
+     */
     public void rollback() {
         if (connection != null) {
             try {

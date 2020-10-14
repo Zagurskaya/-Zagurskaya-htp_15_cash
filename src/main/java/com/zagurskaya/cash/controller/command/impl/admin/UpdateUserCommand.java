@@ -20,10 +20,18 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Изменить пользователя".
+ */
 public class UpdateUserCommand extends AbstractСommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public UpdateUserCommand(String path) {
         super(path);
     }
@@ -46,7 +54,7 @@ public class UpdateUserCommand extends AbstractСommand {
                     return Action.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
-                    UserExtractor userExtractor =  new UserExtractor();
+                    UserExtractor userExtractor = new UserExtractor();
                     User updatedUser = userExtractor.updateUserNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeConstant.USER, updatedUser);
 

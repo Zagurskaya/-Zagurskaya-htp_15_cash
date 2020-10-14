@@ -14,6 +14,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Пул соединений к базе данных
+ */
 public class ConnectionPool {
 
     private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
@@ -36,6 +39,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Получение пула соединений
+     *
+     * @return пул соединений
+     */
     public static ConnectionPool getInstance() {
         if (!isCreated.get()) {
             try {
@@ -59,6 +67,11 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Получение соединения
+     *
+     * @return соединение
+     */
     public Connection retrieve() {
         ProxyConnection newConnection = null;
         try {
@@ -71,6 +84,11 @@ public class ConnectionPool {
         return newConnection;
     }
 
+    /**
+     * Возврат соединения в пул соединений
+     *
+     * @param connection - соединение
+     */
     public void putBack(Connection connection) {
         if (connection != null) {
             if (connection instanceof ProxyConnection && usedConnection.remove(connection)) {
@@ -84,6 +102,9 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Закрытие соединения с БД
+     */
     public void destroyPoll() {
         for (int i = 0; i < availableConnection.size(); i++) {
             try {

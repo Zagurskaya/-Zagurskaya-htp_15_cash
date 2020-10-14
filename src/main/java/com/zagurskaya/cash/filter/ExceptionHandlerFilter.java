@@ -13,6 +13,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Обработчик исключений
+ */
 public class ExceptionHandlerFilter implements Filter {
     private static final Logger logger = LogManager.getLogger(ExceptionHandlerFilter.class);
 

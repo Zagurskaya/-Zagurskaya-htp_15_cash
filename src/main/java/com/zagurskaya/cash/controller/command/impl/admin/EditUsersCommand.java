@@ -17,10 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Действие "Пользователи".
+ */
 public class EditUsersCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
     private UserService userService = new UserServiceImpl();
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public EditUsersCommand(String path) {
         super(path);
     }

@@ -9,8 +9,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Смена локали на RU".
+ */
 public class LocaleRuСommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public LocaleRuСommand(String path) {
         super(path);
     }
@@ -22,7 +29,7 @@ public class LocaleRuСommand extends AbstractСommand {
         Action action = previousAction == null ? Action.INDEX : previousAction;
 
         Cookie localEnCookie = new Cookie(AttributeConstant.LOCAL, "ru");
-        DataUtil.setCookie(request,localEnCookie);
+        DataUtil.setCookie(request, localEnCookie);
         return action;
     }
 }

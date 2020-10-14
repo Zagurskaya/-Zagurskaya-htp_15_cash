@@ -4,15 +4,22 @@ import com.zagurskaya.cash.entity.RoleEnum;
 
 import java.util.HashMap;
 import java.util.Map;
-
-public class ActionPermission {
+/**
+ * Разрешительные права на действия
+ */
+class ActionPermission {
     private static Map<String, RoleEnum> actionPermissionMap = new HashMap<>();
     private static ActionPermission instance;
 
     private ActionPermission() {
     }
 
-    public static ActionPermission getInstance() {
+    /**
+     * Получение прав
+     *
+     * @return права
+     */
+    static ActionPermission getInstance() {
         if (instance == null) {
             instance = new ActionPermission();
 //            admin
@@ -25,10 +32,12 @@ public class ActionPermission {
         }
         return instance;
     }
-
-    public Map<String, RoleEnum> getActionPermissionMap() {
-        Map<String, RoleEnum> parametersMapCopy = new HashMap<>();
-        parametersMapCopy.putAll(actionPermissionMap);
-        return parametersMapCopy;
+    /**
+     * Получение всех прав
+     *
+     * @return Map всех прав
+     */
+    Map<String, RoleEnum> getActionPermissionMap() {
+        return new HashMap<>(actionPermissionMap);
     }
 }

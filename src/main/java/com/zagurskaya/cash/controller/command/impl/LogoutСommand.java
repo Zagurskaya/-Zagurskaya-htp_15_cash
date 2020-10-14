@@ -7,8 +7,15 @@ import com.zagurskaya.cash.constant.AttributeConstant;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Конец сеанса пользователя".
+ */
 public class LogoutСommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public LogoutСommand(String path) {
         super(path);
     }

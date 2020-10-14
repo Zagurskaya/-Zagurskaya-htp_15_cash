@@ -44,17 +44,17 @@ public class DataUtil {
         response.addCookie(cookie);
     }
 
-    public static String readCookie(HttpServletRequest request, String key) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(key)) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
+//    public static String readCookie(HttpServletRequest request, String key) {
+//        Cookie[] cookies = request.getCookies();
+//        if (cookies != null) {
+//            for (Cookie cookie : cookies) {
+//                if (cookie.getName().equals(key)) {
+//                    return cookie.getValue();
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     public static void deleteCookie(HttpServletRequest request, String key) {
         Cookie readCookie = null;

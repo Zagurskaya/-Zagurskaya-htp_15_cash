@@ -26,6 +26,14 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private static final String HASH_ALGORITHM = "SHA-512";
 
+    /**
+     * Поиск пользователя по логину  и валидному паролю
+     *
+     * @param login    - логин
+     * @param password - пароль
+     * @return пользователь
+     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
+     */
     @Override
     public User getUserByLoginAndValidPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -60,6 +68,12 @@ public class UserServiceImpl implements UserService {
 //        }
 //    }
 
+    /**
+     * Поиск пользователя по ID
+     *
+     * @param id - ID
+     * @return пользователь
+     */
     @Override
     public User findById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -76,6 +90,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Создание пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном создании
+     */
     @Override
     public boolean create(User user) throws ServiceException, ServiceConstraintViolationException {
         UserDao userDao = new UserDaoImpl();
@@ -84,8 +104,14 @@ public class UserServiceImpl implements UserService {
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
                 String hashPassword = getHash(user.getPassword());
-                user.setPassword(hashPassword);
-                return userDao.create(user);
+                User createUser = new User
+                        .Builder()
+                        .addLogin(user.getLogin())
+                        .addPassword(hashPassword)
+                        .addFullName(user.getFullName())
+                        .addRole(user.getRole())
+                        .build();
+                return userDao.create(createUser);
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new ServiceConstraintViolationException("Duplicate data user's login ");
@@ -101,6 +127,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Изменение пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном изменении
+     */
     @Override
     public boolean update(User user) throws ServiceException, ServiceConstraintViolationException {
         UserDao userDao = new UserDaoImpl();
@@ -119,6 +151,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Удаление пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном удаление
+     */
     @Override
     public boolean delete(User user) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -134,6 +172,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Количество строк в таблите пользователей
+     *
+     * @return количество строк
+     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
+     */
     @Override
     public Long countRows() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -150,6 +194,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Получение списка пользователь на определенной странице
+     *
+     * @param page - номер страницы
+     * @return список пользователей
+     */
     @Override
     public List<User> onePartOfUsersListOnPage(int page) throws ServiceException {
         List users = new ArrayList();
@@ -170,7 +220,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public static String getHash(String password) throws ServiceException {
+    private static String getHash(String password) throws ServiceException {
         String hashPassword;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(HASH_ALGORITHM);

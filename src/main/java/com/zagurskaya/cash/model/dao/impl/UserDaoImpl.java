@@ -28,6 +28,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final String SQL_DELETE_USER = "DELETE FROM user WHERE id=?";
     private static final String SQL_SELECT_COUNT_USERS = "SELECT COUNT(login) FROM `user`";
 
+    /**
+     * Получение списка пользователей начиная с startPosition позиции в количестве <= limit
+     *
+     * @param limit         - количество
+     * @param startPosition - начальная позиция
+     * @return список пользователей
+     */
     @Override
     public List<User> findAll(int limit, int startPosition) throws DAOException {
         List<User> users = new ArrayList<>();
@@ -60,6 +67,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return users;
     }
 
+    /**
+     * Поиск пользователя по ID
+     *
+     * @param id - ID
+     * @return пользователь
+     */
     @Override
     public User findById(Long id) throws DAOException {
         User user = null;
@@ -88,6 +101,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return user;
     }
 
+    /**
+     * Создание пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном создании
+     */
     @Override
     public boolean create(User user) throws DAOException, RepositoryConstraintViolationException {
         int result;
@@ -108,6 +127,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return 1 == result;
     }
 
+    /**
+     * Изменение пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном изменении
+     */
     @Override
     public boolean update(User user) throws DAOException, RepositoryConstraintViolationException {
         int result;
@@ -128,6 +153,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return 1 == result;
     }
 
+    /**
+     * Удаление пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном удаление
+     */
     @Override
     public boolean delete(User user) throws DAOException {
         int result;
@@ -171,6 +202,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return user;
     }
 
+    /**
+     * Количество строк в таблите пользователей
+     *
+     * @return количество строк
+     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     */
     @Override
     public Long countRows() throws DAOException {
         Long count;

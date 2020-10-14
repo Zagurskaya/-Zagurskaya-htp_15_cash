@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Создание подключение к базе данных
+ */
 class ConnectionCreator {
 
     private static final Logger logger = LogManager.getLogger(ConnectionCreator.class);
@@ -16,6 +19,11 @@ class ConnectionCreator {
     private static final String USER = DatabaseProperty.getInstance().getUser();
     private static final String PASSWORD = DatabaseProperty.getInstance().getPassword();
 
+    /**
+     * Получение соединения
+     *
+     * @return соединение
+     */
     static ProxyConnection create() {
         Connection connection;
         ProxyConnection proxyConnection;

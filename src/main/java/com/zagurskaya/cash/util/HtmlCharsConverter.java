@@ -1,7 +1,15 @@
 package com.zagurskaya.cash.util;
 
+/**
+ * Конвертор Html-символов
+ */
 public class HtmlCharsConverter {
-
+    /**
+     * Экранирование символов
+     *
+     * @param source - исходный текст
+     * @return экранированный текст
+     */
     public static String convertHtmlSpecialChars(String source) {
 
         StringBuilder sb = new StringBuilder();

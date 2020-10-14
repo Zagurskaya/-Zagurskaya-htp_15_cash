@@ -9,8 +9,15 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Смена локали на EN".
+ */
 public class LocaleEnСommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public LocaleEnСommand(String path) {
         super(path);
     }

@@ -1,62 +1,73 @@
 package com.zagurskaya.cash.entity;
 
-public class User implements Entity {
+/**
+ * Пользователь со свойствами <b>id</b>, <b>login</b>, <b>password</b>, <b>fullName</b> и <b>role</b>.
+ */
+public class User {
+    /**
+     * Идентификатор
+     */
     private Long id;
+    /**
+     * Логин
+     */
     private String login;
+    /**
+     * Пароль
+     */
     private String password;
+    /**
+     * ФИО
+     */
     private String fullName;
+    /**
+     * Роль
+     */
     private RoleEnum role;
 
-    public User() {
-    }
-
-    public User(Long id, String login, String password, String fullName, RoleEnum role) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.fullName = fullName;
-        this.role = role;
-    }
-
-    @Override
+    /**
+     * Получение значения поля {@link User#id}
+     *
+     * @return идентификатор
+     */
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    /**
+     * Получение значения поля {@link User#login}
+     *
+     * @return логин
+     */
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
+    /**
+     * Получение значения поля {@link User#password}
+     *
+     * @return пароль
+     */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    /**
+     * Получение значения поля {@link User#fullName}
+     *
+     * @return ФИО
+     */
     public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
+    /**
+     * Получение значения поля {@link User#role}
+     *
+     * @return роль
+     */
     public RoleEnum getRole() {
         return role;
-    }
-
-    public void setRole(RoleEnum role) {
-        this.role = role;
     }
 
     @Override
@@ -77,43 +88,90 @@ public class User implements Entity {
         return sb.toString();
     }
 
+    /**
+     * Конструирование пользователя.
+     */
     public static class Builder {
         private User newUser;
 
+        /**
+         * Конструктор
+         */
         public Builder() {
             newUser = new User();
         }
 
+        /**
+         * Определение идентификатора {@link User#id}
+         *
+         * @param id - идентификатор
+         * @return Builder
+         */
         public Builder addId(Long id) {
             newUser.id = id;
             return this;
         }
 
+        /**
+         * Определение идентификатора {@link User#login}
+         *
+         * @param login - логин
+         * @return Builder
+         */
         public Builder addLogin(String login) {
             newUser.login = login;
             return this;
         }
 
+        /**
+         * Определение идентификатора {@link User#password}
+         *
+         * @param password - пароль
+         * @return Builder
+         */
         public Builder addPassword(String password) {
             newUser.password = password;
             return this;
         }
 
+        /**
+         * Определение идентификатора {@link User#fullName}
+         *
+         * @param fullName - ФИО
+         * @return Builder
+         */
         public Builder addFullName(String fullName) {
             newUser.fullName = fullName;
             return this;
         }
 
+        /**
+         * Определение идентификатора {@link User#role}
+         *
+         * @param role - роль
+         * @return Builder
+         */
         public Builder addRole(RoleEnum role) {
             newUser.role = role;
             return this;
         }
 
+        /**
+         * Определение идентификатора {@link User#role}
+         *
+         * @param role - идентификатор
+         * @return Builder
+         */
         public Builder addRole(String role) {
             newUser.role = RoleEnum.valueOf(role.toUpperCase());
             return this;
         }
 
+        /**
+         * Возвращает построенного пользователя
+         *
+         * @return пользователь
+         */
         public User build() {
             return newUser;
         }

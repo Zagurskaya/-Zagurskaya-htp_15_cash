@@ -22,6 +22,11 @@ class DatabaseProperty {
     private DatabaseProperty() {
     }
 
+    /**
+     * Получение DBProperty
+     *
+     * @return DBProperty
+     */
     static DatabaseProperty getInstance() {
         if (instance == null) {
             instance = new DatabaseProperty();
@@ -31,18 +36,38 @@ class DatabaseProperty {
         return instance;
     }
 
+    /**
+     * Получение драйвера БД
+     *
+     * @return имя драйвер
+     */
     String getDriver() {
         return properties.getProperty(DRIVER);
     }
 
+    /**
+     * Получение URL к БД
+     *
+     * @return URL к БД
+     */
     String getUrl() {
         return properties.getProperty(URL);
     }
 
+    /**
+     * Получение имени пользователя БД
+     *
+     * @return имя пользователя БД
+     */
     String getUser() {
         return properties.getProperty(USER);
     }
 
+    /**
+     * Получение пароля к БД
+     *
+     * @return пароль к БД
+     */
     String getPassword() {
         return properties.getProperty(PASSWORD);
     }

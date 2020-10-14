@@ -7,8 +7,15 @@ import com.zagurskaya.cash.constant.AttributeConstant;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "ERROR".
+ */
 public class ErrorСommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public ErrorСommand(String path) {
         super(path);
     }

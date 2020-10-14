@@ -11,10 +11,18 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Команда со свойствами <b>path</b>.
+ */
 public abstract class AbstractСommand implements Сommand {
     private static final Logger logger = LogManager.getLogger(AbstractСommand.class);
     private final String path;
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public AbstractСommand(String path) {
         this.path = path;
     }
@@ -23,6 +31,12 @@ public abstract class AbstractСommand implements Сommand {
         return path;
     }
 
+    /**
+     * Проверка валидности пользователя и его прав и возвращение сооьветствующего действия
+     *
+     * @param request - запрос
+     * @return действие
+     */
     protected Action actionAfterValidationUserAndPermission(HttpServletRequest request, Action action) {
         final HttpSession session = request.getSession(false);
         RoleEnum actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(action.name());

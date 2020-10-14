@@ -6,8 +6,15 @@ import com.zagurskaya.cash.controller.command.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Главная страница администратора".
+ */
 public class AdminCommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public AdminCommand(String path) {
         super(path);
     }

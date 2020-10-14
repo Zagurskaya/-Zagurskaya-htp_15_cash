@@ -15,17 +15,23 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Регистрация".
+ */
 public class LoginСommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(LoginСommand.class);
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
-    private static final String ROLE = "role";
     private UserService userService = new UserServiceImpl();
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public LoginСommand(String path) {
         super(path);
     }

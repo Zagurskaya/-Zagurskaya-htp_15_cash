@@ -10,8 +10,15 @@ import com.zagurskaya.cash.validation.DataValidation;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Профайл".
+ */
 public class ProfileСommand extends AbstractСommand {
-
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public ProfileСommand(String path) {
         super(path);
     }

@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Валидатор данных
+ */
 public class DataValidation {
     private static final Logger logger = LogManager.getLogger(DataValidation.class);
     private static final String POST = "post";
@@ -18,27 +21,63 @@ public class DataValidation {
     private static final String UPDATE = "update";
     private static final String DELETE = "delete";
 
-    public static boolean isCreateUpdateDeleteOperation(HttpServletRequest req) {
-        return req.getMethod().
+    /**
+     * Возвращает true, если POST запрос.
+     *
+     * @param request - запрос
+     * @return boolean
+     */
+    public static boolean isCreateUpdateDeleteOperation(HttpServletRequest request) {
+        return request.getMethod().
                 equalsIgnoreCase(POST);
     }
 
+    /**
+     * Возвращает true, если действие "Сохранить".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
     public static boolean isSaveOperation(HttpServletRequest request) {
         return request.getParameter(SAVE) != null;
     }
 
+    /**
+     * Возвращает true, если действие "Отмена".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
     public static boolean isCancelOperation(HttpServletRequest request) {
         return request.getParameter(CANCEL) != null;
     }
 
+    /**
+     * Возвращает true, если действие "Обновление".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
     public static boolean isUpdateOperation(HttpServletRequest request) {
         return request.getParameter(UPDATE) != null;
     }
 
+    /**
+     * Возвращает true, если действие "Удаление".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
     public static boolean isDeleteOperation(HttpServletRequest request) {
         return request.getParameter(DELETE) != null;
     }
 
+    /**
+     * Проверка валидности длины полей пользователя
+     *
+     * @param request - запрос
+     * @throws SiteDataValidationException при превышении допустимого количества символов в поле
+     */
     public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws SiteDataValidationException {
         if (request.getParameter("login") != null) {
             String username = DataUtil.getString(request, "login");

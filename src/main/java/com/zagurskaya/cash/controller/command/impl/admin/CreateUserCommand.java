@@ -20,6 +20,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Действие "Создать пользователя".
+ */
 public class CreateUserCommand extends AbstractСommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
@@ -28,6 +31,11 @@ public class CreateUserCommand extends AbstractСommand {
     private static final String PASSWORD = "password";
     private static final String ROLE = "role";
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public CreateUserCommand(String path) {
         super(path);
     }
@@ -46,7 +54,7 @@ public class CreateUserCommand extends AbstractСommand {
                     return Action.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
-                    UserExtractor userExtractor =  new UserExtractor();
+                    UserExtractor userExtractor = new UserExtractor();
                     User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeConstant.USER, createdUser);
 

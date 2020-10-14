@@ -5,7 +5,15 @@ import com.zagurskaya.cash.controller.command.Action;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Стартовая страница
+ */
 public class IndexСommand extends AbstractСommand {
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public IndexСommand(String path) {
         super(path);
     }
