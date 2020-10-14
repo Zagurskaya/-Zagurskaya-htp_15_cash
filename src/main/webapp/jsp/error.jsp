@@ -5,10 +5,9 @@
 <%@ include file="/include/head.jsp" %>
 <body>
 <div class="container">
-    <%@ include file="/include/menu.jsp" %>z
-    <p>ERROR:</p>
+    <%@ include file="/include/menu.jsp" %>
     <p>ERROR: ${error}</p>
-<%--    <%@ include file="../include/errormessage.jsp" %>--%>
+    <%@ include file="/include/errormessage.jsp" %>
 
 </div>
 </body>

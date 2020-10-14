@@ -26,5 +26,8 @@
     <c:when test="${'104' == error.substring(0,3)}">
         <p><span style="color:red"><fmt:message key="error.message.104"/></span></p>
     </c:when>
+    <c:when test="${'108' == error.substring(0,3)}">
+        <p><span style="color:red"><fmt:message key="error.message.108"/></span></p>
+    </c:when>
     <c:otherwise>${error}</c:otherwise>
 </c:choose>

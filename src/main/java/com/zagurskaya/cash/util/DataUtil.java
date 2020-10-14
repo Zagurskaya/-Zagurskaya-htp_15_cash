@@ -20,21 +20,15 @@ public class DataUtil {
 
     public static User findUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        String login = DataUtil.readCookie(request, AttributeConstant.LOGIN);
-        String role = DataUtil.readCookie(request, AttributeConstant.ROLE);
 
-        if (session == null || login == null || role == null) {
+        if (session == null) {
             return null;
         }
-        Object oUser = session.getAttribute(AttributeConstant.USER);
-        if (oUser == null) {
-            return null;
-        }
-        User user = (User) oUser;
-        if (!user.getLogin().equals(login) || !user.getRole().getValue().equals(role)) {
+        Object user = session.getAttribute(AttributeConstant.USER);
+        if (user == null) {
             return null;
         } else {
-            return user;
+            return (User) user;
         }
     }
 //    public static String getHash(User user) {

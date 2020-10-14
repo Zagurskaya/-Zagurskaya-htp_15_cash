@@ -20,11 +20,6 @@ public class LogoutСommand extends AbstractСommand {
         session.removeAttribute("error");
 
         session.removeAttribute(AttributeConstant.USER);
-        request.getSession().invalidate();
-//        DataUtil.deleteCookie(request, AttributeConstant.LOGIN);
-//        DataUtil.deleteCookie(request,AttributeConstant.ROLE);
-//        request.getSession().removeAttribute(AttributeConstant.USER);
-//        request.getSession().invalidate();
         return Action.LOGIN;
     }
 }
