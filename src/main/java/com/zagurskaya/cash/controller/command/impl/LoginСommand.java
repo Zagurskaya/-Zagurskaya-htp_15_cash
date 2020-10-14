@@ -42,10 +42,6 @@ public class LoginСommand extends AbstractСommand {
                 user = userService.getUserByLoginAndValidPassword(login, password);
                 if (user != null) {
                     session.setAttribute(AttributeConstant.USER, user);
-//                    Cookie loginCookie = new Cookie(LOGIN, user.getLogin());
-//                    DataUtil.setCookie(request, loginCookie);
-//                    Cookie roleCookie = new Cookie(ROLE, user.getRole().getValue());
-//                    DataUtil.setCookie(request, roleCookie);
                     return Action.PROFILE;
                 } else {
                     logger.log(Level.ERROR, "Value incorrect");
