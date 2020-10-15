@@ -201,7 +201,7 @@ public class UserServiceImpl implements UserService {
      * @return список пользователей
      */
     @Override
-    public List<User> onePartOfUsersListOnPage(int page) throws ServiceException {
+    public List<User> onePartOfListOnPage(int page) throws ServiceException {
         List users = new ArrayList();
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();

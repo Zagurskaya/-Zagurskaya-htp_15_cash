@@ -3,6 +3,8 @@ package com.zagurskaya.cash.model.service;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 
+import java.util.List;
+
 public interface Service<T> {
     /**
      * Поиск объекта по ID
@@ -36,4 +38,19 @@ public interface Service<T> {
      */
     boolean delete(T t) throws ServiceException;
 
+    /**
+     * Количество строк в таблите объекта
+     *
+     * @return количество строк
+     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
+     */
+    Long countRows() throws ServiceException;
+
+    /**
+     * Получение списка объектов на определенной странице
+     *
+     * @param page - номер страницы
+     * @return список пользователей
+     */
+    List<T> onePartOfListOnPage(int page) throws ServiceException;
 }

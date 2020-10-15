@@ -29,6 +29,9 @@ class ActionPermission {
             actionPermissionMap.put(Action.UPDATEUSER.name(), RoleEnum.ADMIN);
 //            kassir
             actionPermissionMap.put(Action.MAIN.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.ALLCURRENCY.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.RATECB.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.RATENB.name(), RoleEnum.KASSIR);
         }
         return instance;
     }

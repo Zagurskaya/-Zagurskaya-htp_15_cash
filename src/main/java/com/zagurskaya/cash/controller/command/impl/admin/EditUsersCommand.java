@@ -70,7 +70,7 @@ public class EditUsersCommand extends AbstractСommand {
                     page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
 
                 int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
-                List<User> users = userService.onePartOfUsersListOnPage(page);
+                List<User> users = userService.onePartOfListOnPage(page);
 
                 request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
                 request.setAttribute(AttributeConstant.CURRENT_PAGE, page);

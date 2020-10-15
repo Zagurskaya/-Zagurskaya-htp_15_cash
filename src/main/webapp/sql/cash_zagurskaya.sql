@@ -36,20 +36,21 @@ CREATE TABLE IF NOT EXISTS `zagurskaya`.`currency`
 (
     `id`   INT          NOT NULL,
     `iso`  VARCHAR(45)  NULL,
-    `name` VARCHAR(100) NULL,
+    `nameRU` VARCHAR(100) NULL,
+    `nameEN` VARCHAR(100) NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
 START TRANSACTION;
 USE `zagurskaya`;
-INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `name`)
-VALUES (840, 'USD', 'Долоры США');
-INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `name`)
-VALUES (933, 'BUR', 'Белорусский рубль');
-INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `name`)
-VALUES (978, 'EUR', 'Евро');
-INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `name`)
-VALUES (643, 'RUR', 'Российский рубль');
+INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `nameRU`,`nameEN`)
+VALUES (840, 'USD', 'Долор США','Dollar USA');
+INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `nameRU`,`nameEN`)
+VALUES (933, 'BUR', 'Белорусский рубль','Belorussian ruble');
+INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `nameRU`,`nameEN`)
+VALUES (978, 'EUR', 'Евро','Euro');
+INSERT INTO `zagurskaya`.`currency` (`id`, `iso`, `nameRU`,`nameEN`)
+VALUES (643, 'RUR', 'Российский рубль','Russian ruble');
 
 COMMIT;
 

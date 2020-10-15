@@ -8,6 +8,7 @@ public class PathConstant {
     public static final String PATH_ROOT = "/jsp/";
     public static final String PATH_ADMIN = "/jsp/admin/";
     public static final String PATH_CASH = "/jsp/cash/";
+    public static final String PATH_CASH_CURRENCY = "/jsp/cash/currency/";
 
     private PathConstant() {
     }

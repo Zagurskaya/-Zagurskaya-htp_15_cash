@@ -49,6 +49,14 @@ public interface Dao<T> {
     boolean delete(T t) throws DAOException;
 
     /**
+     * Количество строк в таблице объекта
+     *
+     * @return количество строк
+     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     */
+    Long countRows() throws DAOException;
+
+    /**
      * Установление соединения
      *
      * @param connection - соединение

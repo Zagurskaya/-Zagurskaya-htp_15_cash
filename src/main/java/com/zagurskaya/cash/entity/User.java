@@ -113,7 +113,7 @@ public class User {
         }
 
         /**
-         * Определение идентификатора {@link User#login}
+         * Определение логина {@link User#login}
          *
          * @param login - логин
          * @return Builder
@@ -124,7 +124,7 @@ public class User {
         }
 
         /**
-         * Определение идентификатора {@link User#password}
+         * Определение пароля {@link User#password}
          *
          * @param password - пароль
          * @return Builder
@@ -135,7 +135,7 @@ public class User {
         }
 
         /**
-         * Определение идентификатора {@link User#fullName}
+         * Определение ФИО {@link User#fullName}
          *
          * @param fullName - ФИО
          * @return Builder
@@ -146,7 +146,7 @@ public class User {
         }
 
         /**
-         * Определение идентификатора {@link User#role}
+         * Определение роли {@link User#role}
          *
          * @param role - роль
          * @return Builder
@@ -157,7 +157,7 @@ public class User {
         }
 
         /**
-         * Определение идентификатора {@link User#role}
+         * Определение роли {@link User#role}
          *
          * @param role - идентификатор
          * @return Builder

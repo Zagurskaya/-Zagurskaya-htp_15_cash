@@ -13,7 +13,11 @@ import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.EditUsersCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.UpdateUserCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.CurrencyCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.MainCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.AllCurrencyCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.RateCBCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.RateNBCommand;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,8 +80,15 @@ public enum Action {
      * Главная страница кассира
      */
     MAIN(new MainCommand(PathConstant.PATH_CASH)),
+    //    DUTIES(new DutiesCommand(PathConstant.PATH_CASH)),
+    CURRENCY(new CurrencyCommand(PathConstant.PATH_CASH)),
+//    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
+//    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
-
+    //    CASH / CURRENCY
+    ALLCURRENCY(new AllCurrencyCommand(PathConstant.PATH_CASH_CURRENCY)),
+    RATECB(new RateCBCommand(PathConstant.PATH_CASH_CURRENCY)),
+    RATENB(new RateNBCommand(PathConstant.PATH_CASH_CURRENCY)),
     ;
     /**
      * Команда

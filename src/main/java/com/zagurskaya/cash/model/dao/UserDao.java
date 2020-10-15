@@ -12,13 +12,4 @@ public interface UserDao extends Dao<User> {
      * @throws DAOException ошибке доступа к базе данных или других ошибках.
      */
     User findByLogin(String login) throws DAOException;
-
-    /**
-     * Количество строк в таблите пользователей
-     *
-     * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
-     */
-    Long countRows() throws DAOException;
-
 }

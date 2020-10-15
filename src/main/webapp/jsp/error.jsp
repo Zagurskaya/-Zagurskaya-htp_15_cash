@@ -6,9 +6,16 @@
 <body>
 <div class="container">
     <%@ include file="/include/menu.jsp" %>
-    <p>ERROR: ${error}</p>
-    <%@ include file="/include/errormessage.jsp" %>
-
+    <%--    <%${error.substring(0,3)} %>--%>
+<%--    !!!!!!!!!!!!!ПРОВЕРИТЬ  число или нет а то валится--%>
+    <c:choose>
+        <c:when test="${error.substring(0,3)!=null}">--%>
+            <%@ include file="/include/errormessage.jsp" %>
+        </c:when>
+        <c:otherwise>
+            <p>ERROR: ${error}</p>
+        </c:otherwise>
+    </c:choose>
 </div>
 </body>
 </html>
