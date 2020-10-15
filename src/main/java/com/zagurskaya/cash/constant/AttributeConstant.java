@@ -25,6 +25,7 @@ public class AttributeConstant {
     public static final String USER = "user";
     public static final String USERS = "users";
     public static final String CURRENCIES = "currencies";
+    public static final String RATE_NB = "rateNB";
 
 
     private AttributeConstant() {

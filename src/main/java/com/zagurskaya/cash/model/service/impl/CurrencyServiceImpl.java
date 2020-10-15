@@ -159,4 +159,26 @@ public class CurrencyServiceImpl implements CurrencyService {
             transaction.endSingleRequest();
         }
     }
+
+    /**
+     * Получение списка валют
+     *
+     * @return список пользователей
+     */
+    @Override
+    public List<Currency> findAll() throws ServiceException {
+        List currencys;
+        CurrencyDao currencyDao = new CurrencyDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(currencyDao);
+        try {
+           currencys = currencyDao.findAll();
+            return currencys;
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all currency", e);
+            throw new ServiceException("Database exception during fiend all currency", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
+    }
 }

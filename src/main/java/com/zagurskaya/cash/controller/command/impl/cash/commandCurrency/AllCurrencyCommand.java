@@ -26,11 +26,6 @@ public class AllCurrencyCommand extends AbstractСommand {
 
     @Override
     public Action execute(HttpServletRequest request) {
-//        List<Currency> currency = currencyService.onePartOfListOnPage();
-//        req.setAttribute("currency", currency);
-//        Action.ALLCURRENCY.setPATH("/cash/currency/");
-//        return Action.ALLCURRENCY;
-
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
 
