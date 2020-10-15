@@ -18,17 +18,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class RateNBCommand  extends AbstractСommand {
+/**
+ * Действие "Курсы НБ".
+ */
+public class RateNBCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(RateNBCommand.class);
     private final RateNBService rateNBService = new RateNBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public RateNBCommand(String path) {
         super(path);
     }
 
     @Override
-    public Action execute(HttpServletRequest request)  {
+    public Action execute(HttpServletRequest request) {
 
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");

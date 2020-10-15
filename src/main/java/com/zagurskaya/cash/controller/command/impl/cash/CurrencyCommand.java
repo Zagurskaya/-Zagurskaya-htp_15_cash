@@ -5,7 +5,15 @@ import com.zagurskaya.cash.controller.command.Action;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Действие "Валюта".
+ */
 public class CurrencyCommand extends AbstractСommand {
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public CurrencyCommand(String path) {
         super(path);
     }

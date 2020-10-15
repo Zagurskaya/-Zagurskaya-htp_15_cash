@@ -16,10 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Действие "Валюта".
+ */
 public class AllCurrencyCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(AllCurrencyCommand.class);
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public AllCurrencyCommand(String path) {
         super(path);
     }

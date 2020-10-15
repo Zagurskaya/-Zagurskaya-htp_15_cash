@@ -18,11 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Действие "Курсы КБ".
+ */
 public class RateCBCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(RateCBCommand.class);
     private final RateCBService rateCBService = new RateCBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
+    /**
+     * Конструктор
+     *
+     * @param path - путь
+     */
     public RateCBCommand(String path) {
         super(path);
     }
