@@ -138,6 +138,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
                 preparedStatement.setString(1, currency.getIso());
                 preparedStatement.setString(2, currency.getNameRU());
                 preparedStatement.setString(3, currency.getNameEN());
+                preparedStatement.setLong(4, currency.getId());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {

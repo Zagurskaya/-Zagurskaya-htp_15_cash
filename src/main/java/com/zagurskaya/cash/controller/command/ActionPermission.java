@@ -32,6 +32,7 @@ class ActionPermission {
             actionPermissionMap.put(Action.ALLCURRENCY.name(), RoleEnum.KASSIR);
             actionPermissionMap.put(Action.RATECB.name(), RoleEnum.KASSIR);
             actionPermissionMap.put(Action.RATENB.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.DUTIES.name(), RoleEnum.KASSIR);
         }
         return instance;
     }

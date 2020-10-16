@@ -137,6 +137,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 preparedStatement.setLong(1, rateNB.getCurrencyId());
                 preparedStatement.setDate(2, rateNB.getDate());
                 preparedStatement.setDouble(3, rateNB.getSum());
+                preparedStatement.setLong(4, rateNB.getId());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {

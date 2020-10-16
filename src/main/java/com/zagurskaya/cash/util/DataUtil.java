@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DataUtil {
     private static final Logger logger = LogManager.getLogger(DataUtil.class);
@@ -106,5 +108,13 @@ public class DataUtil {
     public static Long getLong(HttpServletRequest req, String name) {
         String value = req.getParameter(name);
         return Long.parseLong(value);
+    }
+
+    public static String getFormattedLocalDateStartDateTime(LocalDate localDate) {
+        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00.000"));
+    }
+
+    public static String getFormattedLocalDateOnlyDate(LocalDate localDate) {
+        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

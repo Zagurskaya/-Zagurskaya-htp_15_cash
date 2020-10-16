@@ -41,6 +41,30 @@ public class ColumnName {
     public static final String RATECB_SUM = "sum";
     public static final String RATECB_IS_BACK = "isBack";
 
+    /**
+     * Таблица пользователей 'duties'
+     */
+    public static final String DUTIES_ID = "id";
+    public static final String DUTIES_USER_ID = "userId";
+    public static final String DUTIES_TIMESTAMP = "timestamp";
+    public static final String DUTIES_NUMBER = "number";
+    public static final String DUTIES_IS_CLOSE = "isClose";
+
+    /**
+     * Картотека 'kassa'
+     */
+    public static final String KASSA_ID = "id";
+    public static final String KASSA_CURRENCY_ID = "currencyId";
+    public static final String KASSA_RESEIVED = "received";
+    public static final String KASSA_COMING = "coming";
+    public static final String KASSA_SPENDING = "spending";
+    public static final String KASSA_TRANSMITTED = "transmitted";
+    public static final String KASSA_BALANCE = "balance";
+    public static final String KASSA_USER_ID = "userId";
+    public static final String KASSA_DATE = "date";
+    public static final String KASSA_DUTIES_ID = "dutiesId";
+
+
     private ColumnName() {
     }
 }

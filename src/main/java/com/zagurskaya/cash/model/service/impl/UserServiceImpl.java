@@ -219,6 +219,20 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public List<User> findAll() throws ServiceException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userDao);
+        try {
+            List<User> users = userDao.findAll();
+            return users;
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all user", e);
+            throw new ServiceException("Database exception during fiend all user", e);
+        } finally {
+            transaction.endSingleRequest();
+        }
+    }
 
     private static String getHash(String password) throws ServiceException {
         String hashPassword;

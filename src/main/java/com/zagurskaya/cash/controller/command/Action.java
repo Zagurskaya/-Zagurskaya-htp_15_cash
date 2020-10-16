@@ -14,6 +14,7 @@ import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.EditUsersCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.UpdateUserCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.CurrencyCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.DutiesCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.MainCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.AllCurrencyCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.RateCBCommand;
@@ -80,7 +81,7 @@ public enum Action {
      * Главная страница кассира
      */
     MAIN(new MainCommand(PathConstant.PATH_CASH)),
-    //    DUTIES(new DutiesCommand(PathConstant.PATH_CASH)),
+    DUTIES(new DutiesCommand(PathConstant.PATH_CASH)),
     CURRENCY(new CurrencyCommand(PathConstant.PATH_CASH)),
 //    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
 //    REPORT(new ReportCommand(PathConstant.PATH_CASH)),

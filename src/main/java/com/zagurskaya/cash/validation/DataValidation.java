@@ -20,6 +20,8 @@ public class DataValidation {
     private static final String CANCEL = "cancel";
     private static final String UPDATE = "update";
     private static final String DELETE = "delete";
+    private static final String OPEN = "open";
+    private static final String CLOSE = "close";
 
     /**
      * Возвращает true, если POST запрос.
@@ -70,6 +72,26 @@ public class DataValidation {
      */
     public static boolean isDeleteOperation(HttpServletRequest request) {
         return request.getParameter(DELETE) != null;
+    }
+
+    /**
+     * Возвращает true, если действие "Открыть смену".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
+    public static boolean isOpenOperation(HttpServletRequest request) {
+        return request.getParameter(OPEN) != null;
+    }
+
+    /**
+     * Возвращает true, если действие "Закрыть смену".
+     *
+     * @param request - запрос
+     * @return boolean
+     */
+    public static boolean isCloseOperation(HttpServletRequest request) {
+        return request.getParameter(CLOSE) != null;
     }
 
     /**

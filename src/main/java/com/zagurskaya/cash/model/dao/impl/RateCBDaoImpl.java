@@ -150,6 +150,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 preparedStatement.setTimestamp(3, rateCB.getTimestamp());
                 preparedStatement.setDouble(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
+                preparedStatement.setLong(6, rateCB.getId());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
