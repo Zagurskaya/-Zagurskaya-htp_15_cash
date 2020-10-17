@@ -2,7 +2,6 @@ package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.entity.Kassa;
-import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -11,13 +10,10 @@ import com.zagurskaya.cash.model.dao.KassaDao;
 import com.zagurskaya.cash.model.dao.impl.KassaDaoImpl;
 import com.zagurskaya.cash.model.service.KassaService;
 import com.zagurskaya.cash.model.service.EntityTransaction;
-import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,8 +125,7 @@ public class KassaServiceImpl implements KassaService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(kassaDao);
         try {
-            Long count = kassaDao.countRows();
-            return count;
+            return kassaDao.countRows();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend count kassaList row", e);
             throw new ServiceException("Database exception during fiend count kassaList row", e);

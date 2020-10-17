@@ -66,7 +66,9 @@ public class DataUtil {
                 break;
             }
         }
-        readCookie.setMaxAge(0);
+        if (readCookie != null) {
+            readCookie.setMaxAge(0);
+        }
         DataUtil.setCookie(request, readCookie);
     }
 

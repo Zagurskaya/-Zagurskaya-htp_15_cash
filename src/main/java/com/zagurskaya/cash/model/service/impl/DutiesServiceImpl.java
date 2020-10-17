@@ -26,8 +26,6 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class DutiesServiceImpl implements DutiesService {
 
@@ -45,8 +43,7 @@ public class DutiesServiceImpl implements DutiesService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(dutiesDao);
         try {
-            Duties duties = dutiesDao.findById(id);
-            return duties;
+            return dutiesDao.findById(id);
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
             throw new ServiceException("Database exception during fiend duties by id", e);
@@ -136,8 +133,7 @@ public class DutiesServiceImpl implements DutiesService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(dutiesDao);
         try {
-            Long count = dutiesDao.countRows();
-            return count;
+            return dutiesDao.countRows();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend count dutiesList row", e);
             throw new ServiceException("Database exception during fiend count dutiesList row", e);
@@ -244,7 +240,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
             throw new ServiceException("Database exception during fiend duties by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.end();
         }
     }
 
@@ -271,7 +267,8 @@ public class DutiesServiceImpl implements DutiesService {
             } else if (openDutiesList.size() == 0) {
                 logger.log(Level.ERROR, "User has not open duties " + user.getLogin());
                 throw new ServiceException("202 " + user.getLogin());
-            } else if (openDutiesList.size() > 1) {
+            } else {
+                openDutiesList.size();
                 logger.log(Level.ERROR, "User has more that one open duties " + user.getLogin());
                 throw new ServiceException("203 " + user.getLogin());
             }

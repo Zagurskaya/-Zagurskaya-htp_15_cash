@@ -80,8 +80,7 @@ public class UserServiceImpl implements UserService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
         try {
-            User user = userDao.findById(id);
-            return user;
+            return userDao.findById(id);
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
@@ -184,8 +183,7 @@ public class UserServiceImpl implements UserService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
         try {
-            Long count = userDao.countRows();
-            return count;
+            return userDao.countRows();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend count users row", e);
             throw new ServiceException("Database exception during fiend count users row", e);
@@ -224,8 +222,7 @@ public class UserServiceImpl implements UserService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
         try {
-            List<User> users = userDao.findAll();
-            return users;
+            return userDao.findAll();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
@@ -235,20 +232,20 @@ public class UserServiceImpl implements UserService {
     }
 
     private static String getHash(String password) throws ServiceException {
-        String hashPassword;
+        StringBuilder hashPassword;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance(HASH_ALGORITHM);
             byte[] bytesMessageDigest = messageDigest.digest(password.getBytes());
             BigInteger no = new BigInteger(1, bytesMessageDigest);
-            hashPassword = no.toString(16);
+            hashPassword = new StringBuilder(no.toString(16));
             while (hashPassword.length() < 32) {
-                hashPassword = "0" + hashPassword;
+                hashPassword.insert(0, "0");
             }
 
         } catch (NoSuchAlgorithmException e) {
             logger.log(Level.ERROR, "No such algorithm " + HASH_ALGORITHM, e);
             throw new ServiceException("No such algorithm " + HASH_ALGORITHM, e);
         }
-        return hashPassword;
+        return hashPassword.toString();
     }
 }

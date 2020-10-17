@@ -116,7 +116,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
     public boolean create(Duties duties) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES);) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES)) {
                 preparedStatement.setLong(1, duties.getUserId());
                 preparedStatement.setTimestamp(2, duties.getTimestamp());
                 preparedStatement.setInt(3, duties.getNumber());

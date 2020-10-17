@@ -112,7 +112,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     public boolean create(User user) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER);) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER)) {
                 preparedStatement.setString(1, user.getLogin());
                 preparedStatement.setString(2, user.getPassword());
                 preparedStatement.setString(3, user.getFullName());

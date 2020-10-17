@@ -11,6 +11,6 @@ public interface CurrencyService extends Service<Currency> {
      *
      * @return список валют
      */
-    List<Currency> findAll() throws ServiceException;
+    List findAll() throws ServiceException;
 
 }

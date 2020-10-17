@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +49,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.RATECB_TIMESTAMP);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
-                    Boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
+                    boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     RateCB rateCB = new RateCB
                             .Builder()
                             .addId(id)
@@ -88,7 +87,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.RATECB_TIMESTAMP);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
-                    Boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
+                    boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     rateCB = new RateCB
                             .Builder()
                             .addId(id)

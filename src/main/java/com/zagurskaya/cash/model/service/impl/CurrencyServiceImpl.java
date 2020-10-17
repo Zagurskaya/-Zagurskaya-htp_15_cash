@@ -34,8 +34,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);
         try {
-            Currency currency = currencyDao.findById(id);
-            return currency;
+            return currencyDao.findById(id);
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend currency by id", e);
             throw new ServiceException("Database exception during fiend currency by id", e);
@@ -125,8 +124,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);
         try {
-            Long count = currencyDao.countRows();
-            return count;
+            return currencyDao.countRows();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend count currencys row", e);
             throw new ServiceException("Database exception during fiend count currencys row", e);
@@ -143,15 +141,15 @@ public class CurrencyServiceImpl implements CurrencyService {
      */
     @Override
     public List<Currency> onePartOfListOnPage(int page) throws ServiceException {
-        List currencys = new ArrayList();
+        List currencies = new ArrayList();
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);
         try {
             int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
-            currencys.addAll(currencyDao.findAll(recordsPerPage, startRecord));
-            return currencys;
+            currencies.addAll(currencyDao.findAll(recordsPerPage, startRecord));
+            return currencies;
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend all currency", e);
             throw new ServiceException("Database exception during fiend all currency", e);
@@ -167,13 +165,11 @@ public class CurrencyServiceImpl implements CurrencyService {
      */
     @Override
     public List<Currency> findAll() throws ServiceException {
-        List currencys;
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);
         try {
-           currencys = currencyDao.findAll();
-            return currencys;
+            return currencyDao.findAll();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend all currency", e);
             throw new ServiceException("Database exception during fiend all currency", e);

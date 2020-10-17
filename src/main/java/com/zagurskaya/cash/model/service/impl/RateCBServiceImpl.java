@@ -2,14 +2,11 @@ package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.entity.RateCB;
-import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.DAOException;
 import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.RateCBDao;
-import com.zagurskaya.cash.model.dao.RateCBDao;
-import com.zagurskaya.cash.model.dao.impl.RateCBDaoImpl;
 import com.zagurskaya.cash.model.dao.impl.RateCBDaoImpl;
 import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.RateCBService;
@@ -37,8 +34,7 @@ public class RateCBServiceImpl implements RateCBService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateCBDao);
         try {
-            RateCB rateCB = rateCBDao.findById(id);
-            return rateCB;
+            return rateCBDao.findById(id);
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend rateCB by id", e);
             throw new ServiceException("Database exception during fiend rateCB by id", e);
@@ -128,8 +124,7 @@ public class RateCBServiceImpl implements RateCBService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateCBDao);
         try {
-            Long count = rateCBDao.countRows();
-            return count;
+            return rateCBDao.countRows();
         } catch (DAOException e) {
             logger.log(Level.ERROR, "Database exception during fiend count rateCBs row", e);
             throw new ServiceException("Database exception during fiend count rateCBs row", e);

@@ -21,14 +21,13 @@ public class UserExtractor {
         String password = DataUtil.getString(request, "password");
         String fullName = DataUtil.getString(request, "fullname");
         String role = DataUtil.getString(request, "role");
-        User user = new User
+        return new User
                 .Builder()
                 .addLogin(login)
                 .addPassword(password)
                 .addFullName(fullName)
                 .addRole(role)
                 .build();
-        return user;
     }
 
     /**
@@ -43,12 +42,11 @@ public class UserExtractor {
         String fullName = DataUtil.getString(request, "fullname");
         String role = DataUtil.getString(request, "role");
 
-        User user = new User
+        return new User
                 .Builder()
                 .addLogin(login)
                 .addFullName(fullName)
                 .addRole(role)
                 .build();
-        return user;
     }
 }
