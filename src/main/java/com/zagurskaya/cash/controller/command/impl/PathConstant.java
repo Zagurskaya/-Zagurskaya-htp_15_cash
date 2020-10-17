@@ -6,6 +6,7 @@ package com.zagurskaya.cash.controller.command.impl;
 public class PathConstant {
     public static final String PATH_INDEX = "";
     public static final String PATH_ROOT = "/jsp/";
+    public static final String PATH_ERROR = "/jsp/errors/";
     public static final String PATH_ADMIN = "/jsp/admin/";
     public static final String PATH_CASH = "/jsp/cash/";
     public static final String PATH_CASH_CURRENCY = "/jsp/cash/currency/";

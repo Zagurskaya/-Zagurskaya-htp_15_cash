@@ -38,7 +38,7 @@ public enum Action {
     /**
      * Ошибки
      */
-    ERROR(new ErrorСommand(PathConstant.PATH_ROOT)),
+    ERROR(new ErrorСommand(PathConstant.PATH_ERROR)),
     /**
      * Регистрация
      */
