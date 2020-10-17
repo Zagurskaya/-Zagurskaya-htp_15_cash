@@ -59,7 +59,7 @@ public class FrontController extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
-            session.setAttribute(AttributeConstant.ERROR, e);
+            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             response.sendRedirect("do?command=error");
         }

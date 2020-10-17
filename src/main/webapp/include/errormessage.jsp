@@ -11,6 +11,9 @@
     </c:otherwise>
 </c:choose>
 <c:choose>
+    <c:when test="${'100' == error.substring(0,3)}">
+        <p><span style="color:red">${error.substring(4,error.length())}</span></p>
+    </c:when>
     <c:when test="${'101' == error.substring(0,3)}">
         <p><span style="color:red"><fmt:message key="error.message.101"/></span></p>
         <p><span style="color:red">${error.substring(4,error.length())}</span></p>
