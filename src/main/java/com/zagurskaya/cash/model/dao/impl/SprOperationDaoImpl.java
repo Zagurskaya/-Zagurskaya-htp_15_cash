@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.SprOperation;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.SprOperationDao;
 import org.apache.logging.log4j.Level;
@@ -36,7 +36,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return список операций
      */
     @Override
-    public List<SprOperation> findAll(int limit, int startPosition) throws DAOException {
+    public List<SprOperation> findAll(int limit, int startPosition) throws DaoException {
         List<SprOperation> sprOperations = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SPR_OPERATION_PAGE)) {
@@ -60,7 +60,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprOperation", e);
-            throw new DAOException("Database exception during fiend all sprOperation", e);
+            throw new DaoException("Database exception during fiend all sprOperation", e);
         }
         return sprOperations;
     }
@@ -72,7 +72,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return операция
      */
     @Override
-    public SprOperation findById(Long id) throws DAOException {
+    public SprOperation findById(Long id) throws DaoException {
         SprOperation sprOperation = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_SPR_OPERATION_BY_ID)) {
@@ -93,7 +93,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend sprOperation by id", e);
-            throw new DAOException("Database exception during fiend sprOperation by id", e);
+            throw new DaoException("Database exception during fiend sprOperation by id", e);
         }
         return sprOperation;
     }
@@ -105,7 +105,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return true при успешном создании
      */
     @Override
-    public Long create(SprOperation sprOperation) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(SprOperation sprOperation) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_SPR_OPERATION)) {
@@ -122,10 +122,10 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data sprOperation", e);
+            throw new DaoConstraintViolationException("Duplicate data sprOperation", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create sprOperation", e);
-            throw new DAOException("Database exception during create sprOperation", e);
+            throw new DaoException("Database exception during create sprOperation", e);
         }
         return 0L;
     }
@@ -137,7 +137,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(SprOperation sprOperation) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(SprOperation sprOperation) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_SPR_OPERATION)) {
@@ -148,10 +148,10 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data sprOperation", e);
+            throw new DaoConstraintViolationException("Duplicate data sprOperation", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update sprOperation", e);
-            throw new DAOException("Database exception during update sprOperation ", e);
+            throw new DaoException("Database exception during update sprOperation ", e);
         }
         return 1 == result;
     }
@@ -163,7 +163,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(SprOperation sprOperation) throws DAOException {
+    public boolean delete(SprOperation sprOperation) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_SPR_OPERATION)) {
@@ -172,7 +172,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete sprOperation", e);
-            throw new DAOException("Database exception during delete sprOperation ", e);
+            throw new DaoException("Database exception during delete sprOperation ", e);
         }
         return 1 == result;
     }
@@ -181,10 +181,10 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * Количество строк в таблите операций
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_SPR_OPERATION)) {
@@ -194,7 +194,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count sprOperations row", e);
-            throw new DAOException("Database exception during fiend count sprOperations row", e);
+            throw new DaoException("Database exception during fiend count sprOperations row", e);
         }
         return count;
     }
@@ -205,7 +205,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
      * @return список операций
      */
     @Override
-    public List<SprOperation> findAll() throws DAOException {
+    public List<SprOperation> findAll() throws DaoException {
         List<SprOperation> sprOperations = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SPR_OPERATION)) {
@@ -227,7 +227,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprOperation", e);
-            throw new DAOException("Database exception during fiend all sprOperation", e);
+            throw new DaoException("Database exception during fiend all sprOperation", e);
         }
         return sprOperations;
     }

@@ -2,17 +2,17 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.constant.AttributeConstant;
-import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.constant.PatternConstant;
-import com.zagurskaya.cash.util.UserExtractor;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.util.RegexPattern;
+import com.zagurskaya.cash.controller.util.UserExtractor;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,12 +56,12 @@ public class CreateUserCommand extends AbstractСommand {
                 } else if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
                     User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
-                    request.setAttribute(AttributeConstant.USER, createdUser);
+                    request.setAttribute(AttributeName.USER, createdUser);
 
-                    String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String fullName = DataUtil.getString(request, FULL_NAME, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(request, ROLE, PatternConstant.ALPHABET_VALIDATE_PATTERN);
+                    String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String fullName = RequestDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                    String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
                         User newUser = new User
@@ -74,10 +74,10 @@ public class CreateUserCommand extends AbstractСommand {
                         try {
                             userService.create(newUser);
                             logger.log(Level.INFO, "Add new user " + newUser.getLogin());
-                            session.setAttribute(AttributeConstant.MESSAGE, "107 " + newUser.getLogin());
+                            session.setAttribute(AttributeName.MESSAGE, "107 " + newUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
-                            session.setAttribute(AttributeConstant.ERROR, e);
+                            session.setAttribute(AttributeName.ERROR, e);
                             logger.log(Level.ERROR, e);
                             return Action.ERROR;
                         }
@@ -86,7 +86,7 @@ public class CreateUserCommand extends AbstractСommand {
             }
 
             final User newUser = new User();
-            request.setAttribute(AttributeConstant.USER, newUser);
+            request.setAttribute(AttributeName.USER, newUser);
             return Action.CREATEUSER;
         } else {
             return action;

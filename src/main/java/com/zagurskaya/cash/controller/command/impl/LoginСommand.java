@@ -2,15 +2,15 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.constant.AttributeConstant;
-import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.constant.PatternConstant;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.util.RegexPattern;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,20 +41,20 @@ public class LoginСommand extends AbstractСommand {
         final HttpSession session = request.getSession(false);
 
         if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-            String login = DataUtil.getString(request, LOGIN, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-            String password = DataUtil.getString(request, PASSWORD, PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+            String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+            String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
             User user;
             try {
                 user = userService.getUserByLoginAndValidPassword(login, password);
                 if (user != null) {
-                    session.setAttribute(AttributeConstant.USER, user);
+                    session.setAttribute(AttributeName.USER, user);
                     return Action.PROFILE;
                 } else {
                     logger.log(Level.ERROR, "Value incorrect");
                     throw new SiteDataValidationException("102 ");
                 }
             } catch (ServiceException e) {
-                session.setAttribute(AttributeConstant.ERROR, e);
+                session.setAttribute(AttributeName.ERROR, e);
                 logger.log(Level.ERROR, e);
                 return Action.ERROR;
             }

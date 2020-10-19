@@ -1,21 +1,18 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.PaymentCommand;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
-import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.CurrencyService;
 import com.zagurskaya.cash.model.service.DutiesService;
-import com.zagurskaya.cash.model.service.PaymentService;
 import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
-import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -108,7 +105,7 @@ public class Payment1100_Command extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.PAYMENT1100);
             if (action == Action.PAYMENT1100) {
-                User user = DataUtil.findUser(request);
+                User user = RequestDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
                     return Action.DUTIES;
                 }
@@ -117,13 +114,13 @@ public class Payment1100_Command extends AbstractСommand {
                 }
 
                 List<Currency> currencies = currencyService.findAll();
-                request.setAttribute(AttributeConstant.CURRENCIES, currencies);
+                request.setAttribute(AttributeName.CURRENCIES, currencies);
                 return Action.PAYMENT1100;
             } else {
                 return action;
             }
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

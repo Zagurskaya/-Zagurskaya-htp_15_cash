@@ -2,10 +2,10 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.constant.AttributeConstant;
-import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.util.DataValidation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,14 +28,14 @@ public class ProfileСommand extends AbstractСommand {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
-        User user = DataUtil.findUser(request);
+        User user = RequestDataUtil.findUser(request);
 
         if (user != null) {
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
-                DataUtil.deleteCookie(request, AttributeConstant.LOGIN);
-                DataUtil.deleteCookie(request, AttributeConstant.ROLE);
-                request.getSession().removeAttribute(AttributeConstant.USER);
+                RequestDataUtil.deleteCookie(request, AttributeName.LOGIN);
+                RequestDataUtil.deleteCookie(request, AttributeName.ROLE);
+                request.getSession().removeAttribute(AttributeName.USER);
                 request.getSession().invalidate();
                 return Action.INDEX;
             }

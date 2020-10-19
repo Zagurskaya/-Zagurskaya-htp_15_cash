@@ -1,10 +1,10 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.UserDao;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +38,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return список пользователей
      */
     @Override
-    public List<User> findAll(int limit, int startPosition) throws DAOException {
+    public List<User> findAll(int limit, int startPosition) throws DaoException {
         List<User> users = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USERS_PAGE)) {
@@ -64,7 +64,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
-            throw new DAOException("Database exception during fiend all user", e);
+            throw new DaoException("Database exception during fiend all user", e);
         }
         return users;
     }
@@ -76,7 +76,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return пользователь
      */
     @Override
-    public User findById(Long id) throws DAOException {
+    public User findById(Long id) throws DaoException {
         User user = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_ID)) {
@@ -98,7 +98,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
-            throw new DAOException("Database exception during fiend user by id", e);
+            throw new DaoException("Database exception during fiend user by id", e);
         }
         return user;
     }
@@ -110,7 +110,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(User user) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(User user) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
@@ -127,10 +127,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data user", e);
+            throw new DaoConstraintViolationException("Duplicate data user", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create user", e);
-            throw new DAOException("Database exception during create user", e);
+            throw new DaoException("Database exception during create user", e);
         }
         return 0L;
     }
@@ -142,7 +142,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(User user) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(User user) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER)) {
@@ -153,10 +153,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data user", e);
+            throw new DaoConstraintViolationException("Duplicate data user", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update user", e);
-            throw new DAOException("Database exception during update user ", e);
+            throw new DaoException("Database exception during update user ", e);
         }
         return 1 == result;
     }
@@ -168,7 +168,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(User user) throws DAOException {
+    public boolean delete(User user) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USER)) {
@@ -177,13 +177,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete user", e);
-            throw new DAOException("Database exception during delete user ", e);
+            throw new DaoException("Database exception during delete user ", e);
         }
         return 1 == result;
     }
 
     @Override
-    public User findByLogin(String login) throws DAOException {
+    public User findByLogin(String login) throws DaoException {
         User user = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_BY_LOGIN)) {
@@ -205,7 +205,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login", e);
-            throw new DAOException("Database exception during fiend user by login", e);
+            throw new DaoException("Database exception during fiend user by login", e);
         }
         return user;
     }
@@ -214,10 +214,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * Количество строк в таблите пользователей
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_USERS)) {
@@ -227,7 +227,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count users row", e);
-            throw new DAOException("Database exception during fiend count users row", e);
+            throw new DaoException("Database exception during fiend count users row", e);
         }
         return count;
     }
@@ -238,7 +238,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return список пользователей
      */
     @Override
-    public List<User> findAll() throws DAOException {
+    public List<User> findAll() throws DaoException {
         List<User> users = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USERS)) {
@@ -262,7 +262,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
-            throw new DAOException("Database exception during fiend all user", e);
+            throw new DaoException("Database exception during fiend all user", e);
         }
         return users;
     }

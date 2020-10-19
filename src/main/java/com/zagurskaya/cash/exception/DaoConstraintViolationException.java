@@ -3,7 +3,7 @@ package com.zagurskaya.cash.exception;
 /**
  * Ошибка нарушения ограничений репозитория
  */
-public class RepositoryConstraintViolationException extends Exception {
+public class DaoConstraintViolationException extends Exception {
 
     /**
      * Конструктор
@@ -11,7 +11,7 @@ public class RepositoryConstraintViolationException extends Exception {
      * @param message - сообщение
      * @param cause   - причина
      */
-    public RepositoryConstraintViolationException(String message, Throwable cause) {
+    public DaoConstraintViolationException(String message, Throwable cause) {
         super(message, cause);
     }
 

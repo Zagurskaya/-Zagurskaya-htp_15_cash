@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,7 +26,7 @@ public class LogoutСommand extends AbstractСommand {
         session.removeAttribute("message");
         session.removeAttribute("error");
 
-        session.removeAttribute(AttributeConstant.USER);
+        session.removeAttribute(AttributeName.USER);
         return Action.LOGIN;
     }
 }

@@ -1,9 +1,9 @@
 package com.zagurskaya.cash.model.service.impl;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.RateCB;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.RateCBDao;
@@ -35,7 +35,7 @@ public class RateCBServiceImpl implements RateCBService {
         transaction.initSingleRequest(rateCBDao);
         try {
             return rateCBDao.findById(id);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend rateCB by id", e);
             throw new ServiceException("Database exception during fiend rateCB by id", e);
         } finally {
@@ -56,10 +56,10 @@ public class RateCBServiceImpl implements RateCBService {
         transaction.initSingleRequest(rateCBDao);
         try {
             return rateCBDao.create(rateCB) != 0L;
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data rateCB ", e);
             throw new ServiceConstraintViolationException("Duplicate data rateCB ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create rateCB ", e);
             throw new ServiceException("Database exception during create rateCB ", e);
         } finally {
@@ -80,10 +80,10 @@ public class RateCBServiceImpl implements RateCBService {
         transaction.initSingleRequest(rateCBDao);
         try {
             return rateCBDao.update(rateCB);
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data rateCB ", e);
             throw new ServiceConstraintViolationException("Duplicate data rateCB ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update rateCB ", e);
             throw new ServiceException("Database exception during update rateCB ", e);
         } finally {
@@ -104,7 +104,7 @@ public class RateCBServiceImpl implements RateCBService {
         transaction.initSingleRequest(rateCBDao);
         try {
             return rateCBDao.delete(rateCB);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete rateCB ", e);
             throw new ServiceException("Database exception during delete rateCB ", e);
         } finally {
@@ -125,7 +125,7 @@ public class RateCBServiceImpl implements RateCBService {
         transaction.initSingleRequest(rateCBDao);
         try {
             return rateCBDao.countRows();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count rateCBs row", e);
             throw new ServiceException("Database exception during fiend count rateCBs row", e);
         } finally {
@@ -146,11 +146,11 @@ public class RateCBServiceImpl implements RateCBService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateCBDao);
         try {
-            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
             rateCBs.addAll(rateCBDao.findAll(recordsPerPage, startRecord));
             return rateCBs;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all rateCB", e);
             throw new ServiceException("Database exception during fiend all rateCB", e);
         } finally {

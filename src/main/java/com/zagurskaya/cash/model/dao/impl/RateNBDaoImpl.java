@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.RateNB;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.RateNBDao;
 import org.apache.logging.log4j.Level;
@@ -38,7 +38,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * @return список валют
      */
     @Override
-    public List<RateNB> findAll(int limit, int startPosition) throws DAOException {
+    public List<RateNB> findAll(int limit, int startPosition) throws DaoException {
         List<RateNB> rateNBs = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_RATENBS)) {
@@ -62,7 +62,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all rateNB", e);
-            throw new DAOException("Database exception during fiend all rateNB", e);
+            throw new DaoException("Database exception during fiend all rateNB", e);
         }
         return rateNBs;
     }
@@ -74,7 +74,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * @return валюта НБ
      */
     @Override
-    public RateNB findById(Long id) throws DAOException {
+    public RateNB findById(Long id) throws DaoException {
         RateNB rateNB = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_RATENB_BY_ID)) {
@@ -95,7 +95,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend rateNB by id", e);
-            throw new DAOException("Database exception during fiend rateNB by id", e);
+            throw new DaoException("Database exception during fiend rateNB by id", e);
         }
         return rateNB;
     }
@@ -107,7 +107,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(RateNB rateNB) throws RepositoryConstraintViolationException, DAOException {
+    public Long create(RateNB rateNB) throws DaoConstraintViolationException, DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATENB, Statement.RETURN_GENERATED_KEYS)) {
@@ -123,10 +123,10 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data rateNB", e);
+            throw new DaoConstraintViolationException("Duplicate data rateNB", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create rateNB", e);
-            throw new DAOException("Database exception during create rateNB", e);
+            throw new DaoException("Database exception during create rateNB", e);
         }
         return 0L;
     }
@@ -138,7 +138,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(RateNB rateNB) throws RepositoryConstraintViolationException, DAOException {
+    public boolean update(RateNB rateNB) throws DaoConstraintViolationException, DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_RATENB)) {
@@ -149,10 +149,10 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data rateNB", e);
+            throw new DaoConstraintViolationException("Duplicate data rateNB", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update rateNB", e);
-            throw new DAOException("Database exception during update rateNB ", e);
+            throw new DaoException("Database exception during update rateNB ", e);
         }
         return 1 == result;
     }
@@ -164,7 +164,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(RateNB rateNB) throws DAOException {
+    public boolean delete(RateNB rateNB) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_RATENB)) {
@@ -173,7 +173,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete rateNB", e);
-            throw new DAOException("Database exception during delete rateNB ", e);
+            throw new DaoException("Database exception during delete rateNB ", e);
         }
         return 1 == result;
     }
@@ -182,10 +182,10 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
      * Количество строк в таблите валюты НБ
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_RATENBS)) {
@@ -195,13 +195,13 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count currency row", e);
-            throw new DAOException("Database exception during fiend count currency row", e);
+            throw new DaoException("Database exception during fiend count currency row", e);
         }
         return count;
     }
 
     @Override
-    public RateNB rateNBToday(Date date, Long currencyId) throws DAOException {
+    public RateNB rateNBToday(Date date, Long currencyId) throws DaoException {
         RateNB rateNB = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_RATENB_BY_DATA_AND_RATENB)) {
@@ -222,7 +222,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend rateNB by id", e);
-            throw new DAOException("Database exception during fiend rateNB by id", e);
+            throw new DaoException("Database exception during fiend rateNB by id", e);
         }
         return rateNB;
     }

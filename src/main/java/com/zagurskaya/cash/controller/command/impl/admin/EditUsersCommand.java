@@ -6,9 +6,9 @@ import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,12 +42,12 @@ public class EditUsersCommand extends AbstractСommand {
             Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
             if (action == Action.EDITUSERS) {
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                    Long id = DataUtil.getLong(request, AttributeConstant.ID);
+                    Long id = DataUtil.getLong(request, AttributeName.ID);
 
                     try {
                         if (DataValidation.isUpdateOperation(request)) {
                             if (userService.findById(id) != null) {
-                                session.setAttribute(AttributeConstant.ID, id);
+                                session.setAttribute(AttributeName.ID, id);
                                 return Action.UPDATEUSER;
                             }
                         } else if (DataValidation.isDeleteOperation(request)) {
@@ -55,32 +55,32 @@ public class EditUsersCommand extends AbstractСommand {
                             if (deleteUser != null) {
                                 userService.delete(deleteUser);
                                 logger.log(Level.INFO, "Delete user " + deleteUser.getLogin());
-                                session.setAttribute(AttributeConstant.MESSAGE, "106 " + deleteUser.getLogin());
+                                session.setAttribute(AttributeName.MESSAGE, "106 " + deleteUser.getLogin());
                             }
                         }
                     } catch (ServiceException e) {
-                        session.setAttribute(AttributeConstant.ERROR, e);
+                        session.setAttribute(AttributeName.ERROR, e);
                         logger.log(Level.ERROR, e);
                         return Action.ERROR;
                     }
                 }
 
                 int page = 1;
-                if (request.getParameter(AttributeConstant.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
+                if (request.getParameter(AttributeName.PAGE) != null)
+                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
 
-                int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+                int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
                 List<User> users = userService.onePartOfListOnPage(page);
 
-                request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
-                request.setAttribute(AttributeConstant.USERS, users);
+                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+                request.setAttribute(AttributeName.CURRENT_PAGE, page);
+                request.setAttribute(AttributeName.USERS, users);
                 return Action.EDITUSERS;
             } else {
                 return action;
             }
         } catch (ServiceException e) {
-            session.setAttribute(AttributeConstant.ERROR, e);
+            session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

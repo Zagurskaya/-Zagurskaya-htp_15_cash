@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.entity.Currency;
@@ -46,25 +46,25 @@ public class RateNBCommand extends AbstractСommand {
             if (action == Action.RATENB) {
 
                 int page = 1;
-                if (request.getParameter(AttributeConstant.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
+                if (request.getParameter(AttributeName.PAGE) != null)
+                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
 
-                int numberOfPages = (int) Math.ceil(rateNBService.countRows() * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+                int numberOfPages = (int) Math.ceil(rateNBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
                 List<RateNB> ratesNB = rateNBService.onePartOfListOnPage(page);
 
                 List<Currency> currencyList = currencyService.findAll();
 
-                request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
-                request.setAttribute(AttributeConstant.RATE_NB, ratesNB);
-                request.setAttribute(AttributeConstant.CURRENCIES, currencyList);
+                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+                request.setAttribute(AttributeName.CURRENT_PAGE, page);
+                request.setAttribute(AttributeName.RATE_NB, ratesNB);
+                request.setAttribute(AttributeName.CURRENCIES, currencyList);
 
                 return Action.RATENB;
             } else {
                 return action;
             }
         } catch (ServiceException e) {
-            session.setAttribute(AttributeConstant.ERROR, e);
+            session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

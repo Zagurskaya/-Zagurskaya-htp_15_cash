@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.Kassa;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.KassaDao;
 import org.apache.logging.log4j.Level;
@@ -39,7 +39,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return списк записей из картотеки kassa
      */
     @Override
-    public List<Kassa> findAll(int limit, int startPosition) throws DAOException {
+    public List<Kassa> findAll(int limit, int startPosition) throws DaoException {
         List<Kassa> kassaList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_KASSA)) {
@@ -75,7 +75,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all kassa", e);
-            throw new DAOException("Database exception during fiend all kassa", e);
+            throw new DaoException("Database exception during fiend all kassa", e);
         }
         return kassaList;
     }
@@ -87,7 +87,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return запись из картотеки kassa
      */
     @Override
-    public Kassa findById(Long id) throws DAOException {
+    public Kassa findById(Long id) throws DaoException {
         Kassa kassa = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_ID)) {
@@ -120,7 +120,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend kassa by id", e);
-            throw new DAOException("Database exception during fiend kassa by id", e);
+            throw new DaoException("Database exception during fiend kassa by id", e);
         }
         return kassa;
     }
@@ -132,7 +132,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(Kassa kassa) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(Kassa kassa) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_KASSA, Statement.RETURN_GENERATED_KEYS)) {
@@ -154,10 +154,10 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data kassa", e);
+            throw new DaoConstraintViolationException("Duplicate data kassa", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create kassa", e);
-            throw new DAOException("Database exception during create kassa", e);
+            throw new DaoException("Database exception during create kassa", e);
         }
         return 0L;
     }
@@ -169,7 +169,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(Kassa kassa) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(Kassa kassa) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_KASSA)) {
@@ -186,10 +186,10 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data kassa", e);
+            throw new DaoConstraintViolationException("Duplicate data kassa", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update kassa", e);
-            throw new DAOException("Database exception during update kassa ", e);
+            throw new DaoException("Database exception during update kassa ", e);
         }
         return 1 == result;
     }
@@ -201,7 +201,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(Kassa kassa) throws DAOException {
+    public boolean delete(Kassa kassa) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_KASSA)) {
@@ -210,7 +210,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete kassa", e);
-            throw new DAOException("Database exception during delete kassa ", e);
+            throw new DaoException("Database exception during delete kassa ", e);
         }
         return 1 == result;
     }
@@ -219,10 +219,10 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * Количество строк в картотеке kassa
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_KASSAS)) {
@@ -232,13 +232,13 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count kassaList row", e);
-            throw new DAOException("Database exception during fiend count kassaList row", e);
+            throw new DaoException("Database exception during fiend count kassaList row", e);
         }
         return count;
     }
 
     @Override
-    public Kassa findByCurrencyIdAndDateAndDutiesId(Date date, Long dutiesId, Long currencyId) throws DAOException {
+    public Kassa findByCurrencyIdAndDateAndDutiesId(Date date, Long dutiesId, Long currencyId) throws DaoException {
         Kassa kassa = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_CURRENCY_ID_DATE_DUTIES)) {
@@ -271,13 +271,13 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during findByCurrencyIdAndDateAndDutiesNumber", e);
-            throw new DAOException("Database exception during findByCurrencyIdAndDateAndDutiesNumber", e);
+            throw new DaoException("Database exception during findByCurrencyIdAndDateAndDutiesNumber", e);
         }
         return kassa;
     }
 
     @Override
-    public List<Kassa> findAllByUserIdAndDutiesId(Long userId, Long dutiesId) throws DAOException {
+    public List<Kassa> findAllByUserIdAndDutiesId(Long userId, Long dutiesId) throws DaoException {
         List<Kassa> kassaList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_USER_ID_AND_DUTIES_ID)) {
@@ -311,7 +311,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during find all by userId and dutiesId ", e);
-            throw new DAOException("Database exception during find all by userId and dutiesId ", e);
+            throw new DaoException("Database exception during find all by userId and dutiesId ", e);
         }
         return kassaList;
     }

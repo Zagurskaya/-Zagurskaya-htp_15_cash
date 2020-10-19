@@ -1,6 +1,5 @@
 package com.zagurskaya.cash.controller.command;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
 import com.zagurskaya.cash.controller.command.impl.IndexСommand;
 import com.zagurskaya.cash.controller.command.impl.LocaleEnСommand;
@@ -156,7 +155,7 @@ public enum Action {
             Logger logger = LogManager.getLogger(EditUsersCommand.class);
             final HttpSession session = request.getSession(false);
             logger.log(Level.ERROR, e);
-            session.setAttribute(AttributeConstant.ERROR, "108 ");
+            session.setAttribute(AttributeName.ERROR, "108 ");
             return Action.INDEX;
         }
     }

@@ -1,8 +1,9 @@
 package com.zagurskaya.cash.controller.command.impl.cash;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -12,7 +13,7 @@ import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +41,7 @@ public class DutiesCommand extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.DUTIES);
             if (action == Action.DUTIES) {
-                User user = DataUtil.findUser(request);
+                User user = RequestDataUtil.findUser(request);
 
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     if (DataValidation.isOpenOperation(request)) {
@@ -61,7 +62,7 @@ public class DutiesCommand extends AbstractСommand {
                 return action;
             }
         } catch (ServiceException | ServiceConstraintViolationException e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }
@@ -76,8 +77,8 @@ public class DutiesCommand extends AbstractСommand {
         String messageDuties = (duties != null) ? "201 " + user.getFullName() : "202 " + user.getFullName();
 
 
-        request.setAttribute(AttributeConstant.USERS, users);
-        request.setAttribute(AttributeConstant.DUTIES, duties);
-        request.setAttribute(AttributeConstant.DUTIES_MESSAGE, messageDuties);
+        request.setAttribute(AttributeName.USERS, users);
+        request.setAttribute(AttributeName.DUTIES, duties);
+        request.setAttribute(AttributeName.DUTIES_MESSAGE, messageDuties);
     }
 }

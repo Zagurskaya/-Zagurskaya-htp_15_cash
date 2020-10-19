@@ -8,11 +8,11 @@ import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.constant.PatternConstant;
-import com.zagurskaya.cash.util.UserExtractor;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.util.RegexPattern;
+import com.zagurskaya.cash.controller.util.UserExtractor;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +39,7 @@ public class UpdateUserCommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
-        final Long id = (Long) session.getAttribute(AttributeConstant.ID);
+        final Long id = (Long) session.getAttribute(AttributeName.ID);
         if (id == null) return Action.INDEX;
         session.removeAttribute("message");
         session.removeAttribute("error");
@@ -56,11 +56,11 @@ public class UpdateUserCommand extends AbstractСommand {
                 } else if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
                     User updatedUser = userExtractor.updateUserNotCheckedFieldsToUser(request);
-                    request.setAttribute(AttributeConstant.USER, updatedUser);
+                    request.setAttribute(AttributeName.USER, updatedUser);
 
-                    String login = DataUtil.getString(updatedUser.getLogin(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String fullName = DataUtil.getString(updatedUser.getFullName(), PatternConstant.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(updatedUser.getRole().getValue(), PatternConstant.ALPHABET_VALIDATE_PATTERN);
+                    String login = DataUtil.getString(updatedUser.getLogin(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                    String fullName = DataUtil.getString(updatedUser.getFullName(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                    String role = DataUtil.getString(updatedUser.getRole().getValue(), RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
                         User updateUser = new User
@@ -73,10 +73,10 @@ public class UpdateUserCommand extends AbstractСommand {
                         try {
                             userService.update(updateUser);
                             logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
-                            session.setAttribute(AttributeConstant.MESSAGE, "105 " + updatedUser.getLogin());
+                            session.setAttribute(AttributeName.MESSAGE, "105 " + updatedUser.getLogin());
                             return Action.EDITUSERS;
                         } catch (ServiceException e) {
-                            session.setAttribute(AttributeConstant.ERROR, e);
+                            session.setAttribute(AttributeName.ERROR, e);
                             logger.log(Level.ERROR, e);
                             return Action.ERROR;
                         }
@@ -88,7 +88,7 @@ public class UpdateUserCommand extends AbstractСommand {
             try {
                 User updatedUser = userService.findById(id);
                 if (updatedUser != null) {
-                    request.setAttribute(AttributeConstant.USER, updatedUser);
+                    request.setAttribute(AttributeName.USER, updatedUser);
                     returnAction = Action.UPDATEUSER;
                 } else {
                     logger.log(Level.ERROR, "null user");

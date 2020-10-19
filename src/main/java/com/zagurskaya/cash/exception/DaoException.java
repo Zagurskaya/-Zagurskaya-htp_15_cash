@@ -3,11 +3,11 @@ package com.zagurskaya.cash.exception;
 /**
  * Ошибка Dao
  */
-public class DAOException extends Exception {
+public class DaoException extends Exception {
     /**
      * Конструктор
      */
-    public DAOException() {
+    public DaoException() {
         super();
     }
     /**
@@ -15,7 +15,7 @@ public class DAOException extends Exception {
      *
      * @param message - сообщение
      */
-    public DAOException(String message) {
+    public DaoException(String message) {
         super(message);
     }
     /**
@@ -24,7 +24,7 @@ public class DAOException extends Exception {
      * @param message - сообщение
      * @param cause - причина
      */
-    public DAOException(String message, Throwable cause) {
+    public DaoException(String message, Throwable cause) {
         super(message, cause);
     }
     /**
@@ -32,7 +32,7 @@ public class DAOException extends Exception {
      *
      * @param cause - причина
      */
-    public DAOException(Throwable cause) {
+    public DaoException(Throwable cause) {
         super(cause);
     }
     /**
@@ -43,7 +43,7 @@ public class DAOException extends Exception {
      * @param enableSuppression - включено подавление или нет
      * @param writableStackTrace - должна ли трассировка стека быть доступной для записи
      */
-    protected DAOException(String message, Throwable cause,
+    protected DaoException(String message, Throwable cause,
                            boolean enableSuppression,
                            boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);

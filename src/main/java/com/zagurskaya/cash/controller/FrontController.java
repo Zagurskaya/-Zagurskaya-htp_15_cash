@@ -4,7 +4,7 @@ import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,12 +40,12 @@ public class FrontController extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        request.setAttribute(AttributeConstant.RESPONSE, response);
+        request.setAttribute(AttributeName.RESPONSE, response);
         Action currentAction = Action.define(request);
         try {
             Action nextAction = currentAction.command.execute(request);
             Action previousAction = currentAction;
-            session.setAttribute(AttributeConstant.PREVIOUS_ACTION, previousAction);
+            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousAction);
             if (nextAction == currentAction) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
                 requestDispatcher.forward(request, response);
@@ -54,12 +54,12 @@ public class FrontController extends HttpServlet {
             }
         } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
             String error = e.getMessage();
-            request.setAttribute(AttributeConstant.ERROR, error);
+            request.setAttribute(AttributeName.ERROR, error);
             logger.log(Level.ERROR, error, e);
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             response.sendRedirect("do?command=error");
         }

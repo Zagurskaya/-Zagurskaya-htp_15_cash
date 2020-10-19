@@ -1,9 +1,9 @@
-package com.zagurskaya.cash.constant;
+package com.zagurskaya.cash.controller.command;
 
 /**
  * Наименование атрибутов в сессии
  */
-public class AttributeConstant {
+public class AttributeName {
     /**
      * Общие атрибуты
      */
@@ -36,6 +36,6 @@ public class AttributeConstant {
     public static final String DUTIES_MESSAGE = "messageDuties";
 
 
-    private AttributeConstant() {
+    private AttributeName() {
     }
 }

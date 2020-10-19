@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.util;
+package com.zagurskaya.cash.controller.util;
 
 /**
  * Конвертор Html-символов

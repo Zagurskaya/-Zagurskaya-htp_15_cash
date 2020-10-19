@@ -1,13 +1,12 @@
 package com.zagurskaya.cash.model.service.impl;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.SprEntry;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
@@ -44,7 +43,7 @@ public class KassaServiceImpl implements KassaService {
         try {
             Kassa kassa = kassaDao.findById(id);
             return kassa;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend kassa by id", e);
             throw new ServiceException("Database exception during fiend kassa by id", e);
         } finally {
@@ -65,10 +64,10 @@ public class KassaServiceImpl implements KassaService {
         transaction.initSingleRequest(kassaDao);
         try {
             return kassaDao.create(kassa) != null;
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
             throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create kassa ", e);
             throw new ServiceException("Database exception during create kassa ", e);
         } finally {
@@ -89,10 +88,10 @@ public class KassaServiceImpl implements KassaService {
         transaction.initSingleRequest(kassaDao);
         try {
             return kassaDao.update(kassa);
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
             throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update kassa ", e);
             throw new ServiceException("Database exception during update kassa ", e);
         } finally {
@@ -113,7 +112,7 @@ public class KassaServiceImpl implements KassaService {
         transaction.initSingleRequest(kassaDao);
         try {
             return kassaDao.delete(kassa);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete kassa ", e);
             throw new ServiceException("Database exception during delete kassa ", e);
         } finally {
@@ -134,7 +133,7 @@ public class KassaServiceImpl implements KassaService {
         transaction.initSingleRequest(kassaDao);
         try {
             return kassaDao.countRows();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count kassaList row", e);
             throw new ServiceException("Database exception during fiend count kassaList row", e);
         } finally {
@@ -155,11 +154,11 @@ public class KassaServiceImpl implements KassaService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(kassaDao);
         try {
-            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
             kassaList.addAll(kassaDao.findAll(recordsPerPage, startRecord));
             return kassaList;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all kassa", e);
             throw new ServiceException("Database exception during fiend all kassa", e);
         } finally {
@@ -208,10 +207,10 @@ public class KassaServiceImpl implements KassaService {
             boolean result = kassaDao.update(updateKassa);
             transaction.commit();
             return result;
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
             throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during update Kassa InSide Operation", e);
             throw new ServiceException("Database exception during update Kassa InSide Operation", e);
@@ -265,10 +264,10 @@ public class KassaServiceImpl implements KassaService {
             boolean result = kassaDao.update(updateKassa);
             transaction.commit();
             return result;
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
             throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during update Kassa Out Side Operation", e);
             throw new ServiceException("Database exception during update Kassa out Side Operation", e);
@@ -285,7 +284,7 @@ public class KassaServiceImpl implements KassaService {
         transaction.initSingleRequest(kassaDao);
         try {
             kassaList.addAll(kassaDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId()));
-        } catch (DAOException  e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during getBallance", e);
             throw new ServiceException("Database exception during getBallance", e);
         } finally {

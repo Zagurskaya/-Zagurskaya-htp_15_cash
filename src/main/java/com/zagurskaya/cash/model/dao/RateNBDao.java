@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.model.dao;
 
 import com.zagurskaya.cash.entity.RateNB;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 
 import java.sql.Date;
 
@@ -11,5 +11,5 @@ public interface RateNBDao extends Dao<RateNB> {
      *
      * @return курс НБ
      */
-    RateNB rateNBToday(Date date, Long currencyId) throws DAOException;
+    RateNB rateNBToday(Date date, Long currencyId) throws DaoException;
 }

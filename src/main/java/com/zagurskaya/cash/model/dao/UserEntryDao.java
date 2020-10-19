@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.model.dao;
 
 import com.zagurskaya.cash.entity.UserEntry;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ public interface UserEntryDao extends Dao<UserEntry> {
      *
      * @return список проведенных проводок
      */
-    List<UserEntry> findAll() throws DAOException;
+    List<UserEntry> findAll() throws DaoException;
 }

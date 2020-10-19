@@ -1,8 +1,9 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -11,7 +12,7 @@ import com.zagurskaya.cash.model.service.PaymentService;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
 import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.validation.DataValidation;
+import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +41,7 @@ public class PaymentCommand extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.PAYMENT);
             if (action == Action.PAYMENT) {
-                User user = DataUtil.findUser(request);
+                User user = RequestDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
                     return Action.DUTIES;
                 }
@@ -50,7 +51,7 @@ public class PaymentCommand extends AbstractСommand {
                     if (sprOperationsId != null) {
                         SprOperation sprOperation = paymentService.findSprOperationById(sprOperationsId);
                         if (sprOperation != null) {
-                            request.setAttribute(AttributeConstant.SPR_OPERATION, sprOperation);
+                            request.setAttribute(AttributeName.SPR_OPERATION, sprOperation);
                         }
                         switch (sprOperationsId.toString()) {
                             case "10":
@@ -69,13 +70,13 @@ public class PaymentCommand extends AbstractСommand {
                     }
                 }
                 List<SprOperation> sprOperations = paymentService.findAllSprOperation();
-                request.setAttribute(AttributeConstant.SPR_OPERATIONS, sprOperations);
+                request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperations);
                 return Action.PAYMENT;
             } else {
                 return action;
             }
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

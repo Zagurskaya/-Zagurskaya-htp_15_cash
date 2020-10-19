@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.UserOperationDao;
 import org.apache.logging.log4j.Level;
@@ -48,7 +48,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return список операций
      */
     @Override
-    public List<UserOperation> findAll(int limit, int startPosition) throws DAOException {
+    public List<UserOperation> findAll(int limit, int startPosition) throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USER_OPERATION_PAGE)) {
@@ -86,7 +86,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userOperation", e);
-            throw new DAOException("Database exception during fiend all userOperation", e);
+            throw new DaoException("Database exception during fiend all userOperation", e);
         }
         return userOperations;
     }
@@ -98,7 +98,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return операция
      */
     @Override
-    public UserOperation findById(Long id) throws DAOException {
+    public UserOperation findById(Long id) throws DaoException {
         UserOperation userOperation = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_OPERATION_BY_ID)) {
@@ -133,7 +133,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend userOperation by id", e);
-            throw new DAOException("Database exception during fiend userOperation by id", e);
+            throw new DaoException("Database exception during fiend userOperation by id", e);
         }
         return userOperation;
     }
@@ -145,7 +145,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return true при успешном создании
      */
     @Override
-    public Long create(UserOperation userOperation) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(UserOperation userOperation) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER_OPERATION, Statement.RETURN_GENERATED_KEYS)) {
@@ -168,10 +168,10 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data userOperation", e);
+            throw new DaoConstraintViolationException("Duplicate data userOperation", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create userOperation", e);
-            throw new DAOException("Database exception during create userOperation", e);
+            throw new DaoException("Database exception during create userOperation", e);
         }
         return 0L;
     }
@@ -183,7 +183,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(UserOperation userOperation) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(UserOperation userOperation) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER_OPERATION)) {
@@ -201,10 +201,10 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data userOperation", e);
+            throw new DaoConstraintViolationException("Duplicate data userOperation", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update userOperation", e);
-            throw new DAOException("Database exception during update userOperation ", e);
+            throw new DaoException("Database exception during update userOperation ", e);
         }
         return 1 == result;
     }
@@ -216,7 +216,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(UserOperation userOperation) throws DAOException {
+    public boolean delete(UserOperation userOperation) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USER_OPERATION)) {
@@ -225,7 +225,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete userOperation", e);
-            throw new DAOException("Database exception during delete userOperation ", e);
+            throw new DaoException("Database exception during delete userOperation ", e);
         }
         return 1 == result;
     }
@@ -234,10 +234,10 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * Количество строк в таблите операций
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_USER_OPERATION)) {
@@ -247,7 +247,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count userOperations row", e);
-            throw new DAOException("Database exception during fiend count userOperations row", e);
+            throw new DaoException("Database exception during fiend count userOperations row", e);
         }
         return count;
     }
@@ -258,7 +258,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
      * @return список операций
      */
     @Override
-    public List<UserOperation> findAll() throws DAOException {
+    public List<UserOperation> findAll() throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USER_OPERATION)) {
@@ -294,13 +294,13 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userOperation", e);
-            throw new DAOException("Database exception during fiend all userOperation", e);
+            throw new DaoException("Database exception during fiend all userOperation", e);
         }
         return userOperations;
     }
 
     @Override
-    public List<UserOperation> findAllByUserIdAndDutiesId(Long userId, Long dutiesId, int limit, int startPosition) throws DAOException {
+    public List<UserOperation> findAllByUserIdAndDutiesId(Long userId, Long dutiesId, int limit, int startPosition) throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();
         boolean isPart = (0 != limit) && (0 != startPosition);
         String SQL = isPart ? SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE : SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID;
@@ -342,7 +342,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userOperation", e);
-            throw new DAOException("Database exception during fiend all userOperation", e);
+            throw new DaoException("Database exception during fiend all userOperation", e);
         }
         return userOperations;
     }

@@ -2,8 +2,8 @@ package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.DutiesDao;
 import org.apache.logging.log4j.Level;
@@ -40,7 +40,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return список смен
      */
     @Override
-    public List<Duties> findAll(int limit, int startPosition) throws DAOException {
+    public List<Duties> findAll(int limit, int startPosition) throws DaoException {
         List<Duties> dutiesList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_DUTIES)) {
@@ -66,7 +66,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
-            throw new DAOException("Database exception during fiend all duties", e);
+            throw new DaoException("Database exception during fiend all duties", e);
         }
         return dutiesList;
     }
@@ -78,7 +78,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return смена
      */
     @Override
-    public Duties findById(Long id) throws DAOException {
+    public Duties findById(Long id) throws DaoException {
         Duties duties = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_DUTIES_BY_ID)) {
@@ -101,7 +101,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
-            throw new DAOException("Database exception during fiend duties by id", e);
+            throw new DaoException("Database exception during fiend duties by id", e);
         }
         return duties;
     }
@@ -113,7 +113,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(Duties duties) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(Duties duties) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES, Statement.RETURN_GENERATED_KEYS)) {
@@ -130,10 +130,10 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data duties", e);
+            throw new DaoConstraintViolationException("Duplicate data duties", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create duties", e);
-            throw new DAOException("Database exception during create duties", e);
+            throw new DaoException("Database exception during create duties", e);
         }
         return 0L;
     }
@@ -145,7 +145,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(Duties duties) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(Duties duties) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_DUTIES)) {
@@ -157,10 +157,10 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data duties", e);
+            throw new DaoConstraintViolationException("Duplicate data duties", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update duties", e);
-            throw new DAOException("Database exception during update duties ", e);
+            throw new DaoException("Database exception during update duties ", e);
         }
         return 1 == result;
     }
@@ -172,7 +172,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(Duties duties) throws DAOException {
+    public boolean delete(Duties duties) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_DUTIES)) {
@@ -181,7 +181,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete duties", e);
-            throw new DAOException("Database exception during delete duties ", e);
+            throw new DaoException("Database exception during delete duties ", e);
         }
         return 1 == result;
     }
@@ -190,10 +190,10 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * Количество строк в таблите пользователей
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_DUTIESS)) {
@@ -203,7 +203,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count dutiesList row", e);
-            throw new DAOException("Database exception during fiend count dutiesList row", e);
+            throw new DaoException("Database exception during fiend count dutiesList row", e);
         }
         return count;
     }
@@ -216,7 +216,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return список смен
      */
     @Override
-    public List<Duties> openDutiesUserToday(Long userId, String today) throws DAOException {
+    public List<Duties> openDutiesUserToday(Long userId, String today) throws DaoException {
         List<Duties> dutiesList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_OPEN_DUTIES_BY_USER_ID)) {
@@ -241,13 +241,13 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
-            throw new DAOException("Database exception during fiend all duties", e);
+            throw new DaoException("Database exception during fiend all duties", e);
         }
         return dutiesList;
     }
 
     @Override
-    public Integer numberDutiesToday(User user, String today) throws DAOException {
+    public Integer numberDutiesToday(User user, String today) throws DaoException {
         List<Duties> dutiesList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_CLOSE_DUTIES_BY_USER_ID)) {
@@ -272,12 +272,12 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
-            throw new DAOException("Database exception during fiend all duties", e);
+            throw new DaoException("Database exception during fiend all duties", e);
         }
         return dutiesList.stream().map(Duties::getNumber).max(Integer::compareTo).orElse(0) + 1;
     }
 
-    public Long createAndReturnDutiesId(Duties duties) throws RepositoryConstraintViolationException, DAOException {
+    public Long createAndReturnDutiesId(Duties duties) throws DaoConstraintViolationException, DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES, Statement.RETURN_GENERATED_KEYS)) {
@@ -294,10 +294,10 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data duties", e);
+            throw new DaoConstraintViolationException("Duplicate data duties", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create duties", e);
-            throw new DAOException("Database exception during create duties", e);
+            throw new DaoException("Database exception during create duties", e);
         }
         return 0L;
     }

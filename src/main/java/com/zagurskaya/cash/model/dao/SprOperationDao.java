@@ -1,8 +1,7 @@
 package com.zagurskaya.cash.model.dao;
 
 import com.zagurskaya.cash.entity.SprOperation;
-import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 
 import java.util.List;
 
@@ -12,6 +11,6 @@ public interface SprOperationDao extends Dao<SprOperation> {
      *
      * @return список операций
      */
-    List<SprOperation> findAll() throws DAOException;
+    List<SprOperation> findAll() throws DaoException;
 
 }

@@ -1,9 +1,9 @@
-package com.zagurskaya.cash.constant;
+package com.zagurskaya.cash.controller.util;
 
 /**
  * Шаблоны
  */
-public class PatternConstant {
+public class RegexPattern {
     /**
      * Шаблон проверки строки: не пустого значения, алфавит в верхнем и нижнем регистре
      */
@@ -21,6 +21,6 @@ public class PatternConstant {
      */
     public static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
 
-    private PatternConstant() {
+    private RegexPattern() {
     }
 }

@@ -1,8 +1,9 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
@@ -40,19 +41,19 @@ public class BalanceCommand extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.BALANCE);
             if (action == Action.BALANCE) {
-                User user = DataUtil.findUser(request);
+                User user = RequestDataUtil.findUser(request);
                 Duties duties = dutiesService.openDutiesUserToday(user, today);
                 if (duties == null) {
                     return Action.DUTIES;
                 }
                 List<Kassa> balanceList = kassaService.getBallance(user, duties);
-                request.setAttribute(AttributeConstant.BALANCE, balanceList);
+                request.setAttribute(AttributeName.BALANCE, balanceList);
                 return Action.BALANCE;
             } else {
                 return action;
             }
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

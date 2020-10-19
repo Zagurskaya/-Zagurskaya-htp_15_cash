@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.model.dao;
 
 import com.zagurskaya.cash.entity.Currency;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ public interface CurrencyDao extends Dao<Currency> {
      *
      * @return список объектов
      */
-    List<Currency> findAll() throws DAOException;
+    List<Currency> findAll() throws DaoException;
 
 }

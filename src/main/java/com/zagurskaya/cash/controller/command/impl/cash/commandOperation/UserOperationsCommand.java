@@ -1,8 +1,9 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprOperation;
@@ -44,32 +45,32 @@ public class UserOperationsCommand extends AbstractСommand {
         try {
             Action action = actionAfterValidationUserAndPermission(request, Action.USEROPERATIONS);
             if (action == Action.USEROPERATIONS) {
-                User user = DataUtil.findUser(request);
+                User user = RequestDataUtil.findUser(request);
                 Duties duties = dutiesService.openDutiesUserToday(user, today);
                 if (duties == null) {
                     return Action.DUTIES;
                 }
                 int page = 1;
-                if (request.getParameter(AttributeConstant.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
+                if (request.getParameter(AttributeName.PAGE) != null)
+                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
 
-                int numberOfPages = (int) Math.ceil(paymentService.countRowsUserOperations(user, duties) * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+                int numberOfPages = (int) Math.ceil(paymentService.countRowsUserOperations(user, duties) * 1.0 / AttributeName.RECORDS_PER_PAGE);
                 List<UserOperation> userAllOperationList = paymentService.onePartOfListUserOperationsOnPage(user, duties, page);
                 List<SprOperation> sprOperationsList = paymentService.findAllSprOperation();
                 List<Currency> currencyList = currencyService.findAll();
 
-                request.setAttribute(AttributeConstant.SPR_OPERATIONS, sprOperationsList);
-                request.setAttribute(AttributeConstant.CURRENCIES, currencyList);
-                request.setAttribute(AttributeConstant.USER_OPERATIONS, userAllOperationList);
-                request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
+                request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperationsList);
+                request.setAttribute(AttributeName.CURRENCIES, currencyList);
+                request.setAttribute(AttributeName.USER_OPERATIONS, userAllOperationList);
+                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+                request.setAttribute(AttributeName.CURRENT_PAGE, page);
 
                 return Action.USEROPERATIONS;
             } else {
                 return action;
             }
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeConstant.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return Action.ERROR;
         }

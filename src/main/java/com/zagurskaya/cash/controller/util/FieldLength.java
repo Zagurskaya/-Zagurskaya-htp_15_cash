@@ -1,9 +1,9 @@
-package com.zagurskaya.cash.constant;
+package com.zagurskaya.cash.controller.util;
 
 /**
  * Длина полей
  */
-public class FieldsLengthConstant {
+public class FieldLength {
     /**
      * Длина полей пользователя
      */
@@ -12,6 +12,6 @@ public class FieldsLengthConstant {
     public static final int LENGTH_USER_FULL_NAME = 50;
     public static final int LENGTH_USER_ROLE = 50;
 
-    private FieldsLengthConstant() {
+    private FieldLength() {
     }
 }

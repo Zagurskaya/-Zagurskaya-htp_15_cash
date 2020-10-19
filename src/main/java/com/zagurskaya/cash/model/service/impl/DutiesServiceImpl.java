@@ -1,12 +1,12 @@
 package com.zagurskaya.cash.model.service.impl;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.CurrencyDao;
@@ -44,7 +44,7 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.initSingleRequest(dutiesDao);
         try {
             return dutiesDao.findById(id);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
             throw new ServiceException("Database exception during fiend duties by id", e);
         } finally {
@@ -65,10 +65,10 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.initSingleRequest(dutiesDao);
         try {
             return dutiesDao.create(duties) != 0L;
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create duties ", e);
             throw new ServiceException("Database exception during create duties ", e);
         } finally {
@@ -89,10 +89,10 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.initSingleRequest(dutiesDao);
         try {
             return dutiesDao.update(duties);
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException(" Database exception during update duties ", e);
         } finally {
@@ -113,7 +113,7 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.initSingleRequest(dutiesDao);
         try {
             return dutiesDao.delete(duties);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete duties ", e);
             throw new ServiceException("Database exception during delete duties ", e);
         } finally {
@@ -134,7 +134,7 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.initSingleRequest(dutiesDao);
         try {
             return dutiesDao.countRows();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count dutiesList row", e);
             throw new ServiceException("Database exception during fiend count dutiesList row", e);
         } finally {
@@ -155,11 +155,11 @@ public class DutiesServiceImpl implements DutiesService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(dutiesDao);
         try {
-            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
             dutiesList.addAll(dutiesDao.findAll(recordsPerPage, startRecord));
             return dutiesList;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
             throw new ServiceException(" Database exception during fiend all duties", e);
         } finally {
@@ -185,7 +185,7 @@ public class DutiesServiceImpl implements DutiesService {
                 throw new ServiceException("user " + user.getLogin() + " has more than one open duty");
             }
             return dutiesList.stream().findFirst().orElse(null);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
             throw new ServiceException("Database exception during fiend all duties", e);
         } finally {
@@ -231,11 +231,11 @@ public class DutiesServiceImpl implements DutiesService {
                 kassaDao.create(newKassa);
             }
             transaction.commit();
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
             throw new ServiceException("Database exception during fiend duties by id", e);
@@ -272,10 +272,10 @@ public class DutiesServiceImpl implements DutiesService {
                 logger.log(Level.ERROR, "User has more that one open duties " + user.getLogin());
                 throw new ServiceException("203 " + user.getLogin());
             }
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException("Database exception during update duties ", e);
         } finally {

@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.SprEntry;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.SprEntryDao;
 import org.apache.logging.log4j.Level;
@@ -38,7 +38,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return список проводок
      */
     @Override
-    public List<SprEntry> findAll(int limit, int startPosition) throws DAOException {
+    public List<SprEntry> findAll(int limit, int startPosition) throws DaoException {
         List<SprEntry> sprEntries = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SPR_ENTRY_PAGE)) {
@@ -70,7 +70,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprEntry", e);
-            throw new DAOException("Database exception during fiend all sprEntry", e);
+            throw new DaoException("Database exception during fiend all sprEntry", e);
         }
         return sprEntries;
     }
@@ -82,7 +82,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return проводка
      */
     @Override
-    public SprEntry findById(Long id) throws DAOException {
+    public SprEntry findById(Long id) throws DaoException {
         SprEntry sprEntry = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_SPR_ENTRY_BY_ID)) {
@@ -111,7 +111,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend sprEntry by id", e);
-            throw new DAOException("Database exception during fiend sprEntry by id", e);
+            throw new DaoException("Database exception during fiend sprEntry by id", e);
         }
         return sprEntry;
     }
@@ -123,7 +123,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(SprEntry sprEntry) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(SprEntry sprEntry) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_SPR_ENTRY, Statement.RETURN_GENERATED_KEYS)) {
@@ -144,10 +144,10 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data sprEntry", e);
+            throw new DaoConstraintViolationException("Duplicate data sprEntry", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create sprEntry", e);
-            throw new DAOException("Database exception during create sprEntry", e);
+            throw new DaoException("Database exception during create sprEntry", e);
         }
         return 0L;
     }
@@ -159,7 +159,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(SprEntry sprEntry) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(SprEntry sprEntry) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_SPR_ENTRY)) {
@@ -174,10 +174,10 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data sprEntry", e);
+            throw new DaoConstraintViolationException("Duplicate data sprEntry", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update sprEntry", e);
-            throw new DAOException("Database exception during update sprEntry ", e);
+            throw new DaoException("Database exception during update sprEntry ", e);
         }
         return 1 == result;
     }
@@ -189,7 +189,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(SprEntry sprEntry) throws DAOException {
+    public boolean delete(SprEntry sprEntry) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_SPR_ENTRY)) {
@@ -198,7 +198,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete sprEntry", e);
-            throw new DAOException("Database exception during delete sprEntry ", e);
+            throw new DaoException("Database exception during delete sprEntry ", e);
         }
         return 1 == result;
     }
@@ -207,10 +207,10 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * Количество строк в таблите проводок
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_SPR_ENTRY)) {
@@ -220,7 +220,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count sprEntrys row", e);
-            throw new DAOException("Database exception during fiend count sprEntrys row", e);
+            throw new DaoException("Database exception during fiend count sprEntrys row", e);
         }
         return count;
     }
@@ -231,7 +231,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
      * @return список проводок
      */
     @Override
-    public List<SprEntry> findAll() throws DAOException {
+    public List<SprEntry> findAll() throws DaoException {
         List<SprEntry> sprEntries = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SPR_ENTRY)) {
@@ -261,13 +261,13 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprEntry", e);
-            throw new DAOException("Database exception during fiend all sprEntry", e);
+            throw new DaoException("Database exception during fiend all sprEntry", e);
         }
         return sprEntries;
     }
 
     @Override
-    public List<SprEntry> findAllBySprOperationIdAndCurrencyId(Long sprOperationId, Long currencyId) throws DAOException {
+    public List<SprEntry> findAllBySprOperationIdAndCurrencyId(Long sprOperationId, Long currencyId) throws DaoException {
         List<SprEntry> sprEntries = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SPR_ENTRY_BY_SPR_OPERATION_ID_AND_CURRENCY_ID)) {
@@ -297,7 +297,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all By SprOperationId And CurrencyId", e);
-            throw new DAOException("Database exception during fiend all By SprOperationId And CurrencyId", e);
+            throw new DaoException("Database exception during fiend all By SprOperationId And CurrencyId", e);
         }
         return sprEntries;
     }

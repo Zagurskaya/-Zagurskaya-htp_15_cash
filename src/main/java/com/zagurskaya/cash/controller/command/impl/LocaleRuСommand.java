@@ -2,8 +2,8 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.Action;
-import com.zagurskaya.cash.constant.AttributeConstant;
-import com.zagurskaya.cash.util.DataUtil;
+import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.util.RequestDataUtil;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +25,11 @@ public class LocaleRuСommand extends AbstractСommand {
     @Override
     public Action execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
-        Action previousAction = (Action) session.getAttribute(AttributeConstant.PREVIOUS_ACTION);
+        Action previousAction = (Action) session.getAttribute(AttributeName.PREVIOUS_ACTION);
         Action action = previousAction == null ? Action.INDEX : previousAction;
 
-        Cookie localEnCookie = new Cookie(AttributeConstant.LOCAL, "ru");
-        DataUtil.setCookie(request, localEnCookie);
+        Cookie localEnCookie = new Cookie(AttributeName.LOCAL, "ru");
+        RequestDataUtil.setCookie(request, localEnCookie);
         return action;
     }
 }

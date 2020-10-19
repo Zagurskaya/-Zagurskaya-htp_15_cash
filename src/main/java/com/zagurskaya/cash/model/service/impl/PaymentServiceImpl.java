@@ -1,14 +1,14 @@
 package com.zagurskaya.cash.model.service.impl;
 
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprEntry;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
@@ -50,7 +50,7 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.initSingleRequest(sprOperationDao);
         try {
             return sprOperationDao.findAll();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprOperation", e);
             throw new ServiceException("Database exception during fiend all sprOperation", e);
         } finally {
@@ -65,7 +65,7 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.initSingleRequest(sprOperationDao);
         try {
             return sprOperationDao.findById(id);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during find SprOperation By Id", e);
             throw new ServiceException("Database exception during find SprOperation By Id", e);
         } finally {
@@ -130,11 +130,11 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during implement Payment1000", e);
             throw new ServiceException("Database exception during implement Payment1000", e);
@@ -151,7 +151,7 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             List<UserOperation> userOperations = userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(), 0, 0);
             return userOperations.size();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during count rows user operations", e);
             throw new ServiceException("Database exception during count rows user operations", e);
         } finally {
@@ -165,10 +165,10 @@ public class PaymentServiceImpl implements PaymentService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userOperationDao);
         try {
-            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
             return userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(), recordsPerPage, startRecord);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during method onePartOfListUserOperationsOnPage", e);
             throw new ServiceException("Database exception during method onePartOfListUserOperationsOnPage", e);
         }finally {

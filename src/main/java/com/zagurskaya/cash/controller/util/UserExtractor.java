@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.util;
+package com.zagurskaya.cash.controller.util;
 
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
@@ -17,10 +17,10 @@ public class UserExtractor {
      * @throws SiteDataValidationException ошибке валидации данных пользователя.
      */
     public User userNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
-        String login = DataUtil.getString(request, "login");
-        String password = DataUtil.getString(request, "password");
-        String fullName = DataUtil.getString(request, "fullname");
-        String role = DataUtil.getString(request, "role");
+        String login = RequestDataUtil.getString(request, "login");
+        String password = RequestDataUtil.getString(request, "password");
+        String fullName = RequestDataUtil.getString(request, "fullname");
+        String role = RequestDataUtil.getString(request, "role");
         return new User
                 .Builder()
                 .addLogin(login)
@@ -38,9 +38,9 @@ public class UserExtractor {
      * @throws SiteDataValidationException ошибке валидации данных пользователя.
      */
     public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
-        String login = DataUtil.getString(request, "login");
-        String fullName = DataUtil.getString(request, "fullname");
-        String role = DataUtil.getString(request, "role");
+        String login = RequestDataUtil.getString(request, "login");
+        String fullName = RequestDataUtil.getString(request, "fullname");
+        String role = RequestDataUtil.getString(request, "role");
 
         return new User
                 .Builder()

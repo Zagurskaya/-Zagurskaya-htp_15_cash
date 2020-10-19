@@ -1,15 +1,15 @@
 package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.model.dao.UserDao;
 import com.zagurskaya.cash.model.dao.impl.UserDaoImpl;
-import com.zagurskaya.cash.exception.DAOException;
+import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.UserService;
-import com.zagurskaya.cash.constant.AttributeConstant;
+import com.zagurskaya.cash.controller.command.AttributeName;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         try {
             user = userDao.findByLogin(login);
             return user != null && user.getPassword().equals(getHash(password)) ? user : null;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
         } finally {
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             return userDao.findById(id);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
         } finally {
@@ -115,10 +115,10 @@ public class UserServiceImpl implements UserService {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new ServiceConstraintViolationException("Duplicate data user's login ");
             }
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data user ", e);
             throw new ServiceConstraintViolationException("Duplicate data user ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create user ", e);
             throw new ServiceException("Database exception during create user ", e);
         } finally {
@@ -139,10 +139,10 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             return userDao.update(user);
-        } catch (RepositoryConstraintViolationException e) {
+        } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data user ", e);
             throw new ServiceConstraintViolationException("Duplicate data user ", e);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update user ", e);
             throw new ServiceException("Database exception during update user ", e);
         } finally {
@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             return userDao.delete(user);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete user ", e);
             throw new ServiceException("Database exception during delete user ", e);
         } finally {
@@ -184,7 +184,7 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             return userDao.countRows();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count users row", e);
             throw new ServiceException("Database exception during fiend count users row", e);
         } finally {
@@ -205,11 +205,11 @@ public class UserServiceImpl implements UserService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);
         try {
-            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
             users.addAll(userDao.findAll(recordsPerPage, startRecord));
             return users;
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
         } finally {
@@ -223,7 +223,7 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleRequest(userDao);
         try {
             return userDao.findAll();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
         } finally {

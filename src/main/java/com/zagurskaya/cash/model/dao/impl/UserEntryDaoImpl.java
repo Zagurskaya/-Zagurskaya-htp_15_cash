@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 import com.zagurskaya.cash.entity.UserEntry;
-import com.zagurskaya.cash.exception.DAOException;
-import com.zagurskaya.cash.exception.RepositoryConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.model.dao.AbstractDao;
 import com.zagurskaya.cash.model.dao.UserEntryDao;
 import org.apache.logging.log4j.Level;
@@ -37,7 +37,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return список проводок
      */
     @Override
-    public List<UserEntry> findAll(int limit, int startPosition) throws DAOException {
+    public List<UserEntry> findAll(int limit, int startPosition) throws DaoException {
         List<UserEntry> sprEntries = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USER_ENTRY_PAGE)) {
@@ -71,7 +71,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userEntry", e);
-            throw new DAOException("Database exception during fiend all userEntry", e);
+            throw new DaoException("Database exception during fiend all userEntry", e);
         }
         return sprEntries;
     }
@@ -83,7 +83,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return проводка
      */
     @Override
-    public UserEntry findById(Long id) throws DAOException {
+    public UserEntry findById(Long id) throws DaoException {
         UserEntry userEntry = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_ENTRY_BY_ID)) {
@@ -114,7 +114,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend userEntry by id", e);
-            throw new DAOException("Database exception during fiend userEntry by id", e);
+            throw new DaoException("Database exception during fiend userEntry by id", e);
         }
         return userEntry;
     }
@@ -126,7 +126,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return true при успешном создании
      */
     @Override
-    public Long create(UserEntry userEntry) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(UserEntry userEntry) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER_ENTRY, Statement.RETURN_GENERATED_KEYS)) {
@@ -147,10 +147,10 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                 }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data userEntry", e);
+            throw new DaoConstraintViolationException("Duplicate data userEntry", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during create userEntry", e);
-            throw new DAOException("Database exception during create userEntry", e);
+            throw new DaoException("Database exception during create userEntry", e);
         }
         return 0L;
     }
@@ -162,7 +162,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(UserEntry userEntry) throws DAOException, RepositoryConstraintViolationException {
+    public boolean update(UserEntry userEntry) throws DaoException, DaoConstraintViolationException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER_ENTRY)) {
@@ -178,10 +178,10 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new RepositoryConstraintViolationException("Duplicate data userEntry", e);
+            throw new DaoConstraintViolationException("Duplicate data userEntry", e);
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during update userEntry", e);
-            throw new DAOException("Database exception during update userEntry ", e);
+            throw new DaoException("Database exception during update userEntry ", e);
         }
         return 1 == result;
     }
@@ -193,7 +193,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return true при успешном удаление
      */
     @Override
-    public boolean delete(UserEntry userEntry) throws DAOException {
+    public boolean delete(UserEntry userEntry) throws DaoException {
         int result;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_USER_ENTRY)) {
@@ -202,7 +202,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during delete userEntry", e);
-            throw new DAOException("Database exception during delete userEntry ", e);
+            throw new DaoException("Database exception during delete userEntry ", e);
         }
         return 1 == result;
     }
@@ -211,10 +211,10 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * Количество строк в таблите проводок
      *
      * @return количество строк
-     * @throws DAOException ошибке доступа к базе данных или других ошибках.
+     * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DAOException {
+    public Long countRows() throws DaoException {
         Long count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_USER_ENTRY)) {
@@ -224,7 +224,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count userEntrys row", e);
-            throw new DAOException("Database exception during fiend count userEntrys row", e);
+            throw new DaoException("Database exception during fiend count userEntrys row", e);
         }
         return count;
     }
@@ -235,7 +235,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @return список проводок
      */
     @Override
-    public List<UserEntry> findAll() throws DAOException {
+    public List<UserEntry> findAll() throws DaoException {
         List<UserEntry> sprEntries = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_USER_ENTRY)) {
@@ -267,7 +267,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userEntry", e);
-            throw new DAOException("Database exception during fiend all userEntry", e);
+            throw new DaoException("Database exception during fiend all userEntry", e);
         }
         return sprEntries;
     }
