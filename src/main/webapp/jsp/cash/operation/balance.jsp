@@ -8,51 +8,31 @@
     <br>
     <br>
     <br>
-    <H4>Остатки в кассе </H4>
-        <div class="row">
-            <div class=col-md-1>Код валюты</div>
-            <div class=col-md-2>Получено</div>
-            <div class=col-md-2>Приход</div>
-            <div class=col-md-2>Расход</div>
-            <div class=col-md-2>Сдано</div>
-            <div class=col-md-2>Остаток в кассе</div>
-        </div>
+    <H4><fmt:message key="page.balance.title"/></H4>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th><fmt:message key="page.balance.label.number"/></th>
+            <th><fmt:message key="page.balance.label.received"/></th>
+            <th><fmt:message key="page.balance.label.coming"/></th>
+            <th><fmt:message key="page.balance.label.spending"/></th>
+            <th><fmt:message key="page.balance.label.transmitted"/></th>
+            <th><fmt:message key="page.balance.label.balance"/></th>
+        </tr>
+        </thead>
+        <tbody>
         <c:forEach items="${balanceList}" var="balance">
-            <div class="row">
-
-                <div class="col-md-1">
-                    <input id="currencyId" name="currencyId" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.currencyId}">
-                </div>
-
-                <div class="col-md-2">
-                    <input id="received" name="received" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.received}">
-                </div>
-
-                <div class="col-md-2">
-                    <input id="coming" name="coming" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.coming}">
-                </div>
-
-                <div class="col-md-2">
-                    <input id="spending" name="spending" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.spending}">
-                </div>
-
-                <div class="col-md-2">
-                    <input id="transmitted" name="transmitted" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.transmitted}">
-                </div>
-
-                <div class="col-md-2">
-                    <input id="balance" name="balance" type="text" placeholder="" class="form-control input-md"
-                           required="" value="${balance.balance}">
-                </div>
-
-            </div>
+            <tr>
+                <td><c:out value="${balance.currencyId}"/></td>
+                <td><c:out value="${balance.received}"/></td>
+                <td><c:out value="${balance.coming}"/></td>
+                <td><c:out value="${balance.spending}"/></td>
+                <td><c:out value="${balance.transmitted}"/></td>
+                <td><c:out value="${balance.balance}"/></td>
+            </tr>
         </c:forEach>
-
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
