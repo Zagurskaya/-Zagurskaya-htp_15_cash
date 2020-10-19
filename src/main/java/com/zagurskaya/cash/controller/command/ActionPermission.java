@@ -33,6 +33,18 @@ class ActionPermission {
             actionPermissionMap.put(Action.RATECB.name(), RoleEnum.KASSIR);
             actionPermissionMap.put(Action.RATENB.name(), RoleEnum.KASSIR);
             actionPermissionMap.put(Action.DUTIES.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.BALANCE.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.USEROPERATIONS.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT1000.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT1100.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT1100BALANCE.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT10_01.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT10_02.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT20_01.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT20_02.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(Action.PAYMENT998.name(), RoleEnum.KASSIR);
+
         }
         return instance;
     }

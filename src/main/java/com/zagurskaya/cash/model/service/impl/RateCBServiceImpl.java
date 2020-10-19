@@ -55,7 +55,7 @@ public class RateCBServiceImpl implements RateCBService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateCBDao);
         try {
-            return rateCBDao.create(rateCB);
+            return rateCBDao.create(rateCB) != 0L;
         } catch (RepositoryConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data rateCB ", e);
             throw new ServiceConstraintViolationException("Duplicate data rateCB ", e);

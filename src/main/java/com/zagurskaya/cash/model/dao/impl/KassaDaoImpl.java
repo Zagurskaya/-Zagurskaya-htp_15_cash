@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +22,14 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
 
     private static final Logger logger = LogManager.getLogger(KassaDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_KASSA = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM `kassa`  ORDER BY id LIMIT ? Offset ? ";
-    private static final String SQL_SELECT_KASSA_BY_ID = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM `kassa` WHERE id= ? ";
+    private static final String SQL_SELECT_ALL_KASSA = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM kassa  ORDER BY id LIMIT ? Offset ? ";
+    private static final String SQL_SELECT_KASSA_BY_ID = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM kassa WHERE id= ? ";
+    private static final String SQL_SELECT_KASSA_BY_CURRENCY_ID_DATE_DUTIES = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM kassa WHERE date = ? AND dutiesId = ? AND currencyId = ? ";
+    private static final String SQL_SELECT_KASSA_BY_USER_ID_AND_DUTIES_ID = "SELECT id, currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId FROM kassa WHERE userId = ? AND dutiesId = ? ";
     private static final String SQL_INSERT_KASSA = "INSERT INTO kassa(currencyId, received, coming, spending, transmitted, balance, userId, date, dutiesId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_KASSA = "UPDATE kassa SET currencyId = ?, received = ?, coming = ?,  spending = ?, transmitted = ?, balance = ?, userId = ?, date = ? , dutiesId = ? WHERE id= ?";
     private static final String SQL_DELETE_KASSA = "DELETE FROM kassa WHERE id=?";
-    private static final String SQL_SELECT_COUNT_KASSAS = "SELECT COUNT(id) FROM `kassa`";
+    private static final String SQL_SELECT_COUNT_KASSAS = "SELECT COUNT(id) FROM kassa";
 
     /**
      * Получение списка записей из картотеки kassa начиная с startPosition позиции в количестве <= limit
@@ -129,10 +132,10 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Kassa kassa) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(Kassa kassa) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_KASSA)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_KASSA, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, kassa.getCurrencyId());
                 preparedStatement.setDouble(2, kassa.getReceived());
                 preparedStatement.setDouble(3, kassa.getComing());
@@ -140,9 +143,15 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 preparedStatement.setDouble(5, kassa.getTransmitted());
                 preparedStatement.setDouble(6, kassa.getBalance());
                 preparedStatement.setLong(7, kassa.getUserId());
-                preparedStatement.setDate(8, kassa.getDate());
+                preparedStatement.setString(8, kassa.getDate().toString());
                 preparedStatement.setLong(9, kassa.getDutiesId());
                 result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RepositoryConstraintViolationException("Duplicate data kassa", e);
@@ -150,7 +159,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             logger.log(Level.ERROR, "Database exception during create kassa", e);
             throw new DAOException("Database exception during create kassa", e);
         }
-        return 1 == result;
+        return 0L;
     }
 
     /**
@@ -228,4 +237,81 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return count;
     }
 
+    @Override
+    public Kassa findByCurrencyIdAndDateAndDutiesId(Date date, Long dutiesId, Long currencyId) throws DAOException {
+        Kassa kassa = null;
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_CURRENCY_ID_DATE_DUTIES)) {
+                preparedStatement.setString(1, date.toString());
+                preparedStatement.setLong(2, dutiesId);
+                preparedStatement.setLong(3, currencyId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.KASSA_ID);
+                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
+                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
+                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
+                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
+                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
+                    kassa = new Kassa
+                            .Builder()
+                            .addId(id)
+                            .addСurrencyId(currencyId)
+                            .addReceived(received)
+                            .addСoming(coming)
+                            .addSpending(spending)
+                            .addTransmitted(transmitted)
+                            .addBalance(balance)
+                            .addUserId(userId)
+                            .addData(date)
+                            .addDutiesId(dutiesId)
+                            .build();
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during findByCurrencyIdAndDateAndDutiesNumber", e);
+            throw new DAOException("Database exception during findByCurrencyIdAndDateAndDutiesNumber", e);
+        }
+        return kassa;
+    }
+
+    @Override
+    public List<Kassa> findAllByUserIdAndDutiesId(Long userId, Long dutiesId) throws DAOException {
+        List<Kassa> kassaList = new ArrayList<>();
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_USER_ID_AND_DUTIES_ID)) {
+                preparedStatement.setLong(1, userId);
+                preparedStatement.setLong(2, dutiesId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.KASSA_ID);
+                    Long currencyId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
+                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
+                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
+                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
+                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
+                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    Date date = resultSet.getDate(ColumnName.KASSA_DATE);
+                    Kassa kassa = new Kassa
+                            .Builder()
+                            .addId(id)
+                            .addСurrencyId(currencyId)
+                            .addReceived(received)
+                            .addСoming(coming)
+                            .addSpending(spending)
+                            .addTransmitted(transmitted)
+                            .addBalance(balance)
+                            .addUserId(userId)
+                            .addData(date)
+                            .addDutiesId(dutiesId)
+                            .build();
+                    kassaList.add(kassa);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during find all by userId and dutiesId ", e);
+            throw new DAOException("Database exception during find all by userId and dutiesId ", e);
+        }
+        return kassaList;    }
 }

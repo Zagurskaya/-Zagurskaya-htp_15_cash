@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.util;
 
+import com.sun.javafx.collections.MappingChange;
 import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.constant.PatternConstant;
 import com.zagurskaya.cash.entity.User;
@@ -16,6 +17,10 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DataUtil {
     private static final Logger logger = LogManager.getLogger(DataUtil.class);
@@ -112,11 +117,61 @@ public class DataUtil {
         return Long.parseLong(value);
     }
 
+    public static long[] getLongArray(HttpServletRequest req, String name) {
+        String[] value = req.getParameterValues(name);
+        long[] longs = new long[value.length];
+        for (int i = 0; i < value.length; i++) {
+            longs[i] = Long.parseLong(value[i]);
+        }
+        return longs;
+    }
+
+    public static List<Long> getLongList(HttpServletRequest req, String name) {
+        List<Long> arrList = new ArrayList<>();
+        String[] value = req.getParameterValues(name);
+        for (int i = 0; i < value.length; i++) {
+            arrList.add(Long.parseLong(value[i]));
+        }
+        return arrList;
+    }
+
+    public static double[] getDoubleArray(HttpServletRequest req, String name) {
+        String[] value = req.getParameterValues(name);
+        double[] values = new double[value.length];
+        for (int i = 0; i < value.length; i++) {
+            values[i] = Math.round(Double.parseDouble(value[i]) * 100.0) / 100.0;
+        }
+        return values;
+    }
+
+    public static List<Double> getDoubleList(HttpServletRequest req, String name) {
+        List<Double> arrList = new ArrayList<>();
+        String[] value = req.getParameterValues(name);
+        for (int i = 0; i < value.length; i++) {
+            arrList.add(Math.round(Double.parseDouble(value[i]) * 100.0) / 100.0);
+        }
+        return arrList;
+    }
+
+    public static Map<Long, Double> getMapLongDouble(HttpServletRequest req, String key, String value) {
+        Map<Long, Double> map = new HashMap<>();
+        String[] keys = req.getParameterValues(key);
+        String[] values = req.getParameterValues(value);
+        for (int i = 0; i < keys.length; i++) {
+            map.put(Long.parseLong(keys[i]), Math.round(Double.parseDouble(values[i]) * 100.0) / 100.0);
+        }
+        return map;
+    }
+
     public static String getFormattedLocalDateStartDateTime(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00.000"));
     }
 
     public static String getFormattedLocalDateOnlyDate(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    public static Double round(Double sum) {
+        return Math.round(sum * 100.0) / 100.0;
     }
 }

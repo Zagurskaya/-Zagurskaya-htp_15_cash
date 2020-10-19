@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,15 +110,21 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(User user) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(User user) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, user.getLogin());
                 preparedStatement.setString(2, user.getPassword());
                 preparedStatement.setString(3, user.getFullName());
                 preparedStatement.setString(4, user.getRole().getValue());
                 result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RepositoryConstraintViolationException("Duplicate data user", e);
@@ -125,7 +132,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             logger.log(Level.ERROR, "Database exception during create user", e);
             throw new DAOException("Database exception during create user", e);
         }
-        return 1 == result;
+        return 0L;
     }
 
     /**

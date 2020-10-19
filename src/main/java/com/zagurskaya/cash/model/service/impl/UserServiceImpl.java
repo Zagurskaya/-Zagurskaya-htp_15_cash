@@ -51,12 +51,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    private List<User> findAll(int limit, int startPosition) throws ServiceException {
+//    private List<User> findAllSprOperation(int limit, int startPosition) throws ServiceException {
 //        UserDao userDao = new UserDaoImpl();
 //        EntityTransaction transaction = new EntityTransaction();
 //        transaction.initSingleRequest(userDao);
 //        try {
-//            List<User> users = userDao.findAll(limit, startPosition);
+//            List<User> users = userDao.findAllSprOperation(limit, startPosition);
 ////            transaction.commit();
 //            return users;
 //        } catch (DAOException e) {
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
                         .addFullName(user.getFullName())
                         .addRole(user.getRole())
                         .build();
-                return userDao.create(createUser);
+                return userDao.create(createUser) != 0L;
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new ServiceConstraintViolationException("Duplicate data user's login ");

@@ -19,6 +19,18 @@ import com.zagurskaya.cash.controller.command.impl.cash.MainCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.AllCurrencyCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.RateCBCommand;
 import com.zagurskaya.cash.controller.command.impl.cash.commandCurrency.RateNBCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.BalanceCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.PaymentCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.UserOperationsCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment1000_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment10_01_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment10_02_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment1100BalanceCommand;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment1100_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment20_01_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment20_02_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment998_Command;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.SelectPaymentCommand;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +71,7 @@ public enum Action {
      * Профайл
      */
     PROFILE(new ProfileСommand(PathConstant.PATH_ROOT)),
-//  admin
+//---------------ADMIN---------------------------------
     /**
      * Главная страница администратора
      */
@@ -76,7 +88,7 @@ public enum Action {
      * Изменение пользователя
      */
     UPDATEUSER(new UpdateUserCommand(PathConstant.PATH_ADMIN)),
-//cash
+//---------------CASH---------------------------------------
     /**
      * Главная страница кассира
      */
@@ -86,10 +98,26 @@ public enum Action {
 //    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
 //    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
-    //    CASH / CURRENCY
+//------------------CASH / CURRENCY---------------------------
     ALLCURRENCY(new AllCurrencyCommand(PathConstant.PATH_CASH_CURRENCY)),
     RATECB(new RateCBCommand(PathConstant.PATH_CASH_CURRENCY)),
     RATENB(new RateNBCommand(PathConstant.PATH_CASH_CURRENCY)),
+
+//------------------CASH / OPERATION--------------------------
+    PAYMENT(new PaymentCommand(PathConstant.PATH_CASH_OPERATION)),
+    BALANCE(new BalanceCommand(PathConstant.PATH_CASH_OPERATION)),
+    USEROPERATIONS(new UserOperationsCommand(PathConstant.PATH_CASH_OPERATION)),
+
+//-----------------CASH /OPERATION/PAYMENT---------------------
+    SELECTPAYMENT(new SelectPaymentCommand(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT10_01(new Payment10_01_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT10_02(new Payment10_02_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT20_01(new Payment20_01_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT20_02(new Payment20_02_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT998(new Payment998_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT1000(new Payment1000_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT1100(new Payment1100_Command(PathConstant.PATH_CASH_PAYMENT)),
+    PAYMENT1100BALANCE(new Payment1100BalanceCommand(PathConstant.PATH_CASH_PAYMENT)),
     ;
     /**
      * Команда

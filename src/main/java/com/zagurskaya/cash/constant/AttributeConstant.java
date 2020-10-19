@@ -28,6 +28,11 @@ public class AttributeConstant {
     public static final String RATE_NB = "rateNB";
     public static final String RATE_CB = "rateCB";
     public static final String DUTIES = "duties";
+    public static final String BALANCE ="balanceList";
+    public static final String SPR_OPERATIONS = "sprOperations";
+    public static final String SPR_OPERATION = "sprOperation";
+    public static final String USER_OPERATIONS = "userOperations";
+
     public static final String DUTIES_MESSAGE = "messageDuties";
 
 

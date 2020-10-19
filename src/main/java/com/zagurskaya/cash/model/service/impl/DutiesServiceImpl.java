@@ -64,7 +64,7 @@ public class DutiesServiceImpl implements DutiesService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(dutiesDao);
         try {
-            return dutiesDao.create(duties);
+            return dutiesDao.create(duties) != 0L;
         } catch (RepositoryConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
@@ -213,7 +213,7 @@ public class DutiesServiceImpl implements DutiesService {
                     .addNumber(numberDuties)
                     .addIsClose(false)
                     .build();
-            Long dutiesId = dutiesDao.createAndReturnDutiesId(duties);
+            Long dutiesId = dutiesDao.create(duties);
             List<Currency> currencies = currencyDao.findAll();
             for (Currency currencyElement : currencies) {
                 Kassa newKassa = new Kassa

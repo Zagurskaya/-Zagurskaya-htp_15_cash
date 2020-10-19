@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,16 +114,22 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(RateCB rateCB) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(RateCB rateCB) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATECB)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATECB, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, rateCB.getComing());
                 preparedStatement.setLong(2, rateCB.getSpending());
                 preparedStatement.setTimestamp(3, rateCB.getTimestamp());
                 preparedStatement.setDouble(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
                 result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RepositoryConstraintViolationException("Duplicate data rateCB", e);
@@ -130,7 +137,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
             logger.log(Level.ERROR, "Database exception during create rateCB", e);
             throw new DAOException("Database exception during create rateCB", e);
         }
-        return 1 == result;
+        return 0L;
     }
 
     /**

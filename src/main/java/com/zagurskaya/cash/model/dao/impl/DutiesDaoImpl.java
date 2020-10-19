@@ -113,15 +113,21 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Duties duties) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(Duties duties) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, duties.getUserId());
                 preparedStatement.setTimestamp(2, duties.getTimestamp());
                 preparedStatement.setInt(3, duties.getNumber());
                 preparedStatement.setBoolean(4, duties.getIsClose());
                 result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RepositoryConstraintViolationException("Duplicate data duties", e);
@@ -129,7 +135,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             logger.log(Level.ERROR, "Database exception during create duties", e);
             throw new DAOException("Database exception during create duties", e);
         }
-        return 1 == result;
+        return 0L;
     }
 
     /**

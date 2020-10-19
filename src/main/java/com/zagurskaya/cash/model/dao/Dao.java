@@ -30,7 +30,7 @@ public interface Dao<T> {
      * @param t - объект
      * @return true при успешном создании
      */
-    boolean create(T t) throws RepositoryConstraintViolationException, DAOException;
+    Long create(T t) throws RepositoryConstraintViolationException, DAOException;
 
     /**
      * Изменение объекта

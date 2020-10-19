@@ -55,7 +55,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);
         try {
-            return currencyDao.create(currency);
+            return currencyDao.create(currency) != 0L;
         } catch (RepositoryConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data currency ", e);
             throw new ServiceConstraintViolationException("Duplicate data currency ", e);

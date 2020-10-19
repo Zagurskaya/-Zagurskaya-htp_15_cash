@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,15 +106,21 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Currency currency) throws DAOException, RepositoryConstraintViolationException {
+    public Long create(Currency currency) throws DAOException, RepositoryConstraintViolationException {
         int result;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_CURRENCY)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_CURRENCY, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, currency.getId());
                 preparedStatement.setString(2, currency.getIso());
                 preparedStatement.setString(3, currency.getNameRU());
                 preparedStatement.setString(4, currency.getNameEN());
                 result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
             }
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new RepositoryConstraintViolationException("Duplicate data currency", e);
@@ -121,7 +128,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
             logger.log(Level.ERROR, "Database exception during create currency", e);
             throw new DAOException("Database exception during create currency", e);
         }
-        return 1 == result;
+        return 0L;
     }
 
     /**

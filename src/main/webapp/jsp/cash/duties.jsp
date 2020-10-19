@@ -6,7 +6,6 @@
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
     <br>
-    <%--    <H4> ${messageDuties}</H4>--%>
     <H4><c:choose>
         <c:when test="${'201' == messageDuties.substring(0,3)}">
             <p><span style="color:#1c28ff">
