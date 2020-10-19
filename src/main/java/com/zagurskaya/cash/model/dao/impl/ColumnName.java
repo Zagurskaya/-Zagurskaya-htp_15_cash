@@ -68,7 +68,8 @@ public class ColumnName {
      * Картотека 'sproperation'
      */
     public static final String SPR_OPERATION_ID = "id";
-    public static final String SPR_OPERATION_NAME = "name";
+    public static final String SPR_OPERATION_NAME_RU = "nameRU";
+    public static final String SPR_OPERATION_NAME_EN = "nameEN";
     public static final String SPR_OPERATION_SPECIFICATION = "specification";
 
     /**

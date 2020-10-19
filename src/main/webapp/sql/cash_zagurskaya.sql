@@ -166,7 +166,8 @@ COMMIT;
 CREATE TABLE IF NOT EXISTS `zagurskaya`.`sprOperation`
 (
     `id`            INT          NOT NULL,
-    `name`          VARCHAR(100) NULL,
+    `nameRU`          VARCHAR(100) NULL,
+    `nameEN`          VARCHAR(100) NULL,
     `specification` VARCHAR(100) NULL,
     PRIMARY KEY (`id`)
 )
@@ -194,16 +195,16 @@ CREATE TABLE IF NOT EXISTS `zagurskaya`.`sprEntry`
 
 START TRANSACTION;
 USE `zagurskaya`;
-INSERT INTO `zagurskaya`.`sprOperation` (`id`, `name`, `specification`)
-VALUES (1000, 'Подкрепление', '');
-INSERT INTO `zagurskaya`.`sprOperation` (`id`, `name`, `specification`)
-VALUES (10, 'Покупка валюты', '');
-INSERT INTO `zagurskaya`.`sprOperation` (`id`, `name`, `specification`)
-VALUES (20, 'Продажа валюты', '');
-INSERT INTO `zagurskaya`.`sprOperation` (`id`, `name`, `specification`)
-VALUES (998, 'Коммунальный платеж', '');
-INSERT INTO `zagurskaya`.`sprOperation` (`id`, `name`, `specification`)
-VALUES (1100, 'Инкассация', '');
+INSERT INTO `zagurskaya`.`sprOperation` (`id`, `nameRU`, `nameEN`, `specification`)
+VALUES (1000, 'Подкрепление', 'Coming','');
+INSERT INTO `zagurskaya`.`sprOperation` (`id`, `nameRU`, `nameEN`,`specification`)
+VALUES (10, 'Покупка валюты','Buying currency', '');
+INSERT INTO `zagurskaya`.`sprOperation` (`id`, `nameRU`, `nameEN`,`specification`)
+VALUES (20, 'Продажа валюты', 'Selling currency','');
+INSERT INTO `zagurskaya`.`sprOperation` (`id`, `nameRU`, `nameEN`, `specification`)
+VALUES (998, 'Коммунальный платеж', 'Communal payment' ,'');
+INSERT INTO `zagurskaya`.`sprOperation` (`id`, `nameRU`, `nameEN`,`specification`)
+VALUES (1100, 'Инкассация', 'Spending','');
 
 COMMIT;
 

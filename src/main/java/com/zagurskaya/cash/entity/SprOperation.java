@@ -9,9 +9,13 @@ public class SprOperation {
      */
     private Long id;
     /**
-     * Наименование
+     * Наименование на русском языке
      */
-    private String name;
+    private String nameRU;
+    /**
+     * Наименование на английском языке
+     */
+    private String nameEN;
     /**
      * Спецификация
      */
@@ -27,12 +31,20 @@ public class SprOperation {
     }
 
     /**
-     * Получение значения поля {@link SprOperation#name}
+     * Получение значения поля {@link SprOperation#nameRU}
      *
-     * @return наименование
+     * @return наименование на русском языке
      */
-    public String getName() {
-        return name;
+    public String getNameRU() {
+        return nameRU;
+    }
+    /**
+     * Получение значения поля {@link SprOperation#nameEN}
+     *
+     * @return наименование на английском языке
+     */
+    public String getNameEN() {
+        return nameEN;
     }
 
     /**
@@ -50,8 +62,10 @@ public class SprOperation {
         sb.append("SprOperation{")
                 .append("id=")
                 .append(id)
-                .append(", name=")
-                .append(name)
+                .append(", nameRU=")
+                .append(nameRU)
+                .append(", nameEN=")
+                .append(nameEN)
                 .append(", specification=")
                 .append(specification)
                 .append("}");
@@ -83,13 +97,23 @@ public class SprOperation {
         }
 
         /**
-         * Определение наименования операции {@link SprOperation#name}
+         * Определение наименования операции RU {@link SprOperation#nameRU}
          *
-         * @param name - наименование операции
+         * @param nameRU - наименование операции RU
          * @return Builder
          */
-        public Builder addName(String name) {
-            newSprOperation.name = name;
+        public Builder addNameRU(String nameRU) {
+            newSprOperation.nameRU = nameRU;
+            return this;
+        }
+        /**
+         * Определение наименования операции EN{@link SprOperation#nameEN}
+         *
+         * @param nameEN - наименование операции EN
+         * @return Builder
+         */
+        public Builder addNameEN(String nameEN) {
+            newSprOperation.nameEN = nameEN;
             return this;
         }
 

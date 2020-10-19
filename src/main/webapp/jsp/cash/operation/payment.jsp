@@ -7,17 +7,22 @@
     <br>
     <br>
     <br>
-     <H4 style="color:#ff0000">${message}</H4>
+    <H4 style="color:#ff0000">${message}</H4>
     <br>
     <br>
-     <form class="form-horizontal" action="do?command=Payment" method="post">
+    <form class="form-horizontal" action="do?command=Payment" method="post">
         <fieldset>
-        <legend>Выберите операцию </legend>
-        <br>
+            <legend><fmt:message key="page.payment.label.select"/></legend>
+            <br>
             <div class="col-md-4">
                 <select id="SprOperationsId" name="SprOperationsId" class="form-control">
                     <c:forEach items="${sprOperations}" var="sprOperation">
-                    <option value="${sprOperation.id}" >${sprOperation.name}</option>
+                        <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">
+                            <option value="${sprOperation.id}">${sprOperation.nameRU}</option>
+                        </c:if>
+                        <c:if test="${cookie.local.value=='en'}">
+                            <option value="${sprOperation.id}">${sprOperation.nameEN}</option>
+                        </c:if>
                     </c:forEach>
                 </select>
             </div>
@@ -27,11 +32,13 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="enterButton"></label>
                 <div class="col-md-4">
-                    <button id="enterButton" name="enterButton" class="btn btn-primary">Вперед</button>
+                    <button id="enterButton" name="enterButton" class="btn btn-primary">
+                        <fmt:message key="page.payment.button.forward"/>
+                    </button>
                 </div>
             </div>
         </fieldset>
-     </form>
+    </form>
 </div>
 </body>
 </html>
