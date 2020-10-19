@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +19,7 @@ public class CurrencyCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
-        return Action.CURRENCY;
+    public ActionType execute(HttpServletRequest request) {
+        return ActionType.CURRENCY;
     }
 }

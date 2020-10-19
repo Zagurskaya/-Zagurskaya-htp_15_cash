@@ -7,7 +7,7 @@
     <br>
     <%@ include file="../include/errormessage.jsp" %>
     <br>
-    <form class="form-horizontal" action="do?command=Login" method="post">
+    <form class="form-horizontal" actionType="do?command=Login" method="post">
         <fieldset>
             <legend><fmt:message key="page.login.label.description"/></legend>
 

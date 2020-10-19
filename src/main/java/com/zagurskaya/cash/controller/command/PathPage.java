@@ -1,9 +1,9 @@
-package com.zagurskaya.cash.controller.command.impl;
+package com.zagurskaya.cash.controller.command;
 
 /**
  * Путь действий.
  */
-public class PathConstant {
+public class PathPage {
     public static final String PATH_INDEX = "";
     public static final String PATH_ROOT = "/jsp/";
     public static final String PATH_ERROR = "/jsp/errors/";
@@ -13,6 +13,6 @@ public class PathConstant {
     public static final String PATH_CASH_OPERATION = "/jsp/cash/operation/";
     public static final String PATH_CASH_PAYMENT = "/jsp/cash/operation/payment/";
 
-    private PathConstant() {
+    private PathPage() {
     }
 }

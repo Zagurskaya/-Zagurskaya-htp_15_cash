@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +21,12 @@ public class LogoutСommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
 
         session.removeAttribute(AttributeName.USER);
-        return Action.LOGIN;
+        return ActionType.LOGIN;
     }
 }

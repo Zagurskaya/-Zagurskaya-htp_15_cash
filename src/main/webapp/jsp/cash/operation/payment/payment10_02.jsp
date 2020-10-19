@@ -6,7 +6,7 @@
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
     <H4>Покупка валюты</H4>
-    <form class="form-horizontal" action="do?command=Payment10_02" method="post">
+    <form class="form-horizontal" actionType="do?command=Payment10_02" method="post">
         <fieldset>
         <br>
         <div class="row">

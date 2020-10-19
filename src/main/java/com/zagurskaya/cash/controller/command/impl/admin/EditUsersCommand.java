@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.UserService;
@@ -34,13 +34,13 @@ public class EditUsersCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
 
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
-            if (action == Action.EDITUSERS) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
+            if (actionType == ActionType.EDITUSERS) {
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     Long id = DataUtil.getLong(request, AttributeName.ID);
 
@@ -48,7 +48,7 @@ public class EditUsersCommand extends AbstractСommand {
                         if (DataValidation.isUpdateOperation(request)) {
                             if (userService.findById(id) != null) {
                                 session.setAttribute(AttributeName.ID, id);
-                                return Action.UPDATEUSER;
+                                return ActionType.UPDATEUSER;
                             }
                         } else if (DataValidation.isDeleteOperation(request)) {
                             User deleteUser = userService.findById(id);
@@ -61,7 +61,7 @@ public class EditUsersCommand extends AbstractСommand {
                     } catch (ServiceException e) {
                         session.setAttribute(AttributeName.ERROR, e);
                         logger.log(Level.ERROR, e);
-                        return Action.ERROR;
+                        return ActionType.ERROR;
                     }
                 }
 
@@ -75,14 +75,14 @@ public class EditUsersCommand extends AbstractСommand {
                 request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
                 request.setAttribute(AttributeName.CURRENT_PAGE, page);
                 request.setAttribute(AttributeName.USERS, users);
-                return Action.EDITUSERS;
+                return ActionType.EDITUSERS;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

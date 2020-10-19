@@ -51,7 +51,7 @@
     </table>
     <br>
     <br>
-    <form class="form-horizontal" action="do?command=Duties" method="post">
+    <form class="form-horizontal" actionType="do?command=Duties" method="post">
         <fieldset>
             <div class="form-group">
                 <div class="col-md-8">

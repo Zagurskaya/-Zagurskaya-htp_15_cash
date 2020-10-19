@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -41,17 +41,17 @@ public class CreateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
+    public ActionType execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
 
-        Action action = actionAfterValidationUserAndPermission(request, Action.CREATEUSER);
-        if (action == Action.CREATEUSER) {
+        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.CREATEUSER);
+        if (actionType == ActionType.CREATEUSER) {
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
                 if (DataValidation.isCancelOperation(request)) {
-                    return Action.EDITUSERS;
+                    return ActionType.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
@@ -75,11 +75,11 @@ public class CreateUserCommand extends AbstractСommand {
                             userService.create(newUser);
                             logger.log(Level.INFO, "Add new user " + newUser.getLogin());
                             session.setAttribute(AttributeName.MESSAGE, "107 " + newUser.getLogin());
-                            return Action.EDITUSERS;
+                            return ActionType.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeName.ERROR, e);
                             logger.log(Level.ERROR, e);
-                            return Action.ERROR;
+                            return ActionType.ERROR;
                         }
                     }
                 }
@@ -87,9 +87,9 @@ public class CreateUserCommand extends AbstractСommand {
 
             final User newUser = new User();
             request.setAttribute(AttributeName.USER, newUser);
-            return Action.CREATEUSER;
+            return ActionType.CREATEUSER;
         } else {
-            return action;
+            return actionType;
         }
     }
 }

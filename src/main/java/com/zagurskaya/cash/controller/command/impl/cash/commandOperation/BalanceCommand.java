@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
@@ -33,29 +33,29 @@ public class BalanceCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.BALANCE);
-            if (action == Action.BALANCE) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.BALANCE);
+            if (actionType == ActionType.BALANCE) {
                 User user = RequestDataUtil.findUser(request);
                 Duties duties = dutiesService.openDutiesUserToday(user, today);
                 if (duties == null) {
-                    return Action.DUTIES;
+                    return ActionType.DUTIES;
                 }
                 List<Kassa> balanceList = kassaService.getBallance(user, duties);
                 request.setAttribute(AttributeName.BALANCE, balanceList);
-                return Action.BALANCE;
+                return ActionType.BALANCE;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

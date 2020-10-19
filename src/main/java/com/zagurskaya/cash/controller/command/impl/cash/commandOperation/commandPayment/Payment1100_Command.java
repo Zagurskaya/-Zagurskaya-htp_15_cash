@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
@@ -38,7 +38,7 @@ public class Payment1100_Command extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
 //        User user = Util.findUser(req);
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -103,11 +103,11 @@ public class Payment1100_Command extends AbstractСommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.PAYMENT1100);
-            if (action == Action.PAYMENT1100) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT1100);
+            if (actionType == ActionType.PAYMENT1100) {
                 User user = RequestDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return Action.DUTIES;
+                    return ActionType.DUTIES;
                 }
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
@@ -115,14 +115,14 @@ public class Payment1100_Command extends AbstractСommand {
 
                 List<Currency> currencies = currencyService.findAll();
                 request.setAttribute(AttributeName.CURRENCIES, currencies);
-                return Action.PAYMENT1100;
+                return ActionType.PAYMENT1100;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

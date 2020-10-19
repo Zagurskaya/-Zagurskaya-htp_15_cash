@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,12 +20,12 @@ public class MainCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
 
-        Action action = actionAfterValidationUserAndPermission(request, Action.MAIN);
-        return action;
+        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.MAIN);
+        return actionType;
     }
 }

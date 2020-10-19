@@ -6,7 +6,7 @@
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
     <H4>Коммунальный платеж</H4>
-    <form class="form-horizontal" action="do?command=Payment998" method="post">
+    <form class="form-horizontal" actionType="do?command=Payment998" method="post">
         <fieldset>
         <br>
         <p>Расчетный счет получателя:</p>

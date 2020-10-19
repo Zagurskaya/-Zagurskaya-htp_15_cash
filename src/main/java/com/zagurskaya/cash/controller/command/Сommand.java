@@ -23,5 +23,5 @@ public interface Сommand {
      * @param request - запрос
      * @return следующее действие
      */
-    Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceException, ServiceConstraintViolationException;
+    ActionType execute(HttpServletRequest request) throws SiteDataValidationException, ServiceException, ServiceConstraintViolationException;
 }

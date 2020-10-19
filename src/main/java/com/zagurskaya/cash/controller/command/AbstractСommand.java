@@ -36,22 +36,22 @@ public abstract class AbstractСommand implements Сommand {
      * @param request - запрос
      * @return действие
      */
-    protected Action actionAfterValidationUserAndPermission(HttpServletRequest request, Action action) {
+    protected ActionType actionAfterValidationUserAndPermission(HttpServletRequest request, ActionType actionType) {
         final HttpSession session = request.getSession(false);
-        RoleEnum actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(action.name());
+        RoleEnum actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
 
         User user = RequestDataUtil.findUser(request);
         if (user == null) {
             session.setAttribute(AttributeName.ERROR, "104 ");
             logger.log(Level.ERROR, "null user");
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
         if (user.getRole() != actionPermission) {
             session.setAttribute(AttributeName.ERROR, "103 ");
             logger.log(Level.ERROR, "permission denied ");
-            return Action.INDEX;
+            return ActionType.INDEX;
         }
-        return action;
+        return actionType;
     }
 
 }

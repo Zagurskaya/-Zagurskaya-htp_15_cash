@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
@@ -37,18 +37,18 @@ public class UserOperationsCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.USEROPERATIONS);
-            if (action == Action.USEROPERATIONS) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.USEROPERATIONS);
+            if (actionType == ActionType.USEROPERATIONS) {
                 User user = RequestDataUtil.findUser(request);
                 Duties duties = dutiesService.openDutiesUserToday(user, today);
                 if (duties == null) {
-                    return Action.DUTIES;
+                    return ActionType.DUTIES;
                 }
                 int page = 1;
                 if (request.getParameter(AttributeName.PAGE) != null)
@@ -65,14 +65,14 @@ public class UserOperationsCommand extends AbstractСommand {
                 request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
                 request.setAttribute(AttributeName.CURRENT_PAGE, page);
 
-                return Action.USEROPERATIONS;
+                return ActionType.USEROPERATIONS;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

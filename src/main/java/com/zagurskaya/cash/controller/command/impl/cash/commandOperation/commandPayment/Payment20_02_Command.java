@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,7 @@ public class Payment20_02_Command extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest req) {
+    public ActionType execute(HttpServletRequest req) {
 //        HttpSession session = req.getSession(false);
 //        Long currencyIdSession = (Long) session.getAttribute("currencyId");
 //        req.setAttribute("currencyId", currencyIdSession);
@@ -77,6 +77,6 @@ public class Payment20_02_Command extends AbstractСommand {
 //            return Action.CHECK20;
 //        }
 //        Action.PAYMENT20_02.setPATH("/cash/operation/payment/");
-        return Action.PAYMENT20_02;
+        return ActionType.PAYMENT20_02;
     }
 }

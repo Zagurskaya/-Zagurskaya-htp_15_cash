@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.SiteDataValidationException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -41,22 +41,22 @@ public class FrontController extends HttpServlet {
         HttpSession session = request.getSession(false);
 
         request.setAttribute(AttributeName.RESPONSE, response);
-        Action currentAction = Action.define(request);
+        ActionType currentActionType = ActionType.define(request);
         try {
-            Action nextAction = currentAction.command.execute(request);
-            Action previousAction = currentAction;
-            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousAction);
-            if (nextAction == currentAction) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
+            ActionType nextActionType = currentActionType.command.execute(request);
+            ActionType previousActionType = currentActionType;
+            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousActionType);
+            if (nextActionType == currentActionType) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
                 requestDispatcher.forward(request, response);
             } else {
-                response.sendRedirect("do?command=" + nextAction.name().toLowerCase());
+                response.sendRedirect("do?command=" + nextActionType.name().toLowerCase());
             }
         } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
             String error = e.getMessage();
             request.setAttribute(AttributeName.ERROR, error);
             logger.log(Level.ERROR, error, e);
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentAction.getJsp());
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
             requestDispatcher.forward(request, response);
         } catch (Exception e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);

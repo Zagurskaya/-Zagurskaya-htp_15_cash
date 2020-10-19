@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -36,14 +36,14 @@ public class RateCBCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
 
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
 
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.RATECB);
-            if (action == Action.RATECB) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.RATECB);
+            if (actionType == ActionType.RATECB) {
 
                 int page = 1;
                 if (request.getParameter(AttributeName.PAGE) != null)
@@ -59,14 +59,14 @@ public class RateCBCommand extends AbstractСommand {
                 request.setAttribute(AttributeName.RATE_CB, ratesCB);
                 request.setAttribute(AttributeName.CURRENCIES, currencyList);
 
-                return Action.RATECB;
+                return ActionType.RATECB;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +16,7 @@ public class Payment1100BalanceCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest req)  {
+    public ActionType execute(HttpServletRequest req)  {
 //        User user = Util.findUser(req);
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -70,6 +70,6 @@ public class Payment1100BalanceCommand extends AbstractСommand {
 //            }
 //        }
 //        Action.PAYMENT1100BALANCE.setPATH("/cash/operation/payment/");
-        return Action.PAYMENT1100BALANCE;
+        return ActionType.PAYMENT1100BALANCE;
     }
 }

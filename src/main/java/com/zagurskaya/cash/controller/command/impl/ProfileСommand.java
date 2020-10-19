@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.controller.command.AttributeName;
@@ -24,7 +24,7 @@ public class ProfileСommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
@@ -37,11 +37,11 @@ public class ProfileСommand extends AbstractСommand {
                 RequestDataUtil.deleteCookie(request, AttributeName.ROLE);
                 request.getSession().removeAttribute(AttributeName.USER);
                 request.getSession().invalidate();
-                return Action.INDEX;
+                return ActionType.INDEX;
             }
-            return Action.PROFILE;
+            return ActionType.PROFILE;
         } else {
-            return Action.LOGIN;
+            return ActionType.LOGIN;
         }
     }
 }

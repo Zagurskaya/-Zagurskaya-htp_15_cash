@@ -10,7 +10,7 @@
     <H4 style="color:#ff0000">${message}</H4>
     <br>
     <br>
-    <form class="form-horizontal" action="do?command=Payment" method="post">
+    <form class="form-horizontal" actionType="do?command=Payment" method="post">
         <fieldset>
             <legend><fmt:message key="page.payment.label.select"/></legend>
             <br>

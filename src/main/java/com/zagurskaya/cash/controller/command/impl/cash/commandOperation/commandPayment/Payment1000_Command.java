@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
@@ -44,40 +44,40 @@ public class Payment1000_Command extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.PAYMENT1000);
-            if (action == Action.PAYMENT1000) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT1000);
+            if (actionType == ActionType.PAYMENT1000) {
                 User user = RequestDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return Action.DUTIES;
+                    return ActionType.DUTIES;
                 }
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     Map<Long, Double> values = RequestDataUtil.getMapLongDouble(request, "id", "sum");
                     String specification = RequestDataUtil.getString(request, "specification");
 
                     if (values.isEmpty()) {
-                        return Action.PAYMENT;
+                        return ActionType.PAYMENT;
                     }
                     paymentService.implementPayment1000(values, specification, user);
                     //todo change to check
-                    return Action.PAYMENT;
+                    return ActionType.PAYMENT;
                 }
 
                 List<Currency> currencies = currencyService.findAll();
                 request.setAttribute(AttributeName.CURRENCIES, currencies);
-                return Action.PAYMENT1000;
+                return ActionType.PAYMENT1000;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | NumberFormatException | SiteDataValidationException | ServiceConstraintViolationException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 }

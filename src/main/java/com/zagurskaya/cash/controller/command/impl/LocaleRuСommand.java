@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 
@@ -23,13 +23,13 @@ public class LocaleRuСommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
-        Action previousAction = (Action) session.getAttribute(AttributeName.PREVIOUS_ACTION);
-        Action action = previousAction == null ? Action.INDEX : previousAction;
+        ActionType previousActionType = (ActionType) session.getAttribute(AttributeName.PREVIOUS_ACTION);
+        ActionType actionType = previousActionType == null ? ActionType.INDEX : previousActionType;
 
         Cookie localEnCookie = new Cookie(AttributeName.LOCAL, "ru");
         RequestDataUtil.setCookie(request, localEnCookie);
-        return action;
+        return actionType;
     }
 }

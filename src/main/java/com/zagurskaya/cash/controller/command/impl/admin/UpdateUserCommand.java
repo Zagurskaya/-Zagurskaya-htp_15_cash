@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -37,21 +37,21 @@ public class UpdateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
+    public ActionType execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
         final Long id = (Long) session.getAttribute(AttributeName.ID);
-        if (id == null) return Action.INDEX;
+        if (id == null) return ActionType.INDEX;
         session.removeAttribute("message");
         session.removeAttribute("error");
 
-        Action action = actionAfterValidationUserAndPermission(request, Action.EDITUSERS);
-        if (action == Action.EDITUSERS) {
+        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
+        if (actionType == ActionType.EDITUSERS) {
 
 
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
                 if (DataValidation.isCancelOperation(request)) {
-                    return Action.EDITUSERS;
+                    return ActionType.EDITUSERS;
 
                 } else if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
@@ -74,33 +74,33 @@ public class UpdateUserCommand extends AbstractСommand {
                             userService.update(updateUser);
                             logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
                             session.setAttribute(AttributeName.MESSAGE, "105 " + updatedUser.getLogin());
-                            return Action.EDITUSERS;
+                            return ActionType.EDITUSERS;
                         } catch (ServiceException e) {
                             session.setAttribute(AttributeName.ERROR, e);
                             logger.log(Level.ERROR, e);
-                            return Action.ERROR;
+                            return ActionType.ERROR;
                         }
                     }
                 }
             }
 
-            Action returnAction;
+            ActionType returnActionType;
             try {
                 User updatedUser = userService.findById(id);
                 if (updatedUser != null) {
                     request.setAttribute(AttributeName.USER, updatedUser);
-                    returnAction = Action.UPDATEUSER;
+                    returnActionType = ActionType.UPDATEUSER;
                 } else {
                     logger.log(Level.ERROR, "null user");
-                    returnAction = Action.ERROR;
+                    returnActionType = ActionType.ERROR;
                 }
             } catch (ServiceException e) {
                 logger.log(Level.ERROR, e);
-                returnAction = Action.ERROR;
+                returnActionType = ActionType.ERROR;
             }
-            return returnAction;
+            return returnActionType;
         } else {
-            return action;
+            return actionType;
         }
     }
 }

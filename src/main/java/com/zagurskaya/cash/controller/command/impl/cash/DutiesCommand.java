@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.cash;
 
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
@@ -33,14 +33,14 @@ public class DutiesCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.DUTIES);
-            if (action == Action.DUTIES) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.DUTIES);
+            if (actionType == ActionType.DUTIES) {
                 User user = RequestDataUtil.findUser(request);
 
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
@@ -49,22 +49,22 @@ public class DutiesCommand extends AbstractСommand {
                             dutiesService.openNewDuties(user);
                         }
                         setAttributeToRequest(request, user);
-                        return Action.DUTIES;
+                        return ActionType.DUTIES;
                     } else if (DataValidation.isCloseOperation(request)) {
                         dutiesService.closeOpenDutiesUserToday(user);
                         setAttributeToRequest(request, user);
-                        return Action.DUTIES;
+                        return ActionType.DUTIES;
                     }
                 }
                 setAttributeToRequest(request, user);
-                return Action.DUTIES;
+                return ActionType.DUTIES;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | ServiceConstraintViolationException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 

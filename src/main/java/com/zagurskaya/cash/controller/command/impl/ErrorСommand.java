@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +21,11 @@ public class ErrorСommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
 
         request.setAttribute(AttributeName.ERROR, session.getAttribute(AttributeName.ERROR));
         session.removeAttribute(AttributeName.ERROR);
-        return Action.ERROR;
+        return ActionType.ERROR;
     }
 }

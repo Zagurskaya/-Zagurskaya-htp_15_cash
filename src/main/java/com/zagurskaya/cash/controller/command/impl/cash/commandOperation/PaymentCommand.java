@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
+import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
@@ -33,17 +33,17 @@ public class PaymentCommand extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            Action action = actionAfterValidationUserAndPermission(request, Action.PAYMENT);
-            if (action == Action.PAYMENT) {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT);
+            if (actionType == ActionType.PAYMENT) {
                 User user = RequestDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return Action.DUTIES;
+                    return ActionType.DUTIES;
                 }
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     Long sprOperationsId = DataUtil.getLong(request, SPR_OPERATION_ID);
@@ -55,30 +55,30 @@ public class PaymentCommand extends AbstractСommand {
                         }
                         switch (sprOperationsId.toString()) {
                             case "10":
-                                return Action.PAYMENT10_01;
+                                return ActionType.PAYMENT10_01;
                             case "20":
-                                return Action.PAYMENT20_01;
+                                return ActionType.PAYMENT20_01;
                             case "998":
-                                return Action.PAYMENT998;
+                                return ActionType.PAYMENT998;
                             case "1000":
-                                return Action.PAYMENT1000;
+                                return ActionType.PAYMENT1000;
                             case "1100":
-                                return Action.PAYMENT1100;
+                                return ActionType.PAYMENT1100;
                             default:
-                                return Action.PAYMENT;
+                                return ActionType.PAYMENT;
                         }
                     }
                 }
                 List<SprOperation> sprOperations = paymentService.findAllSprOperation();
                 request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperations);
-                return Action.PAYMENT;
+                return ActionType.PAYMENT;
             } else {
-                return action;
+                return actionType;
             }
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            return Action.ERROR;
+            return ActionType.ERROR;
         }
     }
 

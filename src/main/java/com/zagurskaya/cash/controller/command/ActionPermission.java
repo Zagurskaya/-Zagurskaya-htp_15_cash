@@ -23,27 +23,27 @@ class ActionPermission {
         if (instance == null) {
             instance = new ActionPermission();
 //            admin
-            actionPermissionMap.put(Action.ADMIN.name(), RoleEnum.ADMIN);
-            actionPermissionMap.put(Action.EDITUSERS.name(), RoleEnum.ADMIN);
-            actionPermissionMap.put(Action.CREATEUSER.name(), RoleEnum.ADMIN);
-            actionPermissionMap.put(Action.UPDATEUSER.name(), RoleEnum.ADMIN);
+            actionPermissionMap.put(ActionType.ADMIN.name(), RoleEnum.ADMIN);
+            actionPermissionMap.put(ActionType.EDITUSERS.name(), RoleEnum.ADMIN);
+            actionPermissionMap.put(ActionType.CREATEUSER.name(), RoleEnum.ADMIN);
+            actionPermissionMap.put(ActionType.UPDATEUSER.name(), RoleEnum.ADMIN);
 //            kassir
-            actionPermissionMap.put(Action.MAIN.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.ALLCURRENCY.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.RATECB.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.RATENB.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.DUTIES.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.BALANCE.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.USEROPERATIONS.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT1000.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT1100.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT1100BALANCE.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT10_01.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT10_02.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT20_01.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT20_02.name(), RoleEnum.KASSIR);
-            actionPermissionMap.put(Action.PAYMENT998.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.MAIN.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.ALLCURRENCY.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.RATECB.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.RATENB.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.DUTIES.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.BALANCE.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.USEROPERATIONS.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT1000.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT1100.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT1100BALANCE.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT10_01.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT10_02.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT20_01.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT20_02.name(), RoleEnum.KASSIR);
+            actionPermissionMap.put(ActionType.PAYMENT998.name(), RoleEnum.KASSIR);
 
         }
         return instance;

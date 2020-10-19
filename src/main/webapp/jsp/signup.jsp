@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
-    <form class="form-horizontal" action="do?command=Signup" method="post">
+    <form class="form-horizontal" actionType="do?command=Signup" method="post">
         <fieldset>
 
             <!-- Form Name -->

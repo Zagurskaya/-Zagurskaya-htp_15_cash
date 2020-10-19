@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <c:forEach items="${users}" var="user">
-            <form class="form-horizontal-${user.id}" action="do?command=EditUsers" method="post">
+            <form class="form-horizontal-${user.id}" actionType="do?command=EditUsers" method="post">
                 <tr>
                     <input id="id" name="id" type="hidden" readonly placeholder="" class="form-control input-md"
                            required="" value="${user.id}">

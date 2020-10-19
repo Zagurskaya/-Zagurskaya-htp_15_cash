@@ -6,7 +6,6 @@ import com.zagurskaya.cash.controller.command.impl.LocaleEnСommand;
 import com.zagurskaya.cash.controller.command.impl.LocaleRuСommand;
 import com.zagurskaya.cash.controller.command.impl.LoginСommand;
 import com.zagurskaya.cash.controller.command.impl.LogoutСommand;
-import com.zagurskaya.cash.controller.command.impl.PathConstant;
 import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
 import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
@@ -40,83 +39,83 @@ import javax.servlet.http.HttpSession;
 /**
  * Перечень действий
  */
-public enum Action {
+public enum ActionType {
 //  root
     /**
      * Стартовая страница
      */
-    INDEX(new IndexСommand(PathConstant.PATH_INDEX)),
+    INDEX(new IndexСommand(PathPage.PATH_INDEX)),
     /**
      * Ошибки
      */
-    ERROR(new ErrorСommand(PathConstant.PATH_ERROR)),
+    ERROR(new ErrorСommand(PathPage.PATH_ERROR)),
     /**
      * Регистрация
      */
-    LOGIN(new LoginСommand(PathConstant.PATH_ROOT)),
+    LOGIN(new LoginСommand(PathPage.PATH_ROOT)),
     /**
      * Конец сеанса
      */
-    LOGOUT(new LogoutСommand(PathConstant.PATH_ROOT)),
+    LOGOUT(new LogoutСommand(PathPage.PATH_ROOT)),
     /**
      * Смена локализации на RU
      */
-    LOCALRU(new LocaleRuСommand(PathConstant.PATH_ROOT)),
+    LOCALRU(new LocaleRuСommand(PathPage.PATH_ROOT)),
     /**
      * Смена локализации на EN
      */
-    LOCALEN(new LocaleEnСommand(PathConstant.PATH_ROOT)),
+    LOCALEN(new LocaleEnСommand(PathPage.PATH_ROOT)),
     /**
      * Профайл
      */
-    PROFILE(new ProfileСommand(PathConstant.PATH_ROOT)),
+    PROFILE(new ProfileСommand(PathPage.PATH_ROOT)),
 //---------------ADMIN---------------------------------
     /**
      * Главная страница администратора
      */
-    ADMIN(new AdminCommand(PathConstant.PATH_ADMIN)),
+    ADMIN(new AdminCommand(PathPage.PATH_ADMIN)),
     /**
      * Просмотр и удаление пользователей
      */
-    EDITUSERS(new EditUsersCommand(PathConstant.PATH_ADMIN)),
+    EDITUSERS(new EditUsersCommand(PathPage.PATH_ADMIN)),
     /**
      * Создание нового пользователя
      */
-    CREATEUSER(new CreateUserCommand(PathConstant.PATH_ADMIN)),
+    CREATEUSER(new CreateUserCommand(PathPage.PATH_ADMIN)),
     /**
      * Изменение пользователя
      */
-    UPDATEUSER(new UpdateUserCommand(PathConstant.PATH_ADMIN)),
+    UPDATEUSER(new UpdateUserCommand(PathPage.PATH_ADMIN)),
 //---------------CASH---------------------------------------
     /**
      * Главная страница кассира
      */
-    MAIN(new MainCommand(PathConstant.PATH_CASH)),
-    DUTIES(new DutiesCommand(PathConstant.PATH_CASH)),
-    CURRENCY(new CurrencyCommand(PathConstant.PATH_CASH)),
+    MAIN(new MainCommand(PathPage.PATH_CASH)),
+    DUTIES(new DutiesCommand(PathPage.PATH_CASH)),
+    CURRENCY(new CurrencyCommand(PathPage.PATH_CASH)),
 //    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
 //    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
 //------------------CASH / CURRENCY---------------------------
-    ALLCURRENCY(new AllCurrencyCommand(PathConstant.PATH_CASH_CURRENCY)),
-    RATECB(new RateCBCommand(PathConstant.PATH_CASH_CURRENCY)),
-    RATENB(new RateNBCommand(PathConstant.PATH_CASH_CURRENCY)),
+    ALLCURRENCY(new AllCurrencyCommand(PathPage.PATH_CASH_CURRENCY)),
+    RATECB(new RateCBCommand(PathPage.PATH_CASH_CURRENCY)),
+    RATENB(new RateNBCommand(PathPage.PATH_CASH_CURRENCY)),
 
 //------------------CASH / OPERATION--------------------------
-    PAYMENT(new PaymentCommand(PathConstant.PATH_CASH_OPERATION)),
-    BALANCE(new BalanceCommand(PathConstant.PATH_CASH_OPERATION)),
-    USEROPERATIONS(new UserOperationsCommand(PathConstant.PATH_CASH_OPERATION)),
+    PAYMENT(new PaymentCommand(PathPage.PATH_CASH_OPERATION)),
+    BALANCE(new BalanceCommand(PathPage.PATH_CASH_OPERATION)),
+    USEROPERATIONS(new UserOperationsCommand(PathPage.PATH_CASH_OPERATION)),
 
 //-----------------CASH /OPERATION/PAYMENT---------------------
-    SELECTPAYMENT(new SelectPaymentCommand(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT10_01(new Payment10_01_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT10_02(new Payment10_02_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT20_01(new Payment20_01_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT20_02(new Payment20_02_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT998(new Payment998_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT1000(new Payment1000_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT1100(new Payment1100_Command(PathConstant.PATH_CASH_PAYMENT)),
-    PAYMENT1100BALANCE(new Payment1100BalanceCommand(PathConstant.PATH_CASH_PAYMENT)),
+    SELECTPAYMENT(new SelectPaymentCommand(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT10_01(new Payment10_01_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT10_02(new Payment10_02_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT20_01(new Payment20_01_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT20_02(new Payment20_02_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT998(new Payment998_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT1000(new Payment1000_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT1100(new Payment1100_Command(PathPage.PATH_CASH_PAYMENT)),
+    PAYMENT1100BALANCE(new Payment1100BalanceCommand(PathPage.PATH_CASH_PAYMENT)),
     ;
     /**
      * Команда
@@ -128,7 +127,7 @@ public enum Action {
      *
      * @param command - команда
      */
-    Action(Сommand command) {
+    ActionType(Сommand command) {
         this.command = command;
     }
 
@@ -147,16 +146,16 @@ public enum Action {
      * @param request - запрос
      * @return действие
      */
-    public static Action define(HttpServletRequest request) {
+    public static ActionType define(HttpServletRequest request) {
         try {
             String command = request.getParameter("command").toUpperCase();
-            return Action.valueOf(command);
+            return ActionType.valueOf(command);
         } catch (Exception e) {
             Logger logger = LogManager.getLogger(EditUsersCommand.class);
             final HttpSession session = request.getSession(false);
             logger.log(Level.ERROR, e);
             session.setAttribute(AttributeName.ERROR, "108 ");
-            return Action.INDEX;
+            return ActionType.INDEX;
         }
     }
 }

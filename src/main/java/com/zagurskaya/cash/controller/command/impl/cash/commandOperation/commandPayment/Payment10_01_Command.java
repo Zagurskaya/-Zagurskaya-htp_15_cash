@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
 import com.zagurskaya.cash.controller.command.AbstractСommand;
-import com.zagurskaya.cash.controller.command.Action;
+import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +18,7 @@ public class Payment10_01_Command extends AbstractСommand {
     }
 
     @Override
-    public Action execute(HttpServletRequest req) {
+    public ActionType execute(HttpServletRequest req) {
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());
 //
@@ -46,6 +46,6 @@ public class Payment10_01_Command extends AbstractСommand {
 //            return Action.PAYMENT10_02;
 //        }
 //        Action.PAYMENT10_01.setPATH("/cash/operation/payment/");
-        return Action.PAYMENT10_01;
+        return ActionType.PAYMENT10_01;
     }
 }
