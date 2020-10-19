@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.util;
 
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -95,35 +95,35 @@ public class DataValidation {
      * Проверка валидности длины полей пользователя
      *
      * @param request - запрос
-     * @throws SiteDataValidationException при превышении допустимого количества символов в поле
+     * @throws CommandException при превышении допустимого количества символов в поле
      */
-    public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws SiteDataValidationException {
+    public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws CommandException {
         if (request.getParameter("login") != null) {
             String username = RequestDataUtil.getString(request, "login");
             if (username.length() > FieldLength.LENGTH_USER_LOGIN) {
                 logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
-                throw new SiteDataValidationException("101 (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
             }
         }
         if (request.getParameter("password") != null) {
             String surname = RequestDataUtil.getString(request, "password");
             if (surname.length() > FieldLength.LENGTH_USER_PASSWORD) {
                 logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname) + ")");
-                throw new SiteDataValidationException("101 (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname));
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname));
             }
         }
         if (request.getParameter("fullname") != null) {
             String patronymic = RequestDataUtil.getString(request, "fullname");
             if (patronymic.length() > FieldLength.LENGTH_USER_FULL_NAME) {
                 logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic) + ")");
-                throw new SiteDataValidationException("101 (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
             }
         }
         if (request.getParameter("role") != null) {
             String userPosition = RequestDataUtil.getString(request, "role");
             if (userPosition.length() > FieldLength.LENGTH_USER_ROLE) {
                 logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_ROLE + " : " + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
-                throw new SiteDataValidationException("101  (" + FieldLength.LENGTH_USER_ROLE + " :" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
+                throw new CommandException("101  (" + FieldLength.LENGTH_USER_ROLE + " :" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
             }
         }
         return true;

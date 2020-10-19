@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command;
 
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,5 +23,5 @@ public interface Сommand {
      * @param request - запрос
      * @return следующее действие
      */
-    ActionType execute(HttpServletRequest request) throws SiteDataValidationException, ServiceException, ServiceConstraintViolationException;
+    ActionType execute(HttpServletRequest request) throws CommandException, ServiceException, ServiceConstraintViolationException;
 }

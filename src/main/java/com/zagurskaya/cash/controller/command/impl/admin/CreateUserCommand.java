@@ -6,7 +6,7 @@ import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.controller.command.AttributeName;
@@ -41,7 +41,7 @@ public class CreateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws SiteDataValidationException, ServiceConstraintViolationException {
+    public ActionType execute(HttpServletRequest request) throws CommandException, ServiceConstraintViolationException {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");

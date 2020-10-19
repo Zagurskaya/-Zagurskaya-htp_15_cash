@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.util;
 
 import com.zagurskaya.cash.controller.util.HtmlCharsConverter;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,12 +14,12 @@ import java.time.format.DateTimeFormatter;
 public class DataUtil {
     private static final Logger logger = LogManager.getLogger(DataUtil.class);
 
-    public static String getString(String value, String pattern) throws SiteDataValidationException {
+    public static String getString(String value, String pattern) throws CommandException {
         if (value.matches(pattern))
             return HtmlCharsConverter.convertHtmlSpecialChars(value);
         else {
             logger.log(Level.ERROR, "Value  incorrect" + HtmlCharsConverter.convertHtmlSpecialChars(value));
-            throw new SiteDataValidationException("102" + HtmlCharsConverter.convertHtmlSpecialChars(value));
+            throw new CommandException("102" + HtmlCharsConverter.convertHtmlSpecialChars(value));
         }
     }
 

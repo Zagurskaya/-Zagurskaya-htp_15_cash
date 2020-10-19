@@ -5,7 +5,7 @@ import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.controller.command.AttributeName;
@@ -37,7 +37,7 @@ public class LoginСommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws SiteDataValidationException {
+    public ActionType execute(HttpServletRequest request) throws CommandException {
         final HttpSession session = request.getSession(false);
 
         if (DataValidation.isCreateUpdateDeleteOperation(request)) {
@@ -51,7 +51,7 @@ public class LoginСommand extends AbstractСommand {
                     return ActionType.PROFILE;
                 } else {
                     logger.log(Level.ERROR, "Value incorrect");
-                    throw new SiteDataValidationException("102 ");
+                    throw new CommandException("102 ");
                 }
             } catch (ServiceException e) {
                 session.setAttribute(AttributeName.ERROR, e);

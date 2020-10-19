@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller;
 
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
@@ -52,7 +52,7 @@ public class FrontController extends HttpServlet {
             } else {
                 response.sendRedirect("do?command=" + nextActionType.name().toLowerCase());
             }
-        } catch (SiteDataValidationException | ServiceConstraintViolationException e) {
+        } catch (CommandException | ServiceConstraintViolationException e) {
             String error = e.getMessage();
             request.setAttribute(AttributeName.ERROR, error);
             logger.log(Level.ERROR, error, e);

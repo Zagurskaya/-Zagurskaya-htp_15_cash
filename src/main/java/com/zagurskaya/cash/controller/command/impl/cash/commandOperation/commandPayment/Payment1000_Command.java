@@ -8,7 +8,7 @@ import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.service.CurrencyService;
 import com.zagurskaya.cash.model.service.DutiesService;
 import com.zagurskaya.cash.model.service.PaymentService;
@@ -74,7 +74,7 @@ public class Payment1000_Command extends AbstractСommand {
             } else {
                 return actionType;
             }
-        } catch (ServiceException | NumberFormatException | SiteDataValidationException | ServiceConstraintViolationException e) {
+        } catch (ServiceException | NumberFormatException | CommandException | ServiceConstraintViolationException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;

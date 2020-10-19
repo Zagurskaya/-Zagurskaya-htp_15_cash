@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.util;
 
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,9 +14,9 @@ public class UserExtractor {
      *
      * @param request - запрос
      * @return пользователь
-     * @throws SiteDataValidationException ошибке валидации данных пользователя.
+     * @throws CommandException ошибке валидации данных пользователя.
      */
-    public User userNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
+    public User userNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
         String login = RequestDataUtil.getString(request, "login");
         String password = RequestDataUtil.getString(request, "password");
         String fullName = RequestDataUtil.getString(request, "fullname");
@@ -35,9 +35,9 @@ public class UserExtractor {
      *
      * @param request - запрос
      * @return пользователь
-     * @throws SiteDataValidationException ошибке валидации данных пользователя.
+     * @throws CommandException ошибке валидации данных пользователя.
      */
-    public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws SiteDataValidationException {
+    public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
         String login = RequestDataUtil.getString(request, "login");
         String fullName = RequestDataUtil.getString(request, "fullname");
         String role = RequestDataUtil.getString(request, "role");

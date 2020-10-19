@@ -1,10 +1,10 @@
 package com.zagurskaya.cash.exception;
 
-public class SiteDataValidationException extends Exception {
+public class CommandException extends Exception {
     /**
      * Конструктор
      */
-    public SiteDataValidationException() {
+    public CommandException() {
         super();
     }
 
@@ -13,7 +13,7 @@ public class SiteDataValidationException extends Exception {
      *
      * @param message - сообщение
      */
-    public SiteDataValidationException(String message) {
+    public CommandException(String message) {
         super(message);
     }
 
@@ -23,7 +23,7 @@ public class SiteDataValidationException extends Exception {
      * @param message - сообщение
      * @param cause   - причина
      */
-    public SiteDataValidationException(String message, Throwable cause) {
+    public CommandException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -32,7 +32,7 @@ public class SiteDataValidationException extends Exception {
      *
      * @param cause - причина
      */
-    public SiteDataValidationException(Throwable cause) {
+    public CommandException(Throwable cause) {
         super(cause);
     }
 
@@ -44,9 +44,9 @@ public class SiteDataValidationException extends Exception {
      * @param enableSuppression  - включено подавление или нет
      * @param writableStackTrace - должна ли трассировка стека быть доступной для записи
      */
-    protected SiteDataValidationException(String message, Throwable cause,
-                                          boolean enableSuppression,
-                                          boolean writableStackTrace) {
+    protected CommandException(String message, Throwable cause,
+                               boolean enableSuppression,
+                               boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

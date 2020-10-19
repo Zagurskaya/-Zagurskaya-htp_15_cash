@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.util;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.SiteDataValidationException;
+import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,28 +56,28 @@ public class RequestDataUtil {
     }
 
 
-    public static String getString(HttpServletRequest request, String name, String pattern) throws SiteDataValidationException {
+    public static String getString(HttpServletRequest request, String name, String pattern) throws CommandException {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
             if (value.matches(pattern))
                 return HtmlCharsConverter.convertHtmlSpecialChars(value);
             else {
                 logger.log(Level.ERROR, "Value  incorrect " + HtmlCharsConverter.convertHtmlSpecialChars(value));
-                throw new SiteDataValidationException("102 " + HtmlCharsConverter.convertHtmlSpecialChars(value));
+                throw new CommandException("102 " + HtmlCharsConverter.convertHtmlSpecialChars(value));
             }
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
-            throw new SiteDataValidationException("102", e);
+            throw new CommandException("102", e);
         }
     }
 
-    public static String getString(HttpServletRequest request, String name) throws SiteDataValidationException {
+    public static String getString(HttpServletRequest request, String name) throws CommandException {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
             return HtmlCharsConverter.convertHtmlSpecialChars(value);
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
-            throw new SiteDataValidationException("102", e);
+            throw new CommandException("102", e);
         }
     }
 
