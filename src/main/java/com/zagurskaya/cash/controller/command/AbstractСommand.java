@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command;
 
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
-import com.zagurskaya.cash.entity.RoleEnum;
+import com.zagurskaya.cash.entity.RoleType;
 import com.zagurskaya.cash.entity.User;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -38,7 +38,7 @@ public abstract class AbstractСommand implements Сommand {
      */
     protected ActionType actionAfterValidationUserAndPermission(HttpServletRequest request, ActionType actionType) {
         final HttpSession session = request.getSession(false);
-        RoleEnum actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
+        RoleType actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
 
         User user = RequestDataUtil.findUser(request);
         if (user == null) {

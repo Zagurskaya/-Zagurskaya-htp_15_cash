@@ -3,7 +3,7 @@ package com.zagurskaya.cash.entity;
 /**
  * Роли пользователей.
  */
-public enum RoleEnum {
+public enum RoleType {
     /**
      * Администратор
      */
@@ -24,12 +24,12 @@ public enum RoleEnum {
      *
      * @param value - значение
      */
-    RoleEnum(String value) {
+    RoleType(String value) {
         this.value = value;
     }
 
     /**
-     * Получение значения {@link RoleEnum#value}
+     * Получение значения {@link RoleType#value}
      *
      * @return значение
      */

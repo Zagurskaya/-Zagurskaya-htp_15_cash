@@ -23,7 +23,7 @@ public class User {
     /**
      * Роль
      */
-    private RoleEnum role;
+    private RoleType role;
 
     /**
      * Получение значения поля {@link User#id}
@@ -66,7 +66,7 @@ public class User {
      *
      * @return роль
      */
-    public RoleEnum getRole() {
+    public RoleType getRole() {
         return role;
     }
 
@@ -151,7 +151,7 @@ public class User {
          * @param role - роль
          * @return Builder
          */
-        public Builder addRole(RoleEnum role) {
+        public Builder addRole(RoleType role) {
             newUser.role = role;
             return this;
         }
@@ -163,7 +163,7 @@ public class User {
          * @return Builder
          */
         public Builder addRole(String role) {
-            newUser.role = RoleEnum.valueOf(role.toUpperCase());
+            newUser.role = RoleType.valueOf(role.toUpperCase());
             return this;
         }
 
