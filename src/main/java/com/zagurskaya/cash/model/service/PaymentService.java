@@ -31,5 +31,7 @@ public interface PaymentService {
      */
     void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException, ServiceConstraintViolationException;
 
-    List<UserOperation> getUserOperationsByUserAndDuties(User user, Duties duties) throws ServiceException;
+    int countRowsUserOperations(User user, Duties duties) throws ServiceException;
+
+    List<UserOperation> onePartOfListUserOperationsOnPage(User user, Duties duties, int page) throws ServiceException;
 }

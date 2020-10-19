@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.model.service.impl;
 
+import com.zagurskaya.cash.constant.AttributeConstant;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprEntry;
 import com.zagurskaya.cash.entity.SprOperation;
@@ -143,16 +144,34 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public List<UserOperation> getUserOperationsByUserAndDuties(User user, Duties duties) throws ServiceException {
+    public int countRowsUserOperations(User user, Duties duties) throws ServiceException {
         UserOperationDao userOperationDao = new UserOperationDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userOperationDao);
         try {
-            return userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(),0,0);
+            List<UserOperation> userOperations = userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(), 0, 0);
+            return userOperations.size();
         } catch (DAOException e) {
-            logger.log(Level.ERROR, "Database exception during get user and duties operations", e);
-            throw new ServiceException("Database exception during fiend all sprOperation", e);
+            logger.log(Level.ERROR, "Database exception during count rows user operations", e);
+            throw new ServiceException("Database exception during count rows user operations", e);
         } finally {
+            transaction.endSingleRequest();
+        }
+    }
+
+    @Override
+    public List<UserOperation> onePartOfListUserOperationsOnPage(User user, Duties duties, int page) throws ServiceException {
+        UserOperationDao userOperationDao = new UserOperationDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleRequest(userOperationDao);
+        try {
+            int recordsPerPage = AttributeConstant.RECORDS_PER_PAGE;
+            int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
+            return userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(), recordsPerPage, startRecord);
+        } catch (DAOException e) {
+            logger.log(Level.ERROR, "Database exception during method onePartOfListUserOperationsOnPage", e);
+            throw new ServiceException("Database exception during method onePartOfListUserOperationsOnPage", e);
+        }finally {
             transaction.endSingleRequest();
         }
     }

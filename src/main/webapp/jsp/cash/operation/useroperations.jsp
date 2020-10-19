@@ -5,46 +5,67 @@
 <div class="container">
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
-    <br>
-    <br>
-    <br>
-    <H4>Список проведенных операций</H4>
-        <div class="row">
-            <div class=col-md-1>Номер</div>
-            <div class=col-md-3>Операция</div>
-            <div class=col-md-2>Сумма</div>
-            <div class=col-md-2>Валюта</div>
-            <div class=col-md-3>Время</div>
-        </div>
+
+    <H4><fmt:message key="page.useroperations.title"/></H4>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th><fmt:message key="page.useroperations.label.number"/></th>
+            <th><fmt:message key="page.useroperations.label.operation"/></th>
+            <th><fmt:message key="page.useroperations.label.sum"/></th>
+            <th><fmt:message key="page.useroperations.label.currency"/></th>
+            <th><fmt:message key="page.useroperations.label.time"/></th>
+        </tr>
+        </thead>
+        <tbody>
         <c:forEach items="${userOperations}" var="operation">
-            <div class="row">
-
-                <div class="col-md-1">
-                    ${operation.id}
-                </div>
-
-                <div class="col-md-3">
-                  <c:forEach items="${sprOperations}" var="sprOperation">
-                    <c:if test="${operation.operationId==sprOperation.id}" > ${sprOperation.name} </c:if>
-                  </c:forEach>
-                </div>
-
-                <div class="col-md-2">
-                    ${operation.sum}
-                </div>
-
-                <div class="col-md-2">
-                    <c:forEach items="${currensies}" var="currency">
-                    <c:if test="${operation.currencyId==currency.id}" > ${currency.nameRU} </c:if>
+            <tr>
+                <td><c:out value="${operation.id}"/></td>
+                <td>
+                    <c:forEach items="${sprOperations}" var="sprOperation">
+                        <c:if test="${operation.operationId==sprOperation.id}">
+                            <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">${sprOperation.nameRU}</c:if>
+                            <c:if test="${cookie.local.value=='en'}">${sprOperation.nameEN}</c:if>
+                        </c:if>
                     </c:forEach>
-                </div>
-
-                <div class="col-md-3">
-                   ${operation.timestamp}
-                </div>
-
-            </div>
+                </td>
+                <td><c:out value="${operation.sum}"/></td>
+                <td>
+                    <c:forEach items="${currencies}" var="currency">
+                        <c:if test="${operation.currencyId==currency.id}">
+                            <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">${currency.nameRU}</c:if>
+                            <c:if test="${cookie.local.value=='en'}">${currency.nameEN}</c:if></c:if>
+                    </c:forEach>
+                </td>
+                <td><c:out value="${operation.timestamp}"/></td>
+            </tr>
         </c:forEach>
+        </tbody>
+    </table>
+    <div align="center" style="text-align: center">
+        <c:if test="${currentPage != 1}">
+            <a href="do?command=UserOperations&page=${currentPage - 1}"><fmt:message key="tabulation.previous"/></a>
+        </c:if>
+
+        <%--For displaying Page numbers.
+        The when condition does not display a link for the current page--%>
+
+        <c:forEach begin="1" end="${numberOfPages}" var="i">
+            <c:choose>
+                <c:when test="${currentPage eq i}">
+                    ${i}
+                </c:when>
+                <c:otherwise>
+                    <a href="do?command=UserOperations&page=${i}">${i}</a>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <%--For displaying Next link --%>
+        <c:if test="${currentPage lt numberOfPages}">
+            <a href="do?command=UserOperations&page=${currentPage + 1}"><fmt:message key="tabulation.next"/></a>
+        </c:if>
+    </div>
 
 </div>
 </body>

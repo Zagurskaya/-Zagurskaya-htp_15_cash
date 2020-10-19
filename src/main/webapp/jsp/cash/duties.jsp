@@ -18,6 +18,12 @@
             </span></p>
             </p>
         </c:when>
+        <c:when test="${'203' == messageDuties.substring(0,3)}">
+            <p><span style="color:#1c28ff">
+                <fmt:message key="duties.message.203"/>${messageDuties.substring(4,messageDuties.length())}
+            </span></p>
+            </p>
+        </c:when>
         <c:otherwise>${messageDuties}</c:otherwise>
     </c:choose>
     </H4>

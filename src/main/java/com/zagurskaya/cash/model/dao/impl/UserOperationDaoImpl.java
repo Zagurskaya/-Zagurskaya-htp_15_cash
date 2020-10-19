@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
     private static final String SQL_SELECT_ALL_USER_OPERATION_PAGE =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE =
-//            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id LIMIT ? Offset ? ";
+            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id LIMIT ? Offset ? ";
+    private static final String SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id ";
     private static final String SQL_SELECT_ALL_USER_OPERATION =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation ";
@@ -300,14 +300,18 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
     }
 
     @Override
-    public List<UserOperation> findAllByUserIdAndDutiesId(Long userId, Long dutiesId,int limit, int startPosition) throws DAOException {
+    public List<UserOperation> findAllByUserIdAndDutiesId(Long userId, Long dutiesId, int limit, int startPosition) throws DAOException {
         List<UserOperation> userOperations = new ArrayList<>();
+        boolean isPart = (0 != limit) && (0 != startPosition);
+        String SQL = isPart ? SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE : SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
                 preparedStatement.setLong(1, userId);
                 preparedStatement.setLong(2, dutiesId);
-//                preparedStatement.setLong(1, limit);
-//                preparedStatement.setLong(2, startPosition);
+                if (isPart) {
+                    preparedStatement.setLong(3, limit);
+                    preparedStatement.setLong(4, startPosition);
+                }
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);

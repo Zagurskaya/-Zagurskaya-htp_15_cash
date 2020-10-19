@@ -49,14 +49,20 @@ public class UserOperationsCommand extends AbstractСommand {
                 if (duties == null) {
                     return Action.DUTIES;
                 }
-                List<UserOperation> userAllOperationList = paymentService.getUserOperationsByUserAndDuties(user, duties);
-                request.setAttribute(AttributeConstant.USER_OPERATIONS, userAllOperationList);
+                int page = 1;
+                if (request.getParameter(AttributeConstant.PAGE) != null)
+                    page = Integer.parseInt(request.getParameter(AttributeConstant.PAGE));
 
+                int numberOfPages = (int) Math.ceil(paymentService.countRowsUserOperations(user, duties) * 1.0 / AttributeConstant.RECORDS_PER_PAGE);
+                List<UserOperation> userAllOperationList = paymentService.onePartOfListUserOperationsOnPage(user, duties, page);
                 List<SprOperation> sprOperationsList = paymentService.findAllSprOperation();
-                request.setAttribute(AttributeConstant.SPR_OPERATIONS, sprOperationsList);
-
                 List<Currency> currencyList = currencyService.findAll();
+
+                request.setAttribute(AttributeConstant.SPR_OPERATIONS, sprOperationsList);
                 request.setAttribute(AttributeConstant.CURRENCIES, currencyList);
+                request.setAttribute(AttributeConstant.USER_OPERATIONS, userAllOperationList);
+                request.setAttribute(AttributeConstant.NUMBER_OF_PAGE, numberOfPages);
+                request.setAttribute(AttributeConstant.CURRENT_PAGE, page);
 
                 return Action.USEROPERATIONS;
             } else {

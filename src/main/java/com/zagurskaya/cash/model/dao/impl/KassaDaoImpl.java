@@ -180,7 +180,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 preparedStatement.setDouble(5, kassa.getTransmitted());
                 preparedStatement.setDouble(6, kassa.getBalance());
                 preparedStatement.setLong(7, kassa.getUserId());
-                preparedStatement.setDate(8, kassa.getDate());
+                preparedStatement.setString(8, kassa.getDate().toString());
                 preparedStatement.setLong(9, kassa.getDutiesId());
                 preparedStatement.setLong(10, kassa.getId());
                 result = preparedStatement.executeUpdate();
@@ -313,5 +313,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
             logger.log(Level.ERROR, "Database exception during find all by userId and dutiesId ", e);
             throw new DAOException("Database exception during find all by userId and dutiesId ", e);
         }
-        return kassaList;    }
+        return kassaList;
+    }
 }
