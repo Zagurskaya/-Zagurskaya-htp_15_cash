@@ -49,8 +49,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
                     String iso = resultSet.getString(ColumnName.CURRENCY_ISO);
                     String nameRU = resultSet.getString(ColumnName.CURRENCY_NAME_RU);
                     String nameEN = resultSet.getString(ColumnName.CURRENCY_NAME_EN);
-                    Currency currency = new Currency
-                            .Builder()
+                    Currency currency = new Currency.Builder()
                             .addId(id)
                             .addIso(iso)
                             .addNameRU(nameRU)
@@ -83,8 +82,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
                     String iso = resultSet.getString(ColumnName.CURRENCY_ISO);
                     String nameRU = resultSet.getString(ColumnName.CURRENCY_NAME_RU);
                     String nameEN = resultSet.getString(ColumnName.CURRENCY_NAME_EN);
-                    currency = new Currency
-                            .Builder()
+                    currency = new Currency.Builder()
                             .addId(id)
                             .addIso(iso)
                             .addNameRU(nameRU)
@@ -216,8 +214,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
                     String iso = resultSet.getString(ColumnName.CURRENCY_ISO);
                     String nameRU = resultSet.getString(ColumnName.CURRENCY_NAME_RU);
                     String nameEN = resultSet.getString(ColumnName.CURRENCY_NAME_EN);
-                    Currency currency = new Currency
-                            .Builder()
+                    Currency currency = new Currency.Builder()
                             .addId(id)
                             .addIso(iso)
                             .addNameRU(nameRU)

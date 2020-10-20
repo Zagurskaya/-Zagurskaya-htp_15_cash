@@ -51,8 +51,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.RATECB_TIMESTAMP);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
-                    RateCB rateCB = new RateCB
-                            .Builder()
+                    RateCB rateCB = new RateCB.Builder()
                             .addId(id)
                             .addСoming(coming)
                             .addSpending(spending)
@@ -89,8 +88,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.RATECB_TIMESTAMP);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
-                    rateCB = new RateCB
-                            .Builder()
+                    rateCB = new RateCB.Builder()
                             .addId(id)
                             .addСoming(coming)
                             .addSpending(spending)

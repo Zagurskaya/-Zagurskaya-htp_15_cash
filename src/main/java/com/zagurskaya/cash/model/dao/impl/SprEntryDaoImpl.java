@@ -54,8 +54,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
-                    SprEntry sprEntry = new SprEntry
-                            .Builder()
+                    SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
                             .addCurrencyId(currencyId)
@@ -96,8 +95,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
-                    sprEntry = new SprEntry
-                            .Builder()
+                    sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
                             .addCurrencyId(currencyId)
@@ -245,8 +243,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
-                    SprEntry sprEntry = new SprEntry
-                            .Builder()
+                    SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
                             .addCurrencyId(currencyId)
@@ -281,8 +278,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
-                    SprEntry sprEntry = new SprEntry
-                            .Builder()
+                    SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
                             .addCurrencyId(currencyId)

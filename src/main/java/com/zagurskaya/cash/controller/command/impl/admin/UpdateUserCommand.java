@@ -63,8 +63,7 @@ public class UpdateUserCommand extends AbstractСommand {
                     String role = DataUtil.getString(updatedUser.getRole().getValue(), RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User updateUser = new User
-                                .Builder()
+                        User updateUser = new User.Builder()
                                 .addId(id)
                                 .addLogin(login)
                                 .addFullName(fullName)

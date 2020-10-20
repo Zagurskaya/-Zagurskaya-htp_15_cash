@@ -206,8 +206,7 @@ public class DutiesServiceImpl implements DutiesService {
         transaction.init(dutiesDao, currencyDao, kassaDao);
         try {
             Integer numberDuties = dutiesDao.numberDutiesToday(user, today);
-            Duties duties = new Duties
-                    .Builder()
+            Duties duties = new Duties.Builder()
                     .addUserId(user.getId())
                     .addTimestamp(now)
                     .addNumber(numberDuties)
@@ -216,8 +215,7 @@ public class DutiesServiceImpl implements DutiesService {
             Long dutiesId = dutiesDao.create(duties);
             List<Currency> currencies = currencyDao.findAll();
             for (Currency currencyElement : currencies) {
-                Kassa newKassa = new Kassa
-                        .Builder()
+                Kassa newKassa = new Kassa.Builder()
                         .addСurrencyId(currencyElement.getId())
                         .addReceived(0.00)
                         .addСoming(0.00)
@@ -255,8 +253,7 @@ public class DutiesServiceImpl implements DutiesService {
             List<Duties> openDutiesList = dutiesDao.openDutiesUserToday(user.getId(), today);
             if (openDutiesList.size() == 1) {
                 Duties openDuties = openDutiesList.get(0);
-                Duties closeDuties = new Duties
-                        .Builder()
+                Duties closeDuties = new Duties.Builder()
                         .addId(openDuties.getId())
                         .addUserId(openDuties.getUserId())
                         .addTimestamp(openDuties.getTimestamp())

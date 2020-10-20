@@ -21,8 +21,7 @@ public class UserExtractor {
         String password = RequestDataUtil.getString(request, "password");
         String fullName = RequestDataUtil.getString(request, "fullname");
         String role = RequestDataUtil.getString(request, "role");
-        return new User
-                .Builder()
+        return new User.Builder()
                 .addLogin(login)
                 .addPassword(password)
                 .addFullName(fullName)
@@ -42,8 +41,7 @@ public class UserExtractor {
         String fullName = RequestDataUtil.getString(request, "fullname");
         String role = RequestDataUtil.getString(request, "role");
 
-        return new User
-                .Builder()
+        return new User.Builder()
                 .addLogin(login)
                 .addFullName(fullName)
                 .addRole(role)

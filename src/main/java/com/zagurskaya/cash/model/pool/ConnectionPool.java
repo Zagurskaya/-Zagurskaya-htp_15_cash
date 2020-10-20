@@ -27,7 +27,7 @@ public class ConnectionPool {
     private LinkedBlockingQueue<ProxyConnection> availableConnection;
     private LinkedBlockingQueue<ProxyConnection> usedConnection;
 
-    private static final int MIN_POOL_SIZE = 20;
+    private static final int MAX_POOL_SIZE = 20;
     private static final String DRIVER = DatabaseProperty.getInstance().getDriver();
 
     static {
@@ -60,9 +60,9 @@ public class ConnectionPool {
     }
 
     private ConnectionPool() {
-        availableConnection = new LinkedBlockingQueue<>(MIN_POOL_SIZE);
-        usedConnection = new LinkedBlockingQueue<>(MIN_POOL_SIZE);
-        for (int i = 0; i < MIN_POOL_SIZE; i++) {
+        availableConnection = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
+        usedConnection = new LinkedBlockingQueue<>(MAX_POOL_SIZE);
+        for (int i = 0; i < MAX_POOL_SIZE; i++) {
             availableConnection.offer(ConnectionCreator.create());
         }
     }

@@ -53,8 +53,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
-                    Duties duties = new Duties
-                            .Builder()
+                    Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
                             .addTimestamp(timestamp)
@@ -89,8 +88,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
-                    duties = new Duties
-                            .Builder()
+                    duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
                             .addTimestamp(timestamp)
@@ -228,8 +226,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
-                    Duties duties = new Duties
-                            .Builder()
+                    Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
                             .addTimestamp(timestamp)
@@ -259,8 +256,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
-                    Duties duties = new Duties
-                            .Builder()
+                    Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(user.getId())
                             .addTimestamp(timestamp)

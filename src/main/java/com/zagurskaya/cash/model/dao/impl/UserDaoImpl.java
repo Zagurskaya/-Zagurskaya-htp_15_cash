@@ -51,8 +51,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                     String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
-                    User user = new User
-                            .Builder()
+                    User user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
                             .addPassword(password)
@@ -249,8 +248,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                     String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
-                    User user = new User
-                            .Builder()
+                    User user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
                             .addPassword(password)

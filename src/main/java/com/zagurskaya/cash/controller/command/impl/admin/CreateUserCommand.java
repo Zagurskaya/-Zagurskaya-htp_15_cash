@@ -64,8 +64,7 @@ public class CreateUserCommand extends AbstractСommand {
                     String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
                     if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User newUser = new User
-                                .Builder()
+                        User newUser = new User.Builder()
                                 .addLogin(login)
                                 .addPassword(password)
                                 .addFullName(fullName)

@@ -50,8 +50,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Long currencyId = resultSet.getLong(ColumnName.RATENB_CURRENCY_ID);
                     Date date = resultSet.getDate(ColumnName.RATENB_DATE);
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
-                    RateNB rateNB = new RateNB
-                            .Builder()
+                    RateNB rateNB = new RateNB.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addDate(date)
@@ -84,8 +83,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Long currencyId = resultSet.getLong(ColumnName.RATENB_CURRENCY_ID);
                     Date date = resultSet.getDate(ColumnName.RATENB_DATE);
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
-                    rateNB = new RateNB
-                            .Builder()
+                    rateNB = new RateNB.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addDate(date)
@@ -211,8 +209,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.RATENB_ID);
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
-                    rateNB = new RateNB
-                            .Builder()
+                    rateNB = new RateNB.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addDate(date)

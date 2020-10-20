@@ -67,8 +67,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String specification = resultSet.getString(ColumnName.USER_OPERATION_SPECIFICATION);
                     String checkingAccount = resultSet.getString(ColumnName.USER_OPERATION_CHECKING_ACCOUNT);
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
-                    UserOperation userOperation = new UserOperation
-                            .Builder()
+                    UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
                             .addTimestamp(timestamp)
                             .addRate(rate)
@@ -115,8 +114,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String specification = resultSet.getString(ColumnName.USER_OPERATION_SPECIFICATION);
                     String checkingAccount = resultSet.getString(ColumnName.USER_OPERATION_CHECKING_ACCOUNT);
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
-                    userOperation = new UserOperation
-                            .Builder()
+                    userOperation = new UserOperation.Builder()
                             .addId(id)
                             .addTimestamp(timestamp)
                             .addRate(rate)
@@ -275,8 +273,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String specification = resultSet.getString(ColumnName.USER_OPERATION_SPECIFICATION);
                     String checkingAccount = resultSet.getString(ColumnName.USER_OPERATION_CHECKING_ACCOUNT);
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
-                    UserOperation userOperation = new UserOperation
-                            .Builder()
+                    UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
                             .addTimestamp(timestamp)
                             .addRate(rate)
@@ -323,8 +320,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String specification = resultSet.getString(ColumnName.USER_OPERATION_SPECIFICATION);
                     String checkingAccount = resultSet.getString(ColumnName.USER_OPERATION_CHECKING_ACCOUNT);
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
-                    UserOperation userOperation = new UserOperation
-                            .Builder()
+                    UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
                             .addTimestamp(timestamp)
                             .addRate(rate)

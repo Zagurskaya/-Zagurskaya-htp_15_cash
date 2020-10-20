@@ -103,8 +103,7 @@ public class UserServiceImpl implements UserService {
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
                 String hashPassword = getHash(user.getPassword());
-                User createUser = new User
-                        .Builder()
+                User createUser = new User.Builder()
                         .addLogin(user.getLogin())
                         .addPassword(hashPassword)
                         .addFullName(user.getFullName())

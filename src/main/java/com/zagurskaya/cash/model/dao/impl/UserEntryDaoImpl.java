@@ -54,8 +54,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
-                    UserEntry userEntry = new UserEntry
-                            .Builder()
+                    UserEntry userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
                             .addSprEntryId(sprEntryId)
@@ -98,8 +97,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
-                    userEntry = new UserEntry
-                            .Builder()
+                    userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
                             .addSprEntryId(sprEntryId)
@@ -250,8 +248,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
                     Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
-                    UserEntry userEntry = new UserEntry
-                            .Builder()
+                    UserEntry userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
                             .addSprEntryId(sprEntryId)

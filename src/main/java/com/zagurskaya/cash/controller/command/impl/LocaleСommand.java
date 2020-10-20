@@ -13,6 +13,9 @@ import javax.servlet.http.HttpSession;
  * Действие "Смена локали на RU".
  */
 public class LocaleСommand extends AbstractСommand {
+    private static final String LOCALE_RU = "ru";
+    private static final String LOCALE_EN = "ru";
+
     /**
      * Конструктор
      *
@@ -29,7 +32,7 @@ public class LocaleСommand extends AbstractСommand {
         ActionType actionType = previousActionType == null ? ActionType.INDEX : previousActionType;
         Cookie localeCookie = RequestDataUtil.getCookie(request, AttributeName.LOCAL);
         String locale = localeCookie != null
-                ? (localeCookie.getValue().equals("ru") ? "en" : "ru") : "ru";
+                ? (localeCookie.getValue().equals(LOCALE_RU) ? LOCALE_EN : LOCALE_RU) : LOCALE_RU;
 
         Cookie localEnCookie = new Cookie(AttributeName.LOCAL, locale);
         RequestDataUtil.setCookie(request, localEnCookie);

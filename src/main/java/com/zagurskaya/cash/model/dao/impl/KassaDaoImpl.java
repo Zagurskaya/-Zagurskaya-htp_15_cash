@@ -57,8 +57,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     Date date = resultSet.getDate(ColumnName.KASSA_DATE);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
-                    Kassa kassa = new Kassa
-                            .Builder()
+                    Kassa kassa = new Kassa.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addReceived(received)
@@ -103,8 +102,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     Date date = resultSet.getDate(ColumnName.KASSA_DATE);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
-                    kassa = new Kassa
-                            .Builder()
+                    kassa = new Kassa.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addReceived(received)
@@ -254,8 +252,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
                     Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
-                    kassa = new Kassa
-                            .Builder()
+                    kassa = new Kassa.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addReceived(received)
@@ -293,8 +290,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
                     Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
                     Date date = resultSet.getDate(ColumnName.KASSA_DATE);
-                    Kassa kassa = new Kassa
-                            .Builder()
+                    Kassa kassa = new Kassa.Builder()
                             .addId(id)
                             .addСurrencyId(currencyId)
                             .addReceived(received)

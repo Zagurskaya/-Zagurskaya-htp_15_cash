@@ -96,8 +96,7 @@ public class PaymentServiceImpl implements PaymentService {
             Long firstKey = (Long) map.keySet().toArray()[0];
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            UserOperation userOperation = new UserOperation
-                    .Builder()
+            UserOperation userOperation = new UserOperation.Builder()
                     .addTimestamp(now)
                     //todo change rate
                     .addRate(1.0)
@@ -171,7 +170,7 @@ public class PaymentServiceImpl implements PaymentService {
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during method onePartOfListUserOperationsOnPage", e);
             throw new ServiceException("Database exception during method onePartOfListUserOperationsOnPage", e);
-        }finally {
+        } finally {
             transaction.endSingleRequest();
         }
     }

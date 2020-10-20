@@ -48,8 +48,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
                     String nameRU = resultSet.getString(ColumnName.SPR_OPERATION_NAME_RU);
                     String nameEN = resultSet.getString(ColumnName.SPR_OPERATION_NAME_EN);
                     String specification = resultSet.getString(ColumnName.SPR_OPERATION_SPECIFICATION);
-                    SprOperation sprOperation = new SprOperation
-                            .Builder()
+                    SprOperation sprOperation = new SprOperation.Builder()
                             .addId(id)
                             .addNameRU(nameRU)
                             .addNameEN(nameEN)
@@ -215,8 +214,7 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
                     String nameRU = resultSet.getString(ColumnName.SPR_OPERATION_NAME_RU);
                     String nameEN = resultSet.getString(ColumnName.SPR_OPERATION_NAME_EN);
                     String specification = resultSet.getString(ColumnName.SPR_OPERATION_SPECIFICATION);
-                    SprOperation sprOperation = new SprOperation
-                            .Builder()
+                    SprOperation sprOperation = new SprOperation.Builder()
                             .addId(id)
                             .addNameRU(nameRU)
                             .addNameEN(nameEN)
