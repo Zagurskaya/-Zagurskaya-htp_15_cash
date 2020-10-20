@@ -14,10 +14,10 @@ public class LogoutСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public LogoutСommand(String path) {
-        super(path);
+    public LogoutСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

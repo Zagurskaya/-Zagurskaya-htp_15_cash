@@ -34,10 +34,10 @@ public class CreateUserCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public CreateUserCommand(String path) {
-        super(path);
+    public CreateUserCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

@@ -30,10 +30,10 @@ public class LoginСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public LoginСommand(String path) {
-        super(path);
+    public LoginСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

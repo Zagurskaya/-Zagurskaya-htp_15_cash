@@ -13,10 +13,10 @@ public class MainCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public MainCommand(String path) {
-        super(path);
+    public MainCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

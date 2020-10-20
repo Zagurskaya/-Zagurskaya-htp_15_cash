@@ -28,8 +28,8 @@ public class PaymentCommand extends AbstractСommand {
     private final PaymentService paymentService = new PaymentServiceImpl();
     private static final String SPR_OPERATION_ID = "SprOperationsId";
 
-    public PaymentCommand(String path) {
-        super(path);
+    public PaymentCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

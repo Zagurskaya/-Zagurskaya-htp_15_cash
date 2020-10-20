@@ -16,10 +16,10 @@ public class LocaleEnСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public LocaleEnСommand(String path) {
-        super(path);
+    public LocaleEnСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

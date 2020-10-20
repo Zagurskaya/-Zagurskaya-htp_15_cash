@@ -15,7 +15,7 @@ public interface Сommand {
      *
      * @return путь
      */
-    String getPath();
+    String getDirectoryPath();
 
     /**
      * Выполнение действия

@@ -29,10 +29,10 @@ public class RateCBCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public RateCBCommand(String path) {
-        super(path);
+    public RateCBCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

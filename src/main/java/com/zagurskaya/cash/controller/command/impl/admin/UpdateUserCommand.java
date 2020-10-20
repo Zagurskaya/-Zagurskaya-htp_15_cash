@@ -30,10 +30,10 @@ public class UpdateUserCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public UpdateUserCommand(String path) {
-        super(path);
+    public UpdateUserCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

@@ -26,10 +26,10 @@ import java.util.List;
 public class BalanceCommand extends AbstractСommand {
     private static final Logger logger = LogManager.getLogger(BalanceCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
-    private final KassaService kassaService =  new KassaServiceImpl();
+    private final KassaService kassaService = new KassaServiceImpl();
 
-    public BalanceCommand(String path) {
-        super(path);
+    public BalanceCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

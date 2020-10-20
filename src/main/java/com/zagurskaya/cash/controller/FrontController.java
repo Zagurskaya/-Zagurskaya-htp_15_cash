@@ -40,12 +40,12 @@ public class FrontController extends HttpServlet {
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
 
-        request.setAttribute(AttributeName.RESPONSE, response);
+//        request.setAttribute(AttributeName.RESPONSE, response);
         ActionType currentActionType = ActionType.define(request);
         try {
-            ActionType nextActionType = currentActionType.command.execute(request);
-            ActionType previousActionType = currentActionType;
-            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousActionType);
+            ActionType nextActionType = currentActionType.getCommand().execute(request);
+//            ActionType previousActionType = currentActionType;
+//            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousActionType);
             if (nextActionType == currentActionType) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
                 requestDispatcher.forward(request, response);

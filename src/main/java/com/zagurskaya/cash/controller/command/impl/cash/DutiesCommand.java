@@ -28,8 +28,8 @@ public class DutiesCommand extends AbstractСommand {
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final UserService userService = new UserServiceImpl();
 
-    public DutiesCommand(String path) {
-        super(path);
+    public DutiesCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

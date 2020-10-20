@@ -25,10 +25,10 @@ public class AllCurrencyCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public AllCurrencyCommand(String path) {
-        super(path);
+    public AllCurrencyCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

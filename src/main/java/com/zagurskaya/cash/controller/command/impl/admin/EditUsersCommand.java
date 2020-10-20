@@ -27,10 +27,10 @@ public class EditUsersCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public EditUsersCommand(String path) {
-        super(path);
+    public EditUsersCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

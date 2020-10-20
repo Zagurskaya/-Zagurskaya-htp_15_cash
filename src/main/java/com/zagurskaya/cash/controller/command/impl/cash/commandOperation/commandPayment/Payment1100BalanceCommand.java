@@ -9,14 +9,14 @@ public class Payment1100BalanceCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public Payment1100BalanceCommand(String path) {
-        super(path);
+    public Payment1100BalanceCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override
-    public ActionType execute(HttpServletRequest req)  {
+    public ActionType execute(HttpServletRequest req) {
 //        User user = Util.findUser(req);
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());

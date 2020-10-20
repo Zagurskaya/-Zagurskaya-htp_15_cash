@@ -31,10 +31,10 @@ public class Payment1100_Command extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public Payment1100_Command(String path) {
-        super(path);
+    public Payment1100_Command(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

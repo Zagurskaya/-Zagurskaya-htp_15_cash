@@ -12,10 +12,10 @@ public class CurrencyCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public CurrencyCommand(String path) {
-        super(path);
+    public CurrencyCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

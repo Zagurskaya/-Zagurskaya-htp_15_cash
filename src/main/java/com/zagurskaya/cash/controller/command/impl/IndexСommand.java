@@ -12,10 +12,10 @@ public class IndexСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public IndexСommand(String path) {
-        super(path);
+    public IndexСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

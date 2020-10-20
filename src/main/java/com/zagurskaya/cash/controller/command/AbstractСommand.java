@@ -11,23 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Команда со свойствами <b>path</b>.
+ * Команда со свойствами <b>directoryPath</b>.
  */
 public abstract class AbstractСommand implements Сommand {
     private static final Logger logger = LogManager.getLogger(AbstractСommand.class);
-    private final String path;
+    private final String directoryPath;
 
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public AbstractСommand(String path) {
-        this.path = path;
+    public AbstractСommand(String directoryPath) {
+        this.directoryPath = directoryPath;
     }
 
-    public String getPath() {
-        return path;
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     /**

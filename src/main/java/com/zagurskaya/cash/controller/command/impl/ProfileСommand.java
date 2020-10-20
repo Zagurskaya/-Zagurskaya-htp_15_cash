@@ -17,10 +17,10 @@ public class ProfileСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public ProfileСommand(String path) {
-        super(path);
+    public ProfileСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

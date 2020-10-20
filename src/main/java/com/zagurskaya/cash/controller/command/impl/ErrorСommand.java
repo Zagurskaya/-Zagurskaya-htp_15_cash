@@ -14,10 +14,10 @@ public class ErrorСommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public ErrorСommand(String path) {
-        super(path);
+    public ErrorСommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

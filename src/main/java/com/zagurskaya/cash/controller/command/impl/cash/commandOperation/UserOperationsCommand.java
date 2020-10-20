@@ -32,8 +32,8 @@ public class UserOperationsCommand extends AbstractСommand {
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
 
-    public UserOperationsCommand(String path) {
-        super(path);
+    public UserOperationsCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

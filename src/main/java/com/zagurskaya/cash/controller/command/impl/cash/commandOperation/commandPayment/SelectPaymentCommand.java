@@ -9,10 +9,10 @@ public class SelectPaymentCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public SelectPaymentCommand(String path) {
-        super(path);
+    public SelectPaymentCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

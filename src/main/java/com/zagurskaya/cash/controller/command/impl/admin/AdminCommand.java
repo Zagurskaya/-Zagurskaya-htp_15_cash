@@ -13,10 +13,10 @@ public class AdminCommand extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public AdminCommand(String path) {
-        super(path);
+    public AdminCommand(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

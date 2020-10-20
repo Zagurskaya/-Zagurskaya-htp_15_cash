@@ -9,10 +9,10 @@ public class Payment20_01_Command extends AbstractСommand {
     /**
      * Конструктор
      *
-     * @param path - путь
+     * @param directoryPath - путь
      */
-    public Payment20_01_Command(String path) {
-        super(path);
+    public Payment20_01_Command(String directoryPath) {
+        super(directoryPath);
     }
 
     @Override

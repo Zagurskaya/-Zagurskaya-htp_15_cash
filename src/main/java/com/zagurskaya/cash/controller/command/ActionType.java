@@ -96,17 +96,17 @@ public enum ActionType {
 //    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
 //    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
-//------------------CASH / CURRENCY---------------------------
+    //------------------CASH / CURRENCY---------------------------
     ALLCURRENCY(new AllCurrencyCommand(PathPage.PATH_CASH_CURRENCY)),
     RATECB(new RateCBCommand(PathPage.PATH_CASH_CURRENCY)),
     RATENB(new RateNBCommand(PathPage.PATH_CASH_CURRENCY)),
 
-//------------------CASH / OPERATION--------------------------
+    //------------------CASH / OPERATION--------------------------
     PAYMENT(new PaymentCommand(PathPage.PATH_CASH_OPERATION)),
     BALANCE(new BalanceCommand(PathPage.PATH_CASH_OPERATION)),
     USEROPERATIONS(new UserOperationsCommand(PathPage.PATH_CASH_OPERATION)),
 
-//-----------------CASH /OPERATION/PAYMENT---------------------
+    //-----------------CASH /OPERATION/PAYMENT---------------------
     SELECTPAYMENT(new SelectPaymentCommand(PathPage.PATH_CASH_PAYMENT)),
     PAYMENT10_01(new Payment10_01_Command(PathPage.PATH_CASH_PAYMENT)),
     PAYMENT10_02(new Payment10_02_Command(PathPage.PATH_CASH_PAYMENT)),
@@ -120,7 +120,7 @@ public enum ActionType {
     /**
      * Команда
      */
-    public Сommand command;
+    private Сommand command;
 
     /**
      * Конструктор
@@ -132,12 +132,21 @@ public enum ActionType {
     }
 
     /**
+     * Получение значения поля command
+     *
+     * @return команда
+     */
+    public Сommand getCommand() {
+        return command;
+    }
+
+    /**
      * Получение пути к странице
      *
      * @return путь
      */
     public String getJsp() {
-        return command.getPath() + name().toLowerCase() + ".jsp";
+        return command.getDirectoryPath() + name().toLowerCase() + ".jsp";
     }
 
     /**
