@@ -35,6 +35,21 @@ public class RequestDataUtil {
         }
     }
 
+
+    public static Cookie getCookie(HttpServletRequest request, String cookieName) {
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie = null;
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (cookieName.equals(c.getName())) {
+                    cookie = c;
+                    break;
+                }
+            }
+        }
+        return cookie;
+    }
+
     public static void setCookie(HttpServletRequest request, Cookie cookie) {
         HttpServletResponse response =
                 (HttpServletResponse) request.getAttribute(AttributeName.RESPONSE);

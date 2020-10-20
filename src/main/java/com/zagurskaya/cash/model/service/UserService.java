@@ -14,7 +14,7 @@ public interface UserService extends Service<User> {
      * @return пользователь
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
-    User getUserByLoginAndValidPassword(String login, String password) throws ServiceException;
+    User findUserByLoginAndValidPassword(String login, String password) throws ServiceException;
 
     /**
      * Получение списка пользователей

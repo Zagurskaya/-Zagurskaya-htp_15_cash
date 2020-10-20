@@ -12,23 +12,26 @@ import javax.servlet.http.HttpSession;
 /**
  * Действие "Смена локали на RU".
  */
-public class LocaleRuСommand extends AbstractСommand {
+public class LocaleСommand extends AbstractСommand {
     /**
      * Конструктор
      *
      * @param directoryPath - путь
      */
-    public LocaleRuСommand(String directoryPath) {
+    public LocaleСommand(String directoryPath) {
         super(directoryPath);
     }
 
     @Override
     public ActionType execute(HttpServletRequest request) {
         final HttpSession session = request.getSession(false);
-        ActionType previousActionType = (ActionType) session.getAttribute(AttributeName.PREVIOUS_ACTION);
+        ActionType previousActionType = (ActionType) session.getAttribute(AttributeName.CURRENT_ACTION_TYPE);
         ActionType actionType = previousActionType == null ? ActionType.INDEX : previousActionType;
+        Cookie localeCookie = RequestDataUtil.getCookie(request, AttributeName.LOCAL);
+        String locale = localeCookie != null
+                ? (localeCookie.getValue().equals("ru") ? "en" : "ru") : "ru";
 
-        Cookie localEnCookie = new Cookie(AttributeName.LOCAL, "ru");
+        Cookie localEnCookie = new Cookie(AttributeName.LOCAL, locale);
         RequestDataUtil.setCookie(request, localEnCookie);
         return actionType;
     }

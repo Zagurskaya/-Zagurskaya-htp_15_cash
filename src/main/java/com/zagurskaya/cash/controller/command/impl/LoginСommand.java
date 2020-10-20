@@ -39,26 +39,27 @@ public class LoginСommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request) throws CommandException {
         final HttpSession session = request.getSession(false);
+        try {
 
-        if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-            String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-            String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-            User user;
-            try {
-                user = userService.getUserByLoginAndValidPassword(login, password);
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                User user;
+                user = userService.findUserByLoginAndValidPassword(login, password);
                 if (user != null) {
                     session.setAttribute(AttributeName.USER, user);
                     return ActionType.PROFILE;
                 } else {
                     logger.log(Level.ERROR, "Value incorrect");
-                    throw new CommandException("102 ");
+                    session.setAttribute(AttributeName.ERROR, "102 ");
+                    return ActionType.LOGIN;
                 }
-            } catch (ServiceException e) {
-                session.setAttribute(AttributeName.ERROR, e);
-                logger.log(Level.ERROR, e);
-                return ActionType.ERROR;
             }
+            return ActionType.LOGIN;
+        } catch (ServiceException e) {
+            session.setAttribute(AttributeName.ERROR, e);
+            logger.log(Level.ERROR, e);
+            return ActionType.ERROR;
         }
-        return ActionType.LOGIN;
     }
 }

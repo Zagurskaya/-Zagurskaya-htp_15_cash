@@ -2,8 +2,7 @@ package com.zagurskaya.cash.controller.command;
 
 import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
 import com.zagurskaya.cash.controller.command.impl.IndexСommand;
-import com.zagurskaya.cash.controller.command.impl.LocaleEnСommand;
-import com.zagurskaya.cash.controller.command.impl.LocaleRuСommand;
+import com.zagurskaya.cash.controller.command.impl.LocaleСommand;
 import com.zagurskaya.cash.controller.command.impl.LoginСommand;
 import com.zagurskaya.cash.controller.command.impl.LogoutСommand;
 import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
@@ -58,13 +57,9 @@ public enum ActionType {
      */
     LOGOUT(new LogoutСommand(PathPage.PATH_ROOT)),
     /**
-     * Смена локализации на RU
+     * Смена локализации
      */
-    LOCALRU(new LocaleRuСommand(PathPage.PATH_ROOT)),
-    /**
-     * Смена локализации на EN
-     */
-    LOCALEN(new LocaleEnСommand(PathPage.PATH_ROOT)),
+    LOCALE(new LocaleСommand(PathPage.PATH_ROOT)),
     /**
      * Профайл
      */

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public User getUserByLoginAndValidPassword(String login, String password) throws ServiceException {
+    public User findUserByLoginAndValidPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);

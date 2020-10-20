@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  */
 public abstract class AbstractСommand implements Сommand {
     private static final Logger logger = LogManager.getLogger(AbstractСommand.class);
-    private final String directoryPath;
+    private String directoryPath;
 
     /**
      * Конструктор

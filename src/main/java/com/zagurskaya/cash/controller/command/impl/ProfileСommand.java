@@ -33,10 +33,7 @@ public class ProfileСommand extends AbstractСommand {
         if (user != null) {
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
-                RequestDataUtil.deleteCookie(request, AttributeName.LOGIN);
-                RequestDataUtil.deleteCookie(request, AttributeName.ROLE);
                 request.getSession().removeAttribute(AttributeName.USER);
-                request.getSession().invalidate();
                 return ActionType.INDEX;
             }
             return ActionType.PROFILE;
