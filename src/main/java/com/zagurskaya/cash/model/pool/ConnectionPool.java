@@ -98,6 +98,8 @@ public class ConnectionPool {
                     logger.log(Level.ERROR, "Connection not found", e);
                     Thread.currentThread().interrupt();
                 }
+            } else {
+                logger.log(Level.ERROR, "Connection not found");
             }
         }
     }
@@ -112,7 +114,6 @@ public class ConnectionPool {
                 connection.closeConnection();
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Exception during destroy poll", e);
-                throw new RuntimeException("Exception during destroy poll", e);
             } catch (InterruptedException e) {
                 logger.log(Level.ERROR, "Exception during destroy poll", e);
                 Thread.currentThread().interrupt();
@@ -129,7 +130,6 @@ public class ConnectionPool {
                 DriverManager.deregisterDriver(driver);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Exception during deregister Drivers", e);
-                throw new RuntimeException("Exception during deregister Drivers", e);
             }
         }
     }

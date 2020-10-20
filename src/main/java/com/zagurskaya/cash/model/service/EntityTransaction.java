@@ -16,7 +16,6 @@ public class EntityTransaction {
 
     private static final Logger logger = LogManager.getLogger(EntityTransaction.class);
     private Connection connection;
-    private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     /**
      * Передача соединения в одно Dao
@@ -25,7 +24,7 @@ public class EntityTransaction {
      */
     public void initSingleQuery(Dao dao) {
         if (connection == null) {
-            connection = connectionPool.retrieve();
+            connection = ConnectionPool.getInstance().retrieve();
             dao.setConnection(connection);
         }
     }
@@ -35,7 +34,7 @@ public class EntityTransaction {
      */
     public void endSingleQuery() {
         if (connection != null) {
-            connectionPool.putBack(connection);
+            ConnectionPool.getInstance().putBack(connection);
             connection = null;
         }
     }
@@ -48,7 +47,7 @@ public class EntityTransaction {
     public void init(Dao dao, Dao... daos) {
         if (connection == null) {
             try {
-                connection = connectionPool.retrieve();
+                connection = ConnectionPool.getInstance().retrieve();
                 connection.setAutoCommit(false);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Database exception during init pool", e);
@@ -68,7 +67,7 @@ public class EntityTransaction {
         if (connection != null) {
             try {
                 connection.setAutoCommit(true);
-                connectionPool.putBack(connection);
+                ConnectionPool.getInstance().putBack(connection);
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "Database exception during end pool", e);
                 throw new RuntimeException("Database exception during end pool", e);
