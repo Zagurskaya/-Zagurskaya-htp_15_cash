@@ -47,14 +47,14 @@ public class PaymentServiceImpl implements PaymentService {
     public List<SprOperation> findAllSprOperation() throws ServiceException {
         SprOperationDao sprOperationDao = new SprOperationDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(sprOperationDao);
+        transaction.initSingleQuery(sprOperationDao);
         try {
             return sprOperationDao.findAll();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all sprOperation", e);
             throw new ServiceException("Database exception during fiend all sprOperation", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -62,14 +62,14 @@ public class PaymentServiceImpl implements PaymentService {
     public SprOperation findSprOperationById(Long id) throws ServiceException {
         SprOperationDao sprOperationDao = new SprOperationDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(sprOperationDao);
+        transaction.initSingleQuery(sprOperationDao);
         try {
             return sprOperationDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during find SprOperation By Id", e);
             throw new ServiceException("Database exception during find SprOperation By Id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -146,7 +146,7 @@ public class PaymentServiceImpl implements PaymentService {
     public int countRowsUserOperations(User user, Duties duties) throws ServiceException {
         UserOperationDao userOperationDao = new UserOperationDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userOperationDao);
+        transaction.initSingleQuery(userOperationDao);
         try {
             List<UserOperation> userOperations = userOperationDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId(), 0, 0);
             return userOperations.size();
@@ -154,7 +154,7 @@ public class PaymentServiceImpl implements PaymentService {
             logger.log(Level.ERROR, "Database exception during count rows user operations", e);
             throw new ServiceException("Database exception during count rows user operations", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -162,7 +162,7 @@ public class PaymentServiceImpl implements PaymentService {
     public List<UserOperation> onePartOfListUserOperationsOnPage(User user, Duties duties, int page) throws ServiceException {
         UserOperationDao userOperationDao = new UserOperationDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userOperationDao);
+        transaction.initSingleQuery(userOperationDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -171,7 +171,7 @@ public class PaymentServiceImpl implements PaymentService {
             logger.log(Level.ERROR, "Database exception during method onePartOfListUserOperationsOnPage", e);
             throw new ServiceException("Database exception during method onePartOfListUserOperationsOnPage", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 

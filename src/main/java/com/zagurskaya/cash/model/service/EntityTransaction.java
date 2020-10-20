@@ -23,7 +23,7 @@ public class EntityTransaction {
      *
      * @param dao - Dao
      */
-    public void initSingleRequest(Dao dao) {
+    public void initSingleQuery(Dao dao) {
         if (connection == null) {
             connection = connectionPool.retrieve();
             dao.setConnection(connection);
@@ -33,7 +33,7 @@ public class EntityTransaction {
     /**
      * Возврат соединения в пул соединений с одним Dao
      */
-    public void endSingleRequest() {
+    public void endSingleQuery() {
         if (connection != null) {
             connectionPool.putBack(connection);
             connection = null;

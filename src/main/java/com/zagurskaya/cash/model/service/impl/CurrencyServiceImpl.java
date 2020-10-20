@@ -32,14 +32,14 @@ public class CurrencyServiceImpl implements CurrencyService {
     public Currency findById(Long id) throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend currency by id", e);
             throw new ServiceException("Database exception during fiend currency by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -53,7 +53,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     public boolean create(Currency currency) throws ServiceException, ServiceConstraintViolationException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.create(currency) != 0L;
         } catch (DaoConstraintViolationException e) {
@@ -63,7 +63,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             logger.log(Level.ERROR, "Database exception during create currency ", e);
             throw new ServiceException("Database exception during create currency ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -77,7 +77,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     public boolean update(Currency currency) throws ServiceException, ServiceConstraintViolationException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.update(currency);
         } catch (DaoConstraintViolationException e) {
@@ -87,7 +87,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             logger.log(Level.ERROR, "Database exception during update currency ", e);
             throw new ServiceException("Database exception during update currency ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -101,14 +101,14 @@ public class CurrencyServiceImpl implements CurrencyService {
     public boolean delete(Currency currency) throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.delete(currency);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete currency ", e);
             throw new ServiceException("Database exception during delete currency ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -122,14 +122,14 @@ public class CurrencyServiceImpl implements CurrencyService {
     public int countRows() throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.countRows();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during fiend count currencys row", e);
-            throw new ServiceException("Database exception during fiend count currencys row", e);
+            logger.log(Level.ERROR, "Database exception during fiend count currencies row", e);
+            throw new ServiceException("Database exception during fiend count currencies row", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -144,7 +144,7 @@ public class CurrencyServiceImpl implements CurrencyService {
         List currencies = new ArrayList();
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -154,7 +154,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             logger.log(Level.ERROR, "Database exception during fiend all currency", e);
             throw new ServiceException("Database exception during fiend all currency", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -167,14 +167,14 @@ public class CurrencyServiceImpl implements CurrencyService {
     public List<Currency> findAll() throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(currencyDao);
+        transaction.initSingleQuery(currencyDao);
         try {
             return currencyDao.findAll();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all currency", e);
             throw new ServiceException("Database exception during fiend all currency", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 }

@@ -39,7 +39,7 @@ public class KassaServiceImpl implements KassaService {
     public Kassa findById(Long id) throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             Kassa kassa = kassaDao.findById(id);
             return kassa;
@@ -47,7 +47,7 @@ public class KassaServiceImpl implements KassaService {
             logger.log(Level.ERROR, "Database exception during fiend kassa by id", e);
             throw new ServiceException("Database exception during fiend kassa by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -61,7 +61,7 @@ public class KassaServiceImpl implements KassaService {
     public boolean create(Kassa kassa) throws ServiceException, ServiceConstraintViolationException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             return kassaDao.create(kassa) != null;
         } catch (DaoConstraintViolationException e) {
@@ -71,7 +71,7 @@ public class KassaServiceImpl implements KassaService {
             logger.log(Level.ERROR, "Database exception during create kassa ", e);
             throw new ServiceException("Database exception during create kassa ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -85,7 +85,7 @@ public class KassaServiceImpl implements KassaService {
     public boolean update(Kassa kassa) throws ServiceException, ServiceConstraintViolationException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             return kassaDao.update(kassa);
         } catch (DaoConstraintViolationException e) {
@@ -95,7 +95,7 @@ public class KassaServiceImpl implements KassaService {
             logger.log(Level.ERROR, "Database exception during update kassa ", e);
             throw new ServiceException("Database exception during update kassa ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -109,14 +109,14 @@ public class KassaServiceImpl implements KassaService {
     public boolean delete(Kassa kassa) throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             return kassaDao.delete(kassa);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete kassa ", e);
             throw new ServiceException("Database exception during delete kassa ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -130,14 +130,14 @@ public class KassaServiceImpl implements KassaService {
     public int countRows() throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             return kassaDao.countRows();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count kassaList row", e);
             throw new ServiceException("Database exception during fiend count kassaList row", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -152,7 +152,7 @@ public class KassaServiceImpl implements KassaService {
         List kassaList = new ArrayList();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -162,7 +162,7 @@ public class KassaServiceImpl implements KassaService {
             logger.log(Level.ERROR, "Database exception during fiend all kassa", e);
             throw new ServiceException("Database exception during fiend all kassa", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -281,14 +281,14 @@ public class KassaServiceImpl implements KassaService {
         List kassaList = new ArrayList();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(kassaDao);
+        transaction.initSingleQuery(kassaDao);
         try {
             kassaList.addAll(kassaDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId()));
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during getBallance", e);
             throw new ServiceException("Database exception during getBallance", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
         return kassaList;
     }

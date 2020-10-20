@@ -32,14 +32,14 @@ public class RateNBServiceImpl implements RateNBService {
     public RateNB findById(Long id) throws ServiceException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             return rateNBDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend rateNB by id", e);
             throw new ServiceException("Database exception during fiend rateNB by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -53,7 +53,7 @@ public class RateNBServiceImpl implements RateNBService {
     public boolean create(RateNB rateNB) throws ServiceException, ServiceConstraintViolationException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             return rateNBDao.create(rateNB) != 0L;
         } catch (DaoConstraintViolationException e) {
@@ -63,7 +63,7 @@ public class RateNBServiceImpl implements RateNBService {
             logger.log(Level.ERROR, "Database exception during create rateNB ", e);
             throw new ServiceException("Database exception during create rateNB ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -77,7 +77,7 @@ public class RateNBServiceImpl implements RateNBService {
     public boolean update(RateNB rateNB) throws ServiceException, ServiceConstraintViolationException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             return rateNBDao.update(rateNB);
         } catch (DaoConstraintViolationException e) {
@@ -87,7 +87,7 @@ public class RateNBServiceImpl implements RateNBService {
             logger.log(Level.ERROR, "Database exception during update rateNB ", e);
             throw new ServiceException("Database exception during update rateNB ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -101,14 +101,14 @@ public class RateNBServiceImpl implements RateNBService {
     public boolean delete(RateNB rateNB) throws ServiceException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             return rateNBDao.delete(rateNB);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete rateNB ", e);
             throw new ServiceException("Database exception during delete rateNB ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -122,14 +122,14 @@ public class RateNBServiceImpl implements RateNBService {
     public int countRows() throws ServiceException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             return rateNBDao.countRows();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count rateNBs row", e);
             throw new ServiceException("Database exception during fiend count rateNBs row", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -144,7 +144,7 @@ public class RateNBServiceImpl implements RateNBService {
         List rateNBs = new ArrayList();
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(rateNBDao);
+        transaction.initSingleQuery(rateNBDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -154,7 +154,7 @@ public class RateNBServiceImpl implements RateNBService {
             logger.log(Level.ERROR, "Database exception during fiend all rateNB", e);
             throw new ServiceException("Database exception during fiend all rateNB", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 }

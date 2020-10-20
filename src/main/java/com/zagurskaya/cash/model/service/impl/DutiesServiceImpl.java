@@ -41,14 +41,14 @@ public class DutiesServiceImpl implements DutiesService {
     public Duties findById(Long id) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             return dutiesDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
             throw new ServiceException("Database exception during fiend duties by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -62,7 +62,7 @@ public class DutiesServiceImpl implements DutiesService {
     public boolean create(Duties duties) throws ServiceException, ServiceConstraintViolationException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             return dutiesDao.create(duties) != 0L;
         } catch (DaoConstraintViolationException e) {
@@ -72,7 +72,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during create duties ", e);
             throw new ServiceException("Database exception during create duties ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -86,7 +86,7 @@ public class DutiesServiceImpl implements DutiesService {
     public boolean update(Duties duties) throws ServiceException, ServiceConstraintViolationException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             return dutiesDao.update(duties);
         } catch (DaoConstraintViolationException e) {
@@ -96,7 +96,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException(" Database exception during update duties ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -110,14 +110,14 @@ public class DutiesServiceImpl implements DutiesService {
     public boolean delete(Duties duties) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             return dutiesDao.delete(duties);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete duties ", e);
             throw new ServiceException("Database exception during delete duties ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -131,14 +131,14 @@ public class DutiesServiceImpl implements DutiesService {
     public int countRows() throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             return dutiesDao.countRows();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count dutiesList row", e);
             throw new ServiceException("Database exception during fiend count dutiesList row", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -153,7 +153,7 @@ public class DutiesServiceImpl implements DutiesService {
         List dutiesList = new ArrayList();
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -163,7 +163,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
             throw new ServiceException(" Database exception during fiend all duties", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -177,7 +177,7 @@ public class DutiesServiceImpl implements DutiesService {
         List<Duties> dutiesList = new ArrayList<>();
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             dutiesList.addAll(dutiesDao.openDutiesUserToday(user.getId(), today));
             if (dutiesList.size() > 1) {
@@ -189,7 +189,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during fiend all duties", e);
             throw new ServiceException("Database exception during fiend all duties", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -248,7 +248,7 @@ public class DutiesServiceImpl implements DutiesService {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(dutiesDao);
+        transaction.initSingleQuery(dutiesDao);
         try {
             List<Duties> openDutiesList = dutiesDao.openDutiesUserToday(user.getId(), today);
             if (openDutiesList.size() == 1) {
@@ -276,7 +276,7 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException("Database exception during update duties ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 }

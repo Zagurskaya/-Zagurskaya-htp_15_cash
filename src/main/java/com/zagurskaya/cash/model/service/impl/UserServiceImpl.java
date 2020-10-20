@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public User findUserByLoginAndValidPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         User user;
         try {
             user = userDao.findByLogin(login);
@@ -47,14 +47,14 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
 //    private List<User> findAllSprOperation(int limit, int startPosition) throws ServiceException {
 //        UserDao userDao = new UserDaoImpl();
 //        EntityTransaction transaction = new EntityTransaction();
-//        transaction.initSingleRequest(userDao);
+//        transaction.initSingleQuery(userDao);
 //        try {
 //            List<User> users = userDao.findAllSprOperation(limit, startPosition);
 ////            transaction.commit();
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 //            logger.log(Level.ERROR, "Database exception during fiend all user", e);
 //            throw new ServiceException("Database exception during fiend all user", e);
 //        } finally {
-//            transaction.endSingleRequest();
+//            transaction.endSingleQuery();
 //        }
 //    }
 
@@ -78,14 +78,14 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             return userDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by id", e);
             throw new ServiceException("Database exception during fiend user by id", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
     public boolean create(User user) throws ServiceException, ServiceConstraintViolationException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
                 String hashPassword = getHash(user.getPassword());
@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Database exception during create user ", e);
             throw new ServiceException("Database exception during create user ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -135,7 +135,7 @@ public class UserServiceImpl implements UserService {
     public boolean update(User user) throws ServiceException, ServiceConstraintViolationException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             return userDao.update(user);
         } catch (DaoConstraintViolationException e) {
@@ -145,7 +145,7 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Database exception during update user ", e);
             throw new ServiceException("Database exception during update user ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -159,14 +159,14 @@ public class UserServiceImpl implements UserService {
     public boolean delete(User user) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             return userDao.delete(user);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during delete user ", e);
             throw new ServiceException("Database exception during delete user ", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -180,14 +180,14 @@ public class UserServiceImpl implements UserService {
     public int countRows() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             return userDao.countRows();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend count users row", e);
             throw new ServiceException("Database exception during fiend count users row", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
         List users = new ArrayList();
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             int recordsPerPage = AttributeName.RECORDS_PER_PAGE;
             int startRecord = (int) Math.ceil((page - 1) * recordsPerPage);
@@ -212,21 +212,21 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
     public List<User> findAll() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
-        transaction.initSingleRequest(userDao);
+        transaction.initSingleQuery(userDao);
         try {
             return userDao.findAll();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all user", e);
             throw new ServiceException("Database exception during fiend all user", e);
         } finally {
-            transaction.endSingleRequest();
+            transaction.endSingleQuery();
         }
     }
 
