@@ -177,7 +177,7 @@ public class UserServiceImpl implements UserService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(userDao);

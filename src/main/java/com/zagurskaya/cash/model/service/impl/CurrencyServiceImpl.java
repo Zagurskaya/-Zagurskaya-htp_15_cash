@@ -119,7 +119,7 @@ public class CurrencyServiceImpl implements CurrencyService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(currencyDao);

@@ -128,7 +128,7 @@ public class DutiesServiceImpl implements DutiesService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(dutiesDao);

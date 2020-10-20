@@ -44,7 +44,7 @@ public interface Service<T> {
      * @return количество строк
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
-    Long countRows() throws ServiceException;
+    int countRows() throws ServiceException;
 
     /**
      * Получение списка объектов на определенной странице

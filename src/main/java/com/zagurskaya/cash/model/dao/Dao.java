@@ -54,7 +54,7 @@ public interface Dao<T> {
      * @return количество строк
      * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
-    Long countRows() throws DaoException;
+    int countRows() throws DaoException;
 
     /**
      * Установление соединения

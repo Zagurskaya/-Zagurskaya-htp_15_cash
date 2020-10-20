@@ -127,7 +127,7 @@ public class KassaServiceImpl implements KassaService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(kassaDao);

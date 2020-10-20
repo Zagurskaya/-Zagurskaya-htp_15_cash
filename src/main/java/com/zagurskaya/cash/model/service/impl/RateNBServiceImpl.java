@@ -119,7 +119,7 @@ public class RateNBServiceImpl implements RateNBService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateNBDao);

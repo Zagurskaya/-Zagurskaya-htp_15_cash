@@ -212,13 +212,13 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
      * @throws DaoException ошибке доступа к базе данных или других ошибках.
      */
     @Override
-    public Long countRows() throws DaoException {
-        Long count;
+    public int countRows() throws DaoException {
+        int count;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_USER_ENTRY)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 resultSet.next();
-                count = resultSet.getLong(1);
+                count = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend count userEntrys row", e);

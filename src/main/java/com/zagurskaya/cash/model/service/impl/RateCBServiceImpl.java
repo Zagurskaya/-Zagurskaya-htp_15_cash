@@ -119,7 +119,7 @@ public class RateCBServiceImpl implements RateCBService {
      * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
      */
     @Override
-    public Long countRows() throws ServiceException {
+    public int countRows() throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleRequest(rateCBDao);
