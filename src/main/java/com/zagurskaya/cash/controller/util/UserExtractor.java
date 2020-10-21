@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.controller.util;
 
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
 
@@ -17,10 +18,10 @@ public class UserExtractor {
      * @throws CommandException ошибке валидации данных пользователя.
      */
     public User userNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
-        String login = RequestDataUtil.getString(request, "login");
-        String password = RequestDataUtil.getString(request, "password");
-        String fullName = RequestDataUtil.getString(request, "fullname");
-        String role = RequestDataUtil.getString(request, "role");
+        String login = RequestDataUtil.getString(request, AttributeName.LOGIN);
+        String password = RequestDataUtil.getString(request, AttributeName.PASSWORD);
+        String fullName = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
+        String role = RequestDataUtil.getString(request, AttributeName.ROLE);
         return new User.Builder()
                 .addLogin(login)
                 .addPassword(password)
@@ -37,9 +38,9 @@ public class UserExtractor {
      * @throws CommandException ошибке валидации данных пользователя.
      */
     public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
-        String login = RequestDataUtil.getString(request, "login");
-        String fullName = RequestDataUtil.getString(request, "fullname");
-        String role = RequestDataUtil.getString(request, "role");
+        String login = RequestDataUtil.getString(request, AttributeName.LOGIN);
+        String fullName = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
+        String role = RequestDataUtil.getString(request, AttributeName.ROLE);
 
         return new User.Builder()
                 .addLogin(login)

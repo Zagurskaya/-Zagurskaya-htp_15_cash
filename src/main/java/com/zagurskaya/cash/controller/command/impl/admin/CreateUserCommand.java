@@ -41,54 +41,53 @@ public class CreateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws CommandException  {
+    public ActionType execute(HttpServletRequest request) throws CommandException {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");
+        try {
+            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.CREATEUSER);
+            if (actionType == ActionType.CREATEUSER) {
+                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                    if (DataValidation.isCancelOperation(request)) {
+                        return ActionType.EDITUSERS;
 
-        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.CREATEUSER);
-        if (actionType == ActionType.CREATEUSER) {
-            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                    } else if (DataValidation.isSaveOperation(request)) {
+                        UserExtractor userExtractor = new UserExtractor();
+                        User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
+                        request.setAttribute(AttributeName.USER, createdUser);
 
-                if (DataValidation.isCancelOperation(request)) {
-                    return ActionType.EDITUSERS;
+                        String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String fullName = RequestDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                        String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
-                } else if (DataValidation.isSaveOperation(request)) {
-                    UserExtractor userExtractor = new UserExtractor();
-                    User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
-                    request.setAttribute(AttributeName.USER, createdUser);
+                        if (DataValidation.isUserLengthFieldsValid(request)) {
+                            User newUser = new User.Builder()
+                                    .addLogin(login)
+                                    .addPassword(password)
+                                    .addFullName(fullName)
+                                    .addRole(role)
+                                    .build();
 
-                    String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String fullName = RequestDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
-
-                    if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User newUser = new User.Builder()
-                                .addLogin(login)
-                                .addPassword(password)
-                                .addFullName(fullName)
-                                .addRole(role)
-                                .build();
-                        try {
                             userService.create(newUser);
                             logger.log(Level.INFO, "Add new user " + newUser.getLogin());
                             session.setAttribute(AttributeName.MESSAGE, "107 " + newUser.getLogin());
                             return ActionType.EDITUSERS;
-                        } catch (ServiceException e) {
-                            session.setAttribute(AttributeName.ERROR, e);
-                            logger.log(Level.ERROR, e);
-                            return ActionType.ERROR;
                         }
                     }
                 }
-            }
 
-            final User newUser = new User();
-            request.setAttribute(AttributeName.USER, newUser);
-            return ActionType.CREATEUSER;
-        } else {
-            return actionType;
+                final User newUser = new User();
+                request.setAttribute(AttributeName.USER, newUser);
+                return ActionType.CREATEUSER;
+            } else {
+                return actionType;
+            }
+        } catch (ServiceException e) {
+            session.setAttribute(AttributeName.ERROR, e);
+            logger.log(Level.ERROR, e);
+            return ActionType.ERROR;
         }
     }
 }

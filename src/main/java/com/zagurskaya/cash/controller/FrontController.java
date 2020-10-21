@@ -38,7 +38,6 @@ public class FrontController extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-
         request.setAttribute(AttributeName.RESPONSE, response);
         ActionType currentActionType = ActionType.define(request);
         try {

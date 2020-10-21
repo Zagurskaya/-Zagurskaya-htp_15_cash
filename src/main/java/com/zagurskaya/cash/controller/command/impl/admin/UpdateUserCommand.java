@@ -46,10 +46,7 @@ public class UpdateUserCommand extends AbstractСommand {
 
         ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
         if (actionType == ActionType.EDITUSERS) {
-
-
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-
                 if (DataValidation.isCancelOperation(request)) {
                     return ActionType.EDITUSERS;
 
