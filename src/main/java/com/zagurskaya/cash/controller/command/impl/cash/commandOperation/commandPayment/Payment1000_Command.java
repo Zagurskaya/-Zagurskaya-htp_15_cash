@@ -44,7 +44,7 @@ public class Payment1000_Command extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request) throws CommandException {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();
@@ -74,7 +74,7 @@ public class Payment1000_Command extends AbstractСommand {
             } else {
                 return actionType;
             }
-        } catch (ServiceException | NumberFormatException | CommandException | ServiceConstraintViolationException e) {
+        } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;

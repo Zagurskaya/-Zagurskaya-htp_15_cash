@@ -5,6 +5,7 @@ import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -59,7 +60,7 @@ public class DutiesServiceImpl implements DutiesService {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Duties duties) throws ServiceException, ServiceConstraintViolationException {
+    public boolean create(Duties duties) throws ServiceException, CommandException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(dutiesDao);
@@ -67,7 +68,7 @@ public class DutiesServiceImpl implements DutiesService {
             return dutiesDao.create(duties) != 0L;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
-            throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
+            throw new CommandException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create duties ", e);
             throw new ServiceException("Database exception during create duties ", e);
@@ -83,7 +84,7 @@ public class DutiesServiceImpl implements DutiesService {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(Duties duties) throws ServiceException, ServiceConstraintViolationException {
+    public boolean update(Duties duties) throws ServiceException, CommandException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(dutiesDao);
@@ -91,7 +92,7 @@ public class DutiesServiceImpl implements DutiesService {
             return dutiesDao.update(duties);
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
-            throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
+            throw new CommandException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException(" Database exception during update duties ", e);

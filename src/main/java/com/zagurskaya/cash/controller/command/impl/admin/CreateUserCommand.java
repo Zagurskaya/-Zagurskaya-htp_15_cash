@@ -41,7 +41,7 @@ public class CreateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws CommandException, ServiceConstraintViolationException {
+    public ActionType execute(HttpServletRequest request) throws CommandException  {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("message");
         session.removeAttribute("error");

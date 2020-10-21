@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.model.service;
 
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 
@@ -20,7 +21,7 @@ public interface Service<T> {
      * @param t - объект
      * @return true при успешном создании
      */
-    boolean create(T t) throws ServiceException, ServiceConstraintViolationException;
+    boolean create(T t) throws ServiceException, CommandException;
 
     /**
      * Изменение объекта
@@ -28,7 +29,7 @@ public interface Service<T> {
      * @param t - объект
      * @return true при успешном изменении
      */
-    boolean update(T t) throws ServiceException, ServiceConstraintViolationException;
+    boolean update(T t) throws ServiceException, CommandException;
 
     /**
      * Удаление объекта

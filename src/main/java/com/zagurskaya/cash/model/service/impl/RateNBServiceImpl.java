@@ -2,6 +2,7 @@ package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.RateNB;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -50,7 +51,7 @@ public class RateNBServiceImpl implements RateNBService {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(RateNB rateNB) throws ServiceException, ServiceConstraintViolationException {
+    public boolean create(RateNB rateNB) throws ServiceException, CommandException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(rateNBDao);
@@ -58,7 +59,7 @@ public class RateNBServiceImpl implements RateNBService {
             return rateNBDao.create(rateNB) != 0L;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data rateNB ", e);
-            throw new ServiceConstraintViolationException("Duplicate data rateNB ", e);
+            throw new CommandException("Duplicate data rateNB ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create rateNB ", e);
             throw new ServiceException("Database exception during create rateNB ", e);
@@ -74,7 +75,7 @@ public class RateNBServiceImpl implements RateNBService {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(RateNB rateNB) throws ServiceException, ServiceConstraintViolationException {
+    public boolean update(RateNB rateNB) throws ServiceException, CommandException {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(rateNBDao);
@@ -82,7 +83,7 @@ public class RateNBServiceImpl implements RateNBService {
             return rateNBDao.update(rateNB);
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data rateNB ", e);
-            throw new ServiceConstraintViolationException("Duplicate data rateNB ", e);
+            throw new CommandException("Duplicate data rateNB ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update rateNB ", e);
             throw new ServiceException("Database exception during update rateNB ", e);

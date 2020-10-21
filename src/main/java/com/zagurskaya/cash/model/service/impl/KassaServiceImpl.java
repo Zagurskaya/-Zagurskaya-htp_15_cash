@@ -5,6 +5,7 @@ import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.SprEntry;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -58,7 +59,7 @@ public class KassaServiceImpl implements KassaService {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Kassa kassa) throws ServiceException, ServiceConstraintViolationException {
+    public boolean create(Kassa kassa) throws ServiceException, CommandException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(kassaDao);
@@ -66,7 +67,7 @@ public class KassaServiceImpl implements KassaService {
             return kassaDao.create(kassa) != null;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
-            throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
+            throw new CommandException("Duplicate data kassa ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create kassa ", e);
             throw new ServiceException("Database exception during create kassa ", e);
@@ -82,7 +83,7 @@ public class KassaServiceImpl implements KassaService {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(Kassa kassa) throws ServiceException, ServiceConstraintViolationException {
+    public boolean update(Kassa kassa) throws ServiceException, CommandException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(kassaDao);
@@ -90,7 +91,7 @@ public class KassaServiceImpl implements KassaService {
             return kassaDao.update(kassa);
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
-            throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
+            throw new CommandException("Duplicate data kassa ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update kassa ", e);
             throw new ServiceException("Database exception during update kassa ", e);
@@ -167,7 +168,7 @@ public class KassaServiceImpl implements KassaService {
     }
 
     //внутрикассовые операции
-    public boolean updateKassaInSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceConstraintViolationException, ServiceException {
+    public boolean updateKassaInSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -209,7 +210,7 @@ public class KassaServiceImpl implements KassaService {
             return result;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
-            throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
+            throw new ServiceException("Duplicate data kassa ", e);
         } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during update Kassa InSide Operation", e);
@@ -221,7 +222,7 @@ public class KassaServiceImpl implements KassaService {
 
     //внекассовые операции
     @Override
-    public boolean updateKassaOutSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException, ServiceConstraintViolationException {
+    public boolean updateKassaOutSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
 
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
@@ -266,7 +267,7 @@ public class KassaServiceImpl implements KassaService {
             return result;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
-            throw new ServiceConstraintViolationException("Duplicate data kassa ", e);
+            throw new ServiceException("Duplicate data kassa ", e);
         } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during update Kassa Out Side Operation", e);

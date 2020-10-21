@@ -2,6 +2,7 @@ package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.Currency;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -50,7 +51,7 @@ public class CurrencyServiceImpl implements CurrencyService {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(Currency currency) throws ServiceException, ServiceConstraintViolationException {
+    public boolean create(Currency currency) throws ServiceException, CommandException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(currencyDao);
@@ -58,7 +59,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             return currencyDao.create(currency) != 0L;
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data currency ", e);
-            throw new ServiceConstraintViolationException("Duplicate data currency ", e);
+            throw new CommandException("Duplicate data currency ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create currency ", e);
             throw new ServiceException("Database exception during create currency ", e);
@@ -74,7 +75,7 @@ public class CurrencyServiceImpl implements CurrencyService {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(Currency currency) throws ServiceException, ServiceConstraintViolationException {
+    public boolean update(Currency currency) throws ServiceException, CommandException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(currencyDao);
@@ -82,7 +83,7 @@ public class CurrencyServiceImpl implements CurrencyService {
             return currencyDao.update(currency);
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data currency ", e);
-            throw new ServiceConstraintViolationException("Duplicate data currency ", e);
+            throw new CommandException("Duplicate data currency ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update currency ", e);
             throw new ServiceException("Database exception during update currency ", e);

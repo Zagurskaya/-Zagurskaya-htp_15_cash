@@ -1,6 +1,5 @@
 package com.zagurskaya.cash.controller;
 
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.ActionType;
@@ -44,8 +43,6 @@ public class FrontController extends HttpServlet {
         ActionType currentActionType = ActionType.define(request);
         try {
             ActionType nextActionType = currentActionType.getCommand().execute(request);
-//            ActionType previousActionType = currentActionType;
-//            session.setAttribute(AttributeName.PREVIOUS_ACTION, previousActionType);
             session.setAttribute(AttributeName.CURRENT_ACTION_TYPE, currentActionType);
             if (nextActionType == currentActionType) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
@@ -53,7 +50,7 @@ public class FrontController extends HttpServlet {
             } else {
                 response.sendRedirect("do?command=" + nextActionType.name().toLowerCase());
             }
-        } catch (CommandException | ServiceConstraintViolationException e) {
+        } catch (CommandException e) {
             String error = e.getMessage();
             request.setAttribute(AttributeName.ERROR, error);
             logger.log(Level.ERROR, error, e);

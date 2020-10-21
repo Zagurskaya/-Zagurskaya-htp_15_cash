@@ -4,7 +4,7 @@ import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public interface PaymentService {
     /**
      * Выполнение операции 1000
      */
-    void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException, ServiceConstraintViolationException;
+    void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
 
     int countRowsUserOperations(User user, Duties duties) throws ServiceException;
 

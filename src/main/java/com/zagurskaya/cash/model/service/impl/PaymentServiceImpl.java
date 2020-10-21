@@ -7,6 +7,7 @@ import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
@@ -74,7 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException, ServiceConstraintViolationException {
+    public void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException {
         Long sprOperationId = 1000L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -132,7 +133,7 @@ public class PaymentServiceImpl implements PaymentService {
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
-            throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
+            throw new ServiceException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during implement Payment1000", e);

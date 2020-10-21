@@ -37,7 +37,7 @@ public class UpdateUserCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws CommandException, ServiceConstraintViolationException {
+    public ActionType execute(HttpServletRequest request) throws CommandException {
         final HttpSession session = request.getSession(false);
         final Long id = (Long) session.getAttribute(AttributeName.ID);
         if (id == null) return ActionType.INDEX;

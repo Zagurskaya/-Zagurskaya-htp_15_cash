@@ -1,15 +1,15 @@
 package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.model.dao.UserDao;
 import com.zagurskaya.cash.model.dao.impl.UserDaoImpl;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.EntityTransaction;
-import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.model.service.UserService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
      * @return true при успешном создании
      */
     @Override
-    public boolean create(User user) throws ServiceException, ServiceConstraintViolationException {
+    public boolean create(User user) throws ServiceException, CommandException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(userDao);
@@ -112,11 +112,11 @@ public class UserServiceImpl implements UserService {
                 return userDao.create(createUser) != 0L;
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
-                throw new ServiceConstraintViolationException("Duplicate data user's login ");
+                throw new CommandException("Duplicate data user's login ");
             }
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data user ", e);
-            throw new ServiceConstraintViolationException("Duplicate data user ", e);
+            throw new CommandException("Duplicate data user ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during create user ", e);
             throw new ServiceException("Database exception during create user ", e);
@@ -132,7 +132,7 @@ public class UserServiceImpl implements UserService {
      * @return true при успешном изменении
      */
     @Override
-    public boolean update(User user) throws ServiceException, ServiceConstraintViolationException {
+    public boolean update(User user) throws ServiceException, CommandException {
         UserDao userDao = new UserDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(userDao);
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
             return userDao.update(user);
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data user ", e);
-            throw new ServiceConstraintViolationException("Duplicate data user ", e);
+            throw new CommandException("Duplicate data user ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update user ", e);
             throw new ServiceException("Database exception during update user ", e);
