@@ -7,7 +7,6 @@ public class AttributeName {
 
     public static final String ERROR = "error";
     public static final String MESSAGE = "message";
-    public static final String RESPONSE = "response";
     public static final String LOCAL = "local";
     public static final String CURRENT_ACTION_TYPE = "currentActionType";
     public static final String PAGE = "page";

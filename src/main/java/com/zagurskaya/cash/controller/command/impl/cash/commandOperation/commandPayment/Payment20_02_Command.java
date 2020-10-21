@@ -4,6 +4,7 @@ import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 public class Payment20_02_Command extends AbstractСommand {
@@ -18,7 +19,7 @@ public class Payment20_02_Command extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest req) {
+    public ActionType execute(HttpServletRequest req, HttpServletResponse response) {
 //        HttpSession session = req.getSession(false);
 //        Long currencyIdSession = (Long) session.getAttribute("currencyId");
 //        req.setAttribute("currencyId", currencyIdSession);

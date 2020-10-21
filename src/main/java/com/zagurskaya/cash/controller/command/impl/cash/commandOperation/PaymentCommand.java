@@ -18,6 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,7 +34,7 @@ public class PaymentCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
         session.removeAttribute("error");
         LocalDate date = LocalDate.now();

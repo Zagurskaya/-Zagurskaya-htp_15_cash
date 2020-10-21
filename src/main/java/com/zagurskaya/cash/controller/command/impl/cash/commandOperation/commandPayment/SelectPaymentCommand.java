@@ -4,6 +4,7 @@ import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class SelectPaymentCommand extends AbstractСommand {
     /**
@@ -16,7 +17,7 @@ public class SelectPaymentCommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest req){
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         return ActionType.SELECTPAYMENT;
     }
 }

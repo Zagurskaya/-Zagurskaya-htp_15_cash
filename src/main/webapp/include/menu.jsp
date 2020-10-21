@@ -34,6 +34,5 @@
     </div>
     <a class="nav-item nav-link" href="do?command=Locale"><fmt:message key="header.localEn"/></a>
     <a class="nav-item nav-link" href="do?command=Locale"><fmt:message key="header.localRu"/></a>
-    <%--    <a class="nav-item nav-link" href="do?command=Logout"><fmt:message key="header.logout"/></a>--%>
 </nav>
 

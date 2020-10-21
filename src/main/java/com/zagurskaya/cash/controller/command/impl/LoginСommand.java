@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -37,7 +38,7 @@ public class LoginСommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) throws CommandException {
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         final HttpSession session = request.getSession(false);
         try {
 

@@ -7,6 +7,7 @@ import com.zagurskaya.cash.controller.util.RequestDataUtil;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LocaleСommand extends AbstractСommand {
     private static final String LOCALE_RU = "ru";
-    private static final String LOCALE_EN = "ru";
+    private static final String LOCALE_EN = "en";
 
     /**
      * Конструктор
@@ -26,7 +27,7 @@ public class LocaleСommand extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request) {
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
         ActionType previousActionType = (ActionType) session.getAttribute(AttributeName.CURRENT_ACTION_TYPE);
         ActionType actionType = previousActionType == null ? ActionType.INDEX : previousActionType;
@@ -35,7 +36,7 @@ public class LocaleСommand extends AbstractСommand {
                 ? (localeCookie.getValue().equals(LOCALE_RU) ? LOCALE_EN : LOCALE_RU) : LOCALE_RU;
 
         Cookie localEnCookie = new Cookie(AttributeName.LOCAL, locale);
-        RequestDataUtil.setCookie(request, localEnCookie);
+        response.addCookie(localEnCookie);
         return actionType;
     }
 }

@@ -9,7 +9,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
@@ -49,27 +48,6 @@ public class RequestDataUtil {
         }
         return cookie;
     }
-
-    public static void setCookie(HttpServletRequest request, Cookie cookie) {
-        HttpServletResponse response =
-                (HttpServletResponse) request.getAttribute(AttributeName.RESPONSE);
-        response.addCookie(cookie);
-    }
-
-    public static void deleteCookie(HttpServletRequest request, String key) {
-        Cookie readCookie = null;
-        for (Cookie cookie : request.getCookies()) {
-            if (cookie.getName().equals(key)) {
-                readCookie = cookie;
-                break;
-            }
-        }
-        if (readCookie != null) {
-            readCookie.setMaxAge(0);
-        }
-        RequestDataUtil.setCookie(request, readCookie);
-    }
-
 
     public static String getString(HttpServletRequest request, String name, String pattern) throws CommandException {
         try {

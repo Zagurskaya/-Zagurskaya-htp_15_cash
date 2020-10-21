@@ -4,6 +4,7 @@ import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class Payment998_Command extends AbstractСommand {
     /**
@@ -16,7 +17,7 @@ public class Payment998_Command extends AbstractСommand {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest req) {
+    public ActionType execute(HttpServletRequest req, HttpServletResponse response) {
 //        User user = Util.findUser(req);
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());

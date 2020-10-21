@@ -41,15 +41,5 @@
         <error-code>503</error-code>
         <location>/jsp/errors/error503.jsp</location>
     </error-page>
-
-    <!--    <filter>-->
-<!--        <filter-name>Auth</filter-name>-->
-<!--        <filter-class>by.it.zagurskaya.project.java.filters.Auth</filter-class>-->
-<!--    </filter>-->
-
-<!--    <filter-mapping>-->
-<!--        <filter-name>Auth</filter-name>-->
-<!--        <url-pattern>/*</url-pattern>-->
-<!--    </filter-mapping>-->
 </web-app>
 
