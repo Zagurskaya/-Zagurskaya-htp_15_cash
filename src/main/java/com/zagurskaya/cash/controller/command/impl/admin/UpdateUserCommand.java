@@ -53,7 +53,7 @@ public class UpdateUserCommand extends AbstractСommand {
 
                 } else if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
-                    User updatedUser = userExtractor.updateUserNotCheckedFieldsToUser(request);
+                    User updatedUser = userExtractor.userNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeName.USER, updatedUser);
 
                     String login = DataUtil.getString(updatedUser.getLogin(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);

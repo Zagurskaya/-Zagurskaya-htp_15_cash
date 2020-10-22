@@ -19,29 +19,8 @@ public class UserExtractor {
      */
     public User userNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
         String login = RequestDataUtil.getString(request, AttributeName.LOGIN);
-        String password = RequestDataUtil.getString(request, AttributeName.PASSWORD);
         String fullName = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
         String role = RequestDataUtil.getString(request, AttributeName.ROLE);
-        return new User.Builder()
-                .addLogin(login)
-                .addPassword(password)
-                .addFullName(fullName)
-                .addRole(role)
-                .build();
-    }
-
-    /**
-     * Получение исходных данных из запроса и установка их в соответствующие поля обновляемого пользователя
-     *
-     * @param request - запрос
-     * @return пользователь
-     * @throws CommandException ошибке валидации данных пользователя.
-     */
-    public User updateUserNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
-        String login = RequestDataUtil.getString(request, AttributeName.LOGIN);
-        String fullName = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
-        String role = RequestDataUtil.getString(request, AttributeName.ROLE);
-
         return new User.Builder()
                 .addLogin(login)
                 .addFullName(fullName)

@@ -42,7 +42,9 @@ public class UserServiceImpl implements UserService {
         User user;
         try {
             user = userDao.findByLogin(login);
-            return user != null && user.getPassword().equals(getHash(password)) ? user : null;
+            String userPassword = userDao.findPasswordByLogin(login);
+            User returnUser = user != null && userPassword.equals(getHash(password)) ? user : null;
+            return returnUser;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend user by login and password", e);
             throw new ServiceException("Database exception during fiend user by login and password", e);
@@ -102,14 +104,47 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleQuery(userDao);
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
-                String hashPassword = getHash(user.getPassword());
                 User createUser = new User.Builder()
                         .addLogin(user.getLogin())
-                        .addPassword(hashPassword)
                         .addFullName(user.getFullName())
                         .addRole(user.getRole())
                         .build();
                 return userDao.create(createUser) != 0L;
+            } else {
+                logger.log(Level.ERROR, "Duplicate data user's login ");
+                throw new CommandException("Duplicate data user's login ");
+            }
+        } catch (DaoConstraintViolationException e) {
+            logger.log(Level.ERROR, "Duplicate data user ", e);
+            throw new CommandException("Duplicate data user ", e);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Database exception during create user ", e);
+            throw new ServiceException("Database exception during create user ", e);
+        } finally {
+            transaction.endSingleQuery();
+        }
+    }
+
+    /**
+     * Создание пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном создании
+     */
+    @Override
+    public boolean create(User user, String password) throws ServiceException, CommandException {
+        UserDao userDao = new UserDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleQuery(userDao);
+        try {
+            if (userDao.findByLogin(user.getLogin()) == null) {
+                String hashPassword = getHash(password);
+                User createUser = new User.Builder()
+                        .addLogin(user.getLogin())
+                        .addFullName(user.getFullName())
+                        .addRole(user.getRole())
+                        .build();
+                return userDao.create(createUser, hashPassword) != 0L;
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new CommandException("Duplicate data user's login ");

@@ -23,7 +23,17 @@
                 <label class="col-md-4 control-label" for="password">
                     <fmt:message key="page.createuser.label.password"/></label>
                 <div class="col-md-4">
-                    <input id="password" name="password" value="${user.password}" type="password" placeholder=""
+                    <input id="password" name="password" value="" type="password" placeholder=""
+                           class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="reiteratepassword">
+                    <fmt:message key="page.createuser.label.reiteratepassword"/></label>
+                <div class="col-md-4">
+                    <input id="reiteratepassword" name="reiteratepassword" value="" type="password" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
                     >
                 </div>

@@ -21,14 +21,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger logger = LogManager.getLogger(UserDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_USERS_PAGE = "SELECT id, login, password, fullname, role FROM `user`  ORDER BY login LIMIT ? Offset ? ";
-    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, fullname, role FROM `user` ";
-    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, fullname, role FROM `user` WHERE id= ? ";
-    private static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, login, password, fullname, role FROM `user` WHERE login= ? ";
-    private static final String SQL_INSERT_USER = "INSERT INTO user(login, password, fullname, role) VALUES (?, ?,?, ?)";
+    private static final String SQL_SELECT_ALL_USERS_PAGE = "SELECT id, login, password, fullname, role FROM user  ORDER BY login LIMIT ? Offset ? ";
+    private static final String SQL_SELECT_ALL_USERS = "SELECT id, login, password, fullname, role FROM user ";
+    private static final String SQL_SELECT_USER_BY_ID = "SELECT id, login, password, fullname, role FROM user WHERE id= ? ";
+    private static final String SQL_SELECT_PASSWORD_BY_LOGIN = "SELECT password FROM user WHERE login= ? ";
+    private static final String SQL_SELECT_USER_BY_LOGIN = "SELECT id, login, password, fullname, role FROM user WHERE login= ? ";
+    private static final String SQL_INSERT_USER = "INSERT INTO user(login, fullname, role) VALUES (?, ?, ?)";
+    private static final String SQL_INSERT_USER_WITH_PASSWORD = "INSERT INTO user(login, password, fullname, role) VALUES (?, ?,?, ?)";
     private static final String SQL_UPDATE_USER = "UPDATE user SET login=?, fullname = ?, role=? WHERE id= ?";
     private static final String SQL_DELETE_USER = "DELETE FROM user WHERE id=?";
-    private static final String SQL_SELECT_COUNT_USERS = "SELECT COUNT(login) FROM `user`";
+    private static final String SQL_SELECT_COUNT_USERS = "SELECT COUNT(login) FROM user";
 
     /**
      * Получение списка пользователей начиная с startPosition позиции в количестве <= limit
@@ -48,13 +50,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_ID);
                     String login = resultSet.getString(ColumnName.USER_LOGIN);
-                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
                     User user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
-                            .addPassword(password)
                             .addFullName(fullName)
                             .addRole(role)
                             .build();
@@ -83,13 +83,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     String login = resultSet.getString(ColumnName.USER_LOGIN);
-                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
                     user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
-                            .addPassword(password)
                             .addFullName(fullName)
                             .addRole(role)
                             .build();
@@ -114,7 +112,38 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, user.getLogin());
-                preparedStatement.setString(2, user.getPassword());
+                preparedStatement.setString(2, user.getFullName());
+                preparedStatement.setString(3, user.getRole().getValue());
+                result = preparedStatement.executeUpdate();
+                if (1 == result) {
+                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getLong(1);
+                    }
+                }
+            }
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new DaoConstraintViolationException("Duplicate data user", e);
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during create user", e);
+            throw new DaoException("Database exception during create user", e);
+        }
+        return 0L;
+    }
+
+    /**
+     * Создание пользователя
+     *
+     * @param user - пользователь
+     * @return true при успешном создании
+     */
+    @Override
+    public Long create(User user, String password) throws DaoException, DaoConstraintViolationException {
+        int result;
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER_WITH_PASSWORD, Statement.RETURN_GENERATED_KEYS)) {
+                preparedStatement.setString(1, user.getLogin());
+                preparedStatement.setString(2, password);
                 preparedStatement.setString(3, user.getFullName());
                 preparedStatement.setString(4, user.getRole().getValue());
                 result = preparedStatement.executeUpdate();
@@ -132,6 +161,23 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             throw new DaoException("Database exception during create user", e);
         }
         return 0L;
+    }
+
+    @Override
+    public String findPasswordByLogin(String login) throws DaoException {
+        String password;
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_PASSWORD_BY_LOGIN)) {
+                preparedStatement.setString(1, login);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+                    password = resultSet.getString(ColumnName.USER_PASSWORD);
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during find password by login", e);
+            throw new DaoException("Database exception during fiend password by login", e);
+        }
+        return password;
     }
 
     /**
@@ -190,13 +236,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_ID);
-                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
                     user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
-                            .addPassword(password)
                             .addFullName(fullName)
                             .addRole(role)
                             .build();
@@ -245,13 +289,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_ID);
                     String login = resultSet.getString(ColumnName.USER_LOGIN);
-                    String password = resultSet.getString(ColumnName.USER_PASSWORD);
                     String fullName = resultSet.getString(ColumnName.USER_FULL_NAME);
                     String role = resultSet.getString(ColumnName.USER_ROLE);
                     User user = new User.Builder()
                             .addId(id)
                             .addLogin(login)
-                            .addPassword(password)
                             .addFullName(fullName)
                             .addRole(role)
                             .build();

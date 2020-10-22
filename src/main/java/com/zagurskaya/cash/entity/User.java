@@ -12,10 +12,7 @@ public class User {
      * Логин
      */
     private String login;
-    /**
-     * Пароль
-     */
-    private String password;
+
     /**
      * ФИО
      */
@@ -44,15 +41,6 @@ public class User {
     }
 
     /**
-     * Получение значения поля {@link User#password}
-     *
-     * @return пароль
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
      * Получение значения поля {@link User#fullName}
      *
      * @return ФИО
@@ -78,8 +66,6 @@ public class User {
                 .append(id)
                 .append(", login=")
                 .append(login)
-                .append(", password=")
-                .append(password)
                 .append(", fullName=")
                 .append(fullName)
                 .append(", role=")
@@ -120,17 +106,6 @@ public class User {
          */
         public Builder addLogin(String login) {
             newUser.login = login;
-            return this;
-        }
-
-        /**
-         * Определение пароля {@link User#password}
-         *
-         * @param password - пароль
-         * @return Builder
-         */
-        public Builder addPassword(String password) {
-            newUser.password = password;
             return this;
         }
 

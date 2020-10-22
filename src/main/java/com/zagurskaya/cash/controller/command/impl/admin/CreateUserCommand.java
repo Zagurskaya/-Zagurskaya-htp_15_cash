@@ -4,7 +4,6 @@ import com.zagurskaya.cash.controller.command.AbstractСommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.service.UserService;
@@ -30,6 +29,7 @@ public class CreateUserCommand extends AbstractСommand {
     private static final String LOGIN = "login";
     private static final String FULL_NAME = "fullname";
     private static final String PASSWORD = "password";
+    private static final String REITERATE_PASSWORD = "reiteratepassword";
     private static final String ROLE = "role";
 
     /**
@@ -61,17 +61,17 @@ public class CreateUserCommand extends AbstractСommand {
                         String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
                         String fullName = RequestDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
                         String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String reiteratePassword = RequestDataUtil.getString(request, REITERATE_PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
                         String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
-                        if (DataValidation.isUserLengthFieldsValid(request)) {
+                        if (DataValidation.isUserLengthFieldsValid(request) && password.equals(reiteratePassword)) {
                             User newUser = new User.Builder()
                                     .addLogin(login)
-                                    .addPassword(password)
                                     .addFullName(fullName)
                                     .addRole(role)
                                     .build();
 
-                            userService.create(newUser);
+                            userService.create(newUser, password);
                             logger.log(Level.INFO, "Add new user " + newUser.getLogin());
                             session.setAttribute(AttributeName.MESSAGE, "107 " + newUser.getLogin());
                             return ActionType.EDITUSERS;

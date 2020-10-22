@@ -1,6 +1,7 @@
 package com.zagurskaya.cash.model.service;
 
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.util.List;
@@ -22,4 +23,12 @@ public interface UserService extends Service<User> {
      * @return список пользователей
      */
     List<User> findAll() throws ServiceException;
+
+    /**
+     * Создание объекта
+     *
+     * @param user - объект
+     * @return true при успешном создании
+     */
+    boolean create(User user, String password) throws ServiceException, CommandException;
 }
