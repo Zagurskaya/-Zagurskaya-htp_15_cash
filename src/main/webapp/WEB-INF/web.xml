@@ -5,6 +5,14 @@
          version="3.1">
     <display-name>Сервлеты zagurskaya</display-name>
     <filter>
+        <filter-name>PageRedirectSecurityFilter</filter-name>
+        <filter-class>com.zagurskaya.cash.filter.PageRedirectSecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PageRedirectSecurityFilter</filter-name>
+        <url-pattern>/jsp/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>ExceptionHandlerFilter</filter-name>
         <filter-class>com.zagurskaya.cash.filter.ExceptionHandlerFilter</filter-class>
     </filter>
