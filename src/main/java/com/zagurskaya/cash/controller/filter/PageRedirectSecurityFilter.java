@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.filter;
+package com.zagurskaya.cash.controller.filter;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 

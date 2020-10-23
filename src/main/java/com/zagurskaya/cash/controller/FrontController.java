@@ -21,6 +21,7 @@ import java.io.IOException;
  */
 public class FrontController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FrontController.class);
+    private static final String DO_COMMAND = "do?command=";
 
     @Override
     public void init() {
@@ -46,7 +47,7 @@ public class FrontController extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
                 requestDispatcher.forward(request, response);
             } else {
-                response.sendRedirect("do?command=" + nextActionType.name().toLowerCase());
+                response.sendRedirect(DO_COMMAND + nextActionType.name().toLowerCase());
             }
         } catch (CommandException e) {
             String error = e.getMessage();
@@ -57,7 +58,7 @@ public class FrontController extends HttpServlet {
         } catch (Exception e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
-            response.sendRedirect("do?command=error");
+            response.sendRedirect(DO_COMMAND + ActionType.ERROR);
         }
     }
 

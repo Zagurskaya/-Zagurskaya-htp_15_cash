@@ -7,7 +7,7 @@
     <form class="form-horizontal" method="post">
         <fieldset>
             <legend><fmt:message key="page.createuser.label.description"/></legend>
-            <%@ include file="/include/errormessage.jsp" %>
+            <%@ include file="/jsp/errors/errormessage.jsp" %>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">

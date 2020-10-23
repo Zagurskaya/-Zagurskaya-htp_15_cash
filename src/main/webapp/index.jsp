@@ -6,7 +6,7 @@
     <%@ include file="/include/menu.jsp" %>
     <H1> CASH</H1>
     <br>
-    <%@ include file="/include/errormessage.jsp" %>
+    <%@ include file="/jsp/errors/errormessage.jsp" %>
     <br>
 </div>
 </body>

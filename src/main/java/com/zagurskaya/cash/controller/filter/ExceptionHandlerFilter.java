@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.filter;
+package com.zagurskaya.cash.controller.filter;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

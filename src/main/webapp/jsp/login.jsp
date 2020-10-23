@@ -5,7 +5,7 @@
 <div class="container">
     <%@ include file="../include/menu.jsp" %>
     <br>
-    <%@ include file="../include/errormessage.jsp" %>
+    <%@ include file="errors/errormessage.jsp" %>
     <br>
     <form class="form-horizontal" actionType="do?command=Login" method="post">
         <fieldset>

@@ -8,7 +8,7 @@
     <%@ include file="/include/menu.jsp" %>
     <c:choose>
         <c:when test="${error.substring(0,3)!=null}">
-            <%@ include file="/include/errormessage.jsp" %>
+            <%@ include file="/jsp/errors/errormessage.jsp" %>
         </c:when>
         <c:otherwise>
             <p>ERROR: ${error}</p>
