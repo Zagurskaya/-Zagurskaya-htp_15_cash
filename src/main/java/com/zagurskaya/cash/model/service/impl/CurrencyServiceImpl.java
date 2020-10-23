@@ -5,7 +5,6 @@ import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.CurrencyDao;
 import com.zagurskaya.cash.model.dao.impl.CurrencyDaoImpl;
@@ -23,12 +22,6 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     private static final Logger logger = LogManager.getLogger(CurrencyServiceImpl.class);
 
-    /**
-     * Поиск валюты по ID
-     *
-     * @param id - ID
-     * @return валюта
-     */
     @Override
     public Currency findById(Long id) throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
@@ -44,12 +37,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Создание валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(Currency currency) throws ServiceException, CommandException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
@@ -68,12 +55,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Изменение валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Currency currency) throws ServiceException, CommandException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
@@ -92,12 +73,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Удаление валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Currency currency) throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
@@ -113,12 +88,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Количество строк в таблите валют
-     *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public int countRows() throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();
@@ -134,12 +103,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Получение списка валют на определенной странице
-     *
-     * @param page - номер страницы
-     * @return список пользователей
-     */
     @Override
     public List<Currency> onePartOfListOnPage(int page) throws ServiceException {
         List currencies = new ArrayList();
@@ -159,11 +122,6 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
     }
 
-    /**
-     * Получение списка валют
-     *
-     * @return список пользователей
-     */
     @Override
     public List<Currency> findAll() throws ServiceException {
         CurrencyDao currencyDao = new CurrencyDaoImpl();

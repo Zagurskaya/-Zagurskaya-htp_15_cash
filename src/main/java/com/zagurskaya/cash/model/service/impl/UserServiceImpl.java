@@ -26,14 +26,6 @@ public class UserServiceImpl implements UserService {
     private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private static final String HASH_ALGORITHM = "SHA-512";
 
-    /**
-     * Поиск пользователя по логину  и валидному паролю
-     *
-     * @param login    - логин
-     * @param password - пароль
-     * @return пользователь
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public User findUserByLoginAndValidPassword(String login, String password) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -70,12 +62,6 @@ public class UserServiceImpl implements UserService {
 //        }
 //    }
 
-    /**
-     * Поиск пользователя по ID
-     *
-     * @param id - ID
-     * @return пользователь
-     */
     @Override
     public User findById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -91,12 +77,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Создание пользователя
-     *
-     * @param user - пользователь
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(User user) throws ServiceException, CommandException {
         UserDao userDao = new UserDaoImpl();
@@ -125,12 +105,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Создание пользователя
-     *
-     * @param user - пользователь
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(User user, String password) throws ServiceException, CommandException {
         UserDao userDao = new UserDaoImpl();
@@ -160,12 +134,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Изменение пользователя
-     *
-     * @param user - пользователь
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(User user) throws ServiceException, CommandException {
         UserDao userDao = new UserDaoImpl();
@@ -184,12 +152,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Удаление пользователя
-     *
-     * @param user - пользователь
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(User user) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -205,12 +167,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Количество строк в таблите пользователей
-     *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public int countRows() throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -226,12 +182,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    /**
-     * Получение списка пользователь на определенной странице
-     *
-     * @param page - номер страницы
-     * @return список пользователей
-     */
     @Override
     public List<User> onePartOfListOnPage(int page) throws ServiceException {
         List users = new ArrayList();

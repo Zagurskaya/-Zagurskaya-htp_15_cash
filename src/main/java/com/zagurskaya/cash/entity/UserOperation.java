@@ -3,66 +3,66 @@ package com.zagurskaya.cash.entity;
 import java.sql.Timestamp;
 
 /**
- * Проведенная операция со свойствами <b>id</b>, <b>timestamp</b>, <b>rate</b>, <b>sum</b>, <b>currencyId</b>,
+ * Executed operation with characteristics <b>id</b>, <b>timestamp</b>, <b>rate</b>, <b>sum</b>, <b>currencyId</b>,
  * <b>userId</b>, <b>dutiesId</b>, <b>operationId</b>, <b>specification</b>, <b>checkingAccount</b> и <b>fullName</b>.
  */
 public class UserOperation {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Дата и время проведения операции
+     * Date and time executed operation
      */
     private Timestamp timestamp;
     /**
-     * Курс
+     * Rate
      */
     private Double rate;
     /**
-     * Сумма
+     * Sum
      */
     private Double sum;
     /**
-     * Код валюты
+     * Currency code
      */
     private Long currencyId;
     /**
-     * Код пользователя
+     * User code
      */
     private Long userId;
     /**
-     * Код смены
+     * Duties code
      */
     private Long dutiesId;
     /**
-     * Код операции
+     * Operation code
      */
     private Long operationId;
     /**
-     * Спецификация
+     * Specification
      */
     private String specification;
     /**
-     * Расчетный счет
+     * Checking account
      */
     private String checkingAccount;
     /**
-     * ФИО
+     * Full name
      */
     private String fullName;
 
     /**
-     * Получение значения поля {@link UserOperation#id}
+     * Get field value {@link UserOperation#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link UserOperation#timestamp}
+     * Get field value {@link UserOperation#timestamp}
      *
      * @return дата и времени смены
      */
@@ -182,22 +182,22 @@ public class UserOperation {
     }
 
     /**
-     * Конструирование проведенной операции.
+     * construction executed operation.
      */
     public static class Builder {
         private UserOperation newUserOperation;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newUserOperation = new UserOperation();
         }
 
         /**
-         * Определение идентификатора {@link UserOperation#id}
+         * Identifier definition {@link UserOperation#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -206,9 +206,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение даты и времени смены {@link UserOperation#timestamp}
+         * Date and time executed operation definition {@link UserOperation#timestamp}
          *
-         * @param timestamp - дата и время
+         * @param timestamp - date and time
          * @return Builder
          */
         public Builder addTimestamp(Timestamp timestamp) {
@@ -217,9 +217,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение курс операции {@link UserOperation#rate}
+         * Operation rate definition {@link UserOperation#rate}
          *
-         * @param rate - курс операции
+         * @param rate - operation rate
          * @return Builder
          */
         public Builder addRate(Double rate) {
@@ -228,9 +228,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение сумму операции {@link UserOperation#sum}
+         * Operation sum definition {@link UserOperation#sum}
          *
-         * @param sum - сумму операции
+         * @param sum - operation sum
          * @return Builder
          */
         public Builder addSum(Double sum) {
@@ -239,9 +239,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение код валюты {@link UserOperation#currencyId}
+         * Currency code definition {@link UserOperation#currencyId}
          *
-         * @param currencyId -код валюты
+         * @param currencyId - currency code
          * @return Builder
          */
         public Builder addCurrencyId(Long currencyId) {
@@ -250,9 +250,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение код пользователя {@link UserOperation#userId}
+         * User code definition {@link UserOperation#userId}
          *
-         * @param userId -код пользователя
+         * @param userId - user code
          * @return Builder
          */
         public Builder addUserId(Long userId) {
@@ -261,9 +261,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение код смены {@link UserOperation#dutiesId}
+         * Duties code definition {@link UserOperation#dutiesId}
          *
-         * @param dutiesId -код смены
+         * @param dutiesId - duties code
          * @return Builder
          */
         public Builder addDutiesId(Long dutiesId) {
@@ -272,9 +272,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение код операции {@link UserOperation#operationId}
+         * Operation code definition {@link UserOperation#operationId}
          *
-         * @param operationId -код операции
+         * @param operationId - operation code
          * @return Builder
          */
         public Builder addOperationId(Long operationId) {
@@ -283,9 +283,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение спецификации {@link UserOperation#specification}
+         * Specification definition {@link UserOperation#specification}
          *
-         * @param specification -спецификация
+         * @param specification - specification
          * @return Builder
          */
         public Builder addSpecification(String specification) {
@@ -294,9 +294,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение расчетного счета {@link UserOperation#checkingAccount}
+         * Checking account definition {@link UserOperation#checkingAccount}
          *
-         * @param checkingAccount - расчетный счет
+         * @param checkingAccount - Checking account
          * @return Builder
          */
         public Builder addCheckingAccount(String checkingAccount) {
@@ -305,9 +305,9 @@ public class UserOperation {
         }
 
         /**
-         * Определение ФИО {@link UserOperation#fullName}
+         * Full name definition {@link UserOperation#fullName}
          *
-         * @param fullName - ФИО
+         * @param fullName - full name
          * @return Builder
          */
         public Builder addFullName(String fullName) {
@@ -316,7 +316,7 @@ public class UserOperation {
         }
 
         /**
-         * Возвращает построенную проведенную операция
+         * Returns the constructed executed operation
          *
          * @return смена
          */

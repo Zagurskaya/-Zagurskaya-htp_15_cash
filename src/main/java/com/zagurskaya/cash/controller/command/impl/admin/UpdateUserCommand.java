@@ -1,9 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.service.UserService;
@@ -22,16 +21,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Изменить пользователя".
+ * The action is "Update user".
  */
-public class UpdateUserCommand extends AbstractСommand {
+public class UpdateUserCommand extends AbstractCommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public UpdateUserCommand(String directoryPath) {
         super(directoryPath);
@@ -42,8 +41,8 @@ public class UpdateUserCommand extends AbstractСommand {
         final HttpSession session = request.getSession(false);
         final Long id = (Long) session.getAttribute(AttributeName.ID);
         if (id == null) return ActionType.INDEX;
-        session.removeAttribute("message");
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.MESSAGE);
+        session.removeAttribute(AttributeName.ERROR);
 
         ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
         if (actionType == ActionType.EDITUSERS) {

@@ -23,7 +23,7 @@ class DatabaseProperty {
     }
 
     /**
-     * Получение DBProperty
+     * Get DBProperty
      *
      * @return DBProperty
      */
@@ -37,18 +37,18 @@ class DatabaseProperty {
     }
 
     /**
-     * Получение драйвера БД
+     * Get the DB driver
      *
-     * @return имя драйвер
+     * @return the DB driver name
      */
     String getDriver() {
         return properties.getProperty(DRIVER);
     }
 
     /**
-     * Получение URL к БД
+     * Get URL to DB
      *
-     * @return URL к БД
+     * @return URL to DB
      */
     String getUrl() {
         return properties.getProperty(URL);

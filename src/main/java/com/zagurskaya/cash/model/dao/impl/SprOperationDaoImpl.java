@@ -28,13 +28,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
     private static final String SQL_DELETE_SPR_OPERATION = "DELETE FROM sprOperation WHERE id=?";
     private static final String SQL_SELECT_COUNT_SPR_OPERATION = "SELECT COUNT(id) FROM `sprOperation`";
 
-    /**
-     * Получение списка операций начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список операций
-     */
     @Override
     public List<SprOperation> findAll(int limit, int startPosition) throws DaoException {
         List<SprOperation> sprOperations = new ArrayList<>();
@@ -64,12 +57,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return sprOperations;
     }
 
-    /**
-     * Поиск операции по ID
-     *
-     * @param id - ID
-     * @return операция
-     */
     @Override
     public SprOperation findById(Long id) throws DaoException {
         SprOperation sprOperation = null;
@@ -97,12 +84,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return sprOperation;
     }
 
-    /**
-     * Создание пользователя
-     *
-     * @param sprOperation - пользователь
-     * @return true при успешном создании
-     */
     @Override
     public Long create(SprOperation sprOperation) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -129,12 +110,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return 0L;
     }
 
-    /**
-     * Изменение операции
-     *
-     * @param sprOperation - операция
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(SprOperation sprOperation) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -155,12 +130,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return 1 == result;
     }
 
-    /**
-     * Удаление операции
-     *
-     * @param sprOperation - операции
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(SprOperation sprOperation) throws DaoException {
         int result;
@@ -176,12 +145,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите операций
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -198,11 +161,6 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         return count;
     }
 
-    /**
-     * Получение списка операций
-     *
-     * @return список операций
-     */
     @Override
     public List<SprOperation> findAll() throws DaoException {
         List<SprOperation> sprOperations = new ArrayList<>();

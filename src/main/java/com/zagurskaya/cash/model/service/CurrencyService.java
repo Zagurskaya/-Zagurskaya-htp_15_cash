@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface CurrencyService extends Service<Currency> {
     /**
-     * Получение списка валют
+     * Get a list of currencies
      *
-     * @return список валют
+     * @return currency list
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     List findAll() throws ServiceException;
 

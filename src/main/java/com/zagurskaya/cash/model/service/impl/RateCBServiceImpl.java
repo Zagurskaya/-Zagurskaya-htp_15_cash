@@ -5,7 +5,6 @@ import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.RateCBDao;
 import com.zagurskaya.cash.model.dao.impl.RateCBDaoImpl;
@@ -23,12 +22,6 @@ public class RateCBServiceImpl implements RateCBService {
 
     private static final Logger logger = LogManager.getLogger(RateCBServiceImpl.class);
 
-    /**
-     * Поиск курса КБ по ID
-     *
-     * @param id - ID
-     * @return курс КБ
-     */
     @Override
     public RateCB findById(Long id) throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
@@ -44,12 +37,6 @@ public class RateCBServiceImpl implements RateCBService {
         }
     }
 
-    /**
-     * Создание курса КБ
-     *
-     * @param rateCB - курс КБ
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(RateCB rateCB) throws ServiceException, CommandException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
@@ -68,12 +55,6 @@ public class RateCBServiceImpl implements RateCBService {
         }
     }
 
-    /**
-     * Изменение курса КБ
-     *
-     * @param rateCB - курс КБ
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(RateCB rateCB) throws ServiceException, CommandException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
@@ -92,12 +73,6 @@ public class RateCBServiceImpl implements RateCBService {
         }
     }
 
-    /**
-     * Удаление курса КБ
-     *
-     * @param rateCB - курс КБ
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(RateCB rateCB) throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
@@ -113,12 +88,6 @@ public class RateCBServiceImpl implements RateCBService {
         }
     }
 
-    /**
-     * Количество строк в таблите курсов КБ
-     *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public int countRows() throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
@@ -134,12 +103,6 @@ public class RateCBServiceImpl implements RateCBService {
         }
     }
 
-    /**
-     * Получение списка валют КБ на определенной странице
-     *
-     * @param page - номер страницы
-     * @return список пользователей
-     */
     @Override
     public List<RateCB> onePartOfListOnPage(int page) throws ServiceException {
         List rateCBs = new ArrayList();

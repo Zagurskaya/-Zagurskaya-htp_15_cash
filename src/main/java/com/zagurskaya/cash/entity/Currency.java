@@ -1,37 +1,37 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Валюта со свойствами <b>id</b>, <b>iso</b>, <b>nameRU</b> и <b>nameEN</b>.
+ * Currency with characteristics <b>id</b>, <b>iso</b>, <b>nameRU</b> и <b>nameEN</b>.
  */
 public class Currency {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * ISO валюты
+     * ISO currency
      */
     private String iso;
     /**
-     * Наименование на русском языке
+     * Name in Russian
      */
     private String nameRU;
     /**
-     * Наименование на нглийском языке
+     * Name in English
      */
     private String nameEN;
 
     /**
-     * Получение значения поля {@link Currency#id}
+     * Get field value {@link Currency#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link Currency#iso}
+     * Get field value {@link Currency#iso}
      *
      * @return iso
      */
@@ -40,18 +40,18 @@ public class Currency {
     }
 
     /**
-     * Получение значения поля {@link Currency#nameRU}
+     * Get field value {@link Currency#nameRU}
      *
-     * @return наименование
+     * @return name in Russian
      */
     public String getNameRU() {
         return nameRU;
     }
 
     /**
-     * Получение значения поля {@link Currency#nameEN}
+     * Get field value {@link Currency#nameEN}
      *
-     * @return наименование
+     * @return name in English
      */
     public String getNameEN() {
         return nameEN;
@@ -74,22 +74,22 @@ public class Currency {
     }
 
     /**
-     * Конструирование валюты.
+     * Currency construction.
      */
     public static class Builder {
         private Currency newCurrency;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newCurrency = new Currency();
         }
 
         /**
-         * Определение идентификатора {@link Currency#id}
+         * Identifier definition {@link Currency#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -98,7 +98,7 @@ public class Currency {
         }
 
         /**
-         * Определение iso {@link Currency#iso}
+         * Iso definition {@link Currency#iso}
          *
          * @param iso - iso
          * @return Builder
@@ -109,9 +109,9 @@ public class Currency {
         }
 
         /**
-         * Определение наименование {@link Currency#nameRU}
+         * Name in Russian definition {@link Currency#nameRU}
          *
-         * @param nameRU - наименование
+         * @param nameRU - name in Russian
          * @return Builder
          */
         public Builder addNameRU(String nameRU) {
@@ -120,9 +120,9 @@ public class Currency {
         }
 
         /**
-         * Определение наименование {@link Currency#nameEN}
+         * Name in English definition {@link Currency#nameEN}
          *
-         * @param nameEN - наименование
+         * @param nameEN - name in English
          * @return Builder
          */
         public Builder addNameEN(String nameEN) {
@@ -131,9 +131,9 @@ public class Currency {
         }
 
         /**
-         * Возвращает построенную валюту
+         * Returns the constructed currency
          *
-         * @return валюта
+         * @return currency
          */
         public Currency build() {
             return newCurrency;

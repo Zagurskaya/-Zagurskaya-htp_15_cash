@@ -1,16 +1,19 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/**
+ * The action is "Payment 1100 Balance".
+ */
+public class Payment1100BalanceCommand extends AbstractCommand {
 
-public class Payment1100BalanceCommand extends AbstractСommand {
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public Payment1100BalanceCommand(String directoryPath) {
         super(directoryPath);
@@ -57,7 +60,7 @@ public class Payment1100BalanceCommand extends AbstractСommand {
 //                    SprEntriesDao sprEntriesDao = new SprEntriesDao();
 //                    List<SprEntries> sprEntries1100 = sprEntriesDao.getAll("WHERE `sprOperationsId`=" + sprOperationsId + " AND `currencyId`=" + ids[i]);
 //
-//                    kassaDao.updateKassaOutSideOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
+//                    kassaDao.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
 //
 //                    RateNBDao rateNBDao = new RateNBDao();
 //                    UserEntryDao userEntryDao = new UserEntryDao();

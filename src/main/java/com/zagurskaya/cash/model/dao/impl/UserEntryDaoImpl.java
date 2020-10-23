@@ -29,13 +29,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
     private static final String SQL_DELETE_USER_ENTRY = "DELETE FROM userEntry WHERE id=?";
     private static final String SQL_SELECT_COUNT_USER_ENTRY = "SELECT COUNT(id) FROM `userEntry`";
 
-    /**
-     * Получение списка проводок начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список проводок
-     */
     @Override
     public List<UserEntry> findAll(int limit, int startPosition) throws DaoException {
         List<UserEntry> sprEntries = new ArrayList<>();
@@ -75,12 +68,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return sprEntries;
     }
 
-    /**
-     * Поиск проводки по ID
-     *
-     * @param id - ID
-     * @return проводка
-     */
     @Override
     public UserEntry findById(Long id) throws DaoException {
         UserEntry userEntry = null;
@@ -117,12 +104,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return userEntry;
     }
 
-    /**
-     * Создание проводки
-     *
-     * @param userEntry - проводка
-     * @return true при успешном создании
-     */
     @Override
     public Long create(UserEntry userEntry) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -153,12 +134,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return 0L;
     }
 
-    /**
-     * Изменение проводки
-     *
-     * @param userEntry - проводки
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(UserEntry userEntry) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -171,8 +146,8 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                 preparedStatement.setString(5, userEntry.getAccountDebit());
                 preparedStatement.setString(6, userEntry.getAccountCredit());
                 preparedStatement.setDouble(7, userEntry.getSum());
-                preparedStatement.setBoolean(7, userEntry.getIsSpending());
-                preparedStatement.setDouble(8, userEntry.getRate());
+                preparedStatement.setBoolean(8, userEntry.getIsSpending());
+                preparedStatement.setDouble(9, userEntry.getRate());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -184,12 +159,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление проводки
-     *
-     * @param userEntry - проводки
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(UserEntry userEntry) throws DaoException {
         int result;
@@ -205,12 +174,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите проводок
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -227,11 +190,6 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         return count;
     }
 
-    /**
-     * Получение списка проводок
-     *
-     * @return список проводок
-     */
     @Override
     public List<UserEntry> findAll() throws DaoException {
         List<UserEntry> sprEntries = new ArrayList<>();

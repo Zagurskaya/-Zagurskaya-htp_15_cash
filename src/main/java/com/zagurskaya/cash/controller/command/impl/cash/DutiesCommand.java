@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
@@ -24,11 +24,16 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
-public class DutiesCommand extends AbstractСommand {
+public class DutiesCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(DutiesCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final UserService userService = new UserServiceImpl();
 
+    /**
+     * Constructor
+     *
+     * @param directoryPath - path
+     */
     public DutiesCommand(String directoryPath) {
         super(directoryPath);
     }
@@ -36,7 +41,7 @@ public class DutiesCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -62,7 +67,7 @@ public class DutiesCommand extends AbstractСommand {
             } else {
                 return actionType;
             }
-        } catch (ServiceException | ServiceConstraintViolationException e) {
+        } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Обработчик действий
+ * Action controller
  */
 public class FrontController extends HttpServlet {
     private static final Logger logger = LogManager.getLogger(FrontController.class);

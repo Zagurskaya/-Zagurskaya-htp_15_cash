@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Разрешительные права на действия
+ * Permissive action rights
  */
 class ActionPermission {
     private static Map<String, RoleType> actionPermissionMap = new HashMap<>();
@@ -17,9 +17,9 @@ class ActionPermission {
     }
 
     /**
-     * Получение прав
+     * Constructor
      *
-     * @return права
+     * @return action permission
      */
     static ActionPermission getInstance() {
         if (instance == null) {
@@ -30,9 +30,9 @@ class ActionPermission {
     }
 
     /**
-     * Получение всех прав
+     * Obtaining all permission
      *
-     * @return Map всех прав
+     * @return Map all permission
      */
     Map<String, RoleType> getActionPermissionMap() {
         return Collections.unmodifiableMap((actionPermissionMap));

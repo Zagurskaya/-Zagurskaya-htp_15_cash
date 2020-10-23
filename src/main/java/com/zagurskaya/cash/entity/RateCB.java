@@ -2,34 +2,85 @@ package com.zagurskaya.cash.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * Rate CB with characteristics <b>id</b>, <b>coming</b>, <b>spending</b>, <b>timestamp</b>, <b>sum</b> и <b>isBack</b>.
+ */
 public class RateCB {
+    /**
+     * Identifier
+     */
     private Long id;
+    /**
+     * Coming
+     */
     private Long coming;
+    /**
+     * Spending
+     */
     private Long spending;
+    /**
+     * Date and Time
+     */
     private Timestamp timestamp;
+    /**
+     * Sum
+     */
     private Double sum;
+    /**
+     * Shift direct/back rate CB
+     */
     private boolean isBack;
 
+    /**
+     * Get field value {@link RateCB#id}
+     *
+     * @return identifier
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Get field value {@link RateCB#coming}
+     *
+     * @return coming
+     */
     public Long getComing() {
         return coming;
     }
 
+    /**
+     * Get field value {@link RateCB#spending}
+     *
+     * @return spending
+     */
     public Long getSpending() {
         return spending;
     }
 
+    /**
+     * Get field value {@link RateCB#timestamp}
+     *
+     * @return date and time
+     */
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
+    /**
+     * Get field value {@link RateCB#sum}
+     *
+     * @return sum
+     */
     public Double getSum() {
         return sum;
     }
 
+    /**
+     * Get field value {@link RateCB#isBack}
+     *
+     * @return direct/back rate CB
+     */
     public boolean getIsBack() {
         return isBack;
     }
@@ -55,22 +106,22 @@ public class RateCB {
     }
 
     /**
-     * Конструирование курса КБ.
+     * Rate CB construction.
      */
     public static class Builder {
         private RateCB newRateCB;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newRateCB = new RateCB();
         }
 
         /**
-         * Определение идентификатора {@link RateCB#id}
+         * Identifier definition {@link RateCB#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -79,9 +130,9 @@ public class RateCB {
         }
 
         /**
-         * Определение кода валюты прихода {@link RateCB#coming}
+         * Coming definition {@link RateCB#coming}
          *
-         * @param coming - приход
+         * @param coming - coming
          * @return Builder
          */
         public Builder addСoming(Long coming) {
@@ -90,9 +141,9 @@ public class RateCB {
         }
 
         /**
-         * Определение кода валюты расхода {@link RateCB#spending}
+         * Spending definition {@link RateCB#spending}
          *
-         * @param spending - расход
+         * @param spending - spending
          * @return Builder
          */
         public Builder addSpending(Long spending) {
@@ -101,9 +152,9 @@ public class RateCB {
         }
 
         /**
-         * Определение время {@link RateCB#timestamp}
+         * Date and time definition {@link RateCB#timestamp}
          *
-         * @param timestamp - время
+         * @param timestamp - date and time
          * @return Builder
          */
         public Builder addTimestamp(Timestamp timestamp) {
@@ -112,9 +163,9 @@ public class RateCB {
         }
 
         /**
-         * Определение суммы {@link RateCB#sum}
+         * Sum definition {@link RateCB#sum}
          *
-         * @param sum - суммы
+         * @param sum - sum
          * @return Builder
          */
         public Builder addSum(Double sum) {
@@ -123,7 +174,7 @@ public class RateCB {
         }
 
         /**
-         * Определение прямого/обратного курса {@link RateCB#isBack}
+         * Direct/back rate CB definition {@link RateCB#isBack}
          *
          * @param isBack - прямой/обратный курс
          * @return Builder
@@ -134,9 +185,9 @@ public class RateCB {
         }
 
         /**
-         * Возвращает построенный курс
+         * Returns the constructed rate CB
          *
-         * @return пользователь
+         * @return rate CB
          */
         public RateCB build() {
             return newRateCB;

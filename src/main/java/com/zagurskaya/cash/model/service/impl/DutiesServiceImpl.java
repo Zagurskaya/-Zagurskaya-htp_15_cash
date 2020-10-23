@@ -8,7 +8,6 @@ import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.CurrencyDao;
 import com.zagurskaya.cash.model.dao.DutiesDao;
@@ -32,12 +31,6 @@ public class DutiesServiceImpl implements DutiesService {
 
     private static final Logger logger = LogManager.getLogger(DutiesServiceImpl.class);
 
-    /**
-     * Поиск смены по ID
-     *
-     * @param id - ID
-     * @return смена
-     */
     @Override
     public Duties findById(Long id) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
@@ -53,12 +46,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Создание смену
-     *
-     * @param duties - смена
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(Duties duties) throws ServiceException, CommandException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
@@ -77,12 +64,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Изменение смену
-     *
-     * @param duties - смена
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Duties duties) throws ServiceException, CommandException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
@@ -101,12 +82,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Удаление смены
-     *
-     * @param duties - смена
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Duties duties) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
@@ -122,12 +97,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Количество строк в таблите смен
-     *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public int countRows() throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
@@ -143,12 +112,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Получение списка смен на определенной странице
-     *
-     * @param page - номер страницы
-     * @return список смен
-     */
     @Override
     public List<Duties> onePartOfListOnPage(int page) throws ServiceException {
         List dutiesList = new ArrayList();
@@ -168,11 +131,6 @@ public class DutiesServiceImpl implements DutiesService {
         }
     }
 
-    /**
-     * Получение открытой смены пользователя
-     *
-     * @return смена
-     */
     @Override
     public Duties openDutiesUserToday(User user, String today) throws ServiceException {
         List<Duties> dutiesList = new ArrayList<>();
@@ -195,7 +153,7 @@ public class DutiesServiceImpl implements DutiesService {
     }
 
     @Override
-    public void openNewDuties(User user) throws ServiceConstraintViolationException, ServiceException {
+    public void openNewDuties(User user) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
@@ -217,9 +175,9 @@ public class DutiesServiceImpl implements DutiesService {
             List<Currency> currencies = currencyDao.findAll();
             for (Currency currencyElement : currencies) {
                 Kassa newKassa = new Kassa.Builder()
-                        .addСurrencyId(currencyElement.getId())
+                        .addCurrencyId(currencyElement.getId())
                         .addReceived(0.00)
-                        .addСoming(0.00)
+                        .addComing(0.00)
                         .addSpending(0.00)
                         .addTransmitted(0.00)
                         .addBalance(0.00)
@@ -233,7 +191,7 @@ public class DutiesServiceImpl implements DutiesService {
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
-            throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
+            throw new ServiceException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Database exception during fiend duties by id", e);
@@ -244,7 +202,7 @@ public class DutiesServiceImpl implements DutiesService {
     }
 
     @Override
-    public void closeOpenDutiesUserToday(User user) throws ServiceConstraintViolationException, ServiceException {
+    public void closeOpenDutiesUserToday(User user) throws ServiceException {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
@@ -272,7 +230,7 @@ public class DutiesServiceImpl implements DutiesService {
             }
         } catch (DaoConstraintViolationException e) {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
-            throw new ServiceConstraintViolationException("100 Duplicate data duties ", e);
+            throw new ServiceException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during update duties ", e);
             throw new ServiceException("Database exception during update duties ", e);

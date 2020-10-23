@@ -7,10 +7,8 @@ import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
-import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
 import com.zagurskaya.cash.model.dao.RateNBDao;
@@ -113,7 +111,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries1000 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaOutSideOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries1000) {
                     UserEntry userEntry1000 = new UserEntry
                             .Builder()

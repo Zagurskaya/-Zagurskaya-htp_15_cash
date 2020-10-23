@@ -1,21 +1,22 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Стартовая страница
+ * The action is "Start page".
  */
-public class IndexСommand extends AbstractСommand {
+public class IndexCommand extends AbstractCommand {
+
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public IndexСommand(String directoryPath) {
+    public IndexCommand(String directoryPath) {
         super(directoryPath);
     }
 

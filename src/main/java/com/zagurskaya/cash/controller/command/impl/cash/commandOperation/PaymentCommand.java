@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
@@ -23,12 +23,20 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
-public class PaymentCommand extends AbstractСommand {
+/**
+ * The action is "Payment".
+ */
+public class PaymentCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(PaymentCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
     private static final String SPR_OPERATION_ID = "SprOperationsId";
 
+    /**
+     * Constructor
+     *
+     * @param directoryPath - path
+     */
     public PaymentCommand(String directoryPath) {
         super(directoryPath);
     }
@@ -36,7 +44,7 @@ public class PaymentCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -48,26 +56,24 @@ public class PaymentCommand extends AbstractСommand {
                 }
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     Long sprOperationsId = DataUtil.getLong(request, SPR_OPERATION_ID);
+                    SprOperation sprOperation = paymentService.findSprOperationById(sprOperationsId);
 
-                    if (sprOperationsId != null) {
-                        SprOperation sprOperation = paymentService.findSprOperationById(sprOperationsId);
-                        if (sprOperation != null) {
-                            request.setAttribute(AttributeName.SPR_OPERATION, sprOperation);
-                        }
-                        switch (sprOperationsId.toString()) {
-                            case "10":
-                                return ActionType.PAYMENT10_01;
-                            case "20":
-                                return ActionType.PAYMENT20_01;
-                            case "998":
-                                return ActionType.PAYMENT998;
-                            case "1000":
-                                return ActionType.PAYMENT1000;
-                            case "1100":
-                                return ActionType.PAYMENT1100;
-                            default:
-                                return ActionType.PAYMENT;
-                        }
+                    if (sprOperation != null) {
+                        request.setAttribute(AttributeName.SPR_OPERATION, sprOperation);
+                    }
+                    switch (sprOperationsId.toString()) {
+                        case "10":
+                            return ActionType.PAYMENT10_01;
+                        case "20":
+                            return ActionType.PAYMENT20_01;
+                        case "998":
+                            return ActionType.PAYMENT998;
+                        case "1000":
+                            return ActionType.PAYMENT1000;
+                        case "1100":
+                            return ActionType.PAYMENT1100;
+                        default:
+                            return ActionType.PAYMENT;
                     }
                 }
                 List<SprOperation> sprOperations = paymentService.findAllSprOperation();

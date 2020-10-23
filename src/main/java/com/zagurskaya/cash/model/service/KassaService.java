@@ -12,9 +12,27 @@ import java.sql.Date;
 import java.util.List;
 
 public interface KassaService extends Service<Kassa> {
+    /**
+     * Update Kassa for outer Operations
+     *
+     * @param date           - date
+     * @param dutiesId       - number duties
+     * @param currencyId     - currency code
+     * @param sum            - sum
+     * @param sprOperationId - operation code
+     * @return true on successful create
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    boolean updateKassaOuterOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
 
-    boolean updateKassaOutSideOperation(Date date, Long id, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
-
-    List<Kassa> getBallance(User user, Duties duties) throws ServiceException;
+    /**
+     * Return ballance by user and duties
+     *
+     * @param user   - user
+     * @param duties - user duties
+     * @return true on successful create
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    List<Kassa> getBalance(User user, Duties duties) throws ServiceException;
 
 }

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
@@ -11,18 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Смена локали на RU".
+ * The action is "Change locale".
  */
-public class LocaleСommand extends AbstractСommand {
+public class LocaleCommand extends AbstractCommand {
     private static final String LOCALE_RU = "ru";
     private static final String LOCALE_EN = "en";
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public LocaleСommand(String directoryPath) {
+    public LocaleCommand(String directoryPath) {
         super(directoryPath);
     }
 

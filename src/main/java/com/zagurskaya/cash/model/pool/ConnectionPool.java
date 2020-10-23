@@ -15,7 +15,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Пул соединений к базе данных
+ * Database connection pool
  */
 public class ConnectionPool {
 
@@ -40,9 +40,9 @@ public class ConnectionPool {
     }
 
     /**
-     * Получение пула соединений
+     * Get a connections pool
      *
-     * @return пул соединений
+     * @return connections pool
      */
     public static ConnectionPool getInstance() {
         if (!isCreated.get()) {
@@ -68,9 +68,9 @@ public class ConnectionPool {
     }
 
     /**
-     * Получение соединения
+     * Get a connection
      *
-     * @return соединение
+     * @return connection
      */
     public Connection retrieve() {
         ProxyConnection newConnection = null;
@@ -85,9 +85,9 @@ public class ConnectionPool {
     }
 
     /**
-     * Возврат соединения в пул соединений
+     * Return connection to connection pool
      *
-     * @param connection - соединение
+     * @param connection - connection
      */
     public void putBack(Connection connection) {
         if (connection != null) {
@@ -105,7 +105,7 @@ public class ConnectionPool {
     }
 
     /**
-     * Закрытие соединения с БД
+     * Close database connection pool
      */
     public void destroyPoll() {
         for (int i = 0; i < availableConnection.size(); i++) {

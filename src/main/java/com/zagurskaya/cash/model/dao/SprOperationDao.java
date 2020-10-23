@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface SprOperationDao extends Dao<SprOperation> {
     /**
-     * Получение списка операций
+     * Find a list of operations
      *
-     * @return список операций
+     * @return list of operations
+     * @throws DaoException database access error or other errors
      */
     List<SprOperation> findAll() throws DaoException;
-
 }

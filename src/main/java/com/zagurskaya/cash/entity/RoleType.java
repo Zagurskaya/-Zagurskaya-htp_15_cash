@@ -1,46 +1,46 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Роли пользователей.
+ * User role.
  */
 public enum RoleType {
     /**
-     * Администратор
+     * Administrator
      */
     ADMIN("admin"),
     /**
-     * Кассир
+     * Cashier
      */
     KASSIR("kassir"),
     /**
-     * Контролер
+     * Controller
      */
     CONTROLLER("controller");
 
     private String value;
 
     /**
-     * Конструктор - создание нового объекта с определенным значением
+     * Constructor
      *
-     * @param value - значение
+     * @param value - role value
      */
     RoleType(String value) {
         this.value = value;
     }
 
     /**
-     * Получение значения {@link RoleType#value}
+     * Get field value {@link RoleType#value}
      *
-     * @return значение
+     * @return value
      */
     public String getValue() {
         return value;
     }
 
     /**
-     * Определение значения {@RoleEnum#value}
+     * Set the value {@RoleEnum#value}
      *
-     * @param value - значения
+     * @param value - role value
      */
     public void setValue(String value) {
         this.value = value;

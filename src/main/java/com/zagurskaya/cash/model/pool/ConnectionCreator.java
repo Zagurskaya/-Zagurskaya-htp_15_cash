@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Создание подключение к базе данных
+ * Create a database connection
  */
 class ConnectionCreator {
 
@@ -20,9 +20,9 @@ class ConnectionCreator {
     private static final String PASSWORD = DatabaseProperty.getInstance().getPassword();
 
     /**
-     * Получение соединения
+     * Get connection
      *
-     * @return соединение
+     * @return connection
      */
     static ProxyConnection create() {
         Connection connection;

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
@@ -20,20 +20,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Регистрация".
+ * The action is "Registration".
  */
-public class LoginСommand extends AbstractСommand {
-    private static final Logger logger = LogManager.getLogger(LoginСommand.class);
+public class LoginCommand extends AbstractCommand {
+    private static final Logger logger = LogManager.getLogger(LoginCommand.class);
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
     private UserService userService = new UserServiceImpl();
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public LoginСommand(String directoryPath) {
+    public LoginCommand(String directoryPath) {
         super(directoryPath);
     }
 

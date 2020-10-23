@@ -2,25 +2,29 @@ package com.zagurskaya.cash.model.service;
 
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 public interface DutiesService extends Service<Duties> {
     /**
-     * Получение открытой смены пользователя
+     * Get the open duties of user
      *
-     * @return смена
+     * @return duties
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     Duties openDutiesUserToday(User user, String today) throws ServiceException;
 
     /**
-     * Открытие новой смены пользователя
+     * Open a new duties of user
+     *
+     * @throws ServiceException error during execution of logical blocks and actions
      */
-    void openNewDuties(User user) throws ServiceException, ServiceConstraintViolationException;
+    void openNewDuties(User user) throws ServiceException;
 
     /**
-     * Закрытие смены пользователя
+     * Close the user duties
+     *
+     * @throws ServiceException error during execution of logical blocks and actions
      */
-    void closeOpenDutiesUserToday(User user) throws ServiceConstraintViolationException, ServiceException;
+    void closeOpenDutiesUserToday(User user) throws ServiceException;
 
 }

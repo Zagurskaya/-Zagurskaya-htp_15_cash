@@ -18,8 +18,9 @@ import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
+
 /**
- * Proxy-соединение к базе данных
+ * Proxy connection to the database
  */
 public class ProxyConnection implements Connection {
     private Connection connection;
@@ -69,7 +70,7 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Возврат соединения в пул соединений
+     * Return connection to a connection pool
      */
     @Override
     public void close() {
@@ -77,7 +78,7 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Закрытие соединения с БД
+     * Close database connection
      */
     void closeConnection() throws SQLException {
         connection.close();

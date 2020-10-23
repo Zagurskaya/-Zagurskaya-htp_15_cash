@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
@@ -27,12 +27,20 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
-public class UserOperationsCommand extends AbstractСommand {
+/**
+ * The action is "User operation list".
+ */
+public class UserOperationsCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(UserOperationsCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
 
+    /**
+     * Constructor
+     *
+     * @param directoryPath - path
+     */
     public UserOperationsCommand(String directoryPath) {
         super(directoryPath);
     }
@@ -40,7 +48,7 @@ public class UserOperationsCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {

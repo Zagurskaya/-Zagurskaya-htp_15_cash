@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Создать пользователя".
+ * The action is "Create user".
  */
-public class CreateUserCommand extends AbstractСommand {
+public class CreateUserCommand extends AbstractCommand {
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
     private static final String LOGIN = "login";
@@ -33,9 +33,9 @@ public class CreateUserCommand extends AbstractСommand {
     private static final String ROLE = "role";
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public CreateUserCommand(String directoryPath) {
         super(directoryPath);
@@ -44,8 +44,8 @@ public class CreateUserCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("message");
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.MESSAGE);
+        session.removeAttribute(AttributeName.ERROR);
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.CREATEUSER);
             if (actionType == ActionType.CREATEUSER) {

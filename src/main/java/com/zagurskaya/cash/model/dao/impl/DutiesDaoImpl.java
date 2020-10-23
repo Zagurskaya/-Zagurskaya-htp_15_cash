@@ -32,13 +32,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
     private static final String SQL_DELETE_DUTIES = "DELETE FROM duties WHERE id=?";
     private static final String SQL_SELECT_COUNT_DUTIESS = "SELECT COUNT(id) FROM `duties`";
 
-    /**
-     * Получение списка смен начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список смен
-     */
+
     @Override
     public List<Duties> findAll(int limit, int startPosition) throws DaoException {
         List<Duties> dutiesList = new ArrayList<>();
@@ -70,12 +64,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return dutiesList;
     }
 
-    /**
-     * Поиск смены по ID
-     *
-     * @param id - ID
-     * @return смена
-     */
     @Override
     public Duties findById(Long id) throws DaoException {
         Duties duties = null;
@@ -104,12 +92,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return duties;
     }
 
-    /**
-     * Создание смены
-     *
-     * @param duties - смена
-     * @return true при успешном создании
-     */
     @Override
     public Long create(Duties duties) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -136,12 +118,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return 0L;
     }
 
-    /**
-     * Изменение смену
-     *
-     * @param duties - смена
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Duties duties) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -163,12 +139,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление смену
-     *
-     * @param duties - смену
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Duties duties) throws DaoException {
         int result;
@@ -184,12 +154,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите пользователей
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -206,13 +170,6 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         return count;
     }
 
-    /**
-     * Получение списка открытых смен пользователя
-     *
-     * @param userId - код пользователя
-     * @param today  - дата
-     * @return список смен
-     */
     @Override
     public List<Duties> openDutiesUserToday(Long userId, String today) throws DaoException {
         List<Duties> dutiesList = new ArrayList<>();
@@ -271,30 +228,5 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
             throw new DaoException("Database exception during fiend all duties", e);
         }
         return dutiesList.stream().map(Duties::getNumber).max(Integer::compareTo).orElse(0) + 1;
-    }
-
-    public Long createAndReturnDutiesId(Duties duties) throws DaoConstraintViolationException, DaoException {
-        int result;
-        try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES, Statement.RETURN_GENERATED_KEYS)) {
-                preparedStatement.setLong(1, duties.getUserId());
-                preparedStatement.setString(2, duties.getTimestamp().toString());
-                preparedStatement.setInt(3, duties.getNumber());
-                preparedStatement.setBoolean(4, duties.getIsClose());
-                result = preparedStatement.executeUpdate();
-                if (1 == result) {
-                    ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-                    if (generatedKeys.next()) {
-                        return generatedKeys.getLong(1);
-                    }
-                }
-            }
-        } catch (SQLIntegrityConstraintViolationException e) {
-            throw new DaoConstraintViolationException("Duplicate data duties", e);
-        } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create duties", e);
-            throw new DaoException("Database exception during create duties", e);
-        }
-        return 0L;
     }
 }

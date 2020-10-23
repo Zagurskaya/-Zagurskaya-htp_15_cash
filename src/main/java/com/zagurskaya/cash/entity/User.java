@@ -1,58 +1,58 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Пользователь со свойствами <b>id</b>, <b>login</b>, <b>password</b>, <b>fullName</b> и <b>role</b>.
+ * User with characteristics <b>id</b>, <b>login</b>, <b>password</b>, <b>fullName</b> и <b>role</b>.
  */
 public class User {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Логин
+     * Login
      */
     private String login;
 
     /**
-     * ФИО
+     * Full name
      */
     private String fullName;
     /**
-     * Роль
+     * Role
      */
     private RoleType role;
 
     /**
-     * Получение значения поля {@link User#id}
+     * Get field value {@link User#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link User#login}
+     * Get field value {@link User#login}
      *
-     * @return логин
+     * @return login
      */
     public String getLogin() {
         return login;
     }
 
     /**
-     * Получение значения поля {@link User#fullName}
+     * Get field value {@link User#fullName}
      *
-     * @return ФИО
+     * @return full name
      */
     public String getFullName() {
         return fullName;
     }
 
     /**
-     * Получение значения поля {@link User#role}
+     * Get field value {@link User#role}
      *
-     * @return роль
+     * @return role
      */
     public RoleType getRole() {
         return role;
@@ -75,22 +75,22 @@ public class User {
     }
 
     /**
-     * Конструирование пользователя.
+     * Construction user.
      */
     public static class Builder {
         private User newUser;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newUser = new User();
         }
 
         /**
-         * Определение идентификатора {@link User#id}
+         * definition identifier {@link User#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -99,9 +99,9 @@ public class User {
         }
 
         /**
-         * Определение логина {@link User#login}
+         * Login definition {@link User#login}
          *
-         * @param login - логин
+         * @param login - login
          * @return Builder
          */
         public Builder addLogin(String login) {
@@ -110,9 +110,9 @@ public class User {
         }
 
         /**
-         * Определение ФИО {@link User#fullName}
+         * Full name definition {@link User#fullName}
          *
-         * @param fullName - ФИО
+         * @param fullName - full name
          * @return Builder
          */
         public Builder addFullName(String fullName) {
@@ -121,9 +121,9 @@ public class User {
         }
 
         /**
-         * Определение роли {@link User#role}
+         * Role definition {@link User#role}
          *
-         * @param role - роль
+         * @param role - role
          * @return Builder
          */
         public Builder addRole(RoleType role) {
@@ -132,9 +132,9 @@ public class User {
         }
 
         /**
-         * Определение роли {@link User#role}
+         * Role definition {@link User#role}
          *
-         * @param role - идентификатор
+         * @param role - role
          * @return Builder
          */
         public Builder addRole(String role) {
@@ -143,9 +143,9 @@ public class User {
         }
 
         /**
-         * Возвращает построенного пользователя
+         * Returns the constructed user
          *
-         * @return пользователь
+         * @return user
          */
         public User build() {
             return newUser;

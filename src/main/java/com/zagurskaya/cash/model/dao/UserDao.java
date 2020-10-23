@@ -8,28 +8,38 @@ import java.util.List;
 
 public interface UserDao extends Dao<User> {
     /**
-     * Поиск пользователя по логину
+     * Find a list of user by login
      *
-     * @param login - логин
-     * @return пользователь
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
+     * @param login - login
+     * @return user
+     * @throws DaoException database access error or other errors
      */
     User findByLogin(String login) throws DaoException;
 
     /**
-     * Получение списка пользователей
+     * Find a list of users
      *
-     * @return список пользователей
+     * @return list of users
+     * @throws DaoException database access error or other errors
      */
     List<User> findAll() throws DaoException;
 
     /**
-     * Создание объекта
+     * Create user with password
      *
-     * @param user - объект
-     * @return true при успешном создании
+     * @param user - user
+     * @return true on successful delete
+     * @throws DaoException                    database access error or other errors
+     * @throws DaoConstraintViolationException duplication data
      */
     Long create(User user, String password) throws DaoConstraintViolationException, DaoException;
 
+    /**
+     * Find a passwor by login
+     *
+     * @param login - user login
+     * @return true on successful delete
+     * @throws DaoException database access error or other errors
+     */
     String findPasswordByLogin(String login) throws DaoException;
 }

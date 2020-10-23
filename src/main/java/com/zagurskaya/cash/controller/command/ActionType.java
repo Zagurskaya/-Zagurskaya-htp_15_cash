@@ -1,11 +1,11 @@
 package com.zagurskaya.cash.controller.command;
 
-import com.zagurskaya.cash.controller.command.impl.ErrorСommand;
-import com.zagurskaya.cash.controller.command.impl.IndexСommand;
-import com.zagurskaya.cash.controller.command.impl.LocaleСommand;
-import com.zagurskaya.cash.controller.command.impl.LoginСommand;
-import com.zagurskaya.cash.controller.command.impl.LogoutСommand;
-import com.zagurskaya.cash.controller.command.impl.ProfileСommand;
+import com.zagurskaya.cash.controller.command.impl.ErrorCommand;
+import com.zagurskaya.cash.controller.command.impl.IndexCommand;
+import com.zagurskaya.cash.controller.command.impl.LocaleCommand;
+import com.zagurskaya.cash.controller.command.impl.LoginCommand;
+import com.zagurskaya.cash.controller.command.impl.LogoutCommand;
+import com.zagurskaya.cash.controller.command.impl.ProfileCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.AdminCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.CreateUserCommand;
 import com.zagurskaya.cash.controller.command.impl.admin.EditUsersCommand;
@@ -36,119 +36,170 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Перечень действий
+ * Action list
  */
 public enum ActionType {
 //  root
     /**
-     * Стартовая страница
+     * Start page
      */
-    INDEX(new IndexСommand(PathPage.PATH_INDEX)),
+    INDEX(new IndexCommand(PathPage.PATH_INDEX)),
     /**
-     * Ошибки
+     * Error
      */
-    ERROR(new ErrorСommand(PathPage.PATH_ERROR)),
+    ERROR(new ErrorCommand(PathPage.PATH_ERROR)),
     /**
-     * Регистрация
+     * Registration
      */
-    LOGIN(new LoginСommand(PathPage.PATH_ROOT)),
+    LOGIN(new LoginCommand(PathPage.PATH_ROOT)),
     /**
-     * Конец сеанса
+     * End of session
      */
-    LOGOUT(new LogoutСommand(PathPage.PATH_ROOT)),
+    LOGOUT(new LogoutCommand(PathPage.PATH_ROOT)),
     /**
-     * Смена локализации
+     * Change locale
      */
-    LOCALE(new LocaleСommand(PathPage.PATH_ROOT)),
+    LOCALE(new LocaleCommand(PathPage.PATH_ROOT)),
     /**
-     * Профайл
+     * Profile
      */
-    PROFILE(new ProfileСommand(PathPage.PATH_ROOT)),
+    PROFILE(new ProfileCommand(PathPage.PATH_ROOT)),
 //---------------ADMIN---------------------------------
     /**
-     * Главная страница администратора
+     * Admin home page
      */
     ADMIN(new AdminCommand(PathPage.PATH_ADMIN)),
     /**
-     * Просмотр и удаление пользователей
+     * View and delete users
      */
     EDITUSERS(new EditUsersCommand(PathPage.PATH_ADMIN)),
     /**
-     * Создание нового пользователя
+     * Create a new user
      */
     CREATEUSER(new CreateUserCommand(PathPage.PATH_ADMIN)),
     /**
-     * Изменение пользователя
+     * Update user
      */
     UPDATEUSER(new UpdateUserCommand(PathPage.PATH_ADMIN)),
 //---------------CASH---------------------------------------
     /**
-     * Главная страница кассира
+     * Cashier home page
      */
     MAIN(new MainCommand(PathPage.PATH_CASH)),
+    /**
+     * Cashier home page
+     */
     DUTIES(new DutiesCommand(PathPage.PATH_CASH)),
+    /**
+     * Cashier home page
+     */
     CURRENCY(new CurrencyCommand(PathPage.PATH_CASH)),
 //    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
 //    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
     //------------------CASH / CURRENCY---------------------------
+    /**
+     * Cashier home page
+     */
     ALLCURRENCY(new AllCurrencyCommand(PathPage.PATH_CASH_CURRENCY)),
+    /**
+     * View rate CB
+     */
     RATECB(new RateCBCommand(PathPage.PATH_CASH_CURRENCY)),
+    /**
+     * View rate NB
+     */
     RATENB(new RateNBCommand(PathPage.PATH_CASH_CURRENCY)),
 
     //------------------CASH / OPERATION--------------------------
+    /**
+     * Payments
+     */
     PAYMENT(new PaymentCommand(PathPage.PATH_CASH_OPERATION)),
+    /**
+     * Balance
+     */
     BALANCE(new BalanceCommand(PathPage.PATH_CASH_OPERATION)),
+    /**
+     * User operations
+     */
     USEROPERATIONS(new UserOperationsCommand(PathPage.PATH_CASH_OPERATION)),
 
     //-----------------CASH /OPERATION/PAYMENT---------------------
+    /**
+     * Select payment
+     */
     SELECTPAYMENT(new SelectPaymentCommand(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * buy currency
+     */
     PAYMENT10_01(new Payment10_01_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * buy currency
+     */
     PAYMENT10_02(new Payment10_02_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * sale currency
+     */
     PAYMENT20_01(new Payment20_01_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * sale currency
+     */
     PAYMENT20_02(new Payment20_02_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * communal payment
+     */
     PAYMENT998(new Payment998_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * Receive money
+     */
     PAYMENT1000(new Payment1000_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * Return money
+     */
     PAYMENT1100(new Payment1100_Command(PathPage.PATH_CASH_PAYMENT)),
+    /**
+     * payment balance
+     */
     PAYMENT1100BALANCE(new Payment1100BalanceCommand(PathPage.PATH_CASH_PAYMENT)),
     ;
     /**
-     * Команда
+     * Command
      */
-    private Сommand command;
+    private Command command;
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param command - команда
+     * @param command - command
      */
-    ActionType(Сommand command) {
+    ActionType(Command command) {
         this.command = command;
     }
 
     /**
-     * Получение значения поля command
+     * Get field value command
      *
-     * @return команда
+     * @return command
      */
-    public Сommand getCommand() {
+    public Command getCommand() {
         return command;
     }
 
     /**
-     * Получение пути к странице
+     * Get path to page
      *
-     * @return путь
+     * @return path
      */
     public String getJsp() {
         return command.getDirectoryPath() + name().toLowerCase() + ".jsp";
     }
 
     /**
-     * Определение действия
+     * Defining an action
      *
-     * @param request - запрос
-     * @return действие
+     * @param request - request
+     * @return action
      */
     public static ActionType define(HttpServletRequest request) {
         try {

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 
@@ -9,25 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Конец сеанса пользователя".
+ * The action is "Error page".
  */
-public class LogoutСommand extends AbstractСommand {
+public class ErrorCommand extends AbstractCommand {
+
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public LogoutСommand(String directoryPath) {
+    public ErrorCommand(String directoryPath) {
         super(directoryPath);
     }
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("message");
-        session.removeAttribute("error");
 
-        session.removeAttribute(AttributeName.USER);
-        return ActionType.LOGIN;
+        request.setAttribute(AttributeName.ERROR, session.getAttribute(AttributeName.ERROR));
+        session.removeAttribute(AttributeName.ERROR);
+        return ActionType.ERROR;
     }
 }

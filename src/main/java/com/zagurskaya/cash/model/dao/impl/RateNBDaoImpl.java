@@ -30,13 +30,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
     private static final String SQL_DELETE_RATENB = "DELETE FROM rateNB WHERE id=?";
     private static final String SQL_SELECT_COUNT_RATENBS = "SELECT COUNT(id) FROM rateNB";
 
-    /**
-     * Получение списка валют НБ начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список валют
-     */
     @Override
     public List<RateNB> findAll(int limit, int startPosition) throws DaoException {
         List<RateNB> rateNBs = new ArrayList<>();
@@ -52,7 +45,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
                     RateNB rateNB = new RateNB.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addDate(date)
                             .addSum(sum)
                             .build();
@@ -66,12 +59,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         return rateNBs;
     }
 
-    /**
-     * Поиск валюты НБ по ID
-     *
-     * @param id - ID
-     * @return валюта НБ
-     */
     @Override
     public RateNB findById(Long id) throws DaoException {
         RateNB rateNB = null;
@@ -85,7 +72,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
                     rateNB = new RateNB.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addDate(date)
                             .addSum(sum)
                             .build();
@@ -98,12 +85,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         return rateNB;
     }
 
-    /**
-     * Создание валюты НБ
-     *
-     * @param rateNB - валюта НБ
-     * @return true при успешном создании
-     */
     @Override
     public Long create(RateNB rateNB) throws DaoConstraintViolationException, DaoException {
         int result;
@@ -129,12 +110,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         return 0L;
     }
 
-    /**
-     * Изменение валюты НБ
-     *
-     * @param rateNB - валюта НБ
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(RateNB rateNB) throws DaoConstraintViolationException, DaoException {
         int result;
@@ -155,12 +130,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление валюты НБ
-     *
-     * @param rateNB - валюта НБ
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(RateNB rateNB) throws DaoException {
         int result;
@@ -176,12 +145,6 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите валюты НБ
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -211,7 +174,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
                     rateNB = new RateNB.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addDate(date)
                             .addSum(sum)
                             .build();

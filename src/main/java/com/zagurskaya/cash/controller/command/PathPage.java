@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command;
 
 /**
- * Путь действий.
+ * Action path.
  */
 public class PathPage {
     public static final String PATH_INDEX = "";

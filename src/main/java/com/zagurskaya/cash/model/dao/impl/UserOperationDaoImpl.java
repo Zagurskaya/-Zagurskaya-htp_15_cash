@@ -40,13 +40,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             "DELETE FROM userOperation WHERE id=?";
     private static final String SQL_SELECT_COUNT_USER_OPERATION = "SELECT COUNT(id) FROM userOperation";
 
-    /**
-     * Получение списка операций начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список операций
-     */
     @Override
     public List<UserOperation> findAll(int limit, int startPosition) throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();
@@ -90,12 +83,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return userOperations;
     }
 
-    /**
-     * Поиск операции по ID
-     *
-     * @param id - ID
-     * @return операция
-     */
     @Override
     public UserOperation findById(Long id) throws DaoException {
         UserOperation userOperation = null;
@@ -136,12 +123,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return userOperation;
     }
 
-    /**
-     * Создание пользователя
-     *
-     * @param userOperation - пользователь
-     * @return true при успешном создании
-     */
     @Override
     public Long create(UserOperation userOperation) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -174,12 +155,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return 0L;
     }
 
-    /**
-     * Изменение операции
-     *
-     * @param userOperation - операция
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(UserOperation userOperation) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -207,12 +182,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return 1 == result;
     }
 
-    /**
-     * Удаление операции
-     *
-     * @param userOperation - операции
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(UserOperation userOperation) throws DaoException {
         int result;
@@ -228,12 +197,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите операций
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -250,11 +213,6 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         return count;
     }
 
-    /**
-     * Получение списка операций
-     *
-     * @return список операций
-     */
     @Override
     public List<UserOperation> findAll() throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();

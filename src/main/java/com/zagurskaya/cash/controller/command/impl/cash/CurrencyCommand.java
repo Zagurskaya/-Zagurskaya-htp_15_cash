@@ -1,19 +1,20 @@
 package com.zagurskaya.cash.controller.command.impl.cash;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Действие "Валюта".
+ * The action is "open/close duties".
  */
-public class CurrencyCommand extends AbstractСommand {
+public class CurrencyCommand extends AbstractCommand {
+
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public CurrencyCommand(String directoryPath) {
         super(directoryPath);

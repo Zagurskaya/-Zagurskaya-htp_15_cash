@@ -29,13 +29,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
     private static final String SQL_DELETE_CURRENCY = "DELETE FROM currency WHERE id=?";
     private static final String SQL_SELECT_COUNT_CURRENCIES = "SELECT COUNT(id) FROM `currency`";
 
-    /**
-     * Получение списка валют начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список валют
-     */
     @Override
     public List<Currency> findAll(int limit, int startPosition) throws DaoException {
         List<Currency> currencies = new ArrayList<>();
@@ -65,12 +58,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return currencies;
     }
 
-    /**
-     * Поиск валюты по ID
-     *
-     * @param id - ID
-     * @return валюта
-     */
     @Override
     public Currency findById(Long id) throws DaoException {
         Currency currency = null;
@@ -97,12 +84,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return currency;
     }
 
-    /**
-     * Создание валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном создании
-     */
     @Override
     public Long create(Currency currency) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -129,12 +110,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return 0L;
     }
 
-    /**
-     * Изменение валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Currency currency) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -155,12 +130,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление валюты
-     *
-     * @param currency - валюта
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Currency currency) throws DaoException {
         int result;
@@ -176,12 +145,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите валюты
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
+
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -198,11 +162,6 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         return count;
     }
 
-    /**
-     * Получение всего списка валют
-     *
-     * @return список валют
-     */
     @Override
     public List<Currency> findAll() throws DaoException {
         List<Currency> currencies = new ArrayList<>();

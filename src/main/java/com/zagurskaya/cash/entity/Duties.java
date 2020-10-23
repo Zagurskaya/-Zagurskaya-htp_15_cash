@@ -3,70 +3,70 @@ package com.zagurskaya.cash.entity;
 import java.sql.Timestamp;
 
 /**
- * Смена со свойствами <b>id</b>, <b>userId</b>, <b>timestamp</b>, <b>number</b> и <b>isClose</b>.
+ * Duties with characteristics <b>id</b>, <b>userId</b>, <b>timestamp</b>, <b>number</b> и <b>isClose</b>.
  */
 public class Duties {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Код пользователя
+     * User code
      */
     private Long userId;
     /**
-     * Дата и время открытия смены
+     * Date and time of open duties
      */
     private Timestamp timestamp;
     /**
-     * Номер смены
+     * Number duties
      */
     private Integer number;
     /**
-     * Признак открытия/закрытия смены
+     * Shift open/ close duties
      */
     private boolean isClose;
 
     /**
-     * Получение значения поля {@link Duties#id}
+     * Get field value {@link Duties#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link Duties#userId}
+     * Get field value {@link Duties#userId}
      *
-     * @return кода пользователя
+     * @return user code
      */
     public long getUserId() {
         return userId;
     }
 
     /**
-     * Получение значения поля {@link Duties#timestamp}
+     * Get field value {@link Duties#timestamp}
      *
-     * @return дата и времени смены
+     * @return date and time
      */
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
     /**
-     * Получение значения поля {@link Duties#number}
+     * Get field value {@link Duties#number}
      *
-     * @return номер смены
+     * @return number duties
      */
     public int getNumber() {
         return number;
     }
 
     /**
-     * Получение значения поля {@link Duties#isClose}
+     * Get field value {@link Duties#isClose}
      *
-     * @return признак открытия/закрытия смены
+     * @return shift open/ close duties
      */
     public boolean getIsClose() {
         return isClose;
@@ -91,22 +91,22 @@ public class Duties {
     }
 
     /**
-     * Конструирование смены.
+     * Duties construction.
      */
     public static class Builder {
         private Duties newDuties;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newDuties = new Duties();
         }
 
         /**
-         * Определение идентификатора {@link Duties#id}
+         * Identifier definition {@link Duties#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -115,9 +115,9 @@ public class Duties {
         }
 
         /**
-         * Определение кода пользователя {@link Duties#userId}
+         * User code definition {@link Duties#userId}
          *
-         * @param userId - код пользователя
+         * @param userId - user code
          * @return Builder
          */
         public Builder addUserId(Long userId) {
@@ -126,9 +126,9 @@ public class Duties {
         }
 
         /**
-         * Определение даты и времени смены {@link Duties#timestamp}
+         * Date and time of open duties definition {@link Duties#timestamp}
          *
-         * @param timestamp - дата и время
+         * @param timestamp - date and time
          * @return Builder
          */
         public Builder addTimestamp(Timestamp timestamp) {
@@ -137,9 +137,9 @@ public class Duties {
         }
 
         /**
-         * Определение номер смены {@link Duties#number}
+         * Number duties definition {@link Duties#number}
          *
-         * @param number - номер смены
+         * @param number - number duties
          * @return Builder
          */
         public Builder addNumber(Integer number) {
@@ -148,9 +148,9 @@ public class Duties {
         }
 
         /**
-         * Определение признака открытия/закрытия смены {@link Duties#isClose}
+         * Shift open/close duties definition {@link Duties#isClose}
          *
-         * @param isClose - признак открытия/закрытия смены
+         * @param isClose - shift open/close duties
          * @return Builder
          */
         public Builder addIsClose(Boolean isClose) {
@@ -159,9 +159,9 @@ public class Duties {
         }
 
         /**
-         * Возвращает построенную смену
+         * Returns the constructed duties
          *
-         * @return смена
+         * @return duties
          */
         public Duties build() {
             return newDuties;

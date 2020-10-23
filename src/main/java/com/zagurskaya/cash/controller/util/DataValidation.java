@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.controller.util;
 
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -8,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Валидатор данных
+ * Data validator
  */
 public class DataValidation {
     private static final Logger logger = LogManager.getLogger(DataValidation.class);
@@ -21,9 +22,9 @@ public class DataValidation {
     private static final String CLOSE = "close";
 
     /**
-     * Возвращает true, если POST запрос.
+     * Returns true if POST request.
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isCreateUpdateDeleteOperation(HttpServletRequest request) {
@@ -32,9 +33,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Сохранить".
+     * Returns true if the action is "Save".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isSaveOperation(HttpServletRequest request) {
@@ -42,9 +43,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Отмена".
+     * Returns true if the action is "Cancel".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isCancelOperation(HttpServletRequest request) {
@@ -52,9 +53,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Обновление".
+     * Returns true if the action is "Update".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isUpdateOperation(HttpServletRequest request) {
@@ -62,9 +63,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Удаление".
+     * Returns true if the action is "Delete".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isDeleteOperation(HttpServletRequest request) {
@@ -72,9 +73,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Открыть смену".
+     * Returns true if the action is "Open duties".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isOpenOperation(HttpServletRequest request) {
@@ -82,9 +83,9 @@ public class DataValidation {
     }
 
     /**
-     * Возвращает true, если действие "Закрыть смену".
+     * Returns true if the action is "Close duties".
      *
-     * @param request - запрос
+     * @param request - request
      * @return boolean
      */
     public static boolean isCloseOperation(HttpServletRequest request) {
@@ -92,37 +93,37 @@ public class DataValidation {
     }
 
     /**
-     * Проверка валидности длины полей пользователя
+     * Checking the validity of the length of user fields
      *
-     * @param request - запрос
-     * @throws CommandException при превышении допустимого количества символов в поле
+     * @param request - request
+     * @throws CommandException when the allowed number of characters in the field is exceeded
      */
     public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws CommandException {
-        if (request.getParameter("login") != null) {
-            String username = RequestDataUtil.getString(request, "login");
+        if (request.getParameter(AttributeName.LOGIN) != null) {
+            String username = RequestDataUtil.getString(request, AttributeName.LOGIN);
             if (username.length() > FieldLength.LENGTH_USER_LOGIN) {
-                logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
                 throw new CommandException("101 (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
             }
         }
-        if (request.getParameter("password") != null) {
-            String surname = RequestDataUtil.getString(request, "password");
+        if (request.getParameter(AttributeName.PASSWORD) != null) {
+            String surname = RequestDataUtil.getString(request, AttributeName.PASSWORD);
             if (surname.length() > FieldLength.LENGTH_USER_PASSWORD) {
-                logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname) + ")");
                 throw new CommandException("101 (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname));
             }
         }
-        if (request.getParameter("fullname") != null) {
-            String patronymic = RequestDataUtil.getString(request, "fullname");
+        if (request.getParameter(AttributeName.FULL_MANE) != null) {
+            String patronymic = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
             if (patronymic.length() > FieldLength.LENGTH_USER_FULL_NAME) {
-                logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic) + ")");
                 throw new CommandException("101 (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
             }
         }
-        if (request.getParameter("role") != null) {
-            String userPosition = RequestDataUtil.getString(request, "role");
+        if (request.getParameter(AttributeName.ROLE) != null) {
+            String userPosition = RequestDataUtil.getString(request, AttributeName.ROLE);
             if (userPosition.length() > FieldLength.LENGTH_USER_ROLE) {
-                logger.log(Level.ERROR, " Длина данных превышает допустимое значение (" + FieldLength.LENGTH_USER_ROLE + " : " + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_ROLE + " : " + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
                 throw new CommandException("101  (" + FieldLength.LENGTH_USER_ROLE + " :" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
             }
         }

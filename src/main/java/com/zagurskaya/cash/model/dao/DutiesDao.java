@@ -3,30 +3,24 @@ package com.zagurskaya.cash.model.dao;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.DaoException;
-import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 
 import java.util.List;
 
 public interface DutiesDao extends Dao<Duties> {
     /**
-     * Получение списка открытых смен пользователя
+     * Get a list of open user duties
      *
-     * @return список смен
+     * @return list of user duties
+     * @throws DaoException database access error or other errors
      */
     List<Duties> openDutiesUserToday(Long userId, String today) throws DaoException;
 
     /**
-     * Получение открытой смены пользователя
+     * Get number of user duties
      *
-     * @return номер смены
+     * @return duties number
+     * @throws DaoException database access error or other errors
      */
     Integer numberDutiesToday(User user, String today) throws DaoException;
 
-    /**
-     * Создание смены  и возврат ее с Id
-     *
-     * @param duties - смена
-     * @return true при успешном создании
-     */
-    Long createAndReturnDutiesId(Duties duties) throws DaoConstraintViolationException, DaoException;
 }

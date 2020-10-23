@@ -3,71 +3,71 @@ package com.zagurskaya.cash.entity;
 import java.sql.Date;
 
 /**
- * Смена со свойствами <b>id</b>, <b>currencyId</b>, <b>received</b>, <b>coming</b> , <b>spending</b> , <b>transmitted</b> ,
+ * Kassa with characteristics  <b>id</b>, <b>currencyId</b>, <b>received</b>, <b>coming</b> , <b>spending</b> , <b>transmitted</b> ,
  * <b>balance</b> , <b>userId</b> , <b>date</b>  и <b>dutiesId</b>.
  */
 public class Kassa {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Код валюты
+     * Currency code
      */
     private Long currencyId;
     /**
-     * Получено
+     * Received
      */
     private Double received;
     /**
-     * Приход
+     * Coming
      */
     private Double coming;
     /**
-     * Расход
+     * Spending
      */
     private Double spending;
     /**
-     * Здано
+     * Transmitted
      */
     private Double transmitted;
     /**
-     * Баланс
+     * Balance
      */
     private Double balance;
     /**
-     * Код пользователя
+     * User code
      */
     private Long userId;
     /**
-     * Дата
+     * Date
      */
     private Date date;
     /**
-     * Номер смены
+     * Number duties
      */
     private Long dutiesId;
 
     /**
-     * Получение значения поля {@link Kassa#id}
+     * Get field value {@link Kassa#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link Kassa#currencyId}
+     * Get field value {@link Kassa#currencyId}
      *
-     * @return идентификатор
+     * @return currency code
      */
     public Long getCurrencyId() {
         return currencyId;
     }
 
     /**
-     * Получение значения поля {@link Kassa#received}
+     * Get field value {@link Kassa#received}
      *
      * @return идентификатор
      */
@@ -76,7 +76,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#coming}
+     * Get field value {@link Kassa#coming}
      *
      * @return идентификатор
      */
@@ -85,7 +85,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#spending}
+     * Get field value {@link Kassa#spending}
      *
      * @return идентификатор
      */
@@ -94,7 +94,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#transmitted}
+     * Get field value {@link Kassa#transmitted}
      *
      * @return идентификатор
      */
@@ -103,7 +103,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#balance}
+     * Get field value {@link Kassa#balance}
      *
      * @return идентификатор
      */
@@ -112,7 +112,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#userId}
+     * Get field value {@link Kassa#userId}
      *
      * @return идентификатор
      */
@@ -121,7 +121,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#date}
+     * Get field value {@link Kassa#date}
      *
      * @return идентификатор
      */
@@ -130,7 +130,7 @@ public class Kassa {
     }
 
     /**
-     * Получение значения поля {@link Kassa#dutiesId}
+     * Get field value {@link Kassa#dutiesId}
      *
      * @return идентификатор
      */
@@ -167,20 +167,20 @@ public class Kassa {
     }
 
     /**
-     * Конструирование кассы.
+     * Kassa construction.
      */
     public static class Builder {
         private Kassa newKassa;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newKassa = new Kassa();
         }
 
         /**
-         * Определение идентификатора {@link Kassa#id}
+         * Identifier definition {@link Kassa#id}
          *
          * @param id - идентификатор
          * @return Builder
@@ -191,21 +191,21 @@ public class Kassa {
         }
 
         /**
-         * Определение кода валюты {@link Kassa#currencyId}
+         * Currency code definition {@link Kassa#currencyId}
          *
-         * @param currencyId - дата и время
+         * @param currencyId - Currency code
          * @return Builder
          */
-        public Kassa.Builder addСurrencyId(Long currencyId) {
+        public Kassa.Builder addCurrencyId(Long currencyId) {
             newKassa.currencyId = currencyId;
             return this;
         }
 
 
         /**
-         * Определение полученого по валюте {@link Kassa#received}
+         * Received definition {@link Kassa#received}
          *
-         * @param received - получено
+         * @param received - received
          * @return Builder
          */
         public Kassa.Builder addReceived(Double received) {
@@ -214,20 +214,20 @@ public class Kassa {
         }
 
         /**
-         * Определение прихода по валюте {@link Kassa#coming}
+         * Coming definition {@link Kassa#coming}
          *
-         * @param coming - приход
+         * @param coming - coming
          * @return Builder
          */
-        public Kassa.Builder addСoming(Double coming) {
+        public Kassa.Builder addComing(Double coming) {
             newKassa.coming = coming;
             return this;
         }
 
         /**
-         * Определение определение рассхода по кассе {@link Kassa#spending}
+         * Spending definition {@link Kassa#spending}
          *
-         * @param spending - расход
+         * @param spending - spending
          * @return Builder
          */
         public Kassa.Builder addSpending(Double spending) {
@@ -236,9 +236,9 @@ public class Kassa {
         }
 
         /**
-         * Определение сданого в кассе по валюте {@link Kassa#transmitted}
+         * Transmitted definition {@link Kassa#transmitted}
          *
-         * @param transmitted - сдано по валюте
+         * @param transmitted - transmitted
          * @return Builder
          */
         public Kassa.Builder addTransmitted(Double transmitted) {
@@ -247,9 +247,9 @@ public class Kassa {
         }
 
         /**
-         * Определение баланса в кассе по валюте {@link Kassa#balance}
+         * Balance definition {@link Kassa#balance}
          *
-         * @param balance - баланс
+         * @param balance - balance
          * @return Builder
          */
         public Kassa.Builder addBalance(Double balance) {
@@ -258,7 +258,7 @@ public class Kassa {
         }
 
         /**
-         * Определение кода пользователя {@link Kassa#userId}
+         * User code definition {@link Kassa#userId}
          *
          * @param userId - код пользователя
          * @return Builder
@@ -269,7 +269,7 @@ public class Kassa {
         }
 
         /**
-         * Определение даты {@link Kassa#date}
+         * Date definition {@link Kassa#date}
          *
          * @param date - даты
          * @return Builder
@@ -280,9 +280,9 @@ public class Kassa {
         }
 
         /**
-         * Определение код смены {@link Kassa#dutiesId}
+         * Number duties definition {@link Kassa#dutiesId}
          *
-         * @param dutiesId - код смены
+         * @param dutiesId - number duties
          * @return Builder
          */
         public Kassa.Builder addDutiesId(Long dutiesId) {
@@ -291,9 +291,9 @@ public class Kassa {
         }
 
         /**
-         * Возвращает построенную смену
+         * Returns the constructed duties
          *
-         * @return смена
+         * @return duties
          */
         public Kassa build() {
             return newKassa;

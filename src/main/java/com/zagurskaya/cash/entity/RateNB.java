@@ -3,57 +3,57 @@ package com.zagurskaya.cash.entity;
 import java.sql.Date;
 
 /**
- * Пользователь со свойствами <b>id</b>, <b>currencyId</b>, <b>date</b> и <b>sum</b>.
+ * Rate NB with characteristics <b>id</b>, <b>currencyId</b>, <b>date</b> и <b>sum</b>.
  */
 public class RateNB {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Код валюты
+     * Currency code
      */
     private Long currencyId;
     /**
-     * Дата
+     * Date
      */
     private Date date;
     /**
-     * Сумма
+     * Sum
      */
     private Double sum;
 
     /**
-     * Получение значения поля {@link RateNB#id}
+     * Get field value {@link RateNB#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link RateNB#currencyId}
+     * Get field value {@link RateNB#currencyId}
      *
-     * @return код валюты
+     * @return currency code
      */
     public Long getCurrencyId() {
         return currencyId;
     }
 
     /**
-     * Получение значения поля {@link RateNB#date}
+     * Get field value {@link RateNB#date}
      *
-     * @return дата
+     * @return date
      */
     public Date getDate() {
         return date;
     }
 
     /**
-     * Получение значения поля {@link RateNB#sum}
+     * Get field value {@link RateNB#sum}
      *
-     * @return сумма
+     * @return sum
      */
     public Double getSum() {
         return sum;
@@ -76,22 +76,22 @@ public class RateNB {
     }
 
     /**
-     * Конструирование курса НБ.
+     * Rate NB construction.
      */
     public static class Builder {
         private RateNB newRateNB;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newRateNB = new RateNB();
         }
 
         /**
-         * Определение идентификатора {@link RateNB#id}
+         * Identifier definition {@link RateNB#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -100,20 +100,20 @@ public class RateNB {
         }
 
         /**
-         * Определение кода валюты {@link RateNB#currencyId}
+         * Currency code definition {@link RateNB#currencyId}
          *
-         * @param currencyId - код валюты
+         * @param currencyId - currency code
          * @return Builder
          */
-        public Builder addСurrencyId(Long currencyId) {
+        public Builder addCurrencyId(Long currencyId) {
             newRateNB.currencyId = currencyId;
             return this;
         }
 
         /**
-         * Определение даты {@link RateNB#date}
+         * Date definition {@link RateNB#date}
          *
-         * @param date - дата
+         * @param date - date
          * @return Builder
          */
         public Builder addDate(Date date) {
@@ -122,9 +122,9 @@ public class RateNB {
         }
 
         /**
-         * Определение суммы {@link RateNB#sum}
+         * Sum definition {@link RateNB#sum}
          *
-         * @param sum - суммы
+         * @param sum - sum
          * @return Builder
          */
         public Builder addSum(Double sum) {
@@ -133,9 +133,9 @@ public class RateNB {
         }
 
         /**
-         * Возвращает построенный курс НБ
+         * Returns the constructed rate NB
          *
-         * @return пользователь
+         * @return rate NB
          */
         public RateNB build() {
             return newRateNB;

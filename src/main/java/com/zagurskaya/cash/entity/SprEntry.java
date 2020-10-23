@@ -1,110 +1,110 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Проводка со свойствами <b>id</b>, <b>name</b>, <b>currencyId</b>, <b>sprOperationId</b>, <b>accountDebit</b>,
+ * Entry with characteristics <b>id</b>, <b>name</b>, <b>currencyId</b>, <b>sprOperationId</b>, <b>accountDebit</b>,
  * <b>accountCredit</b>, <b>isSpending</b> и <b>rate</b>.
  */
 public class SprEntry {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Наименование
+     * Name
      */
     private String name;
     /**
-     * Код валюты
+     * Currency code
      */
     private Long currencyId;
     /**
-     * Код операции
+     * Operation code
      */
     private Long sprOperationId;
     /**
-     * Счет по дебету
+     * Debit account
      */
     private String accountDebit;
     /**
-     * Счет по кредету
+     * Credit account
      */
     private String accountCredit;
     /**
-     * Признак приход/ расход
+     * Shift coming/spending
      */
     private boolean isSpending;
     /**
-     * Курс
+     * Rate
      */
     private Double rate;
 
     /**
-     * Получение значения поля {@link SprEntry#id}
+     * Get field value {@link SprEntry#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#name}
+     * Get field value {@link SprEntry#name}
      *
-     * @return наименование
+     * @return name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#currencyId}
+     * Get field value {@link SprEntry#currencyId}
      *
-     * @return код валюты
+     * @return currency code
      */
     public Long getCurrencyId() {
         return currencyId;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#sprOperationId}
+     * Get field value {@link SprEntry#sprOperationId}
      *
-     * @return код операции
+     * @return operation code
      */
     public Long getSprOperationId() {
         return sprOperationId;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#accountDebit}
+     * Get field value {@link SprEntry#accountDebit}
      *
-     * @return счет по дебету
+     * @return debit account
      */
     public String getAccountDebit() {
         return accountDebit;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#accountCredit}
+     * Get field value {@link SprEntry#accountCredit}
      *
-     * @return счет по кредету
+     * @return credit account
      */
     public String getAccountCredit() {
         return accountCredit;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#isSpending}
+     * Get field value {@link SprEntry#isSpending}
      *
-     * @return признак прихода/расхода
+     * @return shift coming/spending
      */
     public boolean getIsSpending() {
         return isSpending;
     }
 
     /**
-     * Получение значения поля {@link SprEntry#rate}
+     * Get field value {@link SprEntry#rate}
      *
-     * @return курс
+     * @return rate
      */
     public Double getRate() {
         return rate;
@@ -139,22 +139,22 @@ public class SprEntry {
     }
 
     /**
-     * Конструирование проводки.
+     * SprEntry construction.
      */
     public static class Builder {
         private SprEntry newSprEntry;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newSprEntry = new SprEntry();
         }
 
         /**
-         * Определение идентификатора {@link SprEntry#id}
+         * Identifier definition {@link SprEntry#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -163,9 +163,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение наименование {@link SprEntry#name}
+         * Name definition {@link SprEntry#name}
          *
-         * @param name - наименование
+         * @param name - name
          * @return Builder
          */
         public Builder addName(String name) {
@@ -174,9 +174,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение кода валюты {@link SprEntry#currencyId}
+         * Currency code definition {@link SprEntry#currencyId}
          *
-         * @param currencyId - код валюты
+         * @param currencyId - currency code
          * @return Builder
          */
         public Builder addCurrencyId(Long currencyId) {
@@ -185,9 +185,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение кода операции {@link SprEntry#sprOperationId}
+         * Operation code definition {@link SprEntry#sprOperationId}
          *
-         * @param sprOperationId - код операции
+         * @param sprOperationId - operation code
          * @return Builder
          */
         public Builder addSprOperationId(Long sprOperationId) {
@@ -196,9 +196,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение счета по дебету проводки{@link SprEntry#accountDebit}
+         * Debit account definition{@link SprEntry#accountDebit}
          *
-         * @param accountDebit - счет по дебету проводки
+         * @param accountDebit - debit account
          * @return Builder
          */
         public Builder addAccountDebit(String accountDebit) {
@@ -207,9 +207,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение счета по кредиту проводки {@link SprEntry#accountCredit}
+         * Credit account definition {@link SprEntry#accountCredit}
          *
-         * @param accountCredit - счет по кредиту проводки
+         * @param accountCredit - credit account
          * @return Builder
          */
         public Builder addAccountCredit(String accountCredit) {
@@ -218,9 +218,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение признака прихода/расхода {@link SprEntry#isSpending}
+         * Shift coming/spending definition {@link SprEntry#isSpending}
          *
-         * @param isSpending -  признака прихода/расхода
+         * @param isSpending -  shift coming/spending
          * @return Builder
          */
         public Builder addIsSpending(boolean isSpending) {
@@ -229,9 +229,9 @@ public class SprEntry {
         }
 
         /**
-         * Определение курса операции {@link SprEntry#rate}
+         * Operation rate definition {@link SprEntry#rate}
          *
-         * @param rate -  курса операции
+         * @param rate -  operation rate
          * @return Builder
          */
         public Builder addRate(Double rate) {
@@ -240,9 +240,9 @@ public class SprEntry {
         }
 
         /**
-         * Возвращает построенную проводку
+         * Returns the constructed SprOperation
          *
-         * @return проводка
+         * @return entry
          */
         public SprEntry build() {
             return newSprEntry;

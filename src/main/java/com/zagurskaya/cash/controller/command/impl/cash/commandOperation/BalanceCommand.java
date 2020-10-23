@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Duties;
@@ -23,12 +23,19 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
-
-public class BalanceCommand extends AbstractСommand {
+/**
+ * The action is "Balance".
+ */
+public class BalanceCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(BalanceCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final KassaService kassaService = new KassaServiceImpl();
 
+    /**
+     * Constructor
+     *
+     * @param directoryPath - path
+     */
     public BalanceCommand(String directoryPath) {
         super(directoryPath);
     }
@@ -36,7 +43,7 @@ public class BalanceCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -47,7 +54,7 @@ public class BalanceCommand extends AbstractСommand {
                 if (duties == null) {
                     return ActionType.DUTIES;
                 }
-                List<Kassa> balanceList = kassaService.getBallance(user, duties);
+                List<Kassa> balanceList = kassaService.getBalance(user, duties);
                 request.setAttribute(AttributeName.BALANCE, balanceList);
                 return ActionType.BALANCE;
             } else {

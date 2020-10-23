@@ -1,13 +1,13 @@
 package com.zagurskaya.cash.model.dao.impl;
 
 /**
- * Наименование в БД колонок в таблице
+ * Name of the table columns in the database
  */
 public class ColumnName {
     // format -> TABLE_NAME
 
     /**
-     * Таблица пользователей 'user'
+     * Table 'user'
      */
     public static final String USER_ID = "id";
     public static final String USER_LOGIN = "login";
@@ -16,7 +16,7 @@ public class ColumnName {
     public static final String USER_ROLE = "role";
 
     /**
-     * Таблица пользователей 'currency'
+     * Table 'currency'
      */
     public static final String CURRENCY_ID = "id";
     public static final String CURRENCY_ISO = "iso";
@@ -24,7 +24,7 @@ public class ColumnName {
     public static final String CURRENCY_NAME_EN = "nameEN";
 
     /**
-     * Таблица пользователей 'rateNB'
+     * Table 'rateNB'
      */
     public static final String RATENB_ID = "id";
     public static final String RATENB_CURRENCY_ID = "currencyId";
@@ -32,7 +32,7 @@ public class ColumnName {
     public static final String RATENB_SUM = "sum";
 
     /**
-     * Таблица пользователей 'rateCB'
+     * Table 'rateCB'
      */
     public static final String RATECB_ID = "id";
     public static final String RATECB_COMING = "coming";
@@ -42,7 +42,7 @@ public class ColumnName {
     public static final String RATECB_IS_BACK = "isBack";
 
     /**
-     * Таблица пользователей 'duties'
+     * Table 'duties'
      */
     public static final String DUTIES_ID = "id";
     public static final String DUTIES_USER_ID = "userId";
@@ -51,7 +51,7 @@ public class ColumnName {
     public static final String DUTIES_IS_CLOSE = "isClose";
 
     /**
-     * Картотека 'kassa'
+     * Table 'kassa'
      */
     public static final String KASSA_ID = "id";
     public static final String KASSA_CURRENCY_ID = "currencyId";
@@ -65,7 +65,7 @@ public class ColumnName {
     public static final String KASSA_DUTIES_ID = "dutiesId";
 
     /**
-     * Картотека 'sproperation'
+     * Table 'sproperation'
      */
     public static final String SPR_OPERATION_ID = "id";
     public static final String SPR_OPERATION_NAME_RU = "nameRU";
@@ -73,7 +73,7 @@ public class ColumnName {
     public static final String SPR_OPERATION_SPECIFICATION = "specification";
 
     /**
-     * Картотека 'sprentry'
+     * Table 'sprentry'
      */
     public static final String SPR_ENTRY_ID = "id";
     public static final String SPR_ENTRY_NAME = "name";
@@ -85,7 +85,7 @@ public class ColumnName {
     public static final String SPR_ENTRY_RATE = "rate";
 
     /**
-     * Картотека 'useroperation'
+     * Table 'useroperation'
      */
     public static final String USER_OPERATION_ID = "id";
     public static final String USER_OPERATION_TIMESTAMP = "timestamp";
@@ -100,7 +100,7 @@ public class ColumnName {
     public static final String USER_OPERATION_FULL_NAME = "fullName";
 
     /**
-     * Картотека 'userentry'
+     * Table 'userentry'
      */
     public static final String USER_ENTRY_ID = "id";
     public static final String USER_ENTRY_USER_OPERATION_ID = "userOperationId";

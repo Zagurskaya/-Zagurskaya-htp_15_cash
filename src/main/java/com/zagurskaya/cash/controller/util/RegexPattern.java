@@ -1,25 +1,25 @@
 package com.zagurskaya.cash.controller.util;
 
 /**
- * Шаблоны
+ * Pattern
  */
 public class RegexPattern {
     /**
-     * Шаблон проверки строки: не пустого значения, алфавит в верхнем и нижнем регистре
+     * String validation pattern: not empty, upper and lower case alphabet
      */
     public static final String ALPHABET_VALIDATE_PATTERN = "[a-zA-Zа-яА-Я]{1,}";
     /**
-     * Шаблон проверки строки: не пустого значения, алфавит в верхнем и нижнем регистре, цифры от 0 до 9, символ "-" и "_"
+     * String validation pattern: not empty, upper and lower case alphabet, numbers 0 through 9, "-" and "_"
      */
     public static final String ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN = "[a-zA-Zа-яА-Я0-9_-]{1,}";
     /**
-     * Шаблон проверки строки: не пустого значения, алфавит в верхнем и нижнем регистре, цифры от 0 до 9, пробел, символ "-" и "_"
+     * String validation pattern: not empty, upper and lower case alphabet, numbers from 0 to 9, space, "-" and "_"
      */
     public static final String ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN = "[a-zA-Zа-яА-Я0-9\\s_-]{1,}";
     /**
-     * Кодировка
+     * Encoding
      */
-    public static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
+    static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
 
     private RegexPattern() {
     }

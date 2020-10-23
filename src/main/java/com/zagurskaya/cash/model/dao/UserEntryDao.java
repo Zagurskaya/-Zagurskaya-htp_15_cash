@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface UserEntryDao extends Dao<UserEntry> {
     /**
-     * Получение списка проведенных проводок
+     * Find a list of executed entry
      *
-     * @return список проведенных проводок
+     * @return list of executed entry
+     * @throws DaoException database access error or other errors
      */
     List<UserEntry> findAll() throws DaoException;
 }

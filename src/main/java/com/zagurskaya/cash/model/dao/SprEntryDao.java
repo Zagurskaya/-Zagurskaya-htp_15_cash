@@ -7,16 +7,18 @@ import java.util.List;
 
 public interface SprEntryDao extends Dao<SprEntry> {
     /**
-     * Получение списка проводок
+     * Find a list of entries
      *
-     * @return список проводок
+     * @return list of entries
+     * @throws DaoException database access error or other errors
      */
     List<SprEntry> findAll() throws DaoException;
 
     /**
-     * Получение списка проводок по номеру операции и валюте
+     * Find a list of entries by operation and currency
      *
-     * @return список проводок
+     * @return list of entries
+     * @throws DaoException database access error or other errors
      */
     List<SprEntry> findAllBySprOperationIdAndCurrencyId(Long sprOperationId, Long currencyId) throws DaoException;
 }

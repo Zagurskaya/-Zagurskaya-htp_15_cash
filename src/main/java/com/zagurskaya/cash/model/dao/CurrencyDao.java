@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface CurrencyDao extends Dao<Currency> {
     /**
-     * Получение списка валют
+     * Get a list of currencies
      *
-     * @return список объектов
+     * @return list of currencies
+     * @throws DaoException database access error or other errors
      */
     List<Currency> findAll() throws DaoException;
 

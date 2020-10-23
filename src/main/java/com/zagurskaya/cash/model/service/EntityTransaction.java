@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Управленеи транзакциями
+ * Transaction management
  */
 public class EntityTransaction {
 
@@ -18,7 +18,7 @@ public class EntityTransaction {
     private Connection connection;
 
     /**
-     * Передача соединения в одно Dao
+     * Transfer a connection to one Dao
      *
      * @param dao - Dao
      */
@@ -30,7 +30,7 @@ public class EntityTransaction {
     }
 
     /**
-     * Возврат соединения в пул соединений с одним Dao
+     * Revert a connection to a connection pool with one Dao
      */
     public void endSingleQuery() {
         if (connection != null) {
@@ -40,7 +40,7 @@ public class EntityTransaction {
     }
 
     /**
-     * Передача соединения в одно или больше Dao
+     * Transferring a connection to one or more Dao
      *
      * @param dao - Dao
      */
@@ -61,7 +61,7 @@ public class EntityTransaction {
     }
 
     /**
-     * Возврат соединения в пул соединений с одно или более Dao
+     * Revert a connection to a connection pool with one or more Dao
      */
     public void end() {
         if (connection != null) {
@@ -77,7 +77,7 @@ public class EntityTransaction {
     }
 
     /**
-     * Совершить транзакцию
+     * Make a transaction
      */
     public void commit() {
         if (connection != null) {
@@ -91,7 +91,7 @@ public class EntityTransaction {
     }
 
     /**
-     * Отмена транзакцию
+     * Cancel transaction
      */
     public void rollback() {
         if (connection != null) {

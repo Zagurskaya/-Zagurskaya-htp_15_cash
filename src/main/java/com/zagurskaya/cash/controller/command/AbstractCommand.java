@@ -11,18 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Команда со свойствами <b>directoryPath</b>.
+ * Abstract class for all command.
  */
-public abstract class AbstractСommand implements Сommand {
-    private static final Logger logger = LogManager.getLogger(AbstractСommand.class);
+public abstract class AbstractCommand implements Command {
+    private static final Logger logger = LogManager.getLogger(AbstractCommand.class);
     private String directoryPath;
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public AbstractСommand(String directoryPath) {
+    public AbstractCommand(String directoryPath) {
         this.directoryPath = directoryPath;
     }
 
@@ -32,10 +32,10 @@ public abstract class AbstractСommand implements Сommand {
     }
 
     /**
-     * Проверка валидности пользователя и его прав и возвращение сооьветствующего действия
+     * Checking the validity of the user and his permissions and returning the appropriate action.
      *
-     * @param request - запрос
-     * @return действие
+     * @param request - request
+     * @return action
      */
     protected ActionType actionAfterValidationUserAndPermission(HttpServletRequest request, ActionType actionType) {
         final HttpSession session = request.getSession(false);

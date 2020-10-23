@@ -29,13 +29,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
     private static final String SQL_DELETE_RATECB = "DELETE FROM rateCB WHERE id=?";
     private static final String SQL_SELECT_COUNT_RATECBS = "SELECT COUNT(id) FROM `rateCB`";
 
-    /**
-     * Получение списка валют КБ начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список валют
-     */
     @Override
     public List<RateCB> findAll(int limit, int startPosition) throws DaoException {
         List<RateCB> rateCBs = new ArrayList<>();
@@ -69,12 +62,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         return rateCBs;
     }
 
-    /**
-     * Поиск валюты КБ по ID
-     *
-     * @param id - ID
-     * @return валюта КБ
-     */
     @Override
     public RateCB findById(Long id) throws DaoException {
         RateCB rateCB = null;
@@ -105,12 +92,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         return rateCB;
     }
 
-    /**
-     * Создание валюты КБ
-     *
-     * @param rateCB - валюта КБ
-     * @return true при успешном создании
-     */
     @Override
     public Long create(RateCB rateCB) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -138,12 +119,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         return 0L;
     }
 
-    /**
-     * Изменение валюты КБ
-     *
-     * @param rateCB - валюта КБ
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(RateCB rateCB) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -166,12 +141,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление валюты КБ
-     *
-     * @param rateCB - валюта КБ
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(RateCB rateCB) throws DaoException {
         int result;
@@ -187,12 +156,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите валюты КБ
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;

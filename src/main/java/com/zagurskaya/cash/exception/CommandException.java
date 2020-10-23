@@ -2,47 +2,47 @@ package com.zagurskaya.cash.exception;
 
 public class CommandException extends Exception {
     /**
-     * Конструктор
+     * Constructor
      */
     public CommandException() {
         super();
     }
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param message - сообщение
+     * @param message - message
      */
     public CommandException(String message) {
         super(message);
     }
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param message - сообщение
-     * @param cause   - причина
+     * @param message - message
+     * @param cause   - cause
      */
     public CommandException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param cause - причина
+     * @param cause - cause
      */
     public CommandException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param message            - сообщение
-     * @param cause              - причина
-     * @param enableSuppression  - включено подавление или нет
-     * @param writableStackTrace - должна ли трассировка стека быть доступной для записи
+     * @param message            - message
+     * @param cause              - cause
+     * @param enableSuppression  - suppression enabled or not
+     * @param writableStackTrace - whether the stack trace should be writable
      */
     protected CommandException(String message, Throwable cause,
                                boolean enableSuppression,

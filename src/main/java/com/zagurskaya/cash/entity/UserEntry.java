@@ -1,123 +1,123 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Проведенная проводка со свойствами <b>id</b>, <b>userOperationId</b>, <b>sprEntryId</b>, <b>currencyId</b>, <b>accountDebit</b>,
+ * Executed entry with characteristics <b>id</b>, <b>userOperationId</b>, <b>sprEntryId</b>, <b>currencyId</b>, <b>accountDebit</b>,
  * <b>accountCredit</b>, <b>sum</b>, <b>isSpending</b> и <b>rate</b>.
  */
 public class UserEntry {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Код проведенной операции
+     * Executed operation code
      */
     private Long userOperationId;
     /**
-     * Код проводки
+     * Entry code
      */
     private Long sprEntryId;
     /**
-     * Код валюты
+     * Currency code
      */
     private Long currencyId;
     /**
-     * Счет дебета
+     * Debit account
      */
     private String accountDebit;
     /**
-     * Счет кредита
+     * Credit account
      */
     private String accountCredit;
     /**
-     * Сумма
+     * Sum
      */
     private Double sum;
     /**
-     * Признак прихода/ расхода
+     * Shift coming/spending
      */
     private boolean isSpending;
     /**
-     * Курс
+     * Rate
      */
     private Double rate;
 
     /**
-     * Получение значения поля {@link UserEntry#id}
+     * Get field value {@link UserEntry#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение код проведенной операции {@link UserEntry#userOperationId}
+     * Get executed operation code {@link UserEntry#userOperationId}
      *
-     * @return код проведенной операции
+     * @return executed operation code
      */
     public Long getUserOperationId() {
         return userOperationId;
     }
 
     /**
-     * Получение код проводки {@link UserEntry#sprEntryId}
+     * Get entry code {@link UserEntry#sprEntryId}
      *
-     * @return код проводки
+     * @return entry code
      */
     public Long getSprEntryId() {
         return sprEntryId;
     }
 
     /**
-     * Получение валюты {@link UserEntry#currencyId}
+     * Get currency {@link UserEntry#currencyId}
      *
-     * @return валюта
+     * @return currency
      */
     public Long getCurrencyId() {
         return currencyId;
     }
 
     /**
-     * Получение счет дебит {@link UserEntry#accountDebit}
+     * Get debit account {@link UserEntry#accountDebit}
      *
-     * @return счет средит
+     * @return debit account
      */
     public String getAccountDebit() {
         return accountDebit;
     }
 
     /**
-     * Получение счет кредит {@link UserEntry#accountCredit}
+     * Get credit account {@link UserEntry#accountCredit}
      *
-     * @return счет кредит
+     * @return credit account
      */
     public String getAccountCredit() {
         return accountCredit;
     }
 
     /**
-     * Получение сумма {@link UserEntry#sum}
+     * Get sum {@link UserEntry#sum}
      *
-     * @return сумма
+     * @return sum
      */
     public Double getSum() {
         return sum;
     }
 
     /**
-     * Получение признак прихода/расхода {@link UserEntry#isSpending}
+     * Get shift coming/spending {@link UserEntry#isSpending}
      *
-     * @return признак прихода расхода
+     * @return shift coming/spending
      */
     public boolean getIsSpending() {
         return isSpending;
     }
 
     /**
-     * Получение курс {@link UserEntry#rate}
+     * Get rate {@link UserEntry#rate}
      *
-     * @return курс
+     * @return rate
      */
     public Double getRate() {
         return rate;
@@ -150,22 +150,22 @@ public class UserEntry {
     }
 
     /**
-     * Конструирование проведенной проводки.
+     * construction проведенной проводки.
      */
     public static class Builder {
         private UserEntry newUserEntry;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newUserEntry = new UserEntry();
         }
 
         /**
-         * Определение идентификатора {@link UserEntry#id}
+         * Identifier definition {@link UserEntry#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -174,9 +174,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение номера операции {@link UserEntry#userOperationId}
+         * Executed operation code definition {@link UserEntry#userOperationId}
          *
-         * @param userOperationId - номер операции
+         * @param userOperationId -  executed operation code
          * @return Builder
          */
         public Builder addUserOperationId(Long userOperationId) {
@@ -185,9 +185,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение код пользователя {@link UserEntry#sprEntryId}
+         * Entry code definition {@link UserEntry#sprEntryId}
          *
-         * @param sprEntryId -код пользователя
+         * @param sprEntryId - entry code
          * @return Builder
          */
 
@@ -197,9 +197,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение код валюты {@link UserEntry#currencyId}
+         * Currency code definition {@link UserEntry#currencyId}
          *
-         * @param currencyId -код валюты
+         * @param currencyId - currency code
          * @return Builder
          */
         public Builder addCurrencyId(Long currencyId) {
@@ -208,9 +208,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение счет дебит {@link UserEntry#accountDebit}
+         * Debit account definition {@link UserEntry#accountDebit}
          *
-         * @param accountDebit - счет дебит
+         * @param accountDebit - debit account
          * @return Builder
          */
         public Builder addAccountDebit(String accountDebit) {
@@ -219,9 +219,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение счет кредит {@link UserEntry#accountCredit}
+         * Credit account definition {@link UserEntry#accountCredit}
          *
-         * @param accountCredit -  счет кредит
+         * @param accountCredit -  Credit account
          * @return Builder
          */
         public Builder addAccountCredit(String accountCredit) {
@@ -230,9 +230,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение сумму операции {@link UserEntry#sum}
+         * Operation sum definition {@link UserEntry#sum}
          *
-         * @param sum - сумму операции
+         * @param sum - operation sum
          * @return Builder
          */
         public Builder addSum(Double sum) {
@@ -241,9 +241,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение признак прихода/расхода {@link UserEntry#isSpending}
+         * Shift coming/spending definition {@link UserEntry#isSpending}
          *
-         * @param isSpending -спецификация
+         * @param isSpending - shift coming/spending
          * @return Builder
          */
         public Builder addIsSpending(boolean isSpending) {
@@ -252,9 +252,9 @@ public class UserEntry {
         }
 
         /**
-         * Определение курс операции {@link UserEntry#rate}
+         * Operation rate definition {@link UserEntry#rate}
          *
-         * @param rate - курс операции
+         * @param rate - operation code
          * @return Builder
          */
         public Builder addRate(Double rate) {
@@ -263,9 +263,9 @@ public class UserEntry {
         }
 
         /**
-         * Возвращает построенную проведенную проводку
+         * Returns the constructed entry
          *
-         * @return смена
+         * @return entry
          */
         public UserEntry build() {
             return newUserEntry;

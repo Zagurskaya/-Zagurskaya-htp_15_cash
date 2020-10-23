@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.User;
@@ -12,23 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Профайл".
+ * The action is "Profile".
  */
-public class ProfileСommand extends AbstractСommand {
+public class ProfileCommand extends AbstractCommand {
+
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
-    public ProfileСommand(String directoryPath) {
+    public ProfileCommand(String directoryPath) {
         super(directoryPath);
     }
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("message");
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.MESSAGE);
+        session.removeAttribute(AttributeName.ERROR);
         User user = RequestDataUtil.findUser(request);
 
         if (user != null) {

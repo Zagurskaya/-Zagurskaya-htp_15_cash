@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateCB;
@@ -20,17 +20,17 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Действие "Курсы КБ".
+ * The action is "Currency CB".
  */
-public class RateCBCommand extends AbstractСommand {
+public class RateCBCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(RateCBCommand.class);
     private final RateCBService rateCBService = new RateCBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public RateCBCommand(String directoryPath) {
         super(directoryPath);
@@ -40,7 +40,7 @@ public class RateCBCommand extends AbstractСommand {
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
 
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
 
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.RATECB);

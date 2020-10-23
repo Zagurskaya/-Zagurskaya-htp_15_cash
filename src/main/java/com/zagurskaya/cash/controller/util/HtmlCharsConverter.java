@@ -1,14 +1,14 @@
 package com.zagurskaya.cash.controller.util;
 
 /**
- * Конвертор Html-символов
+ * Html character converter
  */
 public class HtmlCharsConverter {
     /**
-     * Экранирование символов
+     * Escaping symbols
      *
-     * @param source - исходный текст
-     * @return экранированный текст
+     * @param source - source text
+     * @return character text
      */
     public static String convertHtmlSpecialChars(String source) {
 

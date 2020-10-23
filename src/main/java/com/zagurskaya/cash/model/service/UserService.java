@@ -8,27 +8,27 @@ import java.util.List;
 
 public interface UserService extends Service<User> {
     /**
-     * Поиск пользователя по логину  и валидному паролю
+     * Search for a user by login and valid password
      *
-     * @param login    - логин
-     * @param password - пароль
-     * @return пользователь
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
+     * @param login    - login
+     * @param password - password
+     * @return user
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     User findUserByLoginAndValidPassword(String login, String password) throws ServiceException;
 
     /**
-     * Получение списка пользователей
+     * Get user List
      *
-     * @return список пользователей
+     * @return user List
      */
     List<User> findAll() throws ServiceException;
 
     /**
-     * Создание объекта
+     * Create user with password
      *
-     * @param user - объект
-     * @return true при успешном создании
+     * @param user - user
+     * @return true on successful create
      */
     boolean create(User user, String password) throws ServiceException, CommandException;
 }

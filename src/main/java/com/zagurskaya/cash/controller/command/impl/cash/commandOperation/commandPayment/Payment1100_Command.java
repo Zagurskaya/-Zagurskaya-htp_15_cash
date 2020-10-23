@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.util.RequestDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
@@ -23,16 +23,18 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
-
-public class Payment1100_Command extends AbstractСommand {
+/**
+ * The action is "Payment 1100".
+ */
+public class Payment1100_Command extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(Payment1100_Command.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public Payment1100_Command(String directoryPath) {
         super(directoryPath);
@@ -76,7 +78,7 @@ public class Payment1100_Command extends AbstractСommand {
 //                    SprEntriesDao sprEntriesDao = new SprEntriesDao();
 //                    List<SprEntries> sprEntries1100 = sprEntriesDao.getAll("WHERE `sprOperationsId`=" + sprOperationsId + " AND `currencyId`=" + ids[i]);
 //
-//                    kassaDao.updateKassaOutSideOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
+//                    kassaDao.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
 //
 //                    RateNBDao rateNBDao = new RateNBDao();
 //                    UserEntryDao userEntryDao = new UserEntryDao();

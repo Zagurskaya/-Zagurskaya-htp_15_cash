@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.CurrencyService;
@@ -17,16 +17,16 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Действие "Валюта".
+ * The action is "Currency".
  */
-public class AllCurrencyCommand extends AbstractСommand {
+public class AllCurrencyCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(AllCurrencyCommand.class);
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public AllCurrencyCommand(String directoryPath) {
         super(directoryPath);
@@ -35,7 +35,7 @@ public class AllCurrencyCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
 
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.ALLCURRENCY);

@@ -1,56 +1,57 @@
 package com.zagurskaya.cash.entity;
 
 /**
- * Операция со свойствами <b>id</b>, <b>name</b> и <b>specification</b>.
+ * Operation with characteristics <b>id</b>, <b>name</b> и <b>specification</b>.
  */
 public class SprOperation {
     /**
-     * Идентификатор
+     * Identifier
      */
     private Long id;
     /**
-     * Наименование на русском языке
+     * Name in Russian
      */
     private String nameRU;
     /**
-     * Наименование на английском языке
+     * Name in English
      */
     private String nameEN;
     /**
-     * Спецификация
+     * Specification
      */
     private String specification;
 
     /**
-     * Получение значения поля {@link SprOperation#id}
+     * Get field value {@link SprOperation#id}
      *
-     * @return идентификатор
+     * @return identifier
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * Получение значения поля {@link SprOperation#nameRU}
+     * Get field value {@link SprOperation#nameRU}
      *
-     * @return наименование на русском языке
+     * @return name in Russian
      */
     public String getNameRU() {
         return nameRU;
     }
+
     /**
-     * Получение значения поля {@link SprOperation#nameEN}
+     * Get field value {@link SprOperation#nameEN}
      *
-     * @return наименование на английском языке
+     * @return name in English
      */
     public String getNameEN() {
         return nameEN;
     }
 
     /**
-     * Получение спецификации {@link SprOperation#specification}
+     * Get specification {@link SprOperation#specification}
      *
-     * @return спецификация
+     * @return specification
      */
     public String getSpecification() {
         return specification;
@@ -73,22 +74,22 @@ public class SprOperation {
     }
 
     /**
-     * Конструирование справочника операция.
+     * Construction directory operation.
      */
     public static class Builder {
         private SprOperation newSprOperation;
 
         /**
-         * Конструктор
+         * Constructor
          */
         public Builder() {
             newSprOperation = new SprOperation();
         }
 
         /**
-         * Определение идентификатора {@link SprOperation#id}
+         * Identifier definition {@link SprOperation#id}
          *
-         * @param id - идентификатор
+         * @param id - identifier
          * @return Builder
          */
         public Builder addId(Long id) {
@@ -97,19 +98,20 @@ public class SprOperation {
         }
 
         /**
-         * Определение наименования операции RU {@link SprOperation#nameRU}
+         * Name in Russian definition {@link SprOperation#nameRU}
          *
-         * @param nameRU - наименование операции RU
+         * @param nameRU - name in Russian
          * @return Builder
          */
         public Builder addNameRU(String nameRU) {
             newSprOperation.nameRU = nameRU;
             return this;
         }
+
         /**
-         * Определение наименования операции EN{@link SprOperation#nameEN}
+         * Name in English definition {@link SprOperation#nameEN}
          *
-         * @param nameEN - наименование операции EN
+         * @param nameEN - name in English
          * @return Builder
          */
         public Builder addNameEN(String nameEN) {
@@ -118,9 +120,9 @@ public class SprOperation {
         }
 
         /**
-         * Определение спецификации {@link SprOperation#specification}
+         * Specification definition {@link SprOperation#specification}
          *
-         * @param specification - спецификация
+         * @param specification - specification
          * @return Builder
          */
         public Builder addSpecification(String specification) {
@@ -129,9 +131,9 @@ public class SprOperation {
         }
 
         /**
-         * Возвращает операцию
+         * Returns the constructed operation
          *
-         * @return операция
+         * @return operation
          */
         public SprOperation build() {
             return newSprOperation;

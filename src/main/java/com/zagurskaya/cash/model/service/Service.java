@@ -8,50 +8,56 @@ import java.util.List;
 
 public interface Service<T> {
     /**
-     * Поиск объекта по ID
+     * Search Object by ID
      *
      * @param id - ID
-     * @return объект
+     * @return Object
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     T findById(Long id) throws ServiceException;
 
     /**
-     * Создание объекта
+     * Create Object
      *
-     * @param t - объект
-     * @return true при успешном создании
+     * @param t - Object
+     * @return true on successful create
+     * @throws ServiceException error during execution of logical blocks and actions
+     * @throws CommandException volition error
      */
     boolean create(T t) throws ServiceException, CommandException;
 
     /**
-     * Изменение объекта
+     * Update Object
      *
-     * @param t - объект
-     * @return true при успешном изменении
+     * @param t - Object
+     * @return true on successful update
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     boolean update(T t) throws ServiceException, CommandException;
 
     /**
-     * Удаление объекта
+     * Delete Object
      *
-     * @param t - объект
-     * @return true при успешном удаление
+     * @param t - Object
+     * @return true on successful delete
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     boolean delete(T t) throws ServiceException;
 
     /**
-     * Количество строк в таблите объекта
+     * Count of rows in the object table
      *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
+     * @return Count of rows
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     int countRows() throws ServiceException;
 
     /**
-     * Получение списка объектов на определенной странице
+     * Get a list of Objects on the page
      *
-     * @param page - номер страницы
-     * @return список пользователей
+     * @param page - number page
+     * @return list of Objects
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     List<T> onePartOfListOnPage(int page) throws ServiceException;
 }

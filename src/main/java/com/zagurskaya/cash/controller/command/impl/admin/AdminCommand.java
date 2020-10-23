@@ -1,20 +1,21 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.command.AttributeName;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Действие "Главная страница администратора".
+ * The action is "Admin Home".
  */
-public class AdminCommand extends AbstractСommand {
+public class AdminCommand extends AbstractCommand {
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public AdminCommand(String directoryPath) {
         super(directoryPath);
@@ -23,10 +24,9 @@ public class AdminCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("message");
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.MESSAGE);
+        session.removeAttribute(AttributeName.ERROR);
 
-        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.ADMIN);
-        return actionType;
+        return actionAfterValidationUserAndPermission(request, ActionType.ADMIN);
     }
 }

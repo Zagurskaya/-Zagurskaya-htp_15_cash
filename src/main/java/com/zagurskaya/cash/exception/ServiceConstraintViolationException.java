@@ -6,19 +6,10 @@ package com.zagurskaya.cash.exception;
 public class ServiceConstraintViolationException extends Exception {
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param message - сообщение
-     */
-    public ServiceConstraintViolationException(String message) {
-        super(message);
-    }
-
-    /**
-     * Конструктор
-     *
-     * @param message - сообщение
-     * @param cause   - причина
+     * @param message - message
+     * @param cause   - cause
      */
     public ServiceConstraintViolationException(String message, Throwable cause) {
         super(message, cause);

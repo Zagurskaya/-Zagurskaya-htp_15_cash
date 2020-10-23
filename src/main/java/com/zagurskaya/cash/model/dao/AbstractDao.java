@@ -7,9 +7,9 @@ public abstract class AbstractDao {
     protected Connection connection;
 
     /**
-     * Установление соединения
+     * Establishing a connection
      *
-     * @param connection - соединение
+     * @param connection - connection
      */
     public void setConnection(Connection connection) {
         this.connection = connection;

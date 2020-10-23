@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -19,16 +19,16 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Действие "Пользователи".
+ * The action is "Users".
  */
-public class EditUsersCommand extends AbstractСommand {
+public class EditUsersCommand extends AbstractCommand {
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
     private UserService userService = new UserServiceImpl();
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public EditUsersCommand(String directoryPath) {
         super(directoryPath);
@@ -37,7 +37,7 @@ public class EditUsersCommand extends AbstractСommand {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
+        session.removeAttribute(AttributeName.ERROR);
 
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);

@@ -6,21 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Команда
+ * Command
  */
-public interface Сommand {
+public interface Command {
     /**
-     * Путь к jsp странице
+     * Path to jsp page
      *
      * @return путь
      */
     String getDirectoryPath();
 
     /**
-     * Выполнение действия
+     * Defining an action
      *
-     * @param request - запрос
-     * @return следующее действие
+     * @param request - request
+     * @return action
      */
     ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException;
 }

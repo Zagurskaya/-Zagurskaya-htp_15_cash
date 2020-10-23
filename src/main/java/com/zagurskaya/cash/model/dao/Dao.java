@@ -8,58 +8,65 @@ import java.util.List;
 
 public interface Dao<T> {
     /**
-     * Получение списка объектов начиная с startPosition позиции в количестве <= limit
+     * Get a list of Objects starting from the startPosition position in the count of <= limit
      *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список объектов
+     * @param limit         - count
+     * @param startPosition - start position
+     * @return list of Objects
+     * @throws DaoException database access error or other errors.
      */
     List<T> findAll(int limit, int startPosition) throws DaoException;
 
     /**
-     * Поиск объекта по ID
+     * Object search by ID
      *
      * @param id - ID
-     * @return объект
+     * @return object
+     * @throws DaoException database access error or other errors.
      */
     T findById(Long id) throws DaoException;
 
     /**
-     * Создание объекта
+     * Create Object
      *
-     * @param t - объект
-     * @return true при успешном создании
+     * @param t - Object
+     * @return true on successful creation
+     * @throws DaoException                    database access error or other errors
+     * @throws DaoConstraintViolationException duplication data
      */
     Long create(T t) throws DaoConstraintViolationException, DaoException;
 
     /**
-     * Изменение объекта
+     * Update Object
      *
-     * @param t - объект
-     * @return true при успешном изменении
+     * @param t - Object
+     * @return true on successful change
+     * @throws DaoException                    database access error or other errors
+     * @throws DaoConstraintViolationException duplication data
      */
     boolean update(T t) throws DaoConstraintViolationException, DaoException;
 
     /**
-     * Удаление объекта
+     * Delete Object
      *
-     * @param t - объект
-     * @return true при успешном удаление
+     * @param t - Object
+     * @return true on successful delete
+     * @throws DaoException database access error or other errors.
      */
     boolean delete(T t) throws DaoException;
 
     /**
-     * Количество строк в таблице объекта
+     * Count of rows in the object table
      *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
+     * @return Count of rows
+     * @throws DaoException database access error or other errors.
      */
     int countRows() throws DaoException;
 
     /**
-     * Установление соединения
+     * Establishing a connection
      *
-     * @param connection - соединение
+     * @param connection - connection
      */
     void setConnection(Connection connection);
 }

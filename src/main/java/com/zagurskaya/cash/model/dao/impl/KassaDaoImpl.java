@@ -31,13 +31,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
     private static final String SQL_DELETE_KASSA = "DELETE FROM kassa WHERE id=?";
     private static final String SQL_SELECT_COUNT_KASSAS = "SELECT COUNT(id) FROM kassa";
 
-    /**
-     * Получение списка записей из картотеки kassa начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return списк записей из картотеки kassa
-     */
     @Override
     public List<Kassa> findAll(int limit, int startPosition) throws DaoException {
         List<Kassa> kassaList = new ArrayList<>();
@@ -59,9 +52,9 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
                     Kassa kassa = new Kassa.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addReceived(received)
-                            .addСoming(coming)
+                            .addComing(coming)
                             .addSpending(spending)
                             .addTransmitted(transmitted)
                             .addBalance(balance)
@@ -79,12 +72,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return kassaList;
     }
 
-    /**
-     * Поиск записи из картотеки kassa по ID
-     *
-     * @param id - ID
-     * @return запись из картотеки kassa
-     */
     @Override
     public Kassa findById(Long id) throws DaoException {
         Kassa kassa = null;
@@ -104,9 +91,9 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
                     kassa = new Kassa.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addReceived(received)
-                            .addСoming(coming)
+                            .addComing(coming)
                             .addSpending(spending)
                             .addTransmitted(transmitted)
                             .addBalance(balance)
@@ -123,12 +110,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return kassa;
     }
 
-    /**
-     * Создание записи в картотеке kassa
-     *
-     * @param kassa - запись в картотеке kassa
-     * @return true при успешном создании
-     */
     @Override
     public Long create(Kassa kassa) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -160,12 +141,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return 0L;
     }
 
-    /**
-     * Изменение записи в картотеке kassa
-     *
-     * @param kassa - запись в картотеке kassa
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Kassa kassa) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -192,12 +167,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление записи в картотеке kassa
-     *
-     * @param kassa - запись в картотеке kassa
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Kassa kassa) throws DaoException {
         int result;
@@ -213,12 +182,6 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в картотеке kassa
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -254,9 +217,9 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     kassa = new Kassa.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addReceived(received)
-                            .addСoming(coming)
+                            .addComing(coming)
                             .addSpending(spending)
                             .addTransmitted(transmitted)
                             .addBalance(balance)
@@ -292,9 +255,9 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Date date = resultSet.getDate(ColumnName.KASSA_DATE);
                     Kassa kassa = new Kassa.Builder()
                             .addId(id)
-                            .addСurrencyId(currencyId)
+                            .addCurrencyId(currencyId)
                             .addReceived(received)
-                            .addСoming(coming)
+                            .addComing(coming)
                             .addSpending(spending)
                             .addTransmitted(transmitted)
                             .addBalance(balance)

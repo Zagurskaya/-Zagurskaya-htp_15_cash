@@ -1,18 +1,20 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
-import com.zagurskaya.cash.controller.command.AbstractСommand;
+import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public class Payment20_02_Command extends AbstractСommand {
+/**
+ * The action is "Payment 2002".
+ */
+public class Payment20_02_Command extends AbstractCommand {
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param directoryPath - путь
+     * @param directoryPath - path
      */
     public Payment20_02_Command(String directoryPath) {
         super(directoryPath);

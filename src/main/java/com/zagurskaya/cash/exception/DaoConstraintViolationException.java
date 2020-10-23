@@ -6,10 +6,10 @@ package com.zagurskaya.cash.exception;
 public class DaoConstraintViolationException extends Exception {
 
     /**
-     * Конструктор
+     * Constructor
      *
-     * @param message - сообщение
-     * @param cause   - причина
+     * @param message - message
+     * @param cause   - cause
      */
     public DaoConstraintViolationException(String message, Throwable cause) {
         super(message, cause);

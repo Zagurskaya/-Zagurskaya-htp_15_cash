@@ -30,13 +30,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
     private static final String SQL_DELETE_SPR_ENTRY = "DELETE FROM sprEntry WHERE id=?";
     private static final String SQL_SELECT_COUNT_SPR_ENTRY = "SELECT COUNT(id) FROM sprEntry";
 
-    /**
-     * Получение списка проводок начиная с startPosition позиции в количестве <= limit
-     *
-     * @param limit         - количество
-     * @param startPosition - начальная позиция
-     * @return список проводок
-     */
     @Override
     public List<SprEntry> findAll(int limit, int startPosition) throws DaoException {
         List<SprEntry> sprEntries = new ArrayList<>();
@@ -74,12 +67,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return sprEntries;
     }
 
-    /**
-     * Поиск проводки по ID
-     *
-     * @param id - ID
-     * @return проводка
-     */
     @Override
     public SprEntry findById(Long id) throws DaoException {
         SprEntry sprEntry = null;
@@ -114,12 +101,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return sprEntry;
     }
 
-    /**
-     * Создание проводки
-     *
-     * @param sprEntry - проводка
-     * @return true при успешном создании
-     */
     @Override
     public Long create(SprEntry sprEntry) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -150,12 +131,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return 0L;
     }
 
-    /**
-     * Изменение проводки
-     *
-     * @param sprEntry - проводки
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(SprEntry sprEntry) throws DaoException, DaoConstraintViolationException {
         int result;
@@ -180,12 +155,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return 1 == result;
     }
 
-    /**
-     * Удаление проводки
-     *
-     * @param sprEntry - проводки
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(SprEntry sprEntry) throws DaoException {
         int result;
@@ -201,12 +170,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return 1 == result;
     }
 
-    /**
-     * Количество строк в таблите проводок
-     *
-     * @return количество строк
-     * @throws DaoException ошибке доступа к базе данных или других ошибках.
-     */
     @Override
     public int countRows() throws DaoException {
         int count;
@@ -223,11 +186,6 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         return count;
     }
 
-    /**
-     * Получение списка проводок
-     *
-     * @return список проводок
-     */
     @Override
     public List<SprEntry> findAll() throws DaoException {
         List<SprEntry> sprEntries = new ArrayList<>();

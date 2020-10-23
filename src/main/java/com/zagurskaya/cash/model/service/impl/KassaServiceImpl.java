@@ -8,7 +8,6 @@ import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
 import com.zagurskaya.cash.model.dao.SprEntryDao;
@@ -30,20 +29,13 @@ public class KassaServiceImpl implements KassaService {
 
     private static final Logger logger = LogManager.getLogger(KassaServiceImpl.class);
 
-    /**
-     * Поиск записи в картотеке касса по ID
-     *
-     * @param id - ID
-     * @return запись в картотеке касса
-     */
     @Override
     public Kassa findById(Long id) throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(kassaDao);
         try {
-            Kassa kassa = kassaDao.findById(id);
-            return kassa;
+            return kassaDao.findById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend kassa by id", e);
             throw new ServiceException("Database exception during fiend kassa by id", e);
@@ -184,7 +176,7 @@ public class KassaServiceImpl implements KassaService {
             Kassa.Builder updateKassaBuilder = new Kassa
                     .Builder()
                     .addId(kassa.getId())
-                    .addСurrencyId(currencyId)
+                    .addCurrencyId(currencyId)
                     .addReceived(kassa.getReceived())
                     .addTransmitted(kassa.getTransmitted())
                     .addUserId(kassa.getUserId())
@@ -194,13 +186,13 @@ public class KassaServiceImpl implements KassaService {
             Kassa updateKassa;
             if (sprEntries.get(0).getIsSpending()) {
                 updateKassa = updateKassaBuilder
-                        .addСoming(kassa.getComing())
+                        .addComing(kassa.getComing())
                         .addSpending(DataUtil.round(kassasSpending + sum))
                         .addBalance(DataUtil.round(kassaBalance - sum))
                         .build();
             } else {
                 updateKassa = updateKassaBuilder
-                        .addСoming(DataUtil.round(kassasComing + sum))
+                        .addComing(DataUtil.round(kassasComing + sum))
                         .addSpending(kassa.getSpending())
                         .addBalance(DataUtil.round(kassaBalance + sum))
                         .build();
@@ -222,7 +214,7 @@ public class KassaServiceImpl implements KassaService {
 
     //внекассовые операции
     @Override
-    public boolean updateKassaOutSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaOuterOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
 
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
@@ -241,8 +233,8 @@ public class KassaServiceImpl implements KassaService {
             Kassa.Builder updateKassaBuilder = new Kassa
                     .Builder()
                     .addId(kassa.getId())
-                    .addСurrencyId(currencyId)
-                    .addСoming(kassa.getComing())
+                    .addCurrencyId(currencyId)
+                    .addComing(kassa.getComing())
                     .addSpending(kassa.getSpending())
                     .addUserId(kassa.getUserId())
                     .addData(date)
@@ -278,7 +270,7 @@ public class KassaServiceImpl implements KassaService {
     }
 
     @Override
-    public List<Kassa> getBallance(User user, Duties duties) throws ServiceException {
+    public List<Kassa> getBalance(User user, Duties duties) throws ServiceException {
         List kassaList = new ArrayList();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -286,8 +278,8 @@ public class KassaServiceImpl implements KassaService {
         try {
             kassaList.addAll(kassaDao.findAllByUserIdAndDutiesId(user.getId(), duties.getId()));
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during getBallance", e);
-            throw new ServiceException("Database exception during getBallance", e);
+            logger.log(Level.ERROR, "Database exception during getBalance", e);
+            throw new ServiceException("Database exception during getBalance", e);
         } finally {
             transaction.endSingleQuery();
         }

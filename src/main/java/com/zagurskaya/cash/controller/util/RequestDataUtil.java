@@ -12,14 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RequestDataUtil {
     private static final Logger logger = LogManager.getLogger(RequestDataUtil.class);
 
+    /**
+     * returns the user if he and the session exist
+     *
+     * @param request - request
+     * @return user
+     */
     public static User findUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
@@ -34,7 +38,13 @@ public class RequestDataUtil {
         }
     }
 
-
+    /**
+     * returns the Cookie for cookieName
+     *
+     * @param request    - request
+     * @param cookieName -cookie name
+     * @return cookie with name cookieName
+     */
     public static Cookie getCookie(HttpServletRequest request, String cookieName) {
         Cookie[] cookies = request.getCookies();
         Cookie cookie = null;
@@ -49,6 +59,14 @@ public class RequestDataUtil {
         return cookie;
     }
 
+    /**
+     * Getting a String value matching the pattern
+     *
+     * @param request - request
+     * @param name    - field name
+     * @param pattern - checked pattern
+     * @return field value
+     */
     public static String getString(HttpServletRequest request, String name, String pattern) throws CommandException {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
@@ -64,6 +82,13 @@ public class RequestDataUtil {
         }
     }
 
+    /**
+     * Getting a String value
+     *
+     * @param request - request
+     * @param name    - field name
+     * @return field value
+     */
     public static String getString(HttpServletRequest request, String name) throws CommandException {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
@@ -74,42 +99,14 @@ public class RequestDataUtil {
         }
     }
 
-    public static long[] getLongArray(HttpServletRequest request, String name) {
-        String[] value = request.getParameterValues(name);
-        long[] longs = new long[value.length];
-        for (int i = 0; i < value.length; i++) {
-            longs[i] = Long.parseLong(value[i]);
-        }
-        return longs;
-    }
-
-    public static List<Long> getLongList(HttpServletRequest request, String name) {
-        List<Long> arrList = new ArrayList<>();
-        String[] value = request.getParameterValues(name);
-        for (int i = 0; i < value.length; i++) {
-            arrList.add(Long.parseLong(value[i]));
-        }
-        return arrList;
-    }
-
-    public static double[] getDoubleArray(HttpServletRequest request, String name) {
-        String[] value = request.getParameterValues(name);
-        double[] values = new double[value.length];
-        for (int i = 0; i < value.length; i++) {
-            values[i] = Math.round(Double.parseDouble(value[i]) * 100.0) / 100.0;
-        }
-        return values;
-    }
-
-    public static List<Double> getDoubleList(HttpServletRequest request, String name) {
-        List<Double> arrList = new ArrayList<>();
-        String[] value = request.getParameterValues(name);
-        for (int i = 0; i < value.length; i++) {
-            arrList.add(Math.round(Double.parseDouble(value[i]) * 100.0) / 100.0);
-        }
-        return arrList;
-    }
-
+    /**
+     * Getting a Map<Long, Double> value
+     *
+     * @param request - request
+     * @param key     - attribute of key
+     * @param value   - attribute of value
+     * @return Map<Long, Double>
+     */
     public static Map<Long, Double> getMapLongDouble(HttpServletRequest request, String key, String value) {
         Map<Long, Double> map = new HashMap<>();
         String[] keys = request.getParameterValues(key);

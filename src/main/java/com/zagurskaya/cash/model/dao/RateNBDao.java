@@ -7,9 +7,10 @@ import java.sql.Date;
 
 public interface RateNBDao extends Dao<RateNB> {
     /**
-     * Получение последнего курса НБ по валюте
+     * Find the latest rate NB by currency
      *
-     * @return курс НБ
+     * @return rate NB
+     * @throws DaoException database access error or other errors
      */
     RateNB rateNBToday(Date date, Long currencyId) throws DaoException;
 }

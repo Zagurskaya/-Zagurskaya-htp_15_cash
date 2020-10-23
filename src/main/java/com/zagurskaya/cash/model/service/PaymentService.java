@@ -13,25 +13,44 @@ import java.util.Map;
 public interface PaymentService {
 
     /**
-     * Получение списка операций
+     * Get operation list
      *
-     * @return список операций
+     * @return operation list
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     List<SprOperation> findAllSprOperation() throws ServiceException;
 
     /**
-     * Получение операции
+     * Get operation by Id
      *
-     * @return операция
+     * @return operation
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     SprOperation findSprOperationById(Long id) throws ServiceException;
 
     /**
-     * Выполнение операции 1000
+     * Implement payment receiving money
+     *
+     * @throws ServiceException error during execution of logical blocks and actions
      */
     void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
 
+    /**
+     * Count of rows in the UserOperations table
+     *
+     * @return Count of rows
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
     int countRowsUserOperations(User user, Duties duties) throws ServiceException;
 
+    /**
+     * Get a list of user operations on the page
+     *
+     * @param user   - user
+     * @param duties - user duties
+     * @param page   - number page
+     * @return list of Objects
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
     List<UserOperation> onePartOfListUserOperationsOnPage(User user, Duties duties, int page) throws ServiceException;
 }

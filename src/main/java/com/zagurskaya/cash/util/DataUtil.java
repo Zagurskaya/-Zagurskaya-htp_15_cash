@@ -2,6 +2,7 @@ package com.zagurskaya.cash.util;
 
 import com.zagurskaya.cash.controller.util.HtmlCharsConverter;
 import com.zagurskaya.cash.exception.CommandException;
+import com.zagurskaya.cash.exception.ServiceException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,14 @@ import java.time.format.DateTimeFormatter;
 public class DataUtil {
     private static final Logger logger = LogManager.getLogger(DataUtil.class);
 
+    /**
+     * Get a string matching the pattern
+     *
+     * @param value   - matching value
+     * @param pattern - matching pattern
+     * @return true on successful update
+     * @throws CommandException validation error
+     */
     public static String getString(String value, String pattern) throws CommandException {
         if (value.matches(pattern))
             return HtmlCharsConverter.convertHtmlSpecialChars(value);
@@ -23,19 +32,46 @@ public class DataUtil {
         }
     }
 
+    /**
+     * Get long type from request parameter
+     *
+     * @param req  - request
+     * @param name - parameter name
+     * @return long type value
+     * @throws CommandException validation error
+     */
     public static Long getLong(HttpServletRequest req, String name) {
         String value = req.getParameter(name);
         return Long.parseLong(value);
     }
 
+    /**
+     * Format date : yyyy-MM-dd 00:00:00.000
+     *
+     * @param localDate - date
+     * @return string type date
+     * @throws CommandException validation error
+     */
     public static String getFormattedLocalDateStartDateTime(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00.000"));
     }
 
+    /**
+     * Format date :  yyyy-MM-dd
+     *
+     * @param localDate - date
+     * @return string type date
+     */
     public static String getFormattedLocalDateOnlyDate(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    /**
+     * Round sum
+     *
+     * @param sum - sum
+     * @return round sum
+     */
     public static Double round(Double sum) {
         return Math.round(sum * 100.0) / 100.0;
     }
