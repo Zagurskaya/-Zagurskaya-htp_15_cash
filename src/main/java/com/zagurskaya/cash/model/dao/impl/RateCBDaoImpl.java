@@ -171,4 +171,36 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         }
         return count;
     }
+
+    @Override
+    public Double rateCBToday(Timestamp now, Long coming, Long spending) throws DaoException {
+        List<RateCB> rateCBList = new ArrayList<>();
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_RATECBS)) {
+                preparedStatement.setString(1, now.toString());
+                preparedStatement.setLong(2, coming);
+                preparedStatement.setLong(3, spending);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.RATECB_ID);
+                    Timestamp timestamp = resultSet.getTimestamp(ColumnName.RATECB_TIMESTAMP);
+                    Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
+                    boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
+                    RateCB rateCB = new RateCB.Builder()
+                            .addId(id)
+                            .addСoming(coming)
+                            .addSpending(spending)
+                            .addTimestamp(timestamp)
+                            .addSum(sum)
+                            .addIsBack(isBack)
+                            .build();
+                    rateCBList.add(rateCB);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend rate CB Today", e);
+            throw new DaoException("Database exception during fiend rate CB Today", e);
+        }
+        return rateCBList.get(rateCBList.size()-1).getSum();
+    }
 }

@@ -11,12 +11,14 @@ import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
+import com.zagurskaya.cash.model.dao.RateCBDao;
 import com.zagurskaya.cash.model.dao.RateNBDao;
 import com.zagurskaya.cash.model.dao.SprEntryDao;
 import com.zagurskaya.cash.model.dao.SprOperationDao;
 import com.zagurskaya.cash.model.dao.UserEntryDao;
 import com.zagurskaya.cash.model.dao.UserOperationDao;
 import com.zagurskaya.cash.model.dao.impl.KassaDaoImpl;
+import com.zagurskaya.cash.model.dao.impl.RateCBDaoImpl;
 import com.zagurskaya.cash.model.dao.impl.RateNBDaoImpl;
 import com.zagurskaya.cash.model.dao.impl.SprEntryDaoImpl;
 import com.zagurskaya.cash.model.dao.impl.SprOperationDaoImpl;
@@ -82,23 +84,23 @@ public class PaymentServiceImpl implements PaymentService {
         UserEntryDao userEntryDao = new UserEntryDaoImpl();
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         RateNBDao rateNBDao = new RateNBDaoImpl();
+        RateCBDao rateCBDao = new RateCBDaoImpl();
 
         Timestamp now = new Timestamp(System.currentTimeMillis());
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-//        "yyyy-MM-dd"
         String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
-        transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao);
+        transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
+            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, 933L);
             UserOperation userOperation = new UserOperation.Builder()
                     .addTimestamp(now)
-                    //todo change rate
-                    .addRate(1.0)
+                    .addRate(rateCBPayment)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)
                     .addUserId(user.getId())
