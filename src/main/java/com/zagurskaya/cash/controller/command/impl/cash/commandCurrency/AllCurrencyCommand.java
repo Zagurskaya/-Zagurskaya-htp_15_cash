@@ -38,23 +38,18 @@ public class AllCurrencyCommand extends AbstractCommand {
         session.removeAttribute(AttributeName.ERROR);
 
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.ALLCURRENCY);
-            if (actionType == ActionType.ALLCURRENCY) {
+            int page = 1;
+            if (request.getParameter(AttributeName.PAGE) != null)
+                page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
 
-                int page = 1;
-                if (request.getParameter(AttributeName.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
+            int numberOfPages = (int) Math.ceil(currencyService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
+            List<Currency> currencies = currencyService.onePartOfListOnPage(page);
 
-                int numberOfPages = (int) Math.ceil(currencyService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-                List<Currency> currencies = currencyService.onePartOfListOnPage(page);
+            request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+            request.setAttribute(AttributeName.CURRENT_PAGE, page);
+            request.setAttribute(AttributeName.CURRENCIES, currencies);
+            return ActionType.ALLCURRENCY;
 
-                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeName.CURRENT_PAGE, page);
-                request.setAttribute(AttributeName.CURRENCIES, currencies);
-                return ActionType.ALLCURRENCY;
-            } else {
-                return actionType;
-            }
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);

@@ -27,6 +27,7 @@ public class AdminCommand extends AbstractCommand {
         session.removeAttribute(AttributeName.MESSAGE);
         session.removeAttribute(AttributeName.ERROR);
 
-        return actionAfterValidationUserAndPermission(request, ActionType.ADMIN);
+//        return actionAfterValidationUserAndPermission(request, ActionType.ADMIN);
+        return ActionType.ADMIN;
     }
 }

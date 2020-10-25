@@ -52,32 +52,27 @@ public class UserOperationsCommand extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.USEROPERATIONS);
-            if (actionType == ActionType.USEROPERATIONS) {
-                User user = ControllerDataUtil.findUser(request);
-                Duties duties = dutiesService.openDutiesUserToday(user, today);
-                if (duties == null) {
-                    return ActionType.DUTIES;
-                }
-                int page = 1;
-                if (request.getParameter(AttributeName.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
-
-                int numberOfPages = (int) Math.ceil(paymentService.countRowsUserOperations(user, duties) * 1.0 / AttributeName.RECORDS_PER_PAGE);
-                List<UserOperation> userAllOperationList = paymentService.onePartOfListUserOperationsOnPage(user, duties, page);
-                List<SprOperation> sprOperationsList = paymentService.findAllSprOperation();
-                List<Currency> currencyList = currencyService.findAll();
-
-                request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperationsList);
-                request.setAttribute(AttributeName.CURRENCIES, currencyList);
-                request.setAttribute(AttributeName.USER_OPERATIONS, userAllOperationList);
-                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeName.CURRENT_PAGE, page);
-
-                return ActionType.USEROPERATIONS;
-            } else {
-                return actionType;
+            User user = ControllerDataUtil.findUser(request);
+            Duties duties = dutiesService.openDutiesUserToday(user, today);
+            if (duties == null) {
+                return ActionType.DUTIES;
             }
+            int page = 1;
+            if (request.getParameter(AttributeName.PAGE) != null)
+                page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
+
+            int numberOfPages = (int) Math.ceil(paymentService.countRowsUserOperations(user, duties) * 1.0 / AttributeName.RECORDS_PER_PAGE);
+            List<UserOperation> userAllOperationList = paymentService.onePartOfListUserOperationsOnPage(user, duties, page);
+            List<SprOperation> sprOperationsList = paymentService.findAllSprOperation();
+            List<Currency> currencyList = currencyService.findAll();
+
+            request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperationsList);
+            request.setAttribute(AttributeName.CURRENCIES, currencyList);
+            request.setAttribute(AttributeName.USER_OPERATIONS, userAllOperationList);
+            request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+            request.setAttribute(AttributeName.CURRENT_PAGE, page);
+
+            return ActionType.USEROPERATIONS;
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

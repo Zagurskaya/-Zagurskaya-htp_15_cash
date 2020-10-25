@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.controller;
 
+import com.zagurskaya.cash.controller.filter.PermissionFilter;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import com.zagurskaya.cash.controller.command.ActionType;
@@ -41,13 +42,18 @@ public class FrontController extends HttpServlet {
         HttpSession session = request.getSession(false);
         ActionType currentActionType = ActionType.define(request);
         try {
-            ActionType nextActionType = currentActionType.getCommand().execute(request, response);
-            session.setAttribute(AttributeName.CURRENT_ACTION_TYPE, currentActionType);
-            if (nextActionType == currentActionType) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
-                requestDispatcher.forward(request, response);
+            ActionType permissionActionType = PermissionFilter.THREAD_ACTION.get();
+            if (permissionActionType != null && permissionActionType != currentActionType) {
+                response.sendRedirect(DO_COMMAND + permissionActionType.name().toLowerCase());
             } else {
-                response.sendRedirect(DO_COMMAND + nextActionType.name().toLowerCase());
+                ActionType nextActionType = currentActionType.getCommand().execute(request, response);
+                session.setAttribute(AttributeName.CURRENT_ACTION_TYPE, currentActionType);
+                if (nextActionType == currentActionType) {
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher(currentActionType.getJsp());
+                    requestDispatcher.forward(request, response);
+                } else {
+                    response.sendRedirect(DO_COMMAND + nextActionType.name().toLowerCase());
+                }
             }
         } catch (CommandException e) {
             String error = e.getMessage();

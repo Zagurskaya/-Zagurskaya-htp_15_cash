@@ -31,28 +31,28 @@ public abstract class AbstractCommand implements Command {
         return directoryPath;
     }
 
-    /**
-     * Checking the validity of the user and his permissions and returning the appropriate action.
-     *
-     * @param request - request
-     * @return action
-     */
-    protected ActionType actionAfterValidationUserAndPermission(HttpServletRequest request, ActionType actionType) {
-        final HttpSession session = request.getSession(false);
-        RoleType actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
-
-        User user = ControllerDataUtil.findUser(request);
-        if (user == null) {
-            session.setAttribute(AttributeName.ERROR, "104 ");
-            logger.log(Level.ERROR, "null user");
-            return ActionType.ERROR;
-        }
-        if (user.getRole() != actionPermission) {
-            session.setAttribute(AttributeName.ERROR, "103 ");
-            logger.log(Level.ERROR, "permission denied ");
-            return ActionType.INDEX;
-        }
-        return actionType;
-    }
+//    /**
+//     * Checking the validity of the user and his permissions and returning the appropriate action.
+//     *
+//     * @param request - request
+//     * @return action
+//     */
+//    protected ActionType actionAfterValidationUserAndPermission(HttpServletRequest request, ActionType actionType) {
+//        final HttpSession session = request.getSession(false);
+//        RoleType actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
+//
+//        User user = ControllerDataUtil.findUser(request);
+//        if (user == null) {
+//            session.setAttribute(AttributeName.ERROR, "104 ");
+//            logger.log(Level.ERROR, "null user");
+//            return ActionType.ERROR;
+//        }
+//        if (user.getRole() != actionPermission) {
+//            session.setAttribute(AttributeName.ERROR, "103 ");
+//            logger.log(Level.ERROR, "permission denied ");
+//            return ActionType.INDEX;
+//        }
+//        return actionType;
+//    }
 
 }

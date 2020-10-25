@@ -44,59 +44,54 @@ public class UpdateUserCommand extends AbstractCommand {
         session.removeAttribute(AttributeName.MESSAGE);
         session.removeAttribute(AttributeName.ERROR);
 
-        ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
-        if (actionType == ActionType.EDITUSERS) {
-            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                if (DataValidation.isCancelOperation(request)) {
-                    return ActionType.EDITUSERS;
+        if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+            if (DataValidation.isCancelOperation(request)) {
+                return ActionType.EDITUSERS;
 
-                } else if (DataValidation.isSaveOperation(request)) {
-                    UserExtractor userExtractor = new UserExtractor();
-                    User updatedUser = userExtractor.userNotCheckedFieldsToUser(request);
-                    request.setAttribute(AttributeName.USER, updatedUser);
+            } else if (DataValidation.isSaveOperation(request)) {
+                UserExtractor userExtractor = new UserExtractor();
+                User updatedUser = userExtractor.userNotCheckedFieldsToUser(request);
+                request.setAttribute(AttributeName.USER, updatedUser);
 
-                    String login = DataUtil.getString(updatedUser.getLogin(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                    String fullName = DataUtil.getString(updatedUser.getFullName(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                    String role = DataUtil.getString(updatedUser.getRole().getValue(), RegexPattern.ALPHABET_VALIDATE_PATTERN);
+                String login = DataUtil.getString(updatedUser.getLogin(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                String fullName = DataUtil.getString(updatedUser.getFullName(), RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                String role = DataUtil.getString(updatedUser.getRole().getValue(), RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
-                    if (DataValidation.isUserLengthFieldsValid(request)) {
-                        User updateUser = new User.Builder()
-                                .addId(id)
-                                .addLogin(login)
-                                .addFullName(fullName)
-                                .addRole(role)
-                                .build();
-                        try {
-                            userService.update(updateUser);
-                            logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
-                            session.setAttribute(AttributeName.MESSAGE, "105 " + updatedUser.getLogin());
-                            return ActionType.EDITUSERS;
-                        } catch (ServiceException e) {
-                            session.setAttribute(AttributeName.ERROR, e);
-                            logger.log(Level.ERROR, e);
-                            return ActionType.ERROR;
-                        }
+                if (DataValidation.isUserLengthFieldsValid(request)) {
+                    User updateUser = new User.Builder()
+                            .addId(id)
+                            .addLogin(login)
+                            .addFullName(fullName)
+                            .addRole(role)
+                            .build();
+                    try {
+                        userService.update(updateUser);
+                        logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
+                        session.setAttribute(AttributeName.MESSAGE, "105 " + updatedUser.getLogin());
+                        return ActionType.EDITUSERS;
+                    } catch (ServiceException e) {
+                        session.setAttribute(AttributeName.ERROR, e);
+                        logger.log(Level.ERROR, e);
+                        return ActionType.ERROR;
                     }
                 }
             }
+        }
 
-            ActionType returnActionType;
-            try {
-                User updatedUser = userService.findById(id);
-                if (updatedUser != null) {
-                    request.setAttribute(AttributeName.USER, updatedUser);
-                    returnActionType = ActionType.UPDATEUSER;
-                } else {
-                    logger.log(Level.ERROR, "null user");
-                    returnActionType = ActionType.ERROR;
-                }
-            } catch (ServiceException e) {
-                logger.log(Level.ERROR, e);
+        ActionType returnActionType;
+        try {
+            User updatedUser = userService.findById(id);
+            if (updatedUser != null) {
+                request.setAttribute(AttributeName.USER, updatedUser);
+                returnActionType = ActionType.UPDATEUSER;
+            } else {
+                logger.log(Level.ERROR, "null user");
                 returnActionType = ActionType.ERROR;
             }
-            return returnActionType;
-        } else {
-            return actionType;
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, e);
+            returnActionType = ActionType.ERROR;
         }
+        return returnActionType;
     }
 }

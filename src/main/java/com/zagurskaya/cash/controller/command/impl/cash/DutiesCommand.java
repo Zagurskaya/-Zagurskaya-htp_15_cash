@@ -44,28 +44,23 @@ public class DutiesCommand extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.DUTIES);
-            if (actionType == ActionType.DUTIES) {
-                User user = ControllerDataUtil.findUser(request);
+            User user = ControllerDataUtil.findUser(request);
 
-                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                    if (DataValidation.isOpenOperation(request)) {
-                        if (dutiesService.openDutiesUserToday(user, today) == null) {
-                            dutiesService.openNewDuties(user);
-                        }
-                        setAttributeToRequest(request, user);
-                        return ActionType.DUTIES;
-                    } else if (DataValidation.isCloseOperation(request)) {
-                        dutiesService.closeOpenDutiesUserToday(user);
-                        setAttributeToRequest(request, user);
-                        return ActionType.DUTIES;
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                if (DataValidation.isOpenOperation(request)) {
+                    if (dutiesService.openDutiesUserToday(user, today) == null) {
+                        dutiesService.openNewDuties(user);
                     }
+                    setAttributeToRequest(request, user);
+                    return ActionType.DUTIES;
+                } else if (DataValidation.isCloseOperation(request)) {
+                    dutiesService.closeOpenDutiesUserToday(user);
+                    setAttributeToRequest(request, user);
+                    return ActionType.DUTIES;
                 }
-                setAttributeToRequest(request, user);
-                return ActionType.DUTIES;
-            } else {
-                return actionType;
             }
+            setAttributeToRequest(request, user);
+            return ActionType.DUTIES;
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

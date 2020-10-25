@@ -106,22 +106,19 @@ public class Payment1100_Command extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT1100);
-            if (actionType == ActionType.PAYMENT1100) {
-                User user = ControllerDataUtil.findUser(request);
-                if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return ActionType.DUTIES;
-                }
-                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
 
-                }
-
-                List<Currency> currencies = currencyService.findAll();
-                request.setAttribute(AttributeName.CURRENCIES, currencies);
-                return ActionType.PAYMENT1100;
-            } else {
-                return actionType;
+            User user = ControllerDataUtil.findUser(request);
+            if (dutiesService.openDutiesUserToday(user, today) == null) {
+                return ActionType.DUTIES;
             }
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+
+            }
+
+            List<Currency> currencies = currencyService.findAll();
+            request.setAttribute(AttributeName.CURRENCIES, currencies);
+            return ActionType.PAYMENT1100;
+
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

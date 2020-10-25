@@ -47,19 +47,15 @@ public class BalanceCommand extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.BALANCE);
-            if (actionType == ActionType.BALANCE) {
-                User user = ControllerDataUtil.findUser(request);
-                Duties duties = dutiesService.openDutiesUserToday(user, today);
-                if (duties == null) {
-                    return ActionType.DUTIES;
-                }
-                List<Kassa> balanceList = kassaService.getBalance(user, duties);
-                request.setAttribute(AttributeName.BALANCE, balanceList);
-                return ActionType.BALANCE;
-            } else {
-                return actionType;
+            User user = ControllerDataUtil.findUser(request);
+            Duties duties = dutiesService.openDutiesUserToday(user, today);
+            if (duties == null) {
+                return ActionType.DUTIES;
             }
+            List<Kassa> balanceList = kassaService.getBalance(user, duties);
+            request.setAttribute(AttributeName.BALANCE, balanceList);
+            return ActionType.BALANCE;
+
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

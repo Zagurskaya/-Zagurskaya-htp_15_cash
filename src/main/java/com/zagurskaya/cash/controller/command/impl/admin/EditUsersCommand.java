@@ -40,46 +40,43 @@ public class EditUsersCommand extends AbstractCommand {
         session.removeAttribute(AttributeName.ERROR);
 
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.EDITUSERS);
-            if (actionType == ActionType.EDITUSERS) {
-                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                    Long id = DataUtil.getLong(request, AttributeName.ID);
 
-                    try {
-                        if (DataValidation.isUpdateOperation(request)) {
-                            if (userService.findById(id) != null) {
-                                session.setAttribute(AttributeName.ID, id);
-                                return ActionType.UPDATEUSER;
-                            }
-                        } else if (DataValidation.isDeleteOperation(request)) {
-                            User deleteUser = userService.findById(id);
-                            if (deleteUser != null) {
-                                userService.delete(deleteUser);
-                                logger.log(Level.INFO, "Delete user " + deleteUser.getLogin());
-                                session.setAttribute(AttributeName.MESSAGE, "106 " + deleteUser.getLogin());
-                            }
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                Long id = DataUtil.getLong(request, AttributeName.ID);
+
+                try {
+                    if (DataValidation.isUpdateOperation(request)) {
+                        if (userService.findById(id) != null) {
+                            session.setAttribute(AttributeName.ID, id);
+                            return ActionType.UPDATEUSER;
                         }
-                    } catch (ServiceException e) {
-                        session.setAttribute(AttributeName.ERROR, e);
-                        logger.log(Level.ERROR, e);
-                        return ActionType.ERROR;
+                    } else if (DataValidation.isDeleteOperation(request)) {
+                        User deleteUser = userService.findById(id);
+                        if (deleteUser != null) {
+                            userService.delete(deleteUser);
+                            logger.log(Level.INFO, "Delete user " + deleteUser.getLogin());
+                            session.setAttribute(AttributeName.MESSAGE, "106 " + deleteUser.getLogin());
+                        }
                     }
+                } catch (ServiceException e) {
+                    session.setAttribute(AttributeName.ERROR, e);
+                    logger.log(Level.ERROR, e);
+                    return ActionType.ERROR;
                 }
-
-                int page = 1;
-                if (request.getParameter(AttributeName.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
-
-                int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-                List<User> users = userService.onePartOfListOnPage(page);
-
-                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeName.CURRENT_PAGE, page);
-                request.setAttribute(AttributeName.USERS, users);
-                return ActionType.EDITUSERS;
-            } else {
-                return actionType;
             }
+
+            int page = 1;
+            if (request.getParameter(AttributeName.PAGE) != null)
+                page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
+
+            int numberOfPages = (int) Math.ceil(userService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
+            List<User> users = userService.onePartOfListOnPage(page);
+
+            request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+            request.setAttribute(AttributeName.CURRENT_PAGE, page);
+            request.setAttribute(AttributeName.USERS, users);
+            return ActionType.EDITUSERS;
+
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);

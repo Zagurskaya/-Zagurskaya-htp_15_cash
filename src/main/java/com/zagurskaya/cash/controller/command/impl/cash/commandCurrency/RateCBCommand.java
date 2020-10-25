@@ -43,27 +43,22 @@ public class RateCBCommand extends AbstractCommand {
         session.removeAttribute(AttributeName.ERROR);
 
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.RATECB);
-            if (actionType == ActionType.RATECB) {
+            int page = 1;
+            if (request.getParameter(AttributeName.PAGE) != null)
+                page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
 
-                int page = 1;
-                if (request.getParameter(AttributeName.PAGE) != null)
-                    page = Integer.parseInt(request.getParameter(AttributeName.PAGE));
+            int numberOfPages = (int) Math.ceil(rateCBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
+            List<RateCB> ratesCB = rateCBService.onePartOfListOnPage(page);
 
-                int numberOfPages = (int) Math.ceil(rateCBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-                List<RateCB> ratesCB = rateCBService.onePartOfListOnPage(page);
+            List<Currency> currencyList = currencyService.findAll();
 
-                List<Currency> currencyList = currencyService.findAll();
+            request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
+            request.setAttribute(AttributeName.CURRENT_PAGE, page);
+            request.setAttribute(AttributeName.RATE_CB, ratesCB);
+            request.setAttribute(AttributeName.CURRENCIES, currencyList);
 
-                request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
-                request.setAttribute(AttributeName.CURRENT_PAGE, page);
-                request.setAttribute(AttributeName.RATE_CB, ratesCB);
-                request.setAttribute(AttributeName.CURRENCIES, currencyList);
+            return ActionType.RATECB;
 
-                return ActionType.RATECB;
-            } else {
-                return actionType;
-            }
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);

@@ -27,7 +27,6 @@ public class MainCommand extends AbstractCommand {
         final HttpSession session = request.getSession(false);
         session.removeAttribute(AttributeName.MESSAGE);
         session.removeAttribute(AttributeName.ERROR);
-
-        return actionAfterValidationUserAndPermission(request, ActionType.MAIN);
+        return ActionType.MAIN;
     }
 }

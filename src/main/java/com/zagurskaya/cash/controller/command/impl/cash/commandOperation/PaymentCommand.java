@@ -48,40 +48,36 @@ public class PaymentCommand extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT);
-            if (actionType == ActionType.PAYMENT) {
-                User user = ControllerDataUtil.findUser(request);
-                if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return ActionType.DUTIES;
-                }
-                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                    Long sprOperationsId = DataUtil.getLong(request, SPR_OPERATION_ID);
-                    SprOperation sprOperation = paymentService.findSprOperationById(sprOperationsId);
-
-                    if (sprOperation != null) {
-                        request.setAttribute(AttributeName.SPR_OPERATION, sprOperation);
-                    }
-                    switch (sprOperationsId.toString()) {
-                        case "10":
-                            return ActionType.PAYMENT10_01;
-                        case "20":
-                            return ActionType.PAYMENT20_01;
-                        case "998":
-                            return ActionType.PAYMENT998;
-                        case "1000":
-                            return ActionType.PAYMENT1000;
-                        case "1100":
-                            return ActionType.PAYMENT1100;
-                        default:
-                            return ActionType.PAYMENT;
-                    }
-                }
-                List<SprOperation> sprOperations = paymentService.findAllSprOperation();
-                request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperations);
-                return ActionType.PAYMENT;
-            } else {
-                return actionType;
+            User user = ControllerDataUtil.findUser(request);
+            if (dutiesService.openDutiesUserToday(user, today) == null) {
+                return ActionType.DUTIES;
             }
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                Long sprOperationsId = DataUtil.getLong(request, SPR_OPERATION_ID);
+                SprOperation sprOperation = paymentService.findSprOperationById(sprOperationsId);
+
+                if (sprOperation != null) {
+                    request.setAttribute(AttributeName.SPR_OPERATION, sprOperation);
+                }
+                switch (sprOperationsId.toString()) {
+                    case "10":
+                        return ActionType.PAYMENT10_01;
+                    case "20":
+                        return ActionType.PAYMENT20_01;
+                    case "998":
+                        return ActionType.PAYMENT998;
+                    case "1000":
+                        return ActionType.PAYMENT1000;
+                    case "1100":
+                        return ActionType.PAYMENT1100;
+                    default:
+                        return ActionType.PAYMENT;
+                }
+            }
+            List<SprOperation> sprOperations = paymentService.findAllSprOperation();
+            request.setAttribute(AttributeName.SPR_OPERATIONS, sprOperations);
+            return ActionType.PAYMENT;
+
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

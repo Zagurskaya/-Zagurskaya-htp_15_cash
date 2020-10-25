@@ -53,30 +53,26 @@ public class Payment1000_Command extends AbstractCommand {
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
-            ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT1000);
-            if (actionType == ActionType.PAYMENT1000) {
-                User user = ControllerDataUtil.findUser(request);
-                if (dutiesService.openDutiesUserToday(user, today) == null) {
-                    return ActionType.DUTIES;
-                }
-                if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                    Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
-                    String specification = ControllerDataUtil.getString(request, SPECIFICATION);
+            User user = ControllerDataUtil.findUser(request);
+            if (dutiesService.openDutiesUserToday(user, today) == null) {
+                return ActionType.DUTIES;
+            }
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
+                String specification = ControllerDataUtil.getString(request, SPECIFICATION);
 
-                    if (values.isEmpty()) {
-                        return ActionType.PAYMENT;
-                    }
-                    paymentService.implementPayment1000(values, specification, user);
-                    //todo change to check
+                if (values.isEmpty()) {
                     return ActionType.PAYMENT;
                 }
-
-                List<Currency> currencies = currencyService.findAll();
-                request.setAttribute(AttributeName.CURRENCIES, currencies);
-                return ActionType.PAYMENT1000;
-            } else {
-                return actionType;
+                paymentService.implementPayment1000(values, specification, user);
+                //todo change to check
+                return ActionType.PAYMENT;
             }
+
+            List<Currency> currencies = currencyService.findAll();
+            request.setAttribute(AttributeName.CURRENCIES, currencies);
+            return ActionType.PAYMENT1000;
+
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
