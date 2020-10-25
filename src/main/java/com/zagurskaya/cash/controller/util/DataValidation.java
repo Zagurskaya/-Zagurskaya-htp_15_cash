@@ -100,31 +100,31 @@ public class DataValidation {
      */
     public static boolean isUserLengthFieldsValid(HttpServletRequest request) throws CommandException {
         if (request.getParameter(AttributeName.LOGIN) != null) {
-            String username = RequestDataUtil.getString(request, AttributeName.LOGIN);
+            String username = ControllerDataUtil.getString(request, AttributeName.LOGIN);
             if (username.length() > FieldLength.LENGTH_USER_LOGIN) {
-                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
-                throw new CommandException("101 (" + FieldLength.LENGTH_USER_LOGIN + " : " + HtmlCharsConverter.convertHtmlSpecialChars(username) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_LOGIN + " : " + ControllerDataUtil.convertHtmlSpecialChars(username) + ")");
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_LOGIN + " : " + ControllerDataUtil.convertHtmlSpecialChars(username) + ")");
             }
         }
         if (request.getParameter(AttributeName.PASSWORD) != null) {
-            String surname = RequestDataUtil.getString(request, AttributeName.PASSWORD);
+            String surname = ControllerDataUtil.getString(request, AttributeName.PASSWORD);
             if (surname.length() > FieldLength.LENGTH_USER_PASSWORD) {
-                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname) + ")");
-                throw new CommandException("101 (" + FieldLength.LENGTH_USER_PASSWORD + " : " + HtmlCharsConverter.convertHtmlSpecialChars(surname));
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_PASSWORD + " : " + ControllerDataUtil.convertHtmlSpecialChars(surname) + ")");
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_PASSWORD + " : " + ControllerDataUtil.convertHtmlSpecialChars(surname));
             }
         }
         if (request.getParameter(AttributeName.FULL_MANE) != null) {
-            String patronymic = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
+            String patronymic = ControllerDataUtil.getString(request, AttributeName.FULL_MANE);
             if (patronymic.length() > FieldLength.LENGTH_USER_FULL_NAME) {
-                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic) + ")");
-                throw new CommandException("101 (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + HtmlCharsConverter.convertHtmlSpecialChars(patronymic));
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + ControllerDataUtil.convertHtmlSpecialChars(patronymic) + ")");
+                throw new CommandException("101 (" + FieldLength.LENGTH_USER_FULL_NAME + " : " + ControllerDataUtil.convertHtmlSpecialChars(patronymic));
             }
         }
         if (request.getParameter(AttributeName.ROLE) != null) {
-            String userPosition = RequestDataUtil.getString(request, AttributeName.ROLE);
+            String userPosition = ControllerDataUtil.getString(request, AttributeName.ROLE);
             if (userPosition.length() > FieldLength.LENGTH_USER_ROLE) {
-                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_ROLE + " : " + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
-                throw new CommandException("101  (" + FieldLength.LENGTH_USER_ROLE + " :" + HtmlCharsConverter.convertHtmlSpecialChars(userPosition) + ")");
+                logger.log(Level.ERROR, " Data length exceeds the allowed value (" + FieldLength.LENGTH_USER_ROLE + " : " + ControllerDataUtil.convertHtmlSpecialChars(userPosition) + ")");
+                throw new CommandException("101  (" + FieldLength.LENGTH_USER_ROLE + " :" + ControllerDataUtil.convertHtmlSpecialChars(userPosition) + ")");
             }
         }
         return true;

@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.CommandException;
@@ -43,8 +43,8 @@ public class LoginCommand extends AbstractCommand {
         try {
 
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                String login = ControllerDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                String password = ControllerDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
                 User user;
                 user = userService.findUserByLoginAndValidPassword(login, password);
                 if (user != null) {

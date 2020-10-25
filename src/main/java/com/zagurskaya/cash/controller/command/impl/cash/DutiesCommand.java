@@ -3,10 +3,9 @@ package com.zagurskaya.cash.controller.command.impl.cash;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractCommand;
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
-import com.zagurskaya.cash.exception.ServiceConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.DutiesService;
 import com.zagurskaya.cash.model.service.UserService;
@@ -47,7 +46,7 @@ public class DutiesCommand extends AbstractCommand {
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.DUTIES);
             if (actionType == ActionType.DUTIES) {
-                User user = RequestDataUtil.findUser(request);
+                User user = ControllerDataUtil.findUser(request);
 
                 if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                     if (DataValidation.isOpenOperation(request)) {

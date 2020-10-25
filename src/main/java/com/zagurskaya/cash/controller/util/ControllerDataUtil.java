@@ -15,8 +15,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RequestDataUtil {
-    private static final Logger logger = LogManager.getLogger(RequestDataUtil.class);
+public class ControllerDataUtil {
+    private static final Logger logger = LogManager.getLogger(ControllerDataUtil.class);
 
     /**
      * returns the user if he and the session exist
@@ -60,6 +60,41 @@ public class RequestDataUtil {
     }
 
     /**
+     * Escaping symbols
+     *
+     * @param source - source text
+     * @return character text
+     */
+    public static String convertHtmlSpecialChars(String source) {
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < source.length(); i++) {
+            char c = source.charAt(i);
+            switch (c) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '"':
+                    sb.append("&quot;");
+                    break;
+                case '\'':
+                    sb.append("&apos;");
+                    break;
+                default:
+                    sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    /**
      * Getting a String value matching the pattern
      *
      * @param request - request
@@ -71,10 +106,10 @@ public class RequestDataUtil {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
             if (value.matches(pattern))
-                return HtmlCharsConverter.convertHtmlSpecialChars(value);
+                return ControllerDataUtil.convertHtmlSpecialChars(value);
             else {
-                logger.log(Level.ERROR, "Value  incorrect " + HtmlCharsConverter.convertHtmlSpecialChars(value));
-                throw new CommandException("102 " + HtmlCharsConverter.convertHtmlSpecialChars(value));
+                logger.log(Level.ERROR, "Value  incorrect " + ControllerDataUtil.convertHtmlSpecialChars(value));
+                throw new CommandException("102 " + ControllerDataUtil.convertHtmlSpecialChars(value));
             }
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
@@ -92,7 +127,7 @@ public class RequestDataUtil {
     public static String getString(HttpServletRequest request, String name) throws CommandException {
         try {
             String value = new String(request.getParameter(name).getBytes(RegexPattern.INPUT_ENCODING_CHARSET), StandardCharsets.UTF_8);
-            return HtmlCharsConverter.convertHtmlSpecialChars(value);
+            return ControllerDataUtil.convertHtmlSpecialChars(value);
         } catch (UnsupportedEncodingException e) {
             logger.log(Level.ERROR, "Value incorrect", e);
             throw new CommandException("102", e);

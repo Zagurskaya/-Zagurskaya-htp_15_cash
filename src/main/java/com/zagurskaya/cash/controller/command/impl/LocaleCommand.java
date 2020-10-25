@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller.command.impl;
 import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class LocaleCommand extends AbstractCommand {
         final HttpSession session = request.getSession(false);
         ActionType previousActionType = (ActionType) session.getAttribute(AttributeName.CURRENT_ACTION_TYPE);
         ActionType actionType = previousActionType == null ? ActionType.INDEX : previousActionType;
-        Cookie localeCookie = RequestDataUtil.getCookie(request, AttributeName.LOCAL);
+        Cookie localeCookie = ControllerDataUtil.getCookie(request, AttributeName.LOCAL);
         String locale = localeCookie != null
                 ? (localeCookie.getValue().equals(LOCALE_RU) ? LOCALE_EN : LOCALE_RU) : LOCALE_RU;
 

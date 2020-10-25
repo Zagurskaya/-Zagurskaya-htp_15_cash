@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.AbstractCommand;
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -50,7 +50,7 @@ public class PaymentCommand extends AbstractCommand {
         try {
             ActionType actionType = actionAfterValidationUserAndPermission(request, ActionType.PAYMENT);
             if (actionType == ActionType.PAYMENT) {
-                User user = RequestDataUtil.findUser(request);
+                User user = ControllerDataUtil.findUser(request);
                 if (dutiesService.openDutiesUserToday(user, today) == null) {
                     return ActionType.DUTIES;
                 }

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.util;
 
-import com.zagurskaya.cash.controller.util.HtmlCharsConverter;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 import org.apache.logging.log4j.Level;
@@ -25,10 +25,10 @@ public class DataUtil {
      */
     public static String getString(String value, String pattern) throws CommandException {
         if (value.matches(pattern))
-            return HtmlCharsConverter.convertHtmlSpecialChars(value);
+            return ControllerDataUtil.convertHtmlSpecialChars(value);
         else {
-            logger.log(Level.ERROR, "Value  incorrect" + HtmlCharsConverter.convertHtmlSpecialChars(value));
-            throw new CommandException("102" + HtmlCharsConverter.convertHtmlSpecialChars(value));
+            logger.log(Level.ERROR, "Value  incorrect" + ControllerDataUtil.convertHtmlSpecialChars(value));
+            throw new CommandException("102" + ControllerDataUtil.convertHtmlSpecialChars(value));
         }
     }
 

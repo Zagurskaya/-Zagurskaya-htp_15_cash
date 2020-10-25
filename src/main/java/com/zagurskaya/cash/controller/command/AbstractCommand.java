@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command;
 
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.RoleType;
 import com.zagurskaya.cash.entity.User;
 import org.apache.logging.log4j.Level;
@@ -41,7 +41,7 @@ public abstract class AbstractCommand implements Command {
         final HttpSession session = request.getSession(false);
         RoleType actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(actionType.name());
 
-        User user = RequestDataUtil.findUser(request);
+        User user = ControllerDataUtil.findUser(request);
         if (user == null) {
             session.setAttribute(AttributeName.ERROR, "104 ");
             logger.log(Level.ERROR, "null user");

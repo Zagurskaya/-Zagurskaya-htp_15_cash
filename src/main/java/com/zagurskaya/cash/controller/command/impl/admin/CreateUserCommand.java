@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
-import com.zagurskaya.cash.controller.util.RequestDataUtil;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.CommandException;
@@ -58,11 +58,11 @@ public class CreateUserCommand extends AbstractCommand {
                         User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
                         request.setAttribute(AttributeName.USER, createdUser);
 
-                        String login = RequestDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                        String fullName = RequestDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
-                        String password = RequestDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                        String reiteratePassword = RequestDataUtil.getString(request, REITERATE_PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                        String role = RequestDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
+                        String login = ControllerDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String fullName = ControllerDataUtil.getString(request, FULL_NAME, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                        String password = ControllerDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String reiteratePassword = ControllerDataUtil.getString(request, REITERATE_PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                        String role = ControllerDataUtil.getString(request, ROLE, RegexPattern.ALPHABET_VALIDATE_PATTERN);
 
                         if (DataValidation.isUserLengthFieldsValid(request) && password.equals(reiteratePassword)) {
                             User newUser = new User.Builder()

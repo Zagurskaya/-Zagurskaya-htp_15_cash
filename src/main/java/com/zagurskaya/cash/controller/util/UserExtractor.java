@@ -18,9 +18,9 @@ public class UserExtractor {
      * @throws CommandException user data validation error.
      */
     public User userNotCheckedFieldsToUser(HttpServletRequest request) throws CommandException {
-        String login = RequestDataUtil.getString(request, AttributeName.LOGIN);
-        String fullName = RequestDataUtil.getString(request, AttributeName.FULL_MANE);
-        String role = RequestDataUtil.getString(request, AttributeName.ROLE);
+        String login = ControllerDataUtil.getString(request, AttributeName.LOGIN);
+        String fullName = ControllerDataUtil.getString(request, AttributeName.FULL_MANE);
+        String role = ControllerDataUtil.getString(request, AttributeName.ROLE);
         return new User.Builder()
                 .addLogin(login)
                 .addFullName(fullName)
