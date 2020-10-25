@@ -15,9 +15,9 @@ class ConnectionCreator {
 
     private static final Logger logger = LogManager.getLogger(ConnectionCreator.class);
 
-    private static final String URL = DatabaseProperty.getInstance().getUrl();
-    private static final String USER = DatabaseProperty.getInstance().getUser();
-    private static final String PASSWORD = DatabaseProperty.getInstance().getPassword();
+    private static final String URL = DatabaseProperty.getInstance().url;
+    private static final String USER = DatabaseProperty.getInstance().user;
+    private static final String PASSWORD = DatabaseProperty.getInstance().password;
 
     /**
      * Get connection

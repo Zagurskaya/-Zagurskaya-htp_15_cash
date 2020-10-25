@@ -28,11 +28,10 @@ public class ConnectionPool {
     private LinkedBlockingQueue<ProxyConnection> usedConnection;
 
     private static final int MAX_POOL_SIZE = 20;
-    private static final String DRIVER = DatabaseProperty.getInstance().getDriver();
 
     static {
         try {
-            Class.forName(DRIVER);
+            Class.forName(DatabaseProperty.getInstance().driver);
         } catch (ClassNotFoundException e) {
             logger.log(Level.FATAL, "Driver not registered", e);
             throw new RuntimeException("Driver not registered", e);
