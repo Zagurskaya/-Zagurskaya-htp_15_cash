@@ -49,8 +49,8 @@ public class PaymentCommand implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
-        final HttpSession session = request.getSession(false);
-        session.removeAttribute(AttributeName.ERROR);
+        ControllerDataUtil.removeAttributeError(request);
+
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -85,7 +85,7 @@ public class PaymentCommand implements Command {
             return ActionType.PAYMENT;
 
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeName.ERROR, "100 " + e);
+            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

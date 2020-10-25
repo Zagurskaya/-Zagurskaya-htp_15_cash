@@ -49,9 +49,9 @@ public class CreateUserCommand implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        ControllerDataUtil.removeAttributeMessage(request);
+        ControllerDataUtil.removeAttributeError(request);
         final HttpSession session = request.getSession(false);
-        session.removeAttribute(AttributeName.MESSAGE);
-        session.removeAttribute(AttributeName.ERROR);
         try {
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                 if (DataValidation.isCancelOperation(request)) {

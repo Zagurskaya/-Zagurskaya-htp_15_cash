@@ -2,6 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.exception.CommandException;
@@ -44,11 +45,11 @@ public class UpdateUserCommand implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        ControllerDataUtil.removeAttributeMessage(request);
+        ControllerDataUtil.removeAttributeError(request);
         final HttpSession session = request.getSession(false);
         final Long id = (Long) session.getAttribute(AttributeName.ID);
         if (id == null) return ActionType.INDEX;
-        session.removeAttribute(AttributeName.MESSAGE);
-        session.removeAttribute(AttributeName.ERROR);
 
         if (DataValidation.isCreateUpdateDeleteOperation(request)) {
             if (DataValidation.isCancelOperation(request)) {

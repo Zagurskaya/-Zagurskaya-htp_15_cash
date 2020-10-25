@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -45,8 +44,7 @@ public class DutiesCommand implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
-        final HttpSession session = request.getSession(false);
-        session.removeAttribute(AttributeName.ERROR);
+        ControllerDataUtil.removeAttributeError(request);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -68,7 +66,7 @@ public class DutiesCommand implements Command {
             setAttributeToRequest(request, user);
             return ActionType.DUTIES;
         } catch (ServiceException e) {
-            session.setAttribute(AttributeName.ERROR, "100 " + e);
+            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

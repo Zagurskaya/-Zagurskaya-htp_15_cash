@@ -151,4 +151,25 @@ public class ControllerDataUtil {
         }
         return map;
     }
+
+    /**
+     * Remove from the session attribute "Message"
+     */
+    public static void removeAttributeMessage(HttpServletRequest request) {
+        request.getSession(false).removeAttribute(AttributeName.MESSAGE);
+    }
+
+    /**
+     * Remove from the session attribute "Error"
+     */
+    public static void removeAttributeError(HttpServletRequest request) {
+        request.getSession(false).removeAttribute(AttributeName.ERROR);
+    }
+
+    /**
+     * Remove from the session attribute "User"
+     */
+    public static void removeAttributeUser(HttpServletRequest request) {
+        request.getSession(false).removeAttribute(AttributeName.USER);
+    }
 }

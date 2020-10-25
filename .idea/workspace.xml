@@ -1,0 +1,1846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="htp_15_cash:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java" description="    public static User findUser(HttpServletRequest..." line="26" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/model/service/impl/DutiesServiceImpl.java" description="EntityTransaction transaction = new EntityTransact..." line="163" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8bf4fc6b-7446-4154-8a43-fe0881ee012d" name="Default Changelist" comment="commit55 PageRedirectSecurityFilter">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/htp_15_cash.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/FrontController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/ActionPermission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/CurrencyCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Currency$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Currency.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Duties$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Duties.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Kassa$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/Kassa.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/RateCB$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/RateCB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/RateNB$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/RateNB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/User$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/entity/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/exception/ServiceConstraintViolationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/exception/ServiceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/AbstractDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/CurrencyDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/Dao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/DutiesDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/KassaDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/RateCBDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/RateNBDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/UserDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/ColumnName.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/CurrencyDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/DutiesDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/KassaDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/RateCBDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/RateNBDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/dao/impl/UserDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/pool/ConnectionCreator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/pool/ConnectionPool.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/pool/DatabaseProperty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/pool/ProxyConnection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/CurrencyService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/DutiesService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/EntityTransaction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/KassaService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/RateCBService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/RateNBService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/Service.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/CurrencyServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/DutiesServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/KassaServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/RateCBServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/RateNBServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/model/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/zagurskaya/cash/util/DataUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/database.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/properties/pagecontent_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/properties/pagecontent_ru.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/META-INF/htp_15_cash.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/FrontController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/ActionPermission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/CurrencyCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Currency$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Currency.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Duties$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Duties.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Kassa$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/Kassa.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/RateCB$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/RateCB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/RateNB$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/RateNB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/User$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/entity/User.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/exception/ServiceConstraintViolationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/exception/ServiceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/AbstractDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/CurrencyDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/Dao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/DutiesDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/KassaDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/RateCBDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/RateNBDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/UserDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/ColumnName.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/CurrencyDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/DutiesDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/KassaDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/RateCBDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/RateNBDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/dao/impl/UserDaoImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/pool/ConnectionCreator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/pool/ConnectionPool.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/pool/DatabaseProperty.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/pool/ProxyConnection.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/CurrencyService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/DutiesService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/EntityTransaction.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/KassaService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/RateCBService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/RateNBService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/Service.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/UserService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/CurrencyServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/DutiesServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/KassaServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/RateCBServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/RateNBServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/model/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/com/zagurskaya/cash/util/DataUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/database.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/properties/pagecontent_en.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/classes/properties/pagecontent_ru.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/javax.servlet-api-3.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/jstl-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/log4j-api-2.12.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/log4j-core-2.12.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/mysql-connector-java-8.0.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/lib/protobuf-java-3.6.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/head.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/infomessage.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/menu.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/menuadmin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/menucashnew.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/include/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/admin/admin.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/cash/currency.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/cash/duties.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/cash/main.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error401.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error403.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error404.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error500.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/errors/error503.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/login.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/profile.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/jsp/signup.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/htp_15_cash-1.0-SNAPSHOT/sql/cash_zagurskaya.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ErrorCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ErrorCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LogoutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LogoutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ProfileCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/BalanceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/BalanceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/PaymentCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/PaymentCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/UserOperationsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/UserOperationsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1000_Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1000_Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100_Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100_Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="cash_zagurskaya" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="154" column="40" lean-forward="true" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="Interface" />
+        <option value="Arquillian JUnit Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>`user`</find>
+      <find>Получение значения поля</find>
+      <find>Конструирование</find>
+      <find>ё</find>
+      <find>Определение</find>
+      <find>со свойствами</find>
+      <find>Возвращает</find>
+      <find>Операция</find>
+      <find>Идентификатор</find>
+      <find>Получение</find>
+      <find>Конструктор</find>
+      <find>сообщение</find>
+      <find>причина</find>
+      <find>включено подавление или нет</find>
+      <find>должна ли трассировка стека быть доступной для записи</find>
+      <find>true при успешном создании</find>
+      <find>service access error or other errors</find>
+      <find>объект</find>
+      <find>true при успешном</find>
+      <find>HtmlCharsConverter</find>
+      <find>extends AbstractCommand</find>
+      <find>implements Command {</find>
+      <find>do?command=EditUsers</find>
+      <find>do?command=CreateUser</find>
+      <find>do?command=AllCurrency</find>
+      <find>do?command=RateNB</find>
+      <find>do?command=RateCB</find>
+      <find>do?command=UserOperations</find>
+      <find>103</find>
+      <find>ActionType.ERROR</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>nameRU = ?, nameEN ?,</replace>
+      <replace>request.</replace>
+      <replace>ConnectionPool.getInstance()</replace>
+      <replace>user</replace>
+      <replace>Get field value</replace>
+      <replace>construction</replace>
+      <replace>definition</replace>
+      <replace>with characteristics</replace>
+      <replace>Returns the constructed</replace>
+      <replace>Operation</replace>
+      <replace>Identifier</replace>
+      <replace>Get</replace>
+      <replace>Constructor</replace>
+      <replace>message</replace>
+      <replace>cause</replace>
+      <replace>suppression enabled or not</replace>
+      <replace>whether the stack trace should be writable</replace>
+      <replace>true on successful creation</replace>
+      <replace>error during execution of logical blocks and actions.</replace>
+      <replace>Object</replace>
+      <replace>true on successful</replace>
+      <replace>ControllerDataUtil</replace>
+      <replace>implements Command</replace>
+      <replace>import com.zagurskaya.cash.controller.command.Command;</replace>
+      <replace>do?command=Edit_Users</replace>
+      <replace>do?command=Create_User</replace>
+      <replace>do?command=All_Currency</replace>
+      <replace>do?command=Rate_NB</replace>
+      <replace>do?command=Rate_CB</replace>
+      <replace>do?command=User_Operations</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>D:\Java\Epam\htp_15_cash\src\main\java\com\zagurskaya\cash\controller\command\impl\admin</dir>
+      <dir>D:\Java\Epam\htp_15_cash</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/model/service/impl/RateCBServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/model/service/impl/RateNBServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/model/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/util/DataUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/include/errormessage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/errors/error.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/PerrmissionFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/DataValidation.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/PermissionFilter_old.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/XssFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/TestFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/FrontController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/AbstractCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/PageRedirectSecurityFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/AttributeName.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/ActionType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LocaleCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/IndexCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/CurrencyCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/SelectPaymentCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100BalanceCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment998_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment20_02_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment20_01_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment10_02_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment10_01_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/admin/edit_users.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/include/menuadmin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/include/menucashnew.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/PermissionFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LogoutCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ProfileCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ErrorCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LoginCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/UserOperationsCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/PaymentCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1000_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100_Command.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/BalanceCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java" />
+      </list>
+    </option>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="htp_15_cash" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="htp_15_cash" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="htp_15_cash" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="CatdeaLogs" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="commandCurrency" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="commandOperation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="command" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="commandOperation" type="462c0819:PsiDirectoryNode" />
+              <item name="commandPayment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cash_zagurskaya" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htp_15_cash" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="errors" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.zagurskaya.cash.controller.command" />
+      <recent name="com.zagurskaya.cash.model.service.impl" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\errors" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\cash\operation\payment" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\java\com\zagurskaya\cash\controller\command\impl\cash\commandOperation" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\resources\properties" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\admin" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.zagurskaya.cash.controller.filter" />
+      <recent name="com.zagurskaya.cash.filter" />
+      <recent name="com.zagurskaya.cash.controller.util" />
+      <recent name="com.zagurskaya.cash.model.service.impl" />
+      <recent name="com.zagurskaya.cash.model.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\java\com\zagurskaya\cash\controller\command\impl\cash\commandOperation" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\cash\operation\payment" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\cash\operation" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\java\com\zagurskaya\cash\entity" />
+      <recent name="D:\Java\Epam\htp_15_cash\src\main\webapp\jsp\cash" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.zagurskaya.cash.controller" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.zagurskaya.cash.model.service.impl" />
+      <recent name="com.zagurskaya.cash.model.service" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 7.0.57" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.57" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/cash/" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="htp_15_cash:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/cash" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_cash_zagurskaya_3" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="59385" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="htp_15_cash:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8bf4fc6b-7446-4154-8a43-fe0881ee012d" name="Default Changelist" comment="" />
+      <created>1599458690586</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599458690586</updated>
+      <workItem from="1599458693387" duration="4805000" />
+      <workItem from="1599464478185" duration="2980000" />
+      <workItem from="1600090056618" duration="1331000" />
+      <workItem from="1600091422070" duration="2239000" />
+      <workItem from="1600181670494" duration="9961000" />
+      <workItem from="1600271173152" duration="42243000" />
+      <workItem from="1600549506321" duration="11293000" />
+      <workItem from="1600802970056" duration="9155000" />
+      <workItem from="1600976317276" duration="210000" />
+      <workItem from="1600976578028" duration="36072000" />
+      <workItem from="1601196761260" duration="16703000" />
+      <workItem from="1601273869383" duration="183000" />
+      <workItem from="1601274105872" duration="716000" />
+      <workItem from="1601274870276" duration="889000" />
+      <workItem from="1601275831335" duration="126000" />
+      <workItem from="1601276054455" duration="116000" />
+      <workItem from="1601276218030" duration="957000" />
+      <workItem from="1601277267316" duration="1406000" />
+      <workItem from="1601279286247" duration="39112000" />
+      <workItem from="1601463188163" duration="14805000" />
+      <workItem from="1601490757223" duration="24988000" />
+      <workItem from="1601564808526" duration="283000" />
+      <workItem from="1601573367000" duration="88457000" />
+      <workItem from="1602655625733" duration="57841000" />
+      <workItem from="1602841667510" duration="129872000" />
+      <workItem from="1603318214517" duration="784000" />
+      <workItem from="1603319775300" duration="433000" />
+      <workItem from="1603346480323" duration="75345000" />
+    </task>
+    <task id="LOCAL-00028" summary="commit24 add field fullName and validation by word.length">
+      <created>1601761587368</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1601761587368</updated>
+    </task>
+    <task id="LOCAL-00029" summary="commit25 refactor PatternConstant">
+      <created>1601762487758</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1601762487758</updated>
+    </task>
+    <task id="LOCAL-00030" summary="commit26 add message about update user">
+      <created>1601764311775</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1601764311775</updated>
+    </task>
+    <task id="LOCAL-00031" summary="commit27 can't delete admin">
+      <created>1601764915192</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1601764915193</updated>
+    </task>
+    <task id="LOCAL-00032" summary="commit27 css">
+      <created>1601802615184</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1601802615184</updated>
+    </task>
+    <task id="LOCAL-00033" summary="commit28 menuCash">
+      <created>1601804563835</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1601804563835</updated>
+    </task>
+    <task id="LOCAL-00034" summary="commit28 UserBuilder">
+      <created>1601805234847</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1601805234847</updated>
+    </task>
+    <task id="LOCAL-00035" summary="commit29 UserBuilder">
+      <created>1601806787071</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1601806787071</updated>
+    </task>
+    <task id="LOCAL-00036" summary="commit30 UserBuilder and scc">
+      <created>1601809131537</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1601809131537</updated>
+    </task>
+    <task id="LOCAL-00037" summary="commit31 errors">
+      <created>1601982281133</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1601982281133</updated>
+    </task>
+    <task id="LOCAL-00038" summary="commit32 errors">
+      <created>1602513094652</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1602513094652</updated>
+    </task>
+    <task id="LOCAL-00039" summary="commit33 error + message+ locale">
+      <created>1602536884159</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1602536884159</updated>
+    </task>
+    <task id="LOCAL-00040" summary="commit3 error + logout">
+      <created>1602678338484</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1602678338484</updated>
+    </task>
+    <task id="LOCAL-00041" summary="commit3 added to patten russian alphabet">
+      <created>1602680589036</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1602680589036</updated>
+    </task>
+    <task id="LOCAL-00042" summary="commit35 javaDoc">
+      <created>1602693671243</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1602693671244</updated>
+    </task>
+    <task id="LOCAL-00043" summary="commit35 sql">
+      <created>1602706737550</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1602706737550</updated>
+    </task>
+    <task id="LOCAL-00044" summary="commit36 allcurrency">
+      <created>1602770776286</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1602770776286</updated>
+    </task>
+    <task id="LOCAL-00045" summary="commit37 rate NB">
+      <created>1602773461819</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1602773461819</updated>
+    </task>
+    <task id="LOCAL-00046" summary="commit38 rate CB">
+      <created>1602790134555</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1602790134555</updated>
+    </task>
+    <task id="LOCAL-00047" summary="commit40 currency javaDoc">
+      <created>1602790531028</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1602790531028</updated>
+    </task>
+    <task id="LOCAL-00048" summary="commit41 duties+kassa open/close duties">
+      <created>1602889645734</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1602889645734</updated>
+    </task>
+    <task id="LOCAL-00049" summary="commit42 refactor">
+      <created>1602919246898</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1602919246899</updated>
+    </task>
+    <task id="LOCAL-00050" summary="commit43 error">
+      <created>1602920191765</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1602920191767</updated>
+    </task>
+    <task id="LOCAL-00051" summary="commit44 error_path">
+      <created>1602920658454</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1602920658454</updated>
+    </task>
+    <task id="LOCAL-00052" summary="commit45 sql">
+      <created>1602922226567</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1602922226567</updated>
+    </task>
+    <task id="LOCAL-00053" summary="commit46 operation1000 + balance + userOperations">
+      <created>1603102579284</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1603102579285</updated>
+    </task>
+    <task id="LOCAL-00054" summary="commit46 locale payment1000">
+      <created>1603110310934</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1603110310934</updated>
+    </task>
+    <task id="LOCAL-00055" summary="commit46 locale + balance">
+      <created>1603111388354</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1603111388354</updated>
+    </task>
+    <task id="LOCAL-00056" summary="commit47 useroperation + locale">
+      <created>1603142012531</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1603142012531</updated>
+    </task>
+    <task id="LOCAL-00057" summary="commit48 request + util + controller">
+      <created>1603145138909</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1603145138909</updated>
+    </task>
+    <task id="LOCAL-00058" summary="commit48 refactor ActionType">
+      <created>1603145374824</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1603145374824</updated>
+    </task>
+    <task id="LOCAL-00059" summary="commit49 refactor to CommandException">
+      <created>1603145502060</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1603145502060</updated>
+    </task>
+    <task id="LOCAL-00060" summary="commit49 RoleType">
+      <created>1603145943232</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1603145943232</updated>
+    </task>
+    <task id="LOCAL-00061" summary="commit50 directoryPath">
+      <created>1603181322240</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1603181322240</updated>
+    </task>
+    <task id="LOCAL-00062" summary="commit51 unit LocaleRu and LocaleEN">
+      <created>1603189292575</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1603189292575</updated>
+    </task>
+    <task id="LOCAL-00063" summary="commit51 refactor builder">
+      <created>1603190473902</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1603190473902</updated>
+    </task>
+    <task id="LOCAL-00064" summary="commit51 int countRows">
+      <created>1603227007032</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1603227007032</updated>
+    </task>
+    <task id="LOCAL-00065" summary="commit52 initSingleQuery + endSingleQuery">
+      <created>1603227236249</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1603227236249</updated>
+    </task>
+    <task id="LOCAL-00066" summary="commit53 ActionPermission">
+      <created>1603229209697</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1603229209697</updated>
+    </task>
+    <task id="LOCAL-00067" summary="commit53 CommandException">
+      <created>1603265628307</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1603265628307</updated>
+    </task>
+    <task id="LOCAL-00068" summary="commit54 exception">
+      <created>1603275766226</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1603275766226</updated>
+    </task>
+    <task id="LOCAL-00069" summary="commit55 locale">
+      <created>1603314836405</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1603314836405</updated>
+    </task>
+    <task id="LOCAL-00070" summary="commit55 reiteratePassword">
+      <created>1603349858379</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1603349858380</updated>
+    </task>
+    <task id="LOCAL-00071" summary="commit55 PageRedirectSecurityFilter">
+      <created>1603351358212</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1603351358212</updated>
+    </task>
+    <task id="LOCAL-00072" summary="commit56 javaDoc in English">
+      <created>1603451213593</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1603451213594</updated>
+    </task>
+    <task id="LOCAL-00073" summary="commit56 error">
+      <created>1603457925003</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1603457925004</updated>
+    </task>
+    <task id="LOCAL-00074" summary="commit56 refactor">
+      <created>1603652898819</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1603652898819</updated>
+    </task>
+    <task id="LOCAL-00075" summary="commit56 PermissionFilter">
+      <created>1603655325855</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1603655325855</updated>
+    </task>
+    <task id="LOCAL-00076" summary="commit57 remove abstract class">
+      <created>1603658885686</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1603658885686</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="573305000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977064" visible="true" weight="0.25567323" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.5022936" side_tool="true" weight="0.28517398" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39443535" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.31587562" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3289689" />
+      <window_info anchor="bottom" id="Log4jMonitor" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.21255673" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32980332" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4977064" visible="true" weight="0.27458397" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.5022936" side_tool="true" weight="0.28517398" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39443535" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3633388" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.3289689" />
+      <window_info anchor="bottom" id="Log4jMonitor" order="15" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.21255673" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" weight="0.32980332" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit45 sql" />
+    <MESSAGE value="commit46 operation1000 + balance + userOperations" />
+    <MESSAGE value="commit46 locale payment1000" />
+    <MESSAGE value="commit46 locale + balance" />
+    <MESSAGE value="commit47 useroperation + locale" />
+    <MESSAGE value="commit48 request + util + controller" />
+    <MESSAGE value="commit48 refactor ActionType" />
+    <MESSAGE value="commit49 refactor to CommandException" />
+    <MESSAGE value="commit49 RoleType" />
+    <MESSAGE value="commit50 directoryPath" />
+    <MESSAGE value="commit51 unit LocaleRu and LocaleEN" />
+    <MESSAGE value="commit51 refactor builder" />
+    <MESSAGE value="commit51 int countRows" />
+    <MESSAGE value="commit52 initSingleQuery + endSingleQuery" />
+    <MESSAGE value="commit53 ActionPermission" />
+    <MESSAGE value="commit53 CommandException" />
+    <MESSAGE value="commit54 exception" />
+    <MESSAGE value="commit55 locale" />
+    <MESSAGE value="commit55 reiteratePassword" />
+    <MESSAGE value="commit55 PageRedirectSecurityFilter" />
+    <MESSAGE value="commit56 javaDoc in English" />
+    <MESSAGE value="commit56 error" />
+    <MESSAGE value="commit56 refactor" />
+    <MESSAGE value="commit56 PermissionFilter" />
+    <MESSAGE value="commit57 remove abstract class" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit57 remove abstract class" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gmail/zagurskaya/servlet/ReadServlet.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>currentActionType.getJsp()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>requestDispatcher.forward(request, response)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>request.getRequestDispatcher(currentActionType.getJsp())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>httpRequest.getContextPath() + &quot;/do?command=&quot; + ActionType.INDEX.name().toLowerCase()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>${cookie.local.value}</expression-string>
+        <language-id>JSP</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>cookie.local.value</expression-string>
+        <language-id>JSP</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>DO_COMMAND + ActionType.ERROR</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>DO_COMMAND + nextActionType.name().toLowerCase()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;do?command=&quot; + nextActionType.name().toLowerCase()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/DataValidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1358">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/FieldLength.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/RegexPattern.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/UserExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment20_02_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment10_01_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment10_02_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="e#560#561#0" expanded="true" />
+            <element signature="e#610#611#0" expanded="true" />
+            <element signature="e#663#664#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment20_01_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding>
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/AbstractCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="28" selection-start-line="28" selection-end-line="31" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/ExceptionHandlerFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="26" column="114" selection-start-line="26" selection-start-column="114" selection-end-line="26" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/admin/update_user.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/include/menuadmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="23" lean-forward="true" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/cash/currency/all_currency.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/properties/pagecontent_en.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="115" column="17" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/database.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/ActionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="131" column="18" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/include/menucashnew.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="27" column="60" lean-forward="true" selection-start-line="27" selection-start-column="60" selection-end-line="27" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/include/infomessage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/admin/edit_users.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="50" lean-forward="true" selection-start-line="9" selection-start-column="50" selection-end-line="9" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/admin/create_user.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/filter/PermissionFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="56" column="42" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/FrontController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3125#3126#0" expanded="true" />
+            <element signature="e#3183#3184#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/errors/errormessage.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/errors/error.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/properties/pagecontent_ru.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="113" column="14" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LogoutCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ErrorCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/ProfileCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LoginCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/IndexCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/LocaleCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/CurrencyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/DutiesCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="46" column="57" lean-forward="true" selection-start-line="46" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/PaymentCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/UserOperationsCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2005#2006#0" expanded="true" />
+            <element signature="e#2041#2042#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100BalanceCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-610">
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/MainCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment998_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-627">
+          <caret line="19" column="51" lean-forward="true" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/SelectPaymentCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="53" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/AllCurrencyCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-463">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateCBCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandCurrency/RateNBCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/UpdateUserCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/EditUsersCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/BalanceCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="49" column="57" lean-forward="true" selection-start-line="49" selection-end-line="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1100_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="121" column="40" selection-start-line="121" selection-start-column="40" selection-end-line="121" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/cash/commandOperation/commandPayment/Payment1000_Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="77" column="40" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/AdminCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="54" lean-forward="true" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/command/impl/admin/CreateUserCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-497">
+          <caret line="53" column="62" selection-start-line="53" selection-start-column="62" selection-end-line="53" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/zagurskaya/cash/controller/util/ControllerDataUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="154" column="40" lean-forward="true" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>htp_15_cash</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

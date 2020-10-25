@@ -47,7 +47,6 @@ public class LoginCommand implements Command {
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         final HttpSession session = request.getSession(false);
         try {
-
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                 String login = ControllerDataUtil.getString(request, LOGIN, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
                 String password = ControllerDataUtil.getString(request, PASSWORD, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);

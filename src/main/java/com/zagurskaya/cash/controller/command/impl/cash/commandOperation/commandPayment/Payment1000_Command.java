@@ -36,7 +36,7 @@ public class Payment1000_Command implements Command {
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
-    public static final String SPECIFICATION = "specification";
+    private static final String SPECIFICATION = "specification";
 
     /**
      * Constructor
@@ -54,8 +54,8 @@ public class Payment1000_Command implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-        final HttpSession session = request.getSession(false);
-        session.removeAttribute(AttributeName.ERROR);
+        ControllerDataUtil.removeAttributeError(request);
+
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -76,11 +76,11 @@ public class Payment1000_Command implements Command {
             }
 
             List<Currency> currencies = currencyService.findAll();
-            request.setAttribute(AttributeName.CURRENCIES, currencies);
+            request.getSession(false).setAttribute(AttributeName.CURRENCIES, currencies);
             return ActionType.PAYMENT1000;
 
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeName.ERROR, "100 " + e);
+            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

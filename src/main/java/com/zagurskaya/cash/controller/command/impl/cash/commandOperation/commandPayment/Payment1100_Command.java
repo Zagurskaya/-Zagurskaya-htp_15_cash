@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -106,9 +105,8 @@ public class Payment1100_Command implements Command {
 //        }
 //        Action.PAYMENT1100.setPATH("/cash/operation/payment/");
 //        return Action.PAYMENT1100;
+        ControllerDataUtil.removeAttributeError(request);
 
-        final HttpSession session = request.getSession(false);
-        session.removeAttribute("error");
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {
@@ -126,7 +124,7 @@ public class Payment1100_Command implements Command {
             return ActionType.PAYMENT1100;
 
         } catch (ServiceException | NumberFormatException e) {
-            session.setAttribute(AttributeName.ERROR, "100 " + e);
+            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

@@ -3,6 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.CurrencyService;
@@ -13,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -40,9 +40,7 @@ public class AllCurrencyCommand implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
-        final HttpSession session = request.getSession(false);
-        session.removeAttribute(AttributeName.ERROR);
-
+        ControllerDataUtil.removeAttributeError(request);
         try {
             int page = 1;
             if (request.getParameter(AttributeName.PAGE) != null)
@@ -57,7 +55,7 @@ public class AllCurrencyCommand implements Command {
             return ActionType.ALL_CURRENCY;
 
         } catch (ServiceException e) {
-            session.setAttribute(AttributeName.ERROR, e);
+            request.getSession(false).setAttribute(AttributeName.ERROR, e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }
