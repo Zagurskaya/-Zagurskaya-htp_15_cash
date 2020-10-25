@@ -31,7 +31,7 @@ public class ConnectionPool {
 
     static {
         try {
-            Class.forName(DatabaseProperty.getInstance().driver);
+            Class.forName(DatabaseProperty.driver);
         } catch (ClassNotFoundException e) {
             logger.log(Level.FATAL, "Driver not registered", e);
             throw new RuntimeException("Driver not registered", e);
