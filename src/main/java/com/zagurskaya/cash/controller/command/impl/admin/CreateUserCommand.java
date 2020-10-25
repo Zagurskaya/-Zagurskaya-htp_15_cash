@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class CreateUserCommand implements Command {
     private String directoryPath;
     private final UserService userService = new UserServiceImpl();
-    private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
+    private static final Logger logger = LogManager.getLogger(CreateUserCommand.class);
     private static final String LOGIN = "login";
     private static final String FULL_NAME = "fullname";
     private static final String PASSWORD = "password";

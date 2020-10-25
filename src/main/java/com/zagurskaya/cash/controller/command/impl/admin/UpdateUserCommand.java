@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 public class UpdateUserCommand implements Command {
     private String directoryPath;
     private final UserService userService = new UserServiceImpl();
-    private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
+    private static final Logger logger = LogManager.getLogger(UpdateUserCommand.class);
 
     /**
      * Constructor
