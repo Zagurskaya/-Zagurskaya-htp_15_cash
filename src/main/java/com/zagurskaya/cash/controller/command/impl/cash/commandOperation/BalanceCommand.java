@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Duties;
@@ -26,7 +26,8 @@ import java.util.List;
 /**
  * The action is "Balance".
  */
-public class BalanceCommand extends AbstractCommand {
+public class BalanceCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(BalanceCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final KassaService kassaService = new KassaServiceImpl();
@@ -37,7 +38,12 @@ public class BalanceCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public BalanceCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

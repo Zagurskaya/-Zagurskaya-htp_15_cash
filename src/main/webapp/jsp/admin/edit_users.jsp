@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <c:forEach items="${users}" var="user">
-            <form class="form-horizontal-${user.id}" actionType="do?command=EditUsers" method="post">
+            <form class="form-horizontal-${user.id}" actionType="do?command=Edit_Users" method="post">
                 <tr>
                     <input id="id" name="id" type="hidden" readonly placeholder="" class="form-control input-md"
                            required="" value="${user.id}">
@@ -44,7 +44,7 @@
     </table>
     <div align="center" style="text-align: center">
         <c:if test="${currentPage != 1}">
-            <a href="do?command=EditUsers&page=${currentPage - 1}"><fmt:message key="tabulation.previous"/></a>
+            <a href="do?command=Edit_Users&page=${currentPage - 1}"><fmt:message key="tabulation.previous"/></a>
         </c:if>
 
         <%--For displaying Page numbers.
@@ -56,14 +56,14 @@
                     ${i}
                 </c:when>
                 <c:otherwise>
-                    <a href="do?command=EditUsers&page=${i}">${i}</a>
+                    <a href="do?command=Edit_Users&page=${i}">${i}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <%--For displaying Next link --%>
         <c:if test="${currentPage lt numberOfPages}">
-            <a href="do?command=EditUsers&page=${currentPage + 1}"><fmt:message key="tabulation.next"/></a>
+            <a href="do?command=Edit_Users&page=${currentPage + 1}"><fmt:message key="tabulation.next"/></a>
         </c:if>
     </div>
 </div>

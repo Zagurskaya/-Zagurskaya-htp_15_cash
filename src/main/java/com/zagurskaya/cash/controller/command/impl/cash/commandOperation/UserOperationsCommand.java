@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
@@ -30,7 +30,8 @@ import java.util.List;
 /**
  * The action is "User operation list".
  */
-public class UserOperationsCommand extends AbstractCommand {
+public class UserOperationsCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(UserOperationsCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
@@ -42,7 +43,12 @@ public class UserOperationsCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public UserOperationsCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -72,7 +78,7 @@ public class UserOperationsCommand extends AbstractCommand {
             request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
             request.setAttribute(AttributeName.CURRENT_PAGE, page);
 
-            return ActionType.USEROPERATIONS;
+            return ActionType.USER_OPERATIONS;
         } catch (ServiceException | NumberFormatException e) {
             session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

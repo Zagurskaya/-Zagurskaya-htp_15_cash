@@ -72,15 +72,15 @@ public enum ActionType {
     /**
      * View and delete users
      */
-    EDITUSERS(new EditUsersCommand(PathPage.PATH_ADMIN)),
+    EDIT_USERS(new EditUsersCommand(PathPage.PATH_ADMIN)),
     /**
      * Create a new user
      */
-    CREATEUSER(new CreateUserCommand(PathPage.PATH_ADMIN)),
+    CREATE_USER(new CreateUserCommand(PathPage.PATH_ADMIN)),
     /**
      * Update user
      */
-    UPDATEUSER(new UpdateUserCommand(PathPage.PATH_ADMIN)),
+    UPDATE_USER(new UpdateUserCommand(PathPage.PATH_ADMIN)),
 //---------------CASH---------------------------------------
     /**
      * Cashier home page
@@ -101,15 +101,15 @@ public enum ActionType {
     /**
      * Cashier home page
      */
-    ALLCURRENCY(new AllCurrencyCommand(PathPage.PATH_CASH_CURRENCY)),
+    ALL_CURRENCY(new AllCurrencyCommand(PathPage.PATH_CASH_CURRENCY)),
     /**
      * View rate CB
      */
-    RATECB(new RateCBCommand(PathPage.PATH_CASH_CURRENCY)),
+    RATE_CB(new RateCBCommand(PathPage.PATH_CASH_CURRENCY)),
     /**
      * View rate NB
      */
-    RATENB(new RateNBCommand(PathPage.PATH_CASH_CURRENCY)),
+    RATE_NB(new RateNBCommand(PathPage.PATH_CASH_CURRENCY)),
 
     //------------------CASH / OPERATION--------------------------
     /**
@@ -123,13 +123,13 @@ public enum ActionType {
     /**
      * User operations
      */
-    USEROPERATIONS(new UserOperationsCommand(PathPage.PATH_CASH_OPERATION)),
+    USER_OPERATIONS(new UserOperationsCommand(PathPage.PATH_CASH_OPERATION)),
 
     //-----------------CASH /OPERATION/PAYMENT---------------------
     /**
      * Select payment
      */
-    SELECTPAYMENT(new SelectPaymentCommand(PathPage.PATH_CASH_PAYMENT)),
+    SELECT_PAYMENT(new SelectPaymentCommand(PathPage.PATH_CASH_PAYMENT)),
     /**
      * buy currency
      */

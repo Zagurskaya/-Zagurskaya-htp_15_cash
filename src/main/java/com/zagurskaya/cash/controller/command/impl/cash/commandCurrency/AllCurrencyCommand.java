@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.CurrencyService;
@@ -19,7 +19,8 @@ import java.util.List;
 /**
  * The action is "Currency".
  */
-public class AllCurrencyCommand extends AbstractCommand {
+public class AllCurrencyCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(AllCurrencyCommand.class);
     private final CurrencyService currencyService = new CurrencyServiceImpl();
 
@@ -29,7 +30,12 @@ public class AllCurrencyCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public AllCurrencyCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class AllCurrencyCommand extends AbstractCommand {
             request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
             request.setAttribute(AttributeName.CURRENT_PAGE, page);
             request.setAttribute(AttributeName.CURRENCIES, currencies);
-            return ActionType.ALLCURRENCY;
+            return ActionType.ALL_CURRENCY;
 
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);

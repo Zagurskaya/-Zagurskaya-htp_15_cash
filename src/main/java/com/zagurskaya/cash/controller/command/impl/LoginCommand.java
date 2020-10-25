@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -22,7 +22,8 @@ import javax.servlet.http.HttpSession;
 /**
  * The action is "Registration".
  */
-public class LoginCommand extends AbstractCommand {
+public class LoginCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(LoginCommand.class);
     private static final String LOGIN = "login";
     private static final String PASSWORD = "password";
@@ -34,7 +35,12 @@ public class LoginCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public LoginCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 
 import javax.servlet.http.Cookie;
@@ -13,7 +13,8 @@ import javax.servlet.http.HttpSession;
 /**
  * The action is "Change locale".
  */
-public class LocaleCommand extends AbstractCommand {
+public class LocaleCommand implements Command {
+    private String directoryPath;
     private static final String LOCALE_RU = "ru";
     private static final String LOCALE_EN = "en";
 
@@ -23,7 +24,12 @@ public class LocaleCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public LocaleCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

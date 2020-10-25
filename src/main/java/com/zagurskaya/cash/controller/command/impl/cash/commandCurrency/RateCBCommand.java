@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateCB;
@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * The action is "Currency CB".
  */
-public class RateCBCommand extends AbstractCommand {
+public class RateCBCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(RateCBCommand.class);
     private final RateCBService rateCBService = new RateCBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
@@ -33,7 +34,12 @@ public class RateCBCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public RateCBCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -57,7 +63,7 @@ public class RateCBCommand extends AbstractCommand {
             request.setAttribute(AttributeName.RATE_CB, ratesCB);
             request.setAttribute(AttributeName.CURRENCIES, currencyList);
 
-            return ActionType.RATECB;
+            return ActionType.RATE_CB;
 
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);

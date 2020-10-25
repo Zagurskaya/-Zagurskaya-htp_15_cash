@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -23,7 +23,8 @@ import javax.servlet.http.HttpSession;
 /**
  * The action is "Update user".
  */
-public class UpdateUserCommand extends AbstractCommand {
+public class UpdateUserCommand implements Command {
+    private String directoryPath;
     private final UserService userService = new UserServiceImpl();
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
 
@@ -33,7 +34,12 @@ public class UpdateUserCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public UpdateUserCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -46,7 +52,7 @@ public class UpdateUserCommand extends AbstractCommand {
 
         if (DataValidation.isCreateUpdateDeleteOperation(request)) {
             if (DataValidation.isCancelOperation(request)) {
-                return ActionType.EDITUSERS;
+                return ActionType.EDIT_USERS;
 
             } else if (DataValidation.isSaveOperation(request)) {
                 UserExtractor userExtractor = new UserExtractor();
@@ -68,7 +74,7 @@ public class UpdateUserCommand extends AbstractCommand {
                         userService.update(updateUser);
                         logger.log(Level.INFO, "Update user " + updatedUser.getLogin());
                         session.setAttribute(AttributeName.MESSAGE, "105 " + updatedUser.getLogin());
-                        return ActionType.EDITUSERS;
+                        return ActionType.EDIT_USERS;
                     } catch (ServiceException e) {
                         session.setAttribute(AttributeName.ERROR, e);
                         logger.log(Level.ERROR, e);
@@ -83,7 +89,7 @@ public class UpdateUserCommand extends AbstractCommand {
             User updatedUser = userService.findById(id);
             if (updatedUser != null) {
                 request.setAttribute(AttributeName.USER, updatedUser);
-                returnActionType = ActionType.UPDATEUSER;
+                returnActionType = ActionType.UPDATE_USER;
             } else {
                 logger.log(Level.ERROR, "null user");
                 returnActionType = ActionType.ERROR;

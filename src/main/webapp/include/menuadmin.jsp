@@ -15,8 +15,8 @@
         <div class="navbar-nav">
             <c:choose>
                 <c:when test="${user!=null}">
-                    <a class="nav-item nav-link" href="do?command=EditUsers"><fmt:message key="admin.users"/></a>
-                    <a class="nav-item nav-link" href="do?command=CreateUser"><fmt:message key="admin.addUser"/></a>
+                    <a class="nav-item nav-link" href="do?command=Edit_Users"><fmt:message key="admin.users"/></a>
+                    <a class="nav-item nav-link" href="do?command=Create_User"><fmt:message key="admin.addUser"/></a>
                 </c:when>
             </c:choose>
         </div>

@@ -44,7 +44,7 @@
     </table>
     <div align="center" style="text-align: center">
         <c:if test="${currentPage != 1}">
-            <a href="do?command=UserOperations&page=${currentPage - 1}"><fmt:message key="tabulation.previous"/></a>
+            <a href="do?command=User_Operations&page=${currentPage - 1}"><fmt:message key="tabulation.previous"/></a>
         </c:if>
 
         <%--For displaying Page numbers.
@@ -56,14 +56,14 @@
                     ${i}
                 </c:when>
                 <c:otherwise>
-                    <a href="do?command=UserOperations&page=${i}">${i}</a>
+                    <a href="do?command=User_Operations&page=${i}">${i}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <%--For displaying Next link --%>
         <c:if test="${currentPage lt numberOfPages}">
-            <a href="do?command=UserOperations&page=${currentPage + 1}"><fmt:message key="tabulation.next"/></a>
+            <a href="do?command=User_Operations&page=${currentPage + 1}"><fmt:message key="tabulation.next"/></a>
         </c:if>
     </div>
 

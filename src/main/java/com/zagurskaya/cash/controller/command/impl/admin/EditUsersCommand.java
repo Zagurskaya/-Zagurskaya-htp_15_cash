@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -21,7 +21,8 @@ import java.util.List;
 /**
  * The action is "Users".
  */
-public class EditUsersCommand extends AbstractCommand {
+public class EditUsersCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(EditUsersCommand.class);
     private UserService userService = new UserServiceImpl();
 
@@ -31,7 +32,12 @@ public class EditUsersCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public EditUsersCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -48,7 +54,7 @@ public class EditUsersCommand extends AbstractCommand {
                     if (DataValidation.isUpdateOperation(request)) {
                         if (userService.findById(id) != null) {
                             session.setAttribute(AttributeName.ID, id);
-                            return ActionType.UPDATEUSER;
+                            return ActionType.UPDATE_USER;
                         }
                     } else if (DataValidation.isDeleteOperation(request)) {
                         User deleteUser = userService.findById(id);
@@ -75,7 +81,7 @@ public class EditUsersCommand extends AbstractCommand {
             request.setAttribute(AttributeName.NUMBER_OF_PAGE, numberOfPages);
             request.setAttribute(AttributeName.CURRENT_PAGE, page);
             request.setAttribute(AttributeName.USERS, users);
-            return ActionType.EDITUSERS;
+            return ActionType.EDIT_USERS;
 
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);

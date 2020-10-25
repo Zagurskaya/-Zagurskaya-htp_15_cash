@@ -30,7 +30,7 @@
     </table>
     <div align="center" style="text-align: center">
         <c:if test="${currentPage != 1}">
-            <a href="do?command=AllCurrency&page=${currentPage - 1}">Previous</a>
+            <a href="do?command=All_Currency&page=${currentPage - 1}">Previous</a>
         </c:if>
 
         <%--For displaying Page numbers.
@@ -42,14 +42,14 @@
                     ${i}
                 </c:when>
                 <c:otherwise>
-                    <a href="do?command=AllCurrency&page=${i}">${i}</a>
+                    <a href="do?command=All_Currency&page=${i}">${i}</a>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
 
         <%--For displaying Next link --%>
         <c:if test="${currentPage lt numberOfPages}">
-            <a href="do?command=AllCurrency&page=${currentPage + 1}">Next</a>
+            <a href="do?command=All_Currency&page=${currentPage + 1}">Next</a>
         </c:if>
     </div>
 </body>

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.controller.command.impl.admin;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 
@@ -11,14 +11,21 @@ import javax.servlet.http.HttpSession;
 /**
  * The action is "Admin Home".
  */
-public class AdminCommand extends AbstractCommand {
+public class AdminCommand implements Command {
+    private String directoryPath;
+
     /**
      * Constructor
      *
      * @param directoryPath - path
      */
     public AdminCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

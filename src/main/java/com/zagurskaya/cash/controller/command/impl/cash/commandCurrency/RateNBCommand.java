@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateNB;
 import com.zagurskaya.cash.exception.ServiceException;
@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * The action is "Currency NB".
  */
-public class RateNBCommand extends AbstractCommand {
+public class RateNBCommand implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(RateNBCommand.class);
     private final RateNBService rateNBService = new RateNBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
@@ -33,7 +34,12 @@ public class RateNBCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public RateNBCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override
@@ -57,7 +63,7 @@ public class RateNBCommand extends AbstractCommand {
             request.setAttribute(AttributeName.RATE_NB, ratesNB);
             request.setAttribute(AttributeName.CURRENCIES, currencyList);
 
-            return ActionType.RATENB;
+            return ActionType.RATE_NB;
 
         } catch (ServiceException e) {
             session.setAttribute(AttributeName.ERROR, e);

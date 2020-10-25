@@ -18,7 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -40,7 +39,8 @@ public class PermissionFilter implements Filter {
         HttpSession session = httpRequest.getSession(false);
         ActionType currentActionType = ActionType.define(httpRequest);
         THREAD_ACTION.set(currentActionType);
-        if (currentActionType != null && currentActionType != ActionType.INDEX && currentActionType != ActionType.LOGIN) {
+        if (currentActionType != null && currentActionType != ActionType.INDEX
+                && currentActionType != ActionType.LOGIN && currentActionType != ActionType.LOCALE) {
             User user = ControllerDataUtil.findUser(httpRequest);
             if (user == null) {
                 session.setAttribute(AttributeName.ERROR, "104 ");

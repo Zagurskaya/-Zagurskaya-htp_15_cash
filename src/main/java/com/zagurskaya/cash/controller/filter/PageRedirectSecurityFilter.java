@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  * Filter for safe page redirection
  */
 public class PageRedirectSecurityFilter implements Filter {
+    private static final String DO_COMMAND = "/do?command=";
+
     @Override
     public void init(FilterConfig fConfig) throws ServletException {
     }
@@ -25,7 +27,7 @@ public class PageRedirectSecurityFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.sendRedirect(httpRequest.getContextPath() + "/do?command=" + ActionType.INDEX.name().toLowerCase());
+        httpResponse.sendRedirect(httpRequest.getContextPath() + DO_COMMAND + ActionType.INDEX.name().toLowerCase());
         chain.doFilter(request, response);
     }
 

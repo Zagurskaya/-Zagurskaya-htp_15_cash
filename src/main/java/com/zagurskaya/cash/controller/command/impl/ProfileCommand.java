@@ -1,8 +1,8 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.DataValidation;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,8 @@ import javax.servlet.http.HttpSession;
 /**
  * The action is "Profile".
  */
-public class ProfileCommand extends AbstractCommand {
+public class ProfileCommand implements Command {
+    private String directoryPath;
 
     /**
      * Constructor
@@ -20,7 +21,12 @@ public class ProfileCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public ProfileCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

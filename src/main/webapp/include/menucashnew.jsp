@@ -16,16 +16,16 @@
         <li><a href="do?command=Duties"><fmt:message key="cash.duties"/></a></li>
         <li><a href="#" style="padding-right:43px"><fmt:message key="cash.currency"/></a>
             <ul>
-                <li><a href="do?command=AllCurrency"><fmt:message key="cash.currencyDirectory"/></a></li>
-                <li><a href="do?command=RateNB"><fmt:message key="cash.rateNB"/></a></li>
-                <li><a href="do?command=RateCB"><fmt:message key="cash.rateCB"/></a></li>
+                <li><a href="do?command=All_Currency"><fmt:message key="cash.currencyDirectory"/></a></li>
+                <li><a href="do?command=Rate_NB"><fmt:message key="cash.rateNB"/></a></li>
+                <li><a href="do?command=Rate_CB"><fmt:message key="cash.rateCB"/></a></li>
             </ul>
         </li>
         <li><a href="#" style="padding-right:26px"><fmt:message key="cash.operations"/></a>
             <ul>
                 <li><a href="do?command=Payment"><fmt:message key="cash.payments"/></a></li>
                 <li><a href="do?command=Balance"><fmt:message key="cash.balance"/></a></li>
-                <li><a href="do?command=UserOperations"><fmt:message key="cash.userOperations"/></a></li>
+                <li><a href="do?command=User_Operations"><fmt:message key="cash.userOperations"/></a></li>
             </ul>
         </li>
         <li><a href="#" style="padding-right:18px"><fmt:message key="cash.reporting"/></a>

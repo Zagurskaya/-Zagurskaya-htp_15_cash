@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.controller.command.impl;
 
-import com.zagurskaya.cash.controller.command.AbstractCommand;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.command.Command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The action is "Start page".
  */
-public class IndexCommand extends AbstractCommand {
+public class IndexCommand implements Command {
+    private String directoryPath;
 
     /**
      * Constructor
@@ -17,7 +18,12 @@ public class IndexCommand extends AbstractCommand {
      * @param directoryPath - path
      */
     public IndexCommand(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

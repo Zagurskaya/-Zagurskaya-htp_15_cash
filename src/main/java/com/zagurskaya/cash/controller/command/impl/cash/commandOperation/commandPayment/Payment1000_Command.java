@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.AbstractCommand;
+import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
@@ -30,7 +30,8 @@ import java.util.Map;
 /**
  * The action is "Payment 1000".
  */
-public class Payment1000_Command extends AbstractCommand {
+public class Payment1000_Command implements Command {
+    private String directoryPath;
     private static final Logger logger = LogManager.getLogger(Payment1000_Command.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
@@ -43,7 +44,12 @@ public class Payment1000_Command extends AbstractCommand {
      * @param directoryPath - path
      */
     public Payment1000_Command(String directoryPath) {
-        super(directoryPath);
+        this.directoryPath = directoryPath;
+    }
+
+    @Override
+    public String getDirectoryPath() {
+        return directoryPath;
     }
 
     @Override

@@ -9,7 +9,6 @@ public class AttributeName {
     public static final String MESSAGE = "message";
     public static final String LOCAL = "local";
     public static final String CURRENT_ACTION_TYPE = "currentActionType";
-    public static final String NEXT_ACTION_TYPE = "nextActionType";
     public static final String PAGE = "page";
     public static final String NUMBER_OF_PAGE = "numberOfPages";
     public static final String CURRENT_PAGE = "currentPage";
