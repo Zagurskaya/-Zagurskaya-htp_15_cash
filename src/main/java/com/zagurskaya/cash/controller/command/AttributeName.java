@@ -34,6 +34,7 @@ public class AttributeName {
     public static final String SPR_OPERATION = "sprOperation";
     public static final String USER_OPERATIONS = "userOperations";
     public static final String SPECIFICATION = "specification";
+    public static final String CHECKING_ACCOUNT = "checkingAccount";
 
     public static final String DUTIES_MESSAGE = "messageDuties";
 

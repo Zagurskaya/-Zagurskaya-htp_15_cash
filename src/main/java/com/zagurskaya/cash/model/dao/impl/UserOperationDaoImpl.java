@@ -25,9 +25,9 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
     private static final String SQL_SELECT_ALL_USER_OPERATION_PAGE =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE =
-            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id LIMIT ? Offset ? ";
+            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id DESC LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID =
-            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id ";
+            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE userId = ? AND  dutiesId = ? ORDER BY id DESC";
     private static final String SQL_SELECT_ALL_USER_OPERATION =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation ";
     private static final String SQL_SELECT_USER_OPERATION_BY_ID =

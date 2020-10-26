@@ -48,8 +48,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="paymentButton"></label>
                 <div class="col-md-4">
-                    <button id="paymentButton" name="paymentButton" class="btn btn-primary"><fmt:message
-                            key="page.payment10.button.enter"/></button>
+                    <button id="paymentButton" name="paymentButton" class="btn btn-primary">
+                        <fmt:message key="page.payment10.button.enter"/></button>
                 </div>
             </div>
         </fieldset>

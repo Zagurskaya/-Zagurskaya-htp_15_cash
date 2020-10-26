@@ -95,10 +95,12 @@ public interface PaymentService {
      * Implement payment communal payment
      *
      * @param map           - code and values by each currency
-     * @param rate          - operation rate
      * @param specification - specification by operation
+     * @param checkingAccount - client checking account
+     * @param fullName - full name client
      * @param user          - user
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment998(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+    void implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
+
 }

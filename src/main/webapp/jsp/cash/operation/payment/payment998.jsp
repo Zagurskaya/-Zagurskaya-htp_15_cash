@@ -5,39 +5,46 @@
 <div class="container">
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
-    <H4>Коммунальный платеж</H4>
+    <H4><fmt:message key="page.payment998.title"/></H4>
     <form class="form-horizontal" actionType="do?command=Payment998" method="post">
         <fieldset>
-        <br>
-        <p>Расчетный счет получателя:</p>
-        <div class="col-md-7">
-            <input id="checkingAccount" name="checkingAccount" type="text" placeholder="" class="form-control input-md"
-                   required="" value="BY53BLBB30112005500150000000">
-        </div>
-        <br>
-        <p>Описание:</p>
-        <div class="col-md-7">
-            <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                   required="" value="за коммунальные услуги">
-        </div>
-        <br>
-        <p>Фамилия Имя Отчество:</p>
-        <div class="col-md-7">
-            <input id="fio" name="fio" type="text" placeholder="" class="form-control input-md"
-                   required="" value="Иванов Иван Иванович">
-        </div>
-        <br>
-        <div class="row">
-            <div class=col-md-3>Выбор валюты</div>
-            <div class=col-md-2>Сумма</div>
-        </div>
+            <br>
+            <p><fmt:message key="page.payment998.label.account"/></p>
+            <div class="col-md-7">
+                <input id="checkingAccount" name="checkingAccount" type="text" placeholder=""
+                       class="form-control input-md"
+                       required="" value="BY53BLBB30112005500150000000">
+            </div>
+            <br>
+            <p><fmt:message key="page.payment998.label.description"/></p>
+            <div class="col-md-7">
+                <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
+                       required="" value="за коммунальные услуги">
+            </div>
+            <br>
+            <p><fmt:message key="page.payment998.label.name"/></p>
+            <div class="col-md-7">
+                <input id="fullname" name="fullname" type="text" placeholder="" class="form-control input-md"
+                       required="" value="Иванов Иван Иванович">
+            </div>
+            <br>
+            <div class="row">
+                <div class=col-md-3><fmt:message key="page.payment998.label.currency"/></div>
+                <div class=col-md-2><fmt:message key="page.payment998.label.sum"/></div>
+            </div>
             <div class="row">
                 <div class="col-md-3">
-                <select id="id" name="id" class="form-control">
-                <c:forEach items="${currencies}" var="currency">
-                     <option value="${currency.id}" }>${currency.name}</option>
-                     </c:forEach>
-                 </select>
+                    <select id="id" name="id" class="form-control">
+                        <c:forEach items="${currencies}" var="currency">
+                            <option value="${currency.id}" }>
+                                <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">
+                                    ${currency.nameRU}
+                                </c:if>
+                                <c:if test="${cookie.local.value=='en'}">
+                                    ${currency.nameEN}
+                                </c:if></option>
+                        </c:forEach>
+                    </select>
                 </div>
 
                 <div class="col-md-2">
@@ -45,15 +52,16 @@
                            required="" value="390">
                 </div>
             </div>
-        <br>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="paymentButton"></label>
-            <div class="col-md-4">
-                <button id="paymentButton" name="paymentButton" class="btn btn-primary">Провести</button>
+            <br>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="paymentButton"></label>
+                <div class="col-md-4">
+                    <button id="paymentButton" name="paymentButton" class="btn btn-primary">
+                        <fmt:message key="page.payment998.button.enter"/></button>
+                </div>
             </div>
-        </div>
         </fieldset>
-     </form>
+    </form>
 </div>
 </body>
 </html>
