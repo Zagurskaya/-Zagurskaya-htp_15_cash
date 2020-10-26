@@ -5,6 +5,8 @@ import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.entity.UserOperation;
 import com.zagurskaya.cash.exception.CommandException;
+import com.zagurskaya.cash.exception.DaoConstraintViolationException;
+import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.util.List;
