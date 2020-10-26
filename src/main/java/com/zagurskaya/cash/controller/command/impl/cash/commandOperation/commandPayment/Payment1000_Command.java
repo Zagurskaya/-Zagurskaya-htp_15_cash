@@ -36,7 +36,6 @@ public class Payment1000_Command implements Command {
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
-    private static final String SPECIFICATION = "specification";
 
     /**
      * Constructor
@@ -65,7 +64,7 @@ public class Payment1000_Command implements Command {
             }
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
                 Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
-                String specification = ControllerDataUtil.getString(request, SPECIFICATION);
+                String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
 
                 if (values.isEmpty()) {
                     return ActionType.PAYMENT;

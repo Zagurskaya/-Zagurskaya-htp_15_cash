@@ -29,13 +29,6 @@ public interface PaymentService {
     SprOperation findSprOperationById(Long id) throws ServiceException;
 
     /**
-     * Implement payment receiving money
-     *
-     * @throws ServiceException error during execution of logical blocks and actions
-     */
-    void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
-
-    /**
      * Count of rows in the UserOperations table
      *
      * @return Count of rows
@@ -53,4 +46,57 @@ public interface PaymentService {
      * @throws ServiceException error during execution of logical blocks and actions
      */
     List<UserOperation> onePartOfListUserOperationsOnPage(User user, Duties duties, int page) throws ServiceException;
+
+    /**
+     * Implement payment receiving money
+     *
+     * @param map           - code and values by each currency
+     * @param specification - specification by operation
+     * @param user          - user
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
+
+    /**
+     * Implement payment transmitting money
+     *
+     * @param map           - code and values by each currency
+     * @param specification - specification by operation
+     * @param user          - user
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    void implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException;
+
+    /**
+     * Implement payment buying currency
+     *
+     * @param map           - code and values by each currency
+     * @param rate          - operation rate
+     * @param specification - specification by operation
+     * @param user          - user
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    void implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+
+    /**
+     * Implement payment selling currency
+     *
+     * @param map           - code and values by each currency
+     * @param rate          - operation rate
+     * @param specification - specification by operation
+     * @param user          - user
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    void implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+
+    /**
+     * Implement payment communal payment
+     *
+     * @param map           - code and values by each currency
+     * @param rate          - operation rate
+     * @param specification - specification by operation
+     * @param user          - user
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    void implementPayment998(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
 }

@@ -160,7 +160,7 @@ public class KassaServiceImpl implements KassaService {
     }
 
     //внутрикассовые операции
-    public boolean updateKassaInSideOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaInnerOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();

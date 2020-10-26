@@ -24,6 +24,18 @@ public interface KassaService extends Service<Kassa> {
      * @throws ServiceException error during execution of logical blocks and actions
      */
     boolean updateKassaOuterOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
+    /**
+     * Update Kassa for inner Operations
+     *
+     * @param date           - date
+     * @param dutiesId       - number duties
+     * @param currencyId     - currency code
+     * @param sum            - sum
+     * @param sprOperationId - operation code
+     * @return true on successful create
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    boolean updateKassaInnerOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
 
     /**
      * Return ballance by user and duties

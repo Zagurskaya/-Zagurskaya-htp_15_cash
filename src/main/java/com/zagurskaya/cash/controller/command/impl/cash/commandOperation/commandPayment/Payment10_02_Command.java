@@ -1,16 +1,41 @@
 package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment;
 
+import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.controller.util.DataValidation;
+import com.zagurskaya.cash.entity.Currency;
+import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
+import com.zagurskaya.cash.exception.ServiceException;
+import com.zagurskaya.cash.model.service.CurrencyService;
+import com.zagurskaya.cash.model.service.DutiesService;
+import com.zagurskaya.cash.model.service.PaymentService;
+import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
+import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
+import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
+import com.zagurskaya.cash.util.DataUtil;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The action is "Payment 1002".
  */
 public class Payment10_02_Command implements Command {
     private String directoryPath;
+    private static final Logger logger = LogManager.getLogger(Payment10_02_Command.class);
+    private final DutiesService dutiesService = new DutiesServiceImpl();
+    private final CurrencyService currencyService = new CurrencyServiceImpl();
+    private final PaymentService paymentService = new PaymentServiceImpl();
 
     /**
      * Constructor
@@ -27,65 +52,48 @@ public class Payment10_02_Command implements Command {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest req, HttpServletResponse response) {
-//        HttpSession session = req.getSession(false);
-//        Long currencyIdSession = (Long) session.getAttribute("currencyId");
-//        req.setAttribute("currencyId", currencyIdSession);
-//        Long currencySumSession = (Long) session.getAttribute("currencySum");
-//        req.setAttribute("currencySum", currencySumSession);
-//        Double rateCBPaymentSession = (Double) session.getAttribute("rateCBPayment");
-//        req.setAttribute("rateCBPayment", rateCBPaymentSession);
-//        Double sumRateCurrencyIdSession = (Double) session.getAttribute("sumRateCurrencyId");
-//        req.setAttribute("sumRateCurrencyId", Math.round(sumRateCurrencyIdSession * 100.0) / 100.0);
-//        String specificationSession = (String) session.getAttribute("specification");
-//        req.setAttribute("specification", specificationSession);
-//
-//        CurrencyDao currencyDao = new CurrencyDao();
-//        List<Currency> currencies = currencyDao.getAll();
-//        req.setAttribute("currencies", currencies);
-//
-//        if (Form.isPost(req)) {
-//
-//            User user = Util.findUser(req);
-//            LocalDate date = LocalDate.now();
-//            Timestamp now = new Timestamp(System.currentTimeMillis());
-//            String today = Util.getFormattedLocalDateStartDateTime(date);
-////        "yyyy-MM-dd"
-//            String todaySQL = Util.getFormattedLocalDateOnlyDate(date);
-//            List<Duties> duties = new DutiesDao().OpenDutiesUserToday(user, today);
-//            KassaDao kassaDao = new KassaDao();
-//
-//            long sprOperationsId = 10;
-//
-//            long[] ids = Form.getLongArray(req, "id");
-//            double[] sums = Form.getDoubleArray(req, "sum");
-//            String specification = specificationSession;
-//
-//
-//            UserOperationDao userOperationDao = new UserOperationDao();
-//            UserOperation userOperation = new UserOperation(0, now, rateCBPaymentSession, sums[0], ids[0], user.getId(), duties.get(0).getId(), sprOperationsId, specification, null,null);
-//            userOperationDao.create(userOperation);
-//
-//
-//            for (int i = 0; i < ids.length; i++) {
-//
-//                SprEntriesDao sprEntriesDao = new SprEntriesDao();
-//                List<SprEntries> sprEntries10= sprEntriesDao.getAll("WHERE `sprOperationsId`=" + sprOperationsId + " AND `currencyId`=" + ids[i]);
-//
-//                kassaDao.updateKassaInSideOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
-//
-//                double rateCBPaymentEntry = ids[i]!=933? rateCBPaymentSession:1;
-//
-//                UserEntryDao userEntryDao = new UserEntryDao();
-//                UserEntry userEntrys = new UserEntry(0, userOperation.getId(), sprEntries10.get(0).getId(), ids[i], sprEntries10.get(0).getAccountDebit(), sprEntries10.get(0).getAccountCredit(), sums[i], sprEntries10.get(0).getIsSpending(),rateCBPaymentEntry);
-//                userEntryDao.create(userEntrys);
-//
-//            }
-//
-//            Action.CHECK10.setPATH("/cash/operation/check/");
-//            return Action.CHECK10;
-//        }
-//        Action.PAYMENT10_02.setPATH("/cash/operation/payment/");
-        return ActionType.PAYMENT10_02;
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+        ControllerDataUtil.removeAttributeError(request);
+        String today = DataUtil.getFormattedLocalDateStartDateTime(LocalDate.now());
+
+        try {
+            HttpSession session = request.getSession(false);
+            List<Currency> currencies = currencyService.findAll();
+            Long currencyIdSession = (Long) session.getAttribute(AttributeName.CURRENCY_ID);
+            Long currencySumSession = (Long) session.getAttribute(AttributeName.CURRENCY_SUM);
+            Double rateCBPaymentSession = (Double) session.getAttribute(AttributeName.RATE_CB_PAYMENT);
+            Double sumRateCurrencyIdSession = (Double) session.getAttribute(AttributeName.SUM_RATE_CURRENCY_ID);
+            String specificationSession = (String) session.getAttribute(AttributeName.SPECIFICATION);
+
+            request.setAttribute(AttributeName.CURRENCY_ID, currencyIdSession);
+            request.setAttribute(AttributeName.CURRENCY_SUM, currencySumSession);
+            request.setAttribute(AttributeName.RATE_CB_PAYMENT, rateCBPaymentSession);
+            request.setAttribute(AttributeName.SUM_RATE_CURRENCY_ID, Math.round(sumRateCurrencyIdSession * 100.0) / 100.0);
+            request.setAttribute(AttributeName.SPECIFICATION, specificationSession);
+            request.setAttribute(AttributeName.CURRENCIES, currencies);
+
+            User user = ControllerDataUtil.findUser(request);
+            if (dutiesService.openDutiesUserToday(user, today) == null) {
+                return ActionType.DUTIES;
+            }
+            if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
+                String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
+
+                if (values.isEmpty()) {
+                    return ActionType.PAYMENT;
+                }
+                paymentService.implementPayment10(values, rateCBPaymentSession, specification, user);
+                //todo change to check
+                return ActionType.PAYMENT;
+            }
+
+            return ActionType.PAYMENT10_02;
+
+        } catch (ServiceException | NumberFormatException e) {
+            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
+            logger.log(Level.ERROR, e);
+            return ActionType.ERROR;
+        }
     }
 }

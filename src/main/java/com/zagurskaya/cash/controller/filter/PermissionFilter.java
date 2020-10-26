@@ -48,7 +48,7 @@ public class PermissionFilter implements Filter {
                 THREAD_ACTION.set(ActionType.ERROR);
             }
             RoleType actionPermission = ActionPermission.getInstance().getActionPermissionMap().get(currentActionType.name());
-            if (user.getRole() != actionPermission && currentActionType != ActionType.PROFILE) {
+            if (user.getRole() != actionPermission && currentActionType != ActionType.PROFILE && currentActionType != ActionType.ERROR) {
                 session.setAttribute(AttributeName.ERROR, "103 ");
                 logger.log(Level.ERROR, "permission denied ");
                 THREAD_ACTION.set(ActionType.INDEX);

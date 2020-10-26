@@ -151,6 +151,22 @@ public class ControllerDataUtil {
         }
         return map;
     }
+    /**
+     * Getting a String value
+     *
+     * @param request - request
+     * @param name    - field name
+     * @return field value
+     */
+    public static Long getLong(HttpServletRequest request, String name) {
+        String value = request.getParameter(name);
+        return Long.parseLong(value);
+    }
+
+    public static Double getDouble(HttpServletRequest request, String name) {
+        String value = request.getParameter(name);
+        return Double.parseDouble(value);
+    }
 
     /**
      * Remove from the session attribute "Message"

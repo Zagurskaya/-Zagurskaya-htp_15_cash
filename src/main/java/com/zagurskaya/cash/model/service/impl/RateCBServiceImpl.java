@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +118,21 @@ public class RateCBServiceImpl implements RateCBService {
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Database exception during fiend all rateCB", e);
             throw new ServiceException("Database exception during fiend all rateCB", e);
+        } finally {
+            transaction.endSingleQuery();
+        }
+    }
+
+    @Override
+    public Double rateCBToday(Timestamp now, Long coming, Long spending) throws ServiceException {
+        RateCBDao rateCBDao = new RateCBDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleQuery(rateCBDao);
+        try {
+            return rateCBDao.rateCBToday(now, coming, spending);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Database exception during fiend rate CB Today", e);
+            throw new ServiceException("Database exception during fiend rate CB Today", e);
         } finally {
             transaction.endSingleQuery();
         }

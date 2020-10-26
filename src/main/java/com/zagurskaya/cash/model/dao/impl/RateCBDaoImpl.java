@@ -24,6 +24,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
 
     private static final String SQL_SELECT_ALL_RATECBS = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB`  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_RATECB_BY_ID = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB` WHERE id= ? ";
+    private static final String SQL_SELECT_RATECB_TODAY = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB` WHERE timestamp<=? AND coming=? AND spending=?";
     private static final String SQL_INSERT_RATECB = "INSERT INTO rateCB(coming, spending, timestamp, sum, isBack) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_RATECB = "UPDATE rateCB SET coming=?, spending = ?, timestamp = ?, sum = ?, isBack = ? WHERE id= ?";
     private static final String SQL_DELETE_RATECB = "DELETE FROM rateCB WHERE id=?";
@@ -176,7 +177,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
     public Double rateCBToday(Timestamp now, Long coming, Long spending) throws DaoException {
         List<RateCB> rateCBList = new ArrayList<>();
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_RATECBS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_RATECB_TODAY)) {
                 preparedStatement.setString(1, now.toString());
                 preparedStatement.setLong(2, coming);
                 preparedStatement.setLong(3, spending);
@@ -201,6 +202,6 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
             logger.log(Level.ERROR, "Database exception during fiend rate CB Today", e);
             throw new DaoException("Database exception during fiend rate CB Today", e);
         }
-        return rateCBList.get(rateCBList.size()-1).getSum();
+        return rateCBList.get(rateCBList.size() - 1).getSum();
     }
 }

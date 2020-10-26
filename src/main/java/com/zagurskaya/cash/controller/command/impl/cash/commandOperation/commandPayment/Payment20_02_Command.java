@@ -72,7 +72,7 @@ public class Payment20_02_Command implements Command {
 //                SprEntriesDao sprEntriesDao = new SprEntriesDao();
 //                List<SprEntries> sprEntries20= sprEntriesDao.getAll("WHERE `sprOperationsId`=" + sprOperationsId + " AND `currencyId`=" + ids[i]);
 //
-//                kassaDao.updateKassaInSideOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
+//                kassaDao.updateKassaInnerOperation(Date.valueOf(todaySQL), duties.get(0).getId(), ids[i], sums[i], sprOperationsId);
 //
 //                double rateCBPaymentEntry = ids[i]!=933? rateCBPaymentSession:1;
 //

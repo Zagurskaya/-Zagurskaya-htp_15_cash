@@ -20,15 +20,20 @@ public class AttributeName {
     public static final String ROLE = "role";
     public static final String USER = "user";
     public static final String USERS = "users";
+    public static final String CURRENCY_ID = "currencyId";
+    public static final String CURRENCY_SUM = "currencySum";
     public static final String CURRENCIES = "currencies";
     public static final String RATE_NB = "rateNB";
     public static final String RATE_CB = "rateCB";
+    public static final String RATE_CB_PAYMENT = "rateCBPayment";
+    public static final String SUM_RATE_CURRENCY_ID = "sumRateCurrencyId";
     public static final String DUTIES = "duties";
     public static final String BALANCE ="balanceList";
     public static final String SUM ="sum";
     public static final String SPR_OPERATIONS = "sprOperations";
     public static final String SPR_OPERATION = "sprOperation";
     public static final String USER_OPERATIONS = "userOperations";
+    public static final String SPECIFICATION = "specification";
 
     public static final String DUTIES_MESSAGE = "messageDuties";
 
