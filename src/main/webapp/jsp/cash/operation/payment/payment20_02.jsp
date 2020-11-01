@@ -5,7 +5,7 @@
 <div class="container">
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
-    <H4>Покупка валюты</H4>
+    <H4><fmt:message key="page.payment20.title"/></H4>
     <form class="form-horizontal" actionType="do?command=Payment20_02" method="post">
         <fieldset>
             <br>

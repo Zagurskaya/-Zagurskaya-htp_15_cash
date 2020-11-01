@@ -23,7 +23,12 @@
         <tbody>
         <c:forEach items="${balanceList}" var="balance">
             <tr>
-                <td><c:out value="${balance.currencyId}"/></td>
+                <td>
+                    <c:forEach items="${currencies}" var="currency">
+                        <c:if test="${balance.currencyId==currency.id && (cookie.local.value==null || cookie.local.value=='ru')}">${currency.nameRU} </c:if>
+                        <c:if test="${balance.currencyId==currency.id && cookie.local.value=='en'}">${currency.nameEN} </c:if>
+                    </c:forEach>
+                </td>
                 <td><c:out value="${balance.received}"/></td>
                 <td><c:out value="${balance.coming}"/></td>
                 <td><c:out value="${balance.spending}"/></td>

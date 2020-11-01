@@ -6,11 +6,14 @@ import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.CurrencyService;
 import com.zagurskaya.cash.model.service.DutiesService;
+import com.zagurskaya.cash.model.service.PaymentService;
 import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
+import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
 import com.zagurskaya.cash.controller.util.DataValidation;
 import org.apache.logging.log4j.Level;
@@ -21,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The action is "Payment 1100".
@@ -30,6 +34,7 @@ public class Payment1100_Command implements Command {
     private static final Logger logger = LogManager.getLogger(Payment1100_Command.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
+    private final PaymentService paymentService = new PaymentServiceImpl();
 
     /**
      * Constructor
@@ -46,7 +51,7 @@ public class Payment1100_Command implements Command {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 //        User user = Util.findUser(req);
 //        LocalDate date = LocalDate.now();
 //        Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -116,7 +121,15 @@ public class Payment1100_Command implements Command {
                 return ActionType.DUTIES;
             }
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
+                Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
+                String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
 
+                if (values.isEmpty()) {
+                    return ActionType.PAYMENT;
+                }
+                paymentService.implementPayment1100(values, specification, user);
+                //todo change to check
+                return ActionType.PAYMENT;
             }
 
             List<Currency> currencies = currencyService.findAll();

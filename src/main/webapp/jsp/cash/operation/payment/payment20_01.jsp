@@ -36,7 +36,7 @@
             </div>
             <br>
             <br>
-            <p>Описание:</p>
+            <p><fmt:message key="page.payment20.label.description"/></p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
                        required="" value="продажа валюты в личное пользование">

@@ -4,12 +4,15 @@ import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
+import com.zagurskaya.cash.model.service.CurrencyService;
 import com.zagurskaya.cash.model.service.DutiesService;
 import com.zagurskaya.cash.model.service.KassaService;
+import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
 import com.zagurskaya.cash.model.service.impl.KassaServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
@@ -29,6 +32,7 @@ public class BalanceCommand implements Command {
     private String directoryPath;
     private static final Logger logger = LogManager.getLogger(BalanceCommand.class);
     private final DutiesService dutiesService = new DutiesServiceImpl();
+    private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final KassaService kassaService = new KassaServiceImpl();
 
     /**
@@ -59,6 +63,8 @@ public class BalanceCommand implements Command {
             }
             List<Kassa> balanceList = kassaService.getBalance(user, duties);
             request.setAttribute(AttributeName.BALANCE, balanceList);
+            List<Currency> currencies = currencyService.findAll();
+            request.setAttribute(AttributeName.CURRENCIES, currencies);
             return ActionType.BALANCE;
 
         } catch (ServiceException | NumberFormatException e) {

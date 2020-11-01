@@ -145,7 +145,71 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException {
+        Long sprOperationId = 1100L;
+        DutiesService dutiesService = new DutiesServiceImpl();
+        KassaService kassaService = new KassaServiceImpl();
+        KassaDao kassaDao = new KassaDaoImpl();
+        UserOperationDao userOperationDao = new UserOperationDaoImpl();
+        UserEntryDao userEntryDao = new UserEntryDaoImpl();
+        SprEntryDao sprEntryDao = new SprEntryDaoImpl();
+        RateNBDao rateNBDao = new RateNBDaoImpl();
+        RateCBDao rateCBDao = new RateCBDaoImpl();
 
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDate date = LocalDate.now();
+        String today = DataUtil.getFormattedLocalDateStartDateTime(date);
+        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
+
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
+        try {
+            Long firstKey = (Long) map.keySet().toArray()[0];
+            Double valueForFirstKey = map.get(firstKey);
+            Duties duties = dutiesService.openDutiesUserToday(user, today);
+            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, 933L);
+            UserOperation userOperation = new UserOperation.Builder()
+                    .addTimestamp(now)
+                    .addRate(rateCBPayment)
+                    .addSum(valueForFirstKey)
+                    .addCurrencyId(firstKey)
+                    .addUserId(user.getId())
+                    .addDutiesId(duties.getId())
+                    .addOperationId(sprOperationId)
+                    .addSpecification(specification)
+                    .build();
+            Long userOperationId = userOperationDao.create(userOperation);
+            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+                Long currency = entry.getKey();
+                Double sum = entry.getValue();
+                List<SprEntry> sprEntries1100 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
+                kassaService.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                for (SprEntry entryElement : sprEntries1100) {
+                    UserEntry userEntry1000 = new UserEntry
+                            .Builder()
+                            .addUserOperationId(userOperationId)
+                            .addSprEntryId(entryElement.getId())
+                            .addCurrencyId(currency)
+                            .addAccountDebit(entryElement.getAccountDebit())
+                            .addAccountCredit(entryElement.getAccountCredit())
+                            .addSum(sum)
+                            .addIsSpending(entryElement.getIsSpending())
+                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .build();
+                    userEntryDao.create(userEntry1000);
+                }
+            }
+            transaction.commit();
+        } catch (DaoConstraintViolationException e) {
+            transaction.rollback();
+            logger.log(Level.ERROR, "Duplicate data duties ", e);
+            throw new ServiceException("100 Duplicate data duties ", e);
+        } catch (DaoException e) {
+            transaction.rollback();
+            logger.log(Level.ERROR, "Database exception during implement Payment1100", e);
+            throw new ServiceException("Database exception during implement Payment1100", e);
+        } finally {
+            transaction.end();
+        }
     }
 
     @Override
