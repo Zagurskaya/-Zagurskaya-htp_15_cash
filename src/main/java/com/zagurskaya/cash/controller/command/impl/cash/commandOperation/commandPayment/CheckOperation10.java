@@ -7,7 +7,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.zagurskaya.cash.controller.command.PDFDocument;
-import com.zagurskaya.cash.controller.util.RegexPattern;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
@@ -18,7 +17,6 @@ import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 
@@ -36,44 +34,39 @@ public class CheckOperation10 implements PDFDocument {
 
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(file));
             Document doc = new Document(pdfDoc);
+            String str1 = "    OAO TestBank \n";
+            String str2 = "    Registration Number N KKS 123456789\n";
+            String str3 = "    CASHIER'S CHECK N " + userOperation.getId() + "\n";
+            String str4 = "    date " + userOperation.getTimestamp() + "\n";
+            String str5 = "    Exchange rate           " + userOperation.getRate() + "\n";
+            String str6 = "    Buying  foreign cash for cash Bel. rubles \n";
+            String total = str1 + str2 + str3 + str4 + str5 + str6;
+            doc.add(new Paragraph(new Text(total)));
 
-
-//            Text text1 = new Text("Tutorials Point originated from the idea that there exists.");
-//            Text text2 = new Text("The journey commenced with a single tutorial on HTML in 2006");
-//
-//            Paragraph para1 = new Paragraph(text1);
-//            Paragraph para2 = new Paragraph(text2);
-//
-//            doc.add(para1);
-//            doc.add(para2);
-
-            doc.add(new Paragraph(new Text("    OAO TestBank ")));
-            doc.add(new Paragraph(new Text("    Registration Number N KKS 123456789")));
-            doc.add(new Paragraph(new Text("    CASHIER'S CHECK N " + userOperation.getId())));
-            doc.add(new Paragraph(new Text("    date " + userOperation.getTimestamp())));
-            doc.add(new Paragraph(new Text("    Exchange rate           " + userOperation.getRate())));
+            String str_separator = "    +--------------------------------------------------+\n";
+            String str7 = "";
+            String str8 = "";
+            String str9 = "";
+            String str10 = "";
             for (UserEntry userEntry : userEntriesList) {
                 if (userEntry.getCurrencyId() != 933) {
-                    doc.add(new Paragraph(new Text("    +--------------------------------------------------+")));
-                    doc.add(new Paragraph(new Text("    |Submitted by the Client                           |")));
-                    doc.add(new Paragraph(new Text("    +--------------------------------------------------+")));
+                    str7 = "    |Submitted by the Client                         |\n";
                     for (Currency currency : currencies) {
                         if (userEntry.getCurrencyId().equals(currency.getId())) {
-                            doc.add(new Paragraph(new Text("    |" + currency.getNameEN() + " in total" + userEntry.getSum() + "        |")));
+                            str8 = "    |" + currency.getNameEN() + "    in total    " + userEntry.getSum() + "        |\n";
                         }
                     }
                 } else {
-                    doc.add(new Paragraph(new Text("    +--------------------------------------------------+")));
-                    doc.add(new Paragraph(new Text("    |To be issued to the Client                        |")));
-                    doc.add(new Paragraph(new Text("    +--------------------------------------------------+")));
+                    str9 = "    |To be issued to the Client                     |\n";
                     for (Currency currency : currencies) {
                         if (userEntry.getCurrencyId().equals(currency.getId())) {
-                            doc.add(new Paragraph(new Text("    |" + currency.getNameEN() + " in total" + userEntry.getSum() + "        |")));
+                            str10 = "    |" + currency.getNameEN() + "    in total    " + userEntry.getSum() + "        |\n";
                         }
                     }
-                    doc.add(new Paragraph(new Text("    +--------------------------------------------------+")));
                 }
             }
+            String total2 = str_separator + str7 + str_separator + str8 + str_separator + str9 + str_separator + str10 + str_separator;
+            doc.add(new Paragraph(new Text(total2)));
             doc.close();
         } catch (ServiceException | IOException e) {
             e.printStackTrace();
