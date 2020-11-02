@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Duplicate data user ", e);
             throw new CommandException("Duplicate data user ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create user ", e);
-            throw new ServiceException("Database exception during create user ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn user ", e);
+            throw new ServiceException("Database exception during createCheckEn user ", e);
         } finally {
             transaction.endSingleQuery();
         }
@@ -127,8 +127,8 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Duplicate data user ", e);
             throw new CommandException("Duplicate data user ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create user ", e);
-            throw new ServiceException("Database exception during create user ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn user ", e);
+            throw new ServiceException("Database exception during createCheckEn user ", e);
         } finally {
             transaction.endSingleQuery();
         }

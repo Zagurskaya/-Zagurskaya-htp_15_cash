@@ -104,8 +104,8 @@ public class SprOperationDaoImpl extends AbstractDao implements SprOperationDao 
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data sprOperation", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create sprOperation", e);
-            throw new DaoException("Database exception during create sprOperation", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn sprOperation", e);
+            throw new DaoException("Database exception during createCheckEn sprOperation", e);
         }
         return 0L;
     }

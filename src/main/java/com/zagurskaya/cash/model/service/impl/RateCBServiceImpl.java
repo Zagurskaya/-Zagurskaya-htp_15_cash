@@ -49,8 +49,8 @@ public class RateCBServiceImpl implements RateCBService {
             logger.log(Level.ERROR, "Duplicate data rateCB ", e);
             throw new CommandException("Duplicate data rateCB ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create rateCB ", e);
-            throw new ServiceException("Database exception during create rateCB ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn rateCB ", e);
+            throw new ServiceException("Database exception during createCheckEn rateCB ", e);
         } finally {
             transaction.endSingleQuery();
         }

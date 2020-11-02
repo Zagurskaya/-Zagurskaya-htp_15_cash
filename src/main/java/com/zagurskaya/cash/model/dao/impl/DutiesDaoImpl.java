@@ -112,8 +112,8 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data duties", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create duties", e);
-            throw new DaoException("Database exception during create duties", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn duties", e);
+            throw new DaoException("Database exception during createCheckEn duties", e);
         }
         return 0L;
     }

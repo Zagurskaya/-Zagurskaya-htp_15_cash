@@ -125,8 +125,8 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data sprEntry", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create sprEntry", e);
-            throw new DaoException("Database exception during create sprEntry", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn sprEntry", e);
+            throw new DaoException("Database exception during createCheckEn sprEntry", e);
         }
         return 0L;
     }

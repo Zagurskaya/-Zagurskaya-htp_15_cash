@@ -61,8 +61,8 @@ public class KassaServiceImpl implements KassaService {
             logger.log(Level.ERROR, "Duplicate data kassa ", e);
             throw new CommandException("Duplicate data kassa ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create kassa ", e);
-            throw new ServiceException("Database exception during create kassa ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn kassa ", e);
+            throw new ServiceException("Database exception during createCheckEn kassa ", e);
         } finally {
             transaction.endSingleQuery();
         }

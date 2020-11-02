@@ -213,7 +213,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
+    public Long implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
         Long sprOperationId = 10L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -267,6 +267,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
+            return userOperationId;
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
@@ -450,5 +451,33 @@ public class PaymentServiceImpl implements PaymentService {
             transaction.endSingleQuery();
         }
     }
+
+    @Override
+    public UserOperation findUserOperationById(Long id) throws ServiceException {
+        UserOperationDao userOperationDao = new UserOperationDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleQuery(userOperationDao);
+        try {
+            return userOperationDao.findById(id);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Database exception during find UserOperation By Id", e);
+            throw new ServiceException("Database exception during find UserOperation By Id", e);
+        } finally {
+            transaction.endSingleQuery();
+        }    }
+
+    @Override
+    public List<UserEntry> findAllUserEntriesByOperationId(Long id) throws ServiceException {
+        UserEntryDao userEntryDao = new UserEntryDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleQuery(userEntryDao);
+        try {
+            return userEntryDao.findUserEntriesByOperationId(id);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all UserEntry by operation id", e);
+            throw new ServiceException("Database exception during fiend all  UserEntry by operation id", e);
+        } finally {
+            transaction.endSingleQuery();
+        }    }
 
 }

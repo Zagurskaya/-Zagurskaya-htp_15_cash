@@ -24,6 +24,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
     private static final String SQL_SELECT_ALL_USER_ENTRY_PAGE = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry`  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_USER_ENTRY = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` ";
     private static final String SQL_SELECT_USER_ENTRY_BY_ID = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` WHERE id= ? ";
+    private static final String SQL_SELECT_USER_ENTRY_BY_OPERATION_ID = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` WHERE userOperationId = ? ";
     private static final String SQL_INSERT_USER_ENTRY = "INSERT INTO userEntry(userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_USER_ENTRY = "UPDATE userEntry SET userOperationId=?, sprEntryId = ?, currencyId = ?, accountDebit = ?, accountCredit = ?, sum = ?, isSpending = ?, rate = ? WHERE id= ?";
     private static final String SQL_DELETE_USER_ENTRY = "DELETE FROM userEntry WHERE id=?";
@@ -128,8 +129,8 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data userEntry", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create userEntry", e);
-            throw new DaoException("Database exception during create userEntry", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn userEntry", e);
+            throw new DaoException("Database exception during createCheckEn userEntry", e);
         }
         return 0L;
     }
@@ -223,6 +224,43 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userEntry", e);
             throw new DaoException("Database exception during fiend all userEntry", e);
+        }
+        return sprEntries;
+    }
+
+    @Override
+    public List<UserEntry> findUserEntriesByOperationId(Long operationId) throws DaoException {
+        List<UserEntry> sprEntries = new ArrayList<>();
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_USER_ENTRY_BY_OPERATION_ID)) {
+                preparedStatement.setLong(1, operationId);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.USER_ENTRY_ID);
+                    Long sprEntryId = resultSet.getLong(ColumnName.USER_ENTRY_SPR_ENTRY_ID);
+                    Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
+                    String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
+                    String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
+                    Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
+                    boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
+                    Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
+                    UserEntry userEntry = new UserEntry.Builder()
+                            .addId(id)
+                            .addUserOperationId(operationId)
+                            .addSprEntryId(sprEntryId)
+                            .addCurrencyId(currencyId)
+                            .addAccountDebit(accountDebit)
+                            .addAccountCredit(accountCredit)
+                            .addSum(sum)
+                            .addIsSpending(isSpending)
+                            .addRate(rate)
+                            .build();
+                    sprEntries.add(userEntry);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all userEntry By OperationId", e);
+            throw new DaoException("Database exception during fiend all userEntry By OperationId", e);
         }
         return sprEntries;
     }

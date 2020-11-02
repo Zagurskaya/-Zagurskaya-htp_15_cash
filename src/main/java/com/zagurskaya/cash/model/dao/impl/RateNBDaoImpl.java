@@ -104,8 +104,8 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data rateNB", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create rateNB", e);
-            throw new DaoException("Database exception during create rateNB", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn rateNB", e);
+            throw new DaoException("Database exception during createCheckEn rateNB", e);
         }
         return 0L;
     }

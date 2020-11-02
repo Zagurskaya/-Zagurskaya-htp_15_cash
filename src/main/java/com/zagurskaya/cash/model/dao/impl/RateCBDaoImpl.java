@@ -114,8 +114,8 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data rateCB", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create rateCB", e);
-            throw new DaoException("Database exception during create rateCB", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn rateCB", e);
+            throw new DaoException("Database exception during createCheckEn rateCB", e);
         }
         return 0L;
     }

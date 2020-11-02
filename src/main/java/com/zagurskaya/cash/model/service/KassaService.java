@@ -20,7 +20,7 @@ public interface KassaService extends Service<Kassa> {
      * @param currencyId     - currency code
      * @param sum            - sum
      * @param sprOperationId - operation code
-     * @return true on successful create
+     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      */
     boolean updateKassaOuterOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
@@ -32,7 +32,7 @@ public interface KassaService extends Service<Kassa> {
      * @param currencyId     - currency code
      * @param sum            - sum
      * @param sprOperationId - operation code
-     * @return true on successful create
+     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      */
     boolean updateKassaInnerOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
@@ -42,7 +42,7 @@ public interface KassaService extends Service<Kassa> {
      *
      * @param user   - user
      * @param duties - user duties
-     * @return true on successful create
+     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      */
     List<Kassa> getBalance(User user, Duties duties) throws ServiceException;

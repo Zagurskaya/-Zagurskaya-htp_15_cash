@@ -48,8 +48,8 @@ public class CurrencyServiceImpl implements CurrencyService {
             logger.log(Level.ERROR, "Duplicate data currency ", e);
             throw new CommandException("Duplicate data currency ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create currency ", e);
-            throw new ServiceException("Database exception during create currency ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn currency ", e);
+            throw new ServiceException("Database exception during createCheckEn currency ", e);
         } finally {
             transaction.endSingleQuery();
         }

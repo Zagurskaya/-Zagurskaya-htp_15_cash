@@ -106,8 +106,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data user", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create user", e);
-            throw new DaoException("Database exception during create user", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn user", e);
+            throw new DaoException("Database exception during createCheckEn user", e);
         }
         return 0L;
     }
@@ -132,8 +132,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data user", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create user", e);
-            throw new DaoException("Database exception during create user", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn user", e);
+            throw new DaoException("Database exception during createCheckEn user", e);
         }
         return 0L;
     }

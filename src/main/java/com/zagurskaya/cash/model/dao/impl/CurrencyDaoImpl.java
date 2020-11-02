@@ -104,8 +104,8 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data currency", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create currency", e);
-            throw new DaoException("Database exception during create currency", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn currency", e);
+            throw new DaoException("Database exception during createCheckEn currency", e);
         }
         return 0L;
     }

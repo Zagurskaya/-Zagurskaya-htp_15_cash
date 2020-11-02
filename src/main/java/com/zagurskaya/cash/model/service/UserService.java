@@ -28,7 +28,7 @@ public interface UserService extends Service<User> {
      * Create user with password
      *
      * @param user - user
-     * @return true on successful create
+     * @return true on successful createCheckEn
      */
     boolean create(User user, String password) throws ServiceException, CommandException;
 }

@@ -19,7 +19,7 @@ public class RegexPattern {
     /**
      * Encoding
      */
-    static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
+    public static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
 
     private RegexPattern() {
     }

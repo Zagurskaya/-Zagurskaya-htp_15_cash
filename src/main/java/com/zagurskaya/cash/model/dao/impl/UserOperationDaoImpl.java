@@ -32,6 +32,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation ";
     private static final String SQL_SELECT_USER_OPERATION_BY_ID =
             "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE id= ? ";
+    private static final String SQL_SELECT_USER_OPERATION_BY_OPERATION_ID =
+            "SELECT id, timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName FROM userOperation WHERE operationId = ? ";
     private static final String SQL_INSERT_USER_OPERATION =
             "INSERT INTO userOperation(timestamp, rate, sum, currencyId, userId, dutiesId, operationId, specification, checkingAccount, fullName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_USER_OPERATION =
@@ -149,8 +151,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data userOperation", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create userOperation", e);
-            throw new DaoException("Database exception during create userOperation", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn userOperation", e);
+            throw new DaoException("Database exception during createCheckEn userOperation", e);
         }
         return 0L;
     }

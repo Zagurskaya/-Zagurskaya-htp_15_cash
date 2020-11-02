@@ -48,8 +48,8 @@ public class RateNBServiceImpl implements RateNBService {
             logger.log(Level.ERROR, "Duplicate data rateNB ", e);
             throw new CommandException("Duplicate data rateNB ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create rateNB ", e);
-            throw new ServiceException("Database exception during create rateNB ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn rateNB ", e);
+            throw new ServiceException("Database exception during createCheckEn rateNB ", e);
         } finally {
             transaction.endSingleQuery();
         }

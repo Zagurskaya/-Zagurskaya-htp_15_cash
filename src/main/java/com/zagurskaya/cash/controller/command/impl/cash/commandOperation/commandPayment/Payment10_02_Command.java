@@ -3,6 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.command.PDFDocument;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.controller.util.DataValidation;
 import com.zagurskaya.cash.entity.Currency;
@@ -83,8 +84,11 @@ public class Payment10_02_Command implements Command {
                 if (values.isEmpty()) {
                     return ActionType.PAYMENT;
                 }
-                paymentService.implementPayment10(values, rateCBPaymentSession, specification, user);
+                Long operationId = paymentService.implementPayment10(values, rateCBPaymentSession, specification, user);
                 //todo change to check
+                PDFDocument document = new CheckOperation10();
+                document.createCheckEn(operationId);
+
                 return ActionType.PAYMENT;
             }
 

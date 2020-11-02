@@ -20,7 +20,7 @@ public interface Service<T> {
      * Create Object
      *
      * @param t - Object
-     * @return true on successful create
+     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      * @throws CommandException volition error
      */

@@ -135,8 +135,8 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         } catch (SQLIntegrityConstraintViolationException e) {
             throw new DaoConstraintViolationException("Duplicate data kassa", e);
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "Database exception during create kassa", e);
-            throw new DaoException("Database exception during create kassa", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn kassa", e);
+            throw new DaoException("Database exception during createCheckEn kassa", e);
         }
         return 0L;
     }

@@ -13,4 +13,13 @@ public interface UserEntryDao extends Dao<UserEntry> {
      * @throws DaoException database access error or other errors
      */
     List<UserEntry> findAll() throws DaoException;
+
+    /**
+     * Get success list entries by operation Id
+     *
+     * @param id - operation id
+     * @return list user operation
+     * @throws DaoException database access error or other errors
+     */
+    List<UserEntry> findUserEntriesByOperationId(Long id) throws DaoException;
 }

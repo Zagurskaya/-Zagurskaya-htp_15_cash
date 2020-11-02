@@ -3,6 +3,7 @@ package com.zagurskaya.cash.model.service;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprOperation;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
@@ -76,9 +77,10 @@ public interface PaymentService {
      * @param rate          - operation rate
      * @param specification - specification by operation
      * @param user          - user
+     * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+    Long implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment selling currency
@@ -94,13 +96,30 @@ public interface PaymentService {
     /**
      * Implement payment communal payment
      *
-     * @param map           - code and values by each currency
-     * @param specification - specification by operation
+     * @param map             - code and values by each currency
+     * @param specification   - specification by operation
      * @param checkingAccount - client checking account
-     * @param fullName - full name client
-     * @param user          - user
+     * @param fullName        - full name client
+     * @param user            - user
      * @throws ServiceException error during execution of logical blocks and actions
      */
     void implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
 
+    /**
+     * Get success of the operation by Id
+     *
+     * @param id - operation id
+     * @return user operation
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    UserOperation findUserOperationById(Long id) throws ServiceException;
+
+    /**
+     * Get success list entries by operation Id
+     *
+     * @param id - operation id
+     * @return list user operation
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    List<UserEntry> findAllUserEntriesByOperationId(Long id) throws ServiceException;
 }

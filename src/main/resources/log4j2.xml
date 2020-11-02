@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
     <Properties>
-        <Property name="log_dir">d:\Java\Epam\htp_15_cash\</Property>
+        <Property name="log_dir">d:\Java\Epam\htp_15_cash\log\</Property>
     </Properties>
 <Appenders>
     <Console name="Console" target="SYSTEM_OUT">

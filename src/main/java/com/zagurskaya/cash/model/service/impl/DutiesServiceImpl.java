@@ -57,8 +57,8 @@ public class DutiesServiceImpl implements DutiesService {
             logger.log(Level.ERROR, "Duplicate data duties ", e);
             throw new CommandException("100 Duplicate data duties ", e);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Database exception during create duties ", e);
-            throw new ServiceException("Database exception during create duties ", e);
+            logger.log(Level.ERROR, "Database exception during createCheckEn duties ", e);
+            throw new ServiceException("Database exception during createCheckEn duties ", e);
         } finally {
             transaction.endSingleQuery();
         }
