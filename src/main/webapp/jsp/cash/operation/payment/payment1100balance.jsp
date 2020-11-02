@@ -5,52 +5,60 @@
 <div class="container">
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
-    <H4>Инкассация</H4>
+    <H4><fmt:message key="page.payment1100.title"/></H4>
     <form class="form-horizontal" actionType="do?command=Payment1100Balance" method="post">
         <fieldset>
-        <div class="row">
-            <div class=col-md-2>Код валюты</div>
-            <div class=col-md-3>Наименование валюты</div>
-            <div class=col-md-2>Сумма</div>
-        </div>
-        <c:forEach items="${currencies}" var="currencies">
-            <c:forEach items="${balanceList}" var="balance">
-            <c:if test="${balance.currencyId==currencies.id}" >
-                <div class="row">
-                    <div class="col-md-2">
-                        <input id="id" name="id" type="text" placeholder="" class="form-control input-md"
-                               required="" value="${currencies.id}">
-                    </div>
-
-                    <div class="col-md-3">
-                        <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
-                               required="" value="${currencies.name}">
-                    </div>
-
-                    <div class="col-md-2">
-                        <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                               required="" value="${balance.balance}">
-                    </div>
-
-                </div>
-            </c:if>
-            </c:forEach>
-        </c:forEach>
-        <br>
-            <p>Описание:</p>
-        <div class="col-md-7">
-            <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                   required="" value="сдано денежных средств по расходному кассовому ордеру">
-        </div>
-        <br>
-        <br>
-        <div class="form-group">
-            <div class="col-md-8">
-                <button id="enter" name="enter" class="btn btn-primary">Провести</button>
+            <div class="row">
+                <div class=col-md-2><fmt:message key="page.payment1100.label.cod"/></div>
+                <div class=col-md-3><fmt:message key="page.payment1100.label.name"/></div>
+                <div class=col-md-2><fmt:message key="page.payment1100.label.sum"/></div>
             </div>
-        </div>
+            <c:forEach items="${currencies}" var="currency">
+                <c:forEach items="${balanceList}" var="balance">
+                    <c:if test="${balance.currencyId==currency.id}">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input id="id" name="id" type="text" placeholder="" class="form-control input-md"
+                                       required="" value="${currency.id}">
+                            </div>
+
+                            <div class="col-md-3">
+                                <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
+                                       required=""
+                                <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">
+                                       value="${currency.nameRU}"
+                                </c:if>
+                                <c:if test="${cookie.local.value=='en'}">
+                                       value="${currency.nameEN}"
+                                </c:if>
+                                >
+                            </div>
+
+                            <div class="col-md-2">
+                                <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
+                                       required="" value="${balance.balance}">
+                            </div>
+
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </c:forEach>
+            <br>
+            <p><fmt:message key="page.payment1100.label.description"/></p>
+            <div class="col-md-7">
+                <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
+                       required="" value="сдано денежных средств по расходному кассовому ордеру">
+            </div>
+            <br>
+            <br>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <button id="enter" name="enter" class="btn btn-primary">
+                        <fmt:message key="page.payment1100.button.enter"/></button>
+                </div>
+            </div>
         </fieldset>
-     </form>
+    </form>
 </div>
 </body>
 </html>

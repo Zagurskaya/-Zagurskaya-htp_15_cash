@@ -20,6 +20,8 @@ public class DataValidation {
     private static final String DELETE = "delete";
     private static final String OPEN = "open";
     private static final String CLOSE = "close";
+    private static final String ENTER = "enter";
+    private static final String BALANCE = "balance";
 
     /**
      * Returns true if POST request.
@@ -90,6 +92,23 @@ public class DataValidation {
      */
     public static boolean isCloseOperation(HttpServletRequest request) {
         return request.getParameter(CLOSE) != null;
+    }
+   /**
+     * Returns true if the action is "continue operation".
+     *
+     * @param request - request
+     * @return boolean
+     */
+    public static boolean isСontinueOperation(HttpServletRequest request) {
+        return request.getParameter(ENTER) != null;
+    }   /**
+     * Returns true if the action is "get balance".
+     *
+     * @param request - request
+     * @return boolean
+     */
+    public static boolean isGetBalanceOperation(HttpServletRequest request) {
+        return request.getParameter(BALANCE) != null;
     }
 
     /**

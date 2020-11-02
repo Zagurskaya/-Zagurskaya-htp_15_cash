@@ -38,7 +38,7 @@ public interface KassaService extends Service<Kassa> {
     boolean updateKassaInnerOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
 
     /**
-     * Return ballance by user and duties
+     * Return balance by user and duties
      *
      * @param user   - user
      * @param duties - user duties

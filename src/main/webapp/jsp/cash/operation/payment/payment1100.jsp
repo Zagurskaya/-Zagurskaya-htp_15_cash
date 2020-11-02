@@ -34,7 +34,7 @@
 
                     <div class="col-md-2">
                         <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                               required="" value="">
+                               required="" value="500">
                     </div>
 
                 </div>
