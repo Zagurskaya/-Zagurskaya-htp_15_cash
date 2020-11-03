@@ -53,35 +53,6 @@ public class Payment20_01_Command implements Command {
 
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
-//        LocalDate date = LocalDate.now();
-//        Timestamp now = new Timestamp(System.currentTimeMillis());
-//
-//        CurrencyDao currencyDao = new CurrencyDao();
-//        List<Currency> currencies = currencyDao.getAll();
-//        req.setAttribute("currencies", currencies);
-//
-//        if (Form.isPost(req)) {
-//
-//            long currencyId = Form.getLong(req, "id");
-//            long currencySum = Form.getLong(req, "sum");
-//            String specification = Form.getString(req, "specification");
-//
-//            RateCBDao rateСBDao = new RateCBDao();
-//            double rateCBPayment = rateСBDao.rateCBToday(now, 933, currencyId);
-//            double sumRateCurrencyId = rateCBPayment * currencySum;
-//            HttpSession session = req.getSession(false);
-//            session.setAttribute("currencyId", currencyId);
-//            session.setAttribute("currencySum", currencySum);
-//            session.setAttribute("rateCBPayment", rateCBPayment);
-//            session.setAttribute("sumRateCurrencyId", sumRateCurrencyId);
-//            session.setAttribute("specification", specification);
-//
-//            Action.PAYMENT20_02.setPATH("/cash/operation/payment/");
-//            return Action.PAYMENT20_02;
-//        }
-//        Action.PAYMENT20_01.setPATH("/cash/operation/payment/");
-
-
         ControllerDataUtil.removeAttributeError(request);
         LocalDate date = LocalDate.now();
         Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -98,7 +69,7 @@ public class Payment20_01_Command implements Command {
                 if (currencyId == null || currencySum == null) {
                     return ActionType.PAYMENT20_01;
                 }
-                Double rateCBPayment = rateCBService.rateCBToday(now, 933L, currencyId);
+                Double rateCBPayment = rateCBService.rateCBToday(now, AttributeName.NС, currencyId);
                 Double sumRateCurrencyId = rateCBPayment * currencySum;
 
                 HttpSession session = request.getSession(false);
@@ -119,5 +90,5 @@ public class Payment20_01_Command implements Command {
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }
-      }
+    }
 }

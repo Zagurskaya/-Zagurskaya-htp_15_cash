@@ -56,9 +56,10 @@ public interface PaymentService {
      * @param map           - code and values by each currency
      * @param specification - specification by operation
      * @param user          - user
+     * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
+    Long implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment transmitting money
@@ -66,9 +67,10 @@ public interface PaymentService {
      * @param map           - code and values by each currency
      * @param specification - specification by operation
      * @param user          - user
+     * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException;
+    Long implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment buying currency
@@ -89,9 +91,10 @@ public interface PaymentService {
      * @param rate          - operation rate
      * @param specification - specification by operation
      * @param user          - user
+     * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+    Long implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment communal payment
@@ -101,9 +104,10 @@ public interface PaymentService {
      * @param checkingAccount - client checking account
      * @param fullName        - full name client
      * @param user            - user
+     * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    void implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
+    Long implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
 
     /**
      * Get success of the operation by Id

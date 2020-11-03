@@ -70,7 +70,7 @@ public class Payment10_01_Command implements Command {
                 if (currencyId == null || currencySum == null) {
                     return ActionType.PAYMENT10_01;
                 }
-                Double rateCBPayment = rateCBService.rateCBToday(now, currencyId, 933L);
+                Double rateCBPayment = rateCBService.rateCBToday(now, currencyId, AttributeName.NС);
                 Double sumRateCurrencyId = rateCBPayment * currencySum;
 
                 HttpSession session = request.getSession(false);

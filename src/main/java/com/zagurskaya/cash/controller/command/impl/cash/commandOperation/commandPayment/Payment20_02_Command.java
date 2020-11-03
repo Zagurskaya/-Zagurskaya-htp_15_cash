@@ -3,6 +3,8 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
+import com.zagurskaya.cash.controller.command.PDFDocument;
+import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.check.CheckOperation20;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.controller.util.DataValidation;
 import com.zagurskaya.cash.entity.Currency;
@@ -20,6 +22,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,6 +39,7 @@ public class Payment20_02_Command implements Command {
     private final DutiesService dutiesService = new DutiesServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
+    private static final int NUMBER_OPERATION = 20;
 
     /**
      * Constructor
@@ -82,8 +86,12 @@ public class Payment20_02_Command implements Command {
                 if (values.isEmpty()) {
                     return ActionType.PAYMENT;
                 }
-                paymentService.implementPayment20(values, rateCBPaymentSession, specification, user);
-                //todo change to check
+                Long operationId = paymentService.implementPayment20(values, rateCBPaymentSession, specification, user);
+                Cookie localeCookie = ControllerDataUtil.getCookie(request, AttributeName.LOCAL);
+                String locale = localeCookie != null && (!localeCookie.getValue().equals(AttributeName.LOCALE_RU)) ? AttributeName.LOCALE_EN : AttributeName.LOCALE_RU;
+                PDFDocument document = new CheckOperation20();
+                document.createCheck(operationId, NUMBER_OPERATION, locale);
+
                 return ActionType.PAYMENT;
             }
             return ActionType.PAYMENT20_02;

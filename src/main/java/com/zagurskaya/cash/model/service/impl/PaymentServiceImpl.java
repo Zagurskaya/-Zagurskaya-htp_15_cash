@@ -75,7 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException {
+    public Long implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException {
         Long sprOperationId = 1000L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -97,7 +97,7 @@ public class PaymentServiceImpl implements PaymentService {
             Long firstKey = (Long) map.keySet().toArray()[0];
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, 933L);
+            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
                     .addTimestamp(now)
                     .addRate(rateCBPayment)
@@ -130,6 +130,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
+            return userOperationId;
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
@@ -144,7 +145,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException {
+    public Long implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException {
         Long sprOperationId = 1100L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -166,7 +167,7 @@ public class PaymentServiceImpl implements PaymentService {
             Long firstKey = (Long) map.keySet().toArray()[0];
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, 933L);
+            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
                     .addTimestamp(now)
                     .addRate(rateCBPayment)
@@ -199,6 +200,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
+            return userOperationId;
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
@@ -282,7 +284,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
+    public Long implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
         Long sprOperationId = 20L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -336,6 +338,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
+            return userOperationId;
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
@@ -350,7 +353,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public void implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException {
+    public Long implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException {
         Long sprOperationId = 998L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -372,7 +375,7 @@ public class PaymentServiceImpl implements PaymentService {
             Long firstKey = (Long) map.keySet().toArray()[0];
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = firstKey != 933L ? rateCBDao.rateCBToday(now, firstKey, 933L) : 1;
+            double rateCBPayment = !AttributeName.NС.equals(firstKey) ? rateCBDao.rateCBToday(now, firstKey, AttributeName.NС) : 1;
             UserOperation userOperation = new UserOperation.Builder()
                     .addTimestamp(now)
                     .addRate(rateCBPayment)
@@ -405,6 +408,7 @@ public class PaymentServiceImpl implements PaymentService {
                 }
             }
             transaction.commit();
+            return userOperationId;
         } catch (DaoConstraintViolationException e) {
             transaction.rollback();
             logger.log(Level.ERROR, "Duplicate data duties ", e);
@@ -464,7 +468,8 @@ public class PaymentServiceImpl implements PaymentService {
             throw new ServiceException("Database exception during find UserOperation By Id", e);
         } finally {
             transaction.endSingleQuery();
-        }    }
+        }
+    }
 
     @Override
     public List<UserEntry> findAllUserEntriesByOperationId(Long id) throws ServiceException {
@@ -478,6 +483,7 @@ public class PaymentServiceImpl implements PaymentService {
             throw new ServiceException("Database exception during fiend all  UserEntry by operation id", e);
         } finally {
             transaction.endSingleQuery();
-        }    }
+        }
+    }
 
 }

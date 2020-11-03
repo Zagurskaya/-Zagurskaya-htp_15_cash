@@ -37,6 +37,7 @@ public class AttributeName {
     public static final String CHECKING_ACCOUNT = "checkingAccount";
     public static final String LOCALE_RU = "ru";
     public static final String LOCALE_EN = "en";
+    public static final Long NС = 933L;
 
     public static final String DUTIES_MESSAGE = "messageDuties";
 
