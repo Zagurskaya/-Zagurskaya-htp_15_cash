@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -64,6 +66,16 @@ public class DataUtil {
      */
     public static String getFormattedLocalDateOnlyDate(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    /**
+     * Format date :  yyyyddMMHHmmss
+     *
+     * @param dateTime - date and time
+     * @return string type date
+     */
+    public static String getFormattedTimestamp(Timestamp dateTime) {
+        return new SimpleDateFormat("yyyyddMMHHmmss").format(dateTime);
     }
 
     /**

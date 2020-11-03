@@ -35,6 +35,8 @@ public class AttributeName {
     public static final String USER_OPERATIONS = "userOperations";
     public static final String SPECIFICATION = "specification";
     public static final String CHECKING_ACCOUNT = "checkingAccount";
+    public static final String LOCALE_RU = "ru";
+    public static final String LOCALE_EN = "en";
 
     public static final String DUTIES_MESSAGE = "messageDuties";
 

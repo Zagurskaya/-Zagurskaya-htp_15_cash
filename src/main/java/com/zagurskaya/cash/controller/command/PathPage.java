@@ -12,6 +12,7 @@ public class PathPage {
     public static final String PATH_CASH_CURRENCY = "/jsp/cash/currency/";
     public static final String PATH_CASH_OPERATION = "/jsp/cash/operation/";
     public static final String PATH_CASH_PAYMENT = "/jsp/cash/operation/payment/";
+    public static final String PATH_CHECK = "d:\\Java\\Epam\\htp_15_cash\\check\\";
 
     private PathPage() {
     }
