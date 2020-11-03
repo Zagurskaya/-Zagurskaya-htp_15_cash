@@ -2,7 +2,6 @@ package com.zagurskaya.cash.util;
 
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.exception.CommandException;
-import com.zagurskaya.cash.exception.ServiceException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +39,6 @@ public class DataUtil {
      * @param req  - request
      * @param name - parameter name
      * @return long type value
-     * @throws CommandException validation error
      */
     public static Long getLong(HttpServletRequest req, String name) {
         String value = req.getParameter(name);
@@ -52,7 +50,6 @@ public class DataUtil {
      *
      * @param localDate - date
      * @return string type date
-     * @throws CommandException validation error
      */
     public static String getFormattedLocalDateStartDateTime(LocalDate localDate) {
         return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd 00:00:00.000"));
