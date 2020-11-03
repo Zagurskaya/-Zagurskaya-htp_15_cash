@@ -385,6 +385,8 @@ public class PaymentServiceImpl implements PaymentService {
                     .addDutiesId(duties.getId())
                     .addOperationId(sprOperationId)
                     .addSpecification(specification)
+                    .addCheckingAccount(checkingAccount)
+                    .addFullName(fullName)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
             for (Map.Entry<Long, Double> entry : map.entrySet()) {

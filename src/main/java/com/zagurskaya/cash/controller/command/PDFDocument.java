@@ -27,7 +27,7 @@ public abstract class PDFDocument {
         try {
             Timestamp now = new Timestamp(System.currentTimeMillis());
             String dateTime = DataUtil.getFormattedTimestamp(now);
-            File file = new File(PathPage.PATH_CHECK + dateTime + "check" + operationId + ".pdf");
+            File file = new File(PathPage.PATH_CHECK + dateTime + "check" + operationNumber + ".pdf");
             if (!file.exists()) {
                 file.createNewFile();
             }

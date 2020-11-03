@@ -79,6 +79,16 @@ public class DataUtil {
     }
 
     /**
+     * Format date :  yyyy.dd.MM HH:mm:ss
+     *
+     * @param dateTime - date and time
+     * @return string type date
+     */
+    public static String getFormattedCheck(Timestamp dateTime) {
+        return new SimpleDateFormat("yyyy.dd.MM HH:mm:ss").format(dateTime);
+    }
+
+    /**
      * Round sum
      *
      * @param sum - sum
