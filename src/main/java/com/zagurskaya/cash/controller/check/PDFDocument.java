@@ -1,10 +1,12 @@
-package com.zagurskaya.cash.controller.command;
+package com.zagurskaya.cash.controller.check;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.command.PathPage;
 import com.zagurskaya.cash.util.DataUtil;
 
 import java.io.File;

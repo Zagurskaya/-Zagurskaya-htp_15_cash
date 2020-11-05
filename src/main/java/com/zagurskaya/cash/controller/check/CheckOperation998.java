@@ -1,10 +1,9 @@
-package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.check;
+package com.zagurskaya.cash.controller.check;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
-import com.zagurskaya.cash.controller.command.PDFDocument;
 import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
 import com.zagurskaya.cash.exception.ServiceException;
