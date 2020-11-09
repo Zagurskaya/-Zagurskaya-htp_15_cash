@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
@@ -73,6 +74,16 @@ public class DataUtil {
      */
     public static String getFormattedTimestamp(Timestamp dateTime) {
         return new SimpleDateFormat("yyyyddMMHHmmss").format(dateTime);
+    }
+
+    /**
+     * Format date :  yyyyddMMHHmmss
+     *
+     * @param localDateTime - date and time
+     * @return string type date
+     */
+    public static String getFormattedLocalDateTime(LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyyddMMHHmmss"));
     }
 
     /**

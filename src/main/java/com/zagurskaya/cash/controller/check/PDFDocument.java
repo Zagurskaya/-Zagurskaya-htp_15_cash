@@ -8,16 +8,22 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.PathPage;
 import com.zagurskaya.cash.util.DataUtil;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * PDF document
  */
 public abstract class PDFDocument {
+    private static final Logger logger = LogManager.getLogger(PDFDocument.class);
+    private static final String FONT = "font/arial.ttf";
+
     /**
      * create operation check
      *
@@ -27,13 +33,13 @@ public abstract class PDFDocument {
     public void createCheck(Long operationId, int operationNumber, String locale) {
         Document document = new Document();
         try {
-            Timestamp now = new Timestamp(System.currentTimeMillis());
-            String dateTime = DataUtil.getFormattedTimestamp(now);
+            LocalDateTime now = LocalDateTime.now();
+            String dateTime = DataUtil.getFormattedLocalDateTime(now);
             File file = new File(PathPage.PATH_CHECK + dateTime + "check" + operationNumber + ".pdf");
             if (!file.exists()) {
                 file.createNewFile();
             }
-            BaseFont baseFont = BaseFont.createFont("c:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            BaseFont baseFont = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
             PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
             Font font = new Font(baseFont);
@@ -46,7 +52,7 @@ public abstract class PDFDocument {
             document.close();
             writer.close();
         } catch (DocumentException | IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e);
         }
     }
 
