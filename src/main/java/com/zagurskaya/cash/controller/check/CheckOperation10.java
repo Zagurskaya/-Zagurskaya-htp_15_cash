@@ -19,14 +19,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CheckOperation10 extends PDFDocument {
+public class CheckOperation10 implements PDFDocument {
     private static final Logger logger = LogManager.getLogger(CheckOperation10.class);
 
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
     private static final String SEPARATOR = "   +--------------------------------------------------+\n";
 
-    protected void createCheckEn(Long operationId, Document document, Font font) {
+    @Override
+    public void createCheckEn(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);
             List<UserEntry> userEntriesList = paymentService.findAllUserEntriesByOperationId(operationId);
@@ -68,7 +69,8 @@ public class CheckOperation10 extends PDFDocument {
         }
     }
 
-    protected void createCheckRu(Long operationId, Document document, Font font) {
+    @Override
+    public void createCheckRu(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);
             List<UserEntry> userEntriesList = paymentService.findAllUserEntriesByOperationId(operationId);

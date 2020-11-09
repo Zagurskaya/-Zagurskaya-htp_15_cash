@@ -16,10 +16,11 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class CheckOperation998 extends PDFDocument {
+public class CheckOperation998 implements PDFDocument {
     private static final Logger logger = LogManager.getLogger(CheckOperation998.class);
     private final PaymentService paymentService = new PaymentServiceImpl();
 
+    @Override
     public void createCheckEn(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);
@@ -61,6 +62,7 @@ public class CheckOperation998 extends PDFDocument {
         }
     }
 
+    @Override
     public void createCheckRu(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);

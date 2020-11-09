@@ -20,7 +20,7 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
+                            <input id="name" name="name" type="text" readonly placeholder="" class="form-control input-md"
                                    required=""
                             <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">
                                    value="${currency.nameRU}"
@@ -31,17 +31,17 @@
                         </div>
 
                         <div class="col-md-2">
-                            <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
+                            <input id="sum" name="sum" type="text" readonly placeholder="" class="form-control input-md"
                                    required="" value="${currencySum}">
                         </div>
 
                         <div class="col-md-2">
-                            <input id="rateCB" name="rateCB" type="text" placeholder="" class="form-control input-md"
+                            <input id="rateCB" name="rateCB" type="text" readonly placeholder="" class="form-control input-md"
                                    required="" value="${rateCBPayment}">
                         </div>
 
                         <div class="col-md-2">
-                            <input id="id" name="id" type="hidden" placeholder="" class="form-control input-md"
+                            <input id="id" name="id" type="hidden" readonly placeholder="" class="form-control input-md"
                                    required="" value="${currency.id}">
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
+                            <input id="name" name="name" type="text" readonly placeholder="" class="form-control input-md"
                                    required=""
                             <c:if test="${cookie.local.value==null || cookie.local.value=='ru'}">
                                    value="${currency.nameRU}"
@@ -68,12 +68,12 @@
                         </div>
 
                         <div class="col-md-2">
-                            <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
+                            <input id="sum" name="sum" type="text" readonly placeholder="" class="form-control input-md"
                                    required="" value="${sumRateCurrencyId}">
                         </div>
 
                         <div class="col-md-2">
-                            <input id="id" name="id" type="hidden" placeholder="" class="form-control input-md"
+                            <input id="id" name="id" type="hidden" readonly placeholder="" class="form-control input-md"
                                    required="" value="${currency.id}">
                         </div>
                     </div>

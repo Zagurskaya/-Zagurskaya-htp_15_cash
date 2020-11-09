@@ -6,7 +6,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.command.PathPage;
+import com.zagurskaya.cash.controller.util.DataProperty;
 import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -20,9 +20,9 @@ import java.time.LocalDateTime;
 /**
  * PDF document
  */
-public abstract class PDFDocument {
-    private static final Logger logger = LogManager.getLogger(PDFDocument.class);
-    private static final String FONT = "font/arial.ttf";
+public interface PDFDocument {
+    String FONT = "font/arial.ttf";
+    String CHECK_PATH = DataProperty.check_patch;
 
     /**
      * create operation check
@@ -30,12 +30,14 @@ public abstract class PDFDocument {
      * @param operationId - operation id
      * @param locale      -  locale
      */
-    public void createCheck(Long operationId, int operationNumber, String locale) {
+    default void createCheck(Long operationId, int operationNumber, String locale) {
+        final Logger logger = LogManager.getLogger(PDFDocument.class);
+
         Document document = new Document();
         try {
             LocalDateTime now = LocalDateTime.now();
             String dateTime = DataUtil.getFormattedLocalDateTime(now);
-            File file = new File(PathPage.PATH_CHECK + dateTime + "check" + operationNumber + ".pdf");
+            File file = new File(CHECK_PATH + dateTime + "check" + operationNumber + ".pdf");
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -56,9 +58,9 @@ public abstract class PDFDocument {
         }
     }
 
-    protected abstract void createCheckEn(Long operationId, Document document, Font font);
+    void createCheckEn(Long operationId, Document document, Font font);
 
-    protected abstract void createCheckRu(Long operationId, Document document, Font font);
+    void createCheckRu(Long operationId, Document document, Font font);
 
 
 }

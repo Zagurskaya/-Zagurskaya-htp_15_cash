@@ -19,12 +19,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-public class CheckOperation20 extends PDFDocument {
+public class CheckOperation20 implements PDFDocument {
     private static final Logger logger = LogManager.getLogger(CheckOperation20.class);
     private final CurrencyService currencyService = new CurrencyServiceImpl();
     private final PaymentService paymentService = new PaymentServiceImpl();
     private static final String SEPARATOR = "   +--------------------------------------------------+\n";
 
+    @Override
     public void createCheckEn(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);
@@ -68,6 +69,7 @@ public class CheckOperation20 extends PDFDocument {
         }
     }
 
+    @Override
     public void createCheckRu(Long operationId, Document document, Font font) {
         try {
             UserOperation userOperation = paymentService.findUserOperationById(operationId);
