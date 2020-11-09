@@ -62,5 +62,9 @@ public class ActionPermission {
         actionPermissionMap.put(ActionType.PAYMENT20_02.name(), RoleType.KASSIR);
         actionPermissionMap.put(ActionType.PAYMENT998.name(), RoleType.KASSIR);
 
+        actionPermissionMap.put(ActionType.CONTROLLER.name(), RoleType.CONTROLLER);
+        actionPermissionMap.put(ActionType.LOAD_RATE_NB.name(), RoleType.CONTROLLER);
+        actionPermissionMap.put(ActionType.LOAD_RATE_CB.name(), RoleType.CONTROLLER);
+        actionPermissionMap.put(ActionType.UNLOAD_ENTRIES.name(), RoleType.CONTROLLER);
     }
 }

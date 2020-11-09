@@ -24,6 +24,9 @@
                         <c:when test="${user.role.value=='kassir'}">
                             <a class="nav-item nav-link" href="do?command=Main"><fmt:message key="header.cash"/></a>
                         </c:when>
+                        <c:when test="${user.role.value=='controller'}">
+                            <a class="nav-item nav-link" href="do?command=Controller"><fmt:message key="header.controller"/></a>
+                        </c:when>
                     </c:choose>
                 </c:when>
                 <c:otherwise>

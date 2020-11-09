@@ -28,6 +28,10 @@ import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.command
 import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment20_02_Command;
 import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.Payment998_Command;
 import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.commandPayment.SelectPaymentCommand;
+import com.zagurskaya.cash.controller.command.impl.inspector.ControllerCommand;
+import com.zagurskaya.cash.controller.command.impl.inspector.LoadRateCBCommand;
+import com.zagurskaya.cash.controller.command.impl.inspector.LoadRateNBCommand;
+import com.zagurskaya.cash.controller.command.impl.inspector.UnloadEntriesCommand;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -94,8 +98,6 @@ public enum ActionType {
      * Cashier home page
      */
     CURRENCY(new CurrencyCommand(PathPage.PATH_CASH)),
-//    OPERATION(new OperationCommand(PathConstant.PATH_CASH)),
-//    REPORT(new ReportCommand(PathConstant.PATH_CASH)),
 
     //------------------CASH / CURRENCY---------------------------
     /**
@@ -162,7 +164,24 @@ public enum ActionType {
      * payment balance
      */
     PAYMENT1100BALANCE(new Payment1100BalanceCommand(PathPage.PATH_CASH_PAYMENT)),
-    ;
+
+    //---------------CONTROLLER---------------------------------
+    /**
+     * Controller home page
+     */
+    CONTROLLER(new ControllerCommand(PathPage.PATH_CONTROLLER)),
+    /**
+     * Load rate NB
+     */
+    LOAD_RATE_NB(new LoadRateNBCommand(PathPage.PATH_CONTROLLER)),
+    /**
+     * Load rate CB
+     */
+    LOAD_RATE_CB(new LoadRateCBCommand(PathPage.PATH_CONTROLLER)),
+    /**
+     * Unload entries
+     */
+    UNLOAD_ENTRIES(new UnloadEntriesCommand(PathPage.PATH_CONTROLLER));
     /**
      * Command
      */
