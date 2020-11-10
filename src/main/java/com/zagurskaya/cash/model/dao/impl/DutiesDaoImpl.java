@@ -15,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
     private static final String SQL_INSERT_DUTIES = "INSERT INTO duties(userId, timestamp, number, isClose) VALUES (?, ?, ?, ?)";
     private static final String SQL_UPDATE_DUTIES = "UPDATE duties SET userId=?, timestamp = ?, number=?, isClose=? WHERE id= ?";
     private static final String SQL_DELETE_DUTIES = "DELETE FROM duties WHERE id=?";
-    private static final String SQL_SELECT_COUNT_DUTIESS = "SELECT COUNT(id) FROM `duties`";
+    private static final String SQL_SELECT_COUNT_DUTIES = "SELECT COUNT(id) FROM `duties`";
 
 
     @Override
@@ -44,13 +44,13 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.DUTIES_ID);
                     Long userId = resultSet.getLong(ColumnName.DUTIES_USER_ID);
-                    Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.DUTIES_TIMESTAMP, LocalDateTime.class);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
                     Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
-                            .addTimestamp(timestamp)
+                            .addTimestamp(localDateTime)
                             .addNumber(number)
                             .addIsClose(isClose)
                             .build();
@@ -73,7 +73,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long userId = resultSet.getLong(ColumnName.DUTIES_USER_ID);
-                    Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
+                    LocalDateTime timestamp = resultSet.getObject(ColumnName.DUTIES_TIMESTAMP, LocalDateTime.class);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
                     duties = new Duties.Builder()
@@ -98,7 +98,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_DUTIES, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, duties.getUserId());
-                preparedStatement.setString(2, duties.getTimestamp().toString());
+                preparedStatement.setString(2, duties.getLocalDateTime().toString());
                 preparedStatement.setInt(3, duties.getNumber());
                 preparedStatement.setBoolean(4, duties.getIsClose());
                 result = preparedStatement.executeUpdate();
@@ -124,7 +124,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_DUTIES)) {
                 preparedStatement.setLong(1, duties.getUserId());
-                preparedStatement.setTimestamp(2, duties.getTimestamp());
+                preparedStatement.setObject(2, duties.getLocalDateTime());
                 preparedStatement.setInt(3, duties.getNumber());
                 preparedStatement.setBoolean(4, duties.getIsClose());
                 preparedStatement.setLong(5, duties.getId());
@@ -158,7 +158,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
     public int countRows() throws DaoException {
         int count;
         try {
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_DUTIESS)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_COUNT_DUTIES)) {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 resultSet.next();
                 count = resultSet.getInt(1);
@@ -180,7 +180,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.DUTIES_ID);
-                    Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
+                    LocalDateTime timestamp = resultSet.getObject(ColumnName.DUTIES_TIMESTAMP, LocalDateTime.class);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
                     Duties duties = new Duties.Builder()
@@ -210,7 +210,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.DUTIES_ID);
-                    Timestamp timestamp = resultSet.getTimestamp(ColumnName.DUTIES_TIMESTAMP);
+                    LocalDateTime timestamp = resultSet.getObject(ColumnName.DUTIES_TIMESTAMP, LocalDateTime.class);
                     Integer number = resultSet.getInt(ColumnName.DUTIES_NUMBER);
                     Boolean isClose = resultSet.getBoolean(ColumnName.DUTIES_IS_CLOSE);
                     Duties duties = new Duties.Builder()

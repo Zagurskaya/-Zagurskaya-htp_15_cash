@@ -1,9 +1,9 @@
 package com.zagurskaya.cash.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
- * Duties with characteristics <b>id</b>, <b>userId</b>, <b>timestamp</b>, <b>number</b> и <b>isClose</b>.
+ * Duties with characteristics <b>id</b>, <b>userId</b>, <b>localDateTime</b>, <b>number</b> и <b>isClose</b>.
  */
 public class Duties {
     /**
@@ -17,7 +17,7 @@ public class Duties {
     /**
      * Date and time of open duties
      */
-    private Timestamp timestamp;
+    private LocalDateTime localDateTime;
     /**
      * Number duties
      */
@@ -46,12 +46,13 @@ public class Duties {
     }
 
     /**
-     * Get field value {@link Duties#timestamp}
+     * Get field value {@link Duties#localDateTime}
      *
      * @return date and time
      */
-    public Timestamp getTimestamp() {
-        return timestamp;
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
     /**
@@ -80,8 +81,8 @@ public class Duties {
                 .append(id)
                 .append(", userId=")
                 .append(userId)
-                .append(", timestamp=")
-                .append(timestamp)
+                .append(", localDateTime=")
+                .append(localDateTime)
                 .append(", number=")
                 .append(number)
                 .append(", isClose=")
@@ -126,13 +127,13 @@ public class Duties {
         }
 
         /**
-         * Date and time of open duties definition {@link Duties#timestamp}
+         * Date and time of open duties definition {@link Duties#localDateTime}
          *
          * @param timestamp - date and time
          * @return Builder
          */
-        public Builder addTimestamp(Timestamp timestamp) {
-            newDuties.timestamp = timestamp;
+        public Builder addTimestamp(LocalDateTime timestamp) {
+            newDuties.localDateTime = timestamp;
             return this;
         }
 

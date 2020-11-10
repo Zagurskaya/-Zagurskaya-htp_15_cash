@@ -22,8 +22,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,7 +157,7 @@ public class DutiesServiceImpl implements DutiesService {
         DutiesDao dutiesDao = new DutiesDaoImpl();
         CurrencyDao currencyDao = new CurrencyDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
 
@@ -215,7 +215,7 @@ public class DutiesServiceImpl implements DutiesService {
                 Duties closeDuties = new Duties.Builder()
                         .addId(openDuties.getId())
                         .addUserId(openDuties.getUserId())
-                        .addTimestamp(openDuties.getTimestamp())
+                        .addTimestamp(openDuties.getLocalDateTime())
                         .addNumber(openDuties.getNumber())
                         .addIsClose(true)
                         .build();
