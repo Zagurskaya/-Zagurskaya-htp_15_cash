@@ -1,10 +1,10 @@
 package com.zagurskaya.cash.controller;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.parser.impl.RateNBParser;
-import com.zagurskaya.cash.entity.RateNB;
-import com.zagurskaya.cash.model.service.RateNBService;
-import com.zagurskaya.cash.model.service.impl.RateNBServiceImpl;
+import com.zagurskaya.cash.controller.parser.impl.RateCBParser;
+import com.zagurskaya.cash.entity.RateCB;
+import com.zagurskaya.cash.model.service.RateCBService;
+import com.zagurskaya.cash.model.service.impl.RateCBServiceImpl;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -25,18 +25,18 @@ import java.util.List;
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 5 * 5
 )
-public class UploadRateNB extends HttpServlet {
-    private RateNBService rateNBService = new RateNBServiceImpl();
-    private final static String PAGE_UPLOAD_RATE_NB = "/jsp/controller/load_rate_nb.jsp";
+public class UploadRateCB extends HttpServlet {
+    private RateCBService rateCBService = new RateCBServiceImpl();
+    private final static String PAGE_UPLOAD_RATE_CB = "/jsp/controller/load_rate_cb.jsp";
 
-    public UploadRateNB() {
+    public UploadRateCB() {
         super();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
-                List<RateNB> rateNBList = new ArrayList<>();
+                List<RateCB> rateCBList = new ArrayList<>();
                 ServletFileUpload fileUpload = new ServletFileUpload();
                 FileItemIterator items = fileUpload.getItemIterator(request);
 
@@ -47,12 +47,12 @@ public class UploadRateNB extends HttpServlet {
                         InputStream is = item.openStream();
                         String fieldName = item.getName();
                         String value = Streams.asString(is);
-                        RateNBParser rateNBParser = new RateNBParser();
-                        List<String> rows = rateNBParser.parsTextToRowList(value);
-                        rows.stream().forEach(s -> rateNBList.add(rateNBParser.parse(s)));
+                        RateCBParser rateCBParser = new RateCBParser();
+                        List<String> rows = rateCBParser.parsTextToRowList(value);
+                        rows.stream().forEach(s -> rateCBList.add(rateCBParser.parse(s)));
                     }
                 }
-                rateNBService.create(rateNBList);
+                rateCBService.create(rateCBList);
                 request.setAttribute(AttributeName.MESSAGE, "File Uploaded Successfully");
 
             } catch (Exception ex) {
@@ -61,7 +61,7 @@ public class UploadRateNB extends HttpServlet {
         } else {
             request.setAttribute(AttributeName.ERROR, "100 No File found");
         }
-        request.getRequestDispatcher(PAGE_UPLOAD_RATE_NB).forward(request, response);
+        request.getRequestDispatcher(PAGE_UPLOAD_RATE_CB).forward(request, response);
 
     }
 

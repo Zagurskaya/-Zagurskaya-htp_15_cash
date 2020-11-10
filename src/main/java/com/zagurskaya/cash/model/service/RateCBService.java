@@ -1,9 +1,11 @@
 package com.zagurskaya.cash.model.service;
 
 import com.zagurskaya.cash.entity.RateCB;
+import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface RateCBService extends Service<RateCB> {
 
@@ -17,4 +19,14 @@ public interface RateCBService extends Service<RateCB> {
      * @throws ServiceException error during execution of logical blocks and actions
      */
     Double rateCBToday(Timestamp now, Long coming, Long spending) throws ServiceException;
+
+    /**
+     * Create List of rateCB
+     *
+     * @param rateCBList - List of rateCB
+     * @return true on successful createCheckEn
+     * @throws ServiceException error during execution of logical blocks and actions
+     * @throws CommandException volition error
+     */
+    void create(List<RateCB> rateCBList) throws ServiceException, CommandException;
 }

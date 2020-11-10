@@ -7,11 +7,15 @@
     <br>
     <%@ include file="/jsp/errors/errormessage.jsp" %>
     <br>
-    <br>
-    <br>
-    <br>
     <H4><fmt:message key="page.controller.message"/></H4>
-    <%--         <H4> ${message}</H4>--%>
+             <H4> ${message}</H4>
+    Файл: <br/>
+    <form action="upload_rate_cb" method="post"
+          enctype="multipart/form-data">
+        <input type="file" name="guru_file" size="50"/>
+        <br/>
+        <input type="submit" value="Загрузить"/>
+    </form>
 </div>
 </body>
 </html>

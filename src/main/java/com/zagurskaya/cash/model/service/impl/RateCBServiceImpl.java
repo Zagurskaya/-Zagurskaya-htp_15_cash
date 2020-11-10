@@ -57,6 +57,29 @@ public class RateCBServiceImpl implements RateCBService {
     }
 
     @Override
+    public void create(List<RateCB> rateCBList) throws ServiceException, CommandException {
+        RateCBDao rateCBDao = new RateCBDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.init(rateCBDao);
+        try {
+            for (RateCB rateCB : rateCBList) {
+                rateCBDao.create(rateCB);
+                transaction.commit();
+            }
+        } catch (DaoConstraintViolationException e) {
+            transaction.rollback();
+            logger.log(Level.ERROR, "Duplicate data rateCB ", e);
+            throw new CommandException("Duplicate data rateCB ", e);
+        } catch (DaoException e) {
+            transaction.rollback();
+            logger.log(Level.ERROR, "Database exception during createCheckEn rateCB ", e);
+            throw new ServiceException("Database exception during createCheckEn rateCB ", e);
+        } finally {
+            transaction.endSingleQuery();
+        }
+    }
+
+    @Override
     public boolean update(RateCB rateCB) throws ServiceException, CommandException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
