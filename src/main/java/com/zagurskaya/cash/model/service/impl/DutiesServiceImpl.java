@@ -182,7 +182,7 @@ public class DutiesServiceImpl implements DutiesService {
                         .addTransmitted(0.00)
                         .addBalance(0.00)
                         .addUserId(user.getId())
-                        .addData(java.sql.Date.valueOf(date))
+                        .addData(date)
                         .addDutiesId(dutiesId)
                         .build();
                 kassaDao.create(newKassa);

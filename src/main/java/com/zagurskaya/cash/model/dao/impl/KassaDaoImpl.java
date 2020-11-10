@@ -9,12 +9,12 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
                     Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
-                    Date date = resultSet.getDate(ColumnName.KASSA_DATE);
+                    LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
                     Kassa kassa = new Kassa.Builder()
                             .addId(id)
@@ -87,7 +87,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
                     Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
-                    Date date = resultSet.getDate(ColumnName.KASSA_DATE);
+                    LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
                     kassa = new Kassa.Builder()
                             .addId(id)
@@ -199,7 +199,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
     }
 
     @Override
-    public Kassa findByCurrencyIdAndDateAndDutiesId(Date date, Long dutiesId, Long currencyId) throws DaoException {
+    public Kassa findByCurrencyIdAndDateAndDutiesId(LocalDate date, Long dutiesId, Long currencyId) throws DaoException {
         Kassa kassa = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_KASSA_BY_CURRENCY_ID_DATE_DUTIES)) {
@@ -252,7 +252,7 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                     Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
                     Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
                     Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
-                    Date date = resultSet.getDate(ColumnName.KASSA_DATE);
+                    LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Kassa kassa = new Kassa.Builder()
                             .addId(id)
                             .addCurrencyId(currencyId)

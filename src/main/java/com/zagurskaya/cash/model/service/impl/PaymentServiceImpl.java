@@ -113,7 +113,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries1000 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaOuterOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries1000) {
                     UserEntry userEntry1000 = new UserEntry
                             .Builder()
@@ -183,7 +183,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries1100 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaOuterOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaOuterOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries1100) {
                     UserEntry userEntry1000 = new UserEntry
                             .Builder()
@@ -252,7 +252,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries10 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaInnerOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries10) {
                     UserEntry userEntry10 = new UserEntry
                             .Builder()
@@ -321,7 +321,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries20 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaInnerOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries20) {
                     UserEntry userEntry10 = new UserEntry
                             .Builder()
@@ -393,7 +393,7 @@ public class PaymentServiceImpl implements PaymentService {
                 Long currency = entry.getKey();
                 Double sum = entry.getValue();
                 List<SprEntry> sprEntries998 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
-                kassaService.updateKassaInnerOperation(Date.valueOf(todaySQL), duties.getId(), currency, sum, sprOperationId);
+                kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries998) {
                     UserEntry userEntry998 = new UserEntry
                             .Builder()

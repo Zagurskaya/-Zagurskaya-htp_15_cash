@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,7 +160,7 @@ public class KassaServiceImpl implements KassaService {
     }
 
     //внутрикассовые операции
-    public boolean updateKassaInnerOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -214,7 +214,7 @@ public class KassaServiceImpl implements KassaService {
 
     //внекассовые операции
     @Override
-    public boolean updateKassaOuterOperation(Date date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaOuterOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
 
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();

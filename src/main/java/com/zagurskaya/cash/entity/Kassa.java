@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Kassa with characteristics  <b>id</b>, <b>currencyId</b>, <b>received</b>, <b>coming</b> , <b>spending</b> , <b>transmitted</b> ,
@@ -42,7 +42,7 @@ public class Kassa {
     /**
      * Date
      */
-    private Date date;
+    private LocalDate date;
     /**
      * Number duties
      */
@@ -125,7 +125,8 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Date getDate() {
+
+    public LocalDate getDate() {
         return date;
     }
 
@@ -274,7 +275,8 @@ public class Kassa {
          * @param date - даты
          * @return Builder
          */
-        public Kassa.Builder addData(Date date) {
+
+        public Kassa.Builder addData(LocalDate date) {
             newKassa.date = date;
             return this;
         }

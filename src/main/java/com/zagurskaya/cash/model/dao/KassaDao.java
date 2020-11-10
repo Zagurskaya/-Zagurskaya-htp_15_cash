@@ -3,7 +3,7 @@ package com.zagurskaya.cash.model.dao;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.exception.DaoException;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface KassaDao extends Dao<Kassa> {
@@ -14,7 +14,7 @@ public interface KassaDao extends Dao<Kassa> {
      * @return record from the kassa
      * @throws DaoException database access error or other errors
      */
-    Kassa findByCurrencyIdAndDateAndDutiesId(Date date, Long dutiesId, Long currencyId) throws DaoException;
+    Kassa findByCurrencyIdAndDateAndDutiesId(LocalDate date, Long dutiesId, Long currencyId) throws DaoException;
 
     /**
      * Find a record from the kassa by user and duties
