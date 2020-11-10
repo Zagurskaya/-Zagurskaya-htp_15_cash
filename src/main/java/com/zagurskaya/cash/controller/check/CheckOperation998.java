@@ -37,7 +37,7 @@ public class CheckOperation998 implements PDFDocument {
                     "Zav. N    123456789 |\n" +
                     "B/account                  | " + userOperation.getCheckingAccount() + "\n" +
                     "                                   |  UNP:123456789                  Operation number " + userOperation.getId() + "\n" +
-                    DataUtil.getFormattedCheck(userOperation.getTimestamp()) + " |            --------------                                                --------\n" +
+                    DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + " |            --------------                                                --------\n" +
                     "Cash voucher N " + userOperation.getId() + " |  " + userOperation.getFullName() + "\n" +
                     "                                   |   ------------------------------------------------------------------------\n" +
                     "                                   |       (surname, first name, patronymic (if any)\n" +
@@ -47,7 +47,7 @@ public class CheckOperation998 implements PDFDocument {
                     "                                   |  -------------------------------------------------------------------------\n" +
                     "                                   |  |  Payment type            | Date and time           |   Sum   |\n" +
                     "                                   |  -------------------------------------------------------------------------\n" +
-                    "                                   |  |Communal payment     |" + DataUtil.getFormattedCheck(userOperation.getTimestamp()) + "| " + userEntriesList.get(0).getSum() + "  |\n" +
+                    "                                   |  |Communal payment     |" + DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + "| " + userEntriesList.get(0).getSum() + "  |\n" +
                     "                                   |  |                                     |----------------------------------------\n" +
                     "                                   |  |                                     |   Fine                       |              |\n" +
                     "                                   |   -------------------------------                                  ------------\n" +
@@ -79,7 +79,7 @@ public class CheckOperation998 implements PDFDocument {
                     "Зав. N    123456789 |\n" +
                     "Р/счет                       | " + userOperation.getCheckingAccount() + "\n" +
                     "                                   |  УНП:123456789                  Номер опрации " + userOperation.getId() + "\n" +
-                    DataUtil.getFormattedCheck(userOperation.getTimestamp()) + " |            --------------                                                --------\n" +
+                    DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + " |            --------------                                                --------\n" +
                     "Кассовый чек N " + userOperation.getId() + " |  " + userOperation.getFullName() + "\n" +
                     "                                   |   ------------------------------------------------------------------------\n" +
                     "                                   |      (фамилия, собственное имя, отчество (при наличии)\n" +
@@ -89,7 +89,7 @@ public class CheckOperation998 implements PDFDocument {
                     "                                   |  -------------------------------------------------------------------------\n" +
                     "                                   |  |  Вид  платежа             | Дата и время         | Сумма |\n" +
                     "                                   |  -------------------------------------------------------------------------\n" +
-                    "                                   |  |Коммунальные услуги|" + DataUtil.getFormattedCheck(userOperation.getTimestamp()) + "|" + userEntriesList.get(0).getSum() + "  |\n" +
+                    "                                   |  |Коммунальные услуги|" + DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + "|" + userEntriesList.get(0).getSum() + "  |\n" +
                     "                                   |  |                                     |----------------------------------------\n" +
                     "                                   |  |                                     |   Пеня                       |             |\n" +
                     "                                   |   -------------------------------                                    -----------\n" +

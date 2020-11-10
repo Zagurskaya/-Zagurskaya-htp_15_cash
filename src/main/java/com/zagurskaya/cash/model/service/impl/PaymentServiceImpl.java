@@ -33,9 +33,8 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -86,10 +85,9 @@ public class PaymentServiceImpl implements PaymentService {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         RateCBDao rateCBDao = new RateCBDaoImpl();
 
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
@@ -99,7 +97,7 @@ public class PaymentServiceImpl implements PaymentService {
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addRate(rateCBPayment)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)
@@ -157,10 +155,9 @@ public class PaymentServiceImpl implements PaymentService {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         RateCBDao rateCBDao = new RateCBDaoImpl();
 
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
@@ -170,7 +167,7 @@ public class PaymentServiceImpl implements PaymentService {
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addRate(rateCBPayment)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)
@@ -227,10 +224,9 @@ public class PaymentServiceImpl implements PaymentService {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         RateCBDao rateCBDao = new RateCBDaoImpl();
 
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
@@ -239,7 +235,7 @@ public class PaymentServiceImpl implements PaymentService {
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             UserOperation userOperation = new UserOperation.Builder()
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addRate(rate)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)
@@ -296,10 +292,9 @@ public class PaymentServiceImpl implements PaymentService {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         RateCBDao rateCBDao = new RateCBDaoImpl();
 
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
@@ -308,7 +303,7 @@ public class PaymentServiceImpl implements PaymentService {
             Double valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             UserOperation userOperation = new UserOperation.Builder()
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addRate(rate)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)
@@ -365,10 +360,9 @@ public class PaymentServiceImpl implements PaymentService {
         RateNBDao rateNBDao = new RateNBDaoImpl();
         RateCBDao rateCBDao = new RateCBDaoImpl();
 
-        Timestamp now = new Timestamp(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
-        String todaySQL = DataUtil.getFormattedLocalDateOnlyDate(date);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
@@ -378,7 +372,7 @@ public class PaymentServiceImpl implements PaymentService {
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             double rateCBPayment = !AttributeName.NС.equals(firstKey) ? rateCBDao.rateCBToday(now, firstKey, AttributeName.NС) : 1;
             UserOperation userOperation = new UserOperation.Builder()
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addRate(rateCBPayment)
                     .addSum(valueForFirstKey)
                     .addCurrencyId(firstKey)

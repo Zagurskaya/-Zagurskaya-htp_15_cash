@@ -1,9 +1,9 @@
 package com.zagurskaya.cash.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
- * Rate CB with characteristics <b>id</b>, <b>coming</b>, <b>spending</b>, <b>timestamp</b>, <b>sum</b> и <b>isBack</b>.
+ * Rate CB with characteristics <b>id</b>, <b>coming</b>, <b>spending</b>, <b>localDateTime</b>, <b>sum</b> и <b>isBack</b>.
  */
 public class RateCB {
     /**
@@ -21,7 +21,7 @@ public class RateCB {
     /**
      * Date and Time
      */
-    private Timestamp timestamp;
+    private LocalDateTime localDateTime;
     /**
      * Sum
      */
@@ -59,12 +59,12 @@ public class RateCB {
     }
 
     /**
-     * Get field value {@link RateCB#timestamp}
+     * Get field value {@link RateCB#localDateTime}
      *
      * @return date and time
      */
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
     /**
@@ -95,8 +95,8 @@ public class RateCB {
                 .append(coming)
                 .append(", spending=")
                 .append(spending)
-                .append(", timestamp=")
-                .append(timestamp)
+                .append(", localDateTime=")
+                .append(localDateTime)
                 .append(", sum=")
                 .append(sum)
                 .append(", isBack=")
@@ -152,13 +152,13 @@ public class RateCB {
         }
 
         /**
-         * Date and time definition {@link RateCB#timestamp}
+         * Date and time definition {@link RateCB#localDateTime}
          *
          * @param timestamp - date and time
          * @return Builder
          */
-        public Builder addTimestamp(Timestamp timestamp) {
-            newRateCB.timestamp = timestamp;
+        public Builder addLocalDateTime(LocalDateTime timestamp) {
+            newRateCB.localDateTime = timestamp;
             return this;
         }
 

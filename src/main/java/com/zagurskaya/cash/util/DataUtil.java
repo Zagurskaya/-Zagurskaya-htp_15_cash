@@ -57,26 +57,6 @@ public class DataUtil {
     }
 
     /**
-     * Format date :  yyyy-MM-dd
-     *
-     * @param localDate - date
-     * @return string type date
-     */
-    public static String getFormattedLocalDateOnlyDate(LocalDate localDate) {
-        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    }
-
-    /**
-     * Format date :  yyyyddMMHHmmss
-     *
-     * @param dateTime - date and time
-     * @return string type date
-     */
-    public static String getFormattedTimestamp(Timestamp dateTime) {
-        return new SimpleDateFormat("yyyyddMMHHmmss").format(dateTime);
-    }
-
-    /**
      * Format date :  yyyyddMMHHmmss
      *
      * @param localDateTime - date and time
@@ -89,11 +69,11 @@ public class DataUtil {
     /**
      * Format date :  yyyy.dd.MM HH:mm:ss
      *
-     * @param dateTime - date and time
+     * @param localDateTime - date and time
      * @return string type date
      */
-    public static String getFormattedCheck(Timestamp dateTime) {
-        return new SimpleDateFormat("yyyy.dd.MM HH:mm:ss").format(dateTime);
+    public static String getFormattedCheck(LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy.dd.MM HH:mm:ss"));
     }
 
     /**

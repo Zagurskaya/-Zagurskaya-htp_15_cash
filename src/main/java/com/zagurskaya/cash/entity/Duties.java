@@ -132,7 +132,7 @@ public class Duties {
          * @param timestamp - date and time
          * @return Builder
          */
-        public Builder addTimestamp(LocalDateTime timestamp) {
+        public Builder addLocalDateTime(LocalDateTime timestamp) {
             newDuties.localDateTime = timestamp;
             return this;
         }

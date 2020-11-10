@@ -167,7 +167,7 @@ public class DutiesServiceImpl implements DutiesService {
             Integer numberDuties = dutiesDao.numberDutiesToday(user, today);
             Duties duties = new Duties.Builder()
                     .addUserId(user.getId())
-                    .addTimestamp(now)
+                    .addLocalDateTime(now)
                     .addNumber(numberDuties)
                     .addIsClose(false)
                     .build();
@@ -215,7 +215,7 @@ public class DutiesServiceImpl implements DutiesService {
                 Duties closeDuties = new Duties.Builder()
                         .addId(openDuties.getId())
                         .addUserId(openDuties.getUserId())
-                        .addTimestamp(openDuties.getLocalDateTime())
+                        .addLocalDateTime(openDuties.getLocalDateTime())
                         .addNumber(openDuties.getNumber())
                         .addIsClose(true)
                         .build();

@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +148,7 @@ public class RateCBServiceImpl implements RateCBService {
     }
 
     @Override
-    public Double rateCBToday(Timestamp now, Long coming, Long spending) throws ServiceException {
+    public Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(rateCBDao);

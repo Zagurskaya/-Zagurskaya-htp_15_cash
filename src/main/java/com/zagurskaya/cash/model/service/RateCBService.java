@@ -4,7 +4,7 @@ import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface RateCBService extends Service<RateCB> {
@@ -18,7 +18,7 @@ public interface RateCBService extends Service<RateCB> {
      * @return true on successful creation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Double rateCBToday(Timestamp now, Long coming, Long spending) throws ServiceException;
+    Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException;
 
     /**
      * Create List of rateCB

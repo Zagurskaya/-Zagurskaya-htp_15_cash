@@ -1,9 +1,9 @@
 package com.zagurskaya.cash.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
- * Executed operation with characteristics <b>id</b>, <b>timestamp</b>, <b>rate</b>, <b>sum</b>, <b>currencyId</b>,
+ * Executed operation with characteristics <b>id</b>, <b>localDateTime</b>, <b>rate</b>, <b>sum</b>, <b>currencyId</b>,
  * <b>userId</b>, <b>dutiesId</b>, <b>operationId</b>, <b>specification</b>, <b>checkingAccount</b> и <b>fullName</b>.
  */
 public class UserOperation {
@@ -14,7 +14,7 @@ public class UserOperation {
     /**
      * Date and time executed operation
      */
-    private Timestamp timestamp;
+    private LocalDateTime localDateTime;
     /**
      * Rate
      */
@@ -62,12 +62,12 @@ public class UserOperation {
     }
 
     /**
-     * Get field value {@link UserOperation#timestamp}
+     * Get field value {@link UserOperation#localDateTime}
      *
      * @return дата и времени смены
      */
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
     /**
@@ -157,8 +157,8 @@ public class UserOperation {
         sb.append("UserOperation{")
                 .append("id=")
                 .append(id)
-                .append(", timestamp=")
-                .append(timestamp)
+                .append(", localDateTime=")
+                .append(localDateTime)
                 .append(", rate=")
                 .append(rate)
                 .append(", sum=")
@@ -206,13 +206,13 @@ public class UserOperation {
         }
 
         /**
-         * Date and time executed operation definition {@link UserOperation#timestamp}
+         * Date and time executed operation definition {@link UserOperation#localDateTime}
          *
          * @param timestamp - date and time
          * @return Builder
          */
-        public Builder addTimestamp(Timestamp timestamp) {
-            newUserOperation.timestamp = timestamp;
+        public Builder addLocalDateTime(LocalDateTime timestamp) {
+            newUserOperation.localDateTime = timestamp;
             return this;
         }
 

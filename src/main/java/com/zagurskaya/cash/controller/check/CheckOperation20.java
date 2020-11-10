@@ -13,6 +13,7 @@ import com.zagurskaya.cash.model.service.CurrencyService;
 import com.zagurskaya.cash.model.service.PaymentService;
 import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
+import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +36,7 @@ public class CheckOperation20 implements PDFDocument {
             String head = "    OAO TestBank \n" +
                     "    Registration Number N KKS 123456789\n" +
                     "    CASHIER'S CHECK N " + userOperation.getId() + "\n" +
-                    "    date " + userOperation.getTimestamp() + "\n" +
+                    "    date " + DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + "\n" +
                     "    Exchange rate           " + userOperation.getRate() + "\n" +
                     "    SELLING FOREIGN CASH  \n" +
                     "    FOR CASH BYB.RUBLES \n";
@@ -78,7 +79,7 @@ public class CheckOperation20 implements PDFDocument {
             String head = "    ОАО ТестБанк \n" +
                     "    Рег. N ГНИ ККС 123456789\n" +
                     "    КАССОВЫЙ  ЧЕК   N " + userOperation.getId() + "\n" +
-                    "    дата " + userOperation.getTimestamp() + "\n" +
+                    "    дата " + DataUtil.getFormattedCheck(userOperation.getLocalDateTime()) + "\n" +
                     "    ПРОДАЖА НАЛИЧНОЙ ВАЛЮТЫ  \n" +
                     "    ЗА НАЛИЧНЫЕ БЕЛ.РУБЛИ \n" +
                     "    Курс операции           " + userOperation.getRate() + "\n";

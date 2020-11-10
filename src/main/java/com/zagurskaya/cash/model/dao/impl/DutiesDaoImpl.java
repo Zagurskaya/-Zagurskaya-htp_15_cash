@@ -50,7 +50,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
-                            .addTimestamp(localDateTime)
+                            .addLocalDateTime(localDateTime)
                             .addNumber(number)
                             .addIsClose(isClose)
                             .build();
@@ -79,7 +79,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
-                            .addTimestamp(timestamp)
+                            .addLocalDateTime(timestamp)
                             .addNumber(number)
                             .addIsClose(isClose)
                             .build();
@@ -186,7 +186,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(userId)
-                            .addTimestamp(timestamp)
+                            .addLocalDateTime(timestamp)
                             .addNumber(number)
                             .addIsClose(isClose)
                             .build();
@@ -216,7 +216,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
                     Duties duties = new Duties.Builder()
                             .addId(id)
                             .addUserId(user.getId())
-                            .addTimestamp(timestamp)
+                            .addLocalDateTime(timestamp)
                             .addNumber(number)
                             .addIsClose(isClose)
                             .build();
