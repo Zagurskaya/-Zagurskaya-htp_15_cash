@@ -52,7 +52,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
                     Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
                     Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
@@ -64,7 +64,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
                     UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addRate(rate)
                             .addSum(sum)
                             .addCurrencyId(currencyId)
@@ -93,7 +93,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 preparedStatement.setLong(1, id);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
                     Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
                     Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
@@ -105,7 +105,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
                     userOperation = new UserOperation.Builder()
                             .addId(id)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addRate(rate)
                             .addSum(sum)
                             .addCurrencyId(currencyId)
@@ -223,7 +223,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
                     Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
                     Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
@@ -235,7 +235,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
                     UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addRate(rate)
                             .addSum(sum)
                             .addCurrencyId(currencyId)
@@ -272,7 +272,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
                     Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
                     Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
@@ -282,7 +282,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                     String fullName = resultSet.getString(ColumnName.USER_OPERATION_FULL_NAME);
                     UserOperation userOperation = new UserOperation.Builder()
                             .addId(id)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addRate(rate)
                             .addSum(sum)
                             .addCurrencyId(currencyId)

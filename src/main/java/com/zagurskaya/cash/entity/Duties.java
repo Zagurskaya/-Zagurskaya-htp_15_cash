@@ -129,11 +129,11 @@ public class Duties {
         /**
          * Date and time of open duties definition {@link Duties#localDateTime}
          *
-         * @param timestamp - date and time
+         * @param localDateTime - date and time
          * @return Builder
          */
-        public Builder addLocalDateTime(LocalDateTime timestamp) {
-            newDuties.localDateTime = timestamp;
+        public Builder addLocalDateTime(LocalDateTime localDateTime) {
+            newDuties.localDateTime = localDateTime;
             return this;
         }
 

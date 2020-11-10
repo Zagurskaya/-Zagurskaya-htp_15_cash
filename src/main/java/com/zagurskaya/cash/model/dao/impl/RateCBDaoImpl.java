@@ -22,11 +22,11 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
 
     private static final Logger logger = LogManager.getLogger(RateCBDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_RATECBS = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB`  ORDER BY id LIMIT ? Offset ? ";
-    private static final String SQL_SELECT_RATECB_BY_ID = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB` WHERE id= ? ";
-    private static final String SQL_SELECT_RATECB_TODAY = "SELECT id, coming, spending, timestamp, sum, isBack FROM `rateCB` WHERE timestamp<=? AND coming=? AND spending=?";
-    private static final String SQL_INSERT_RATECB = "INSERT INTO rateCB(coming, spending, timestamp, sum, isBack) VALUES (?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_RATECB = "UPDATE rateCB SET coming=?, spending = ?, timestamp = ?, sum = ?, isBack = ? WHERE id= ?";
+    private static final String SQL_SELECT_ALL_RATECBS = "SELECT id, coming, spending, localDateTime, sum, isBack FROM `rateCB`  ORDER BY id LIMIT ? Offset ? ";
+    private static final String SQL_SELECT_RATECB_BY_ID = "SELECT id, coming, spending, localDateTime, sum, isBack FROM `rateCB` WHERE id= ? ";
+    private static final String SQL_SELECT_RATECB_TODAY = "SELECT id, coming, spending, localDateTime, sum, isBack FROM `rateCB` WHERE localDateTime<=? AND coming=? AND spending=?";
+    private static final String SQL_INSERT_RATECB = "INSERT INTO rateCB(coming, spending, localDateTime, sum, isBack) VALUES (?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_RATECB = "UPDATE rateCB SET coming=?, spending = ?, localDateTime = ?, sum = ?, isBack = ? WHERE id= ?";
     private static final String SQL_DELETE_RATECB = "DELETE FROM rateCB WHERE id=?";
     private static final String SQL_SELECT_COUNT_RATECBS = "SELECT COUNT(id) FROM `rateCB`";
 
@@ -42,14 +42,14 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Long id = resultSet.getLong(ColumnName.RATECB_ID);
                     Long coming = resultSet.getLong(ColumnName.RATECB_COMING);
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     RateCB rateCB = new RateCB.Builder()
                             .addId(id)
                             .addСoming(coming)
                             .addSpending(spending)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addSum(sum)
                             .addIsBack(isBack)
                             .build();
@@ -73,14 +73,14 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 while (resultSet.next()) {
                     Long coming = resultSet.getLong(ColumnName.RATECB_COMING);
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     rateCB = new RateCB.Builder()
                             .addId(id)
                             .addСoming(coming)
                             .addSpending(spending)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addSum(sum)
                             .addIsBack(isBack)
                             .build();
@@ -184,14 +184,14 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.RATECB_ID);
-                    LocalDateTime timestamp = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
+                    LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
                     Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     RateCB rateCB = new RateCB.Builder()
                             .addId(id)
                             .addСoming(coming)
                             .addSpending(spending)
-                            .addLocalDateTime(timestamp)
+                            .addLocalDateTime(localDateTime)
                             .addSum(sum)
                             .addIsBack(isBack)
                             .build();

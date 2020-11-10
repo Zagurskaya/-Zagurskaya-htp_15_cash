@@ -208,11 +208,11 @@ public class UserOperation {
         /**
          * Date and time executed operation definition {@link UserOperation#localDateTime}
          *
-         * @param timestamp - date and time
+         * @param localDateTime - date and time
          * @return Builder
          */
-        public Builder addLocalDateTime(LocalDateTime timestamp) {
-            newUserOperation.localDateTime = timestamp;
+        public Builder addLocalDateTime(LocalDateTime localDateTime) {
+            newUserOperation.localDateTime = localDateTime;
             return this;
         }
 

@@ -154,11 +154,11 @@ public class RateCB {
         /**
          * Date and time definition {@link RateCB#localDateTime}
          *
-         * @param timestamp - date and time
+         * @param localDateTime - date and time
          * @return Builder
          */
-        public Builder addLocalDateTime(LocalDateTime timestamp) {
-            newRateCB.localDateTime = timestamp;
+        public Builder addLocalDateTime(LocalDateTime localDateTime) {
+            newRateCB.localDateTime = localDateTime;
             return this;
         }
 
