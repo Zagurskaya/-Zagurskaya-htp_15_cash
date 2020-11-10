@@ -29,6 +29,22 @@
         <url-pattern>/do</url-pattern>
     </filter-mapping>
     <servlet>
+        <servlet-name>UploadRateNBServlet</servlet-name>
+        <servlet-class>com.zagurskaya.cash.controller.UploadRateNB</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadRateNBServlet</servlet-name>
+        <url-pattern>/upload_rate_nb</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UploadRateCBServlet</servlet-name>
+        <servlet-class>com.zagurskaya.cash.controller.UploadRateCB</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadRateCBServlet</servlet-name>
+        <url-pattern>/upload_rate_cb</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>com.zagurskaya.cash.controller.FrontController</servlet-class>
     </servlet>
