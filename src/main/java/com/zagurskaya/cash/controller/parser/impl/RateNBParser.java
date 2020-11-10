@@ -3,6 +3,7 @@ package com.zagurskaya.cash.controller.parser.impl;
 import com.zagurskaya.cash.controller.parser.BaseDataParser;
 import com.zagurskaya.cash.entity.RateNB;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class RateNBParser implements BaseDataParser<RateNB> {
         return new RateNB.Builder()
                 .addCurrencyId(Long.parseLong(elements.get(1)))
 //                                                .addDate(context.get(0))
-                .addDate(date)
+                .addDate(LocalDate.now())
                 .addSum(Double.parseDouble(elements.get(2)))
                 .build();
     }

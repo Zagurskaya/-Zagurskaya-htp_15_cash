@@ -3,7 +3,7 @@ package com.zagurskaya.cash.model.dao;
 import com.zagurskaya.cash.entity.RateNB;
 import com.zagurskaya.cash.exception.DaoException;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public interface RateNBDao extends Dao<RateNB> {
     /**
@@ -12,5 +12,5 @@ public interface RateNBDao extends Dao<RateNB> {
      * @return rate NB
      * @throws DaoException database access error or other errors
      */
-    RateNB rateNBToday(Date date, Long currencyId) throws DaoException;
+    RateNB rateNBToday(LocalDate date, Long currencyId) throws DaoException;
 }

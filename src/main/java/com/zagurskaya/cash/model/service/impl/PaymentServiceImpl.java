@@ -124,7 +124,8 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+//                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry1000);
                 }
@@ -194,7 +195,7 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry1000);
                 }
@@ -263,7 +264,7 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry10);
                 }
@@ -332,7 +333,7 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry10);
                 }
@@ -404,7 +405,7 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
+                            .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry998);
                 }

@@ -1,6 +1,6 @@
 package com.zagurskaya.cash.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Rate NB with characteristics <b>id</b>, <b>currencyId</b>, <b>date</b> и <b>sum</b>.
@@ -17,7 +17,7 @@ public class RateNB {
     /**
      * Date
      */
-    private Date date;
+    private LocalDate date;
     /**
      * Sum
      */
@@ -46,7 +46,7 @@ public class RateNB {
      *
      * @return date
      */
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -116,7 +116,7 @@ public class RateNB {
          * @param date - date
          * @return Builder
          */
-        public Builder addDate(Date date) {
+        public Builder addDate(LocalDate date) {
             newRateNB.date = date;
             return this;
         }
