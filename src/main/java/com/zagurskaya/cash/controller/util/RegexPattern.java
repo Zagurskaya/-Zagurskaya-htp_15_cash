@@ -24,7 +24,7 @@ public class RegexPattern {
     /**
      * Encoding
      */
-    public static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
+    static final String INPUT_ENCODING_CHARSET = "ISO-8859-1";
 
     private RegexPattern() {
     }

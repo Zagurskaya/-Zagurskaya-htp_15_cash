@@ -17,11 +17,11 @@ public class DataProperty {
     private static Properties properties;
 
     private static final String PROPERTY_NAME = "installation.properties";
-    public static String check_patch;
+    public static String checkPatch;
 
     static {
         properties = readProperties();
-        check_patch = properties.getProperty("setup.checkpatch");
+        checkPatch = properties.getProperty("setup.checkpatch");
     }
 
     private DataProperty() {

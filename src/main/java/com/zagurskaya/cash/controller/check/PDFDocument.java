@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
  */
 public interface PDFDocument {
     String FONT = "font/arial.ttf";
-    String CHECK_PATH = DataProperty.check_patch;
+    String CHECK_PATH = DataProperty.checkPatch;
 
     /**
      * create operation check

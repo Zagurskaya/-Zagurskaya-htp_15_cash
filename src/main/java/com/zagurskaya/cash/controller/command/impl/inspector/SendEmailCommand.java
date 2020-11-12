@@ -5,7 +5,7 @@ import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.controller.util.DataValidation;
-import com.zagurskaya.cash.controller.util.MailThread;
+import com.zagurskaya.cash.controller.util.email.MailThread;
 import com.zagurskaya.cash.controller.util.RegexPattern;
 import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;

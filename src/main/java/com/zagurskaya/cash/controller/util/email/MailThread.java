@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller.util;
+package com.zagurskaya.cash.controller.util.email;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
