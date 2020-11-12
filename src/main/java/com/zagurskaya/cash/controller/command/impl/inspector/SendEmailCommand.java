@@ -6,6 +6,8 @@ import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.controller.util.DataValidation;
 import com.zagurskaya.cash.controller.util.MailThread;
+import com.zagurskaya.cash.controller.util.RegexPattern;
+import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +44,7 @@ public class SendEmailCommand implements Command {
     }
 
     @Override
-    public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
+    public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
         ControllerDataUtil.removeAttributeMessage(request);
         try {
@@ -51,9 +53,13 @@ public class SendEmailCommand implements Command {
                 ServletContext context = request.getServletContext();
                 String filename = context.getInitParameter(MAIL);
                 properties.load(context.getResourceAsStream(filename));
+                String to = ControllerDataUtil.getString(request, TO, RegexPattern.EMAIL_VALIDATION_REGEX);
+                String subject = ControllerDataUtil.getString(request, SUBJECT, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                String body = ControllerDataUtil.getString(request, BODY, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+
                 MailThread mailOperator =
-                        new MailThread(request.getParameter(TO), request.getParameter(SUBJECT),
-                                request.getParameter(BODY), properties);
+                        new MailThread(request.getParameter(to), request.getParameter(subject),
+                                request.getParameter(body), properties);
                 mailOperator.start();
                 request.setAttribute(AttributeName.MESSAGE, "The e-mail was sent successfully");
             }

@@ -5,6 +5,11 @@ package com.zagurskaya.cash.controller.util;
  */
 public class RegexPattern {
     /**
+     * String validation pattern: e- mail
+     */
+    public static final String EMAIL_VALIDATION_REGEX =
+            "^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$";
+    /**
      * String validation pattern: not empty, upper and lower case alphabet
      */
     public static final String ALPHABET_VALIDATE_PATTERN = "[a-zA-Zа-яА-Я]{1,}";
