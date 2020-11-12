@@ -66,5 +66,6 @@ public class ActionPermission {
         actionPermissionMap.put(ActionType.LOAD_RATE_NB.name(), RoleType.CONTROLLER);
         actionPermissionMap.put(ActionType.LOAD_RATE_CB.name(), RoleType.CONTROLLER);
         actionPermissionMap.put(ActionType.UNLOAD_ENTRIES.name(), RoleType.CONTROLLER);
+        actionPermissionMap.put(ActionType.SEND_EMAIL.name(), RoleType.CONTROLLER);
     }
 }

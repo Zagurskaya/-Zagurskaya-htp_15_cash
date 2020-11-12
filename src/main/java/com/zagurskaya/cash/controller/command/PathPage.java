@@ -9,6 +9,8 @@ public class PathPage {
     public static final String PATH_ERROR = "/jsp/errors/";
     public static final String PATH_ADMIN = "/jsp/admin/";
     public static final String PATH_CONTROLLER = "/jsp/controller/";
+    public static final String PATH_CONTROLLER_UPLOAD_RATE_CB = "/jsp/controller/load_rate_cb.jsp";
+    public static final String PATH_CONTROLLER_UPLOAD_RATE_NB = "/jsp/controller/load_rate_nb.jsp";
     public static final String PATH_CASH = "/jsp/cash/";
     public static final String PATH_CASH_CURRENCY = "/jsp/cash/currency/";
     public static final String PATH_CASH_OPERATION = "/jsp/cash/operation/";

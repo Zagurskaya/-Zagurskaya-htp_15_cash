@@ -31,6 +31,7 @@ import com.zagurskaya.cash.controller.command.impl.cash.commandOperation.command
 import com.zagurskaya.cash.controller.command.impl.inspector.ControllerCommand;
 import com.zagurskaya.cash.controller.command.impl.inspector.LoadRateCBCommand;
 import com.zagurskaya.cash.controller.command.impl.inspector.LoadRateNBCommand;
+import com.zagurskaya.cash.controller.command.impl.inspector.SendEmailCommand;
 import com.zagurskaya.cash.controller.command.impl.inspector.UnloadEntriesCommand;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -181,7 +182,11 @@ public enum ActionType {
     /**
      * Unload entries
      */
-    UNLOAD_ENTRIES(new UnloadEntriesCommand(PathPage.PATH_CONTROLLER));
+    UNLOAD_ENTRIES(new UnloadEntriesCommand(PathPage.PATH_CONTROLLER)),
+    /**
+     * Send email
+     */
+    SEND_EMAIL(new SendEmailCommand(PathPage.PATH_CONTROLLER));
     /**
      * Command
      */

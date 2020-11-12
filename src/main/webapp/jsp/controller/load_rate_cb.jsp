@@ -9,12 +9,12 @@
     <br>
     <H4><fmt:message key="page.controller.message"/></H4>
              <H4> ${message}</H4>
-    Файл: <br/>
+    <fmt:message key="page.ratecb.label.file"/> <br/>
     <form action="upload_rate_cb" method="post"
           enctype="multipart/form-data">
         <input type="file" name="guru_file" size="50"/>
         <br/>
-        <input type="submit" value="Загрузить"/>
+        <input type="submit" value="<fmt:message key="page.ratecb.button.load"/>"/>
     </form>
 </div>
 </body>

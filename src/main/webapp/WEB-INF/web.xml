@@ -4,6 +4,10 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Сервлеты zagurskaya</display-name>
+    <context-param>
+        <param-name>mail</param-name>
+        <param-value>/WEB-INF/classes/installation.properties</param-value>
+    </context-param>
     <filter>
         <filter-name>PageRedirectSecurityFilter</filter-name>
         <filter-class>com.zagurskaya.cash.controller.filter.PageRedirectSecurityFilter</filter-class>

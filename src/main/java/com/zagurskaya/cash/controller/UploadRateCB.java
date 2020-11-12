@@ -1,6 +1,7 @@
 package com.zagurskaya.cash.controller;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.command.PathPage;
 import com.zagurskaya.cash.controller.parser.impl.RateCBParser;
 import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.model.service.RateCBService;
@@ -20,6 +21,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Upload rateCB to BD
+ */
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
@@ -27,7 +31,6 @@ import java.util.List;
 )
 public class UploadRateCB extends HttpServlet {
     private RateCBService rateCBService = new RateCBServiceImpl();
-    private final static String PAGE_UPLOAD_RATE_CB = "/jsp/controller/load_rate_cb.jsp";
 
     public UploadRateCB() {
         super();
@@ -61,7 +64,7 @@ public class UploadRateCB extends HttpServlet {
         } else {
             request.setAttribute(AttributeName.ERROR, "100 No File found");
         }
-        request.getRequestDispatcher(PAGE_UPLOAD_RATE_CB).forward(request, response);
+        request.getRequestDispatcher(PathPage.PATH_CONTROLLER_UPLOAD_RATE_CB).forward(request, response);
 
     }
 

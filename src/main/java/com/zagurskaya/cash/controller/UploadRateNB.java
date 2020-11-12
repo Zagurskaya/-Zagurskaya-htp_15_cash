@@ -1,6 +1,7 @@
 package com.zagurskaya.cash.controller;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.controller.command.PathPage;
 import com.zagurskaya.cash.controller.parser.impl.RateNBParser;
 import com.zagurskaya.cash.entity.RateNB;
 import com.zagurskaya.cash.model.service.RateNBService;
@@ -20,6 +21,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Upload rateNB to BD
+ */
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
@@ -27,7 +31,6 @@ import java.util.List;
 )
 public class UploadRateNB extends HttpServlet {
     private RateNBService rateNBService = new RateNBServiceImpl();
-    private final static String PAGE_UPLOAD_RATE_NB = "/jsp/controller/load_rate_nb.jsp";
 
     public UploadRateNB() {
         super();
@@ -61,7 +64,7 @@ public class UploadRateNB extends HttpServlet {
         } else {
             request.setAttribute(AttributeName.ERROR, "100 No File found");
         }
-        request.getRequestDispatcher(PAGE_UPLOAD_RATE_NB).forward(request, response);
+        request.getRequestDispatcher(PathPage.PATH_CONTROLLER_UPLOAD_RATE_NB).forward(request, response);
 
     }
 
