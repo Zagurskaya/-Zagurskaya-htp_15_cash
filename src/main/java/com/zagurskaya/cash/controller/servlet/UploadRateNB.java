@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller;
+package com.zagurskaya.cash.controller.servlet;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.PathPage;
@@ -65,8 +65,5 @@ public class UploadRateNB extends HttpServlet {
             request.setAttribute(AttributeName.ERROR, "100 No File found");
         }
         request.getRequestDispatcher(PathPage.PATH_CONTROLLER_UPLOAD_RATE_NB).forward(request, response);
-
     }
-
-
 }

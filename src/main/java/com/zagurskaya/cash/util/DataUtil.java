@@ -1,6 +1,5 @@
 package com.zagurskaya.cash.util;
 
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
 import com.zagurskaya.cash.exception.CommandException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

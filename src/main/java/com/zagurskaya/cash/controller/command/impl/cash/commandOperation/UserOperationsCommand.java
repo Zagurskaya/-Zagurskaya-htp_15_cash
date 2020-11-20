@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.SprOperation;
@@ -23,7 +23,6 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 

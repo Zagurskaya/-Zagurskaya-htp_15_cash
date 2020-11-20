@@ -6,7 +6,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.util.DataProperty;
+import com.zagurskaya.cash.util.DataProperty;
 import com.zagurskaya.cash.util.DataUtil;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

@@ -3,8 +3,8 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
-import com.zagurskaya.cash.controller.util.DataValidation;
+import com.zagurskaya.cash.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.DataValidation;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;

@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandOperation.comman
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
@@ -15,7 +15,7 @@ import com.zagurskaya.cash.model.service.impl.CurrencyServiceImpl;
 import com.zagurskaya.cash.model.service.impl.DutiesServiceImpl;
 import com.zagurskaya.cash.model.service.impl.PaymentServiceImpl;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.controller.util.DataValidation;
+import com.zagurskaya.cash.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

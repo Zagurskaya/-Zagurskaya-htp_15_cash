@@ -3,7 +3,7 @@ package com.zagurskaya.cash.controller.command.impl.cash.commandCurrency;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.ServiceException;

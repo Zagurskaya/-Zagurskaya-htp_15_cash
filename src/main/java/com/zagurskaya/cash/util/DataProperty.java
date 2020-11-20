@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller.util;
+package com.zagurskaya.cash.util;
 
 import com.zagurskaya.cash.model.pool.ConnectionPool;
 import org.apache.logging.log4j.Level;

@@ -4,7 +4,7 @@ import com.zagurskaya.cash.controller.FrontController;
 import com.zagurskaya.cash.controller.command.ActionPermission;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.AttributeName;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.RoleType;
 import com.zagurskaya.cash.entity.User;
 import org.apache.logging.log4j.Level;

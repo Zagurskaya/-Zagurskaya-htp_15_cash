@@ -2,7 +2,7 @@ package com.zagurskaya.cash.controller.command.impl;
 
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.command.Command;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller.util;
+package com.zagurskaya.cash.util;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.exception.CommandException;

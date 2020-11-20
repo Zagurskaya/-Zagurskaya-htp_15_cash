@@ -2,14 +2,14 @@ package com.zagurskaya.cash.controller.command.impl.admin;
 
 import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
-import com.zagurskaya.cash.controller.util.ControllerDataUtil;
+import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.service.UserService;
 import com.zagurskaya.cash.model.service.impl.UserServiceImpl;
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.util.DataUtil;
-import com.zagurskaya.cash.controller.util.DataValidation;
+import com.zagurskaya.cash.util.DataValidation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

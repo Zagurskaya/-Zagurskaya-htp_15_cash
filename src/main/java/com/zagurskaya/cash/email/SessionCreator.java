@@ -1,4 +1,4 @@
-package com.zagurskaya.cash.controller.util.email;
+package com.zagurskaya.cash.email;
 
 import java.util.Properties;
 import javax.mail.PasswordAuthentication;

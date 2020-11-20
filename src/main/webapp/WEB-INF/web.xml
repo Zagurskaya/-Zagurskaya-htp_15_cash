@@ -34,7 +34,7 @@
     </filter-mapping>
     <servlet>
         <servlet-name>UploadRateNBServlet</servlet-name>
-        <servlet-class>com.zagurskaya.cash.controller.UploadRateNB</servlet-class>
+        <servlet-class>com.zagurskaya.cash.controller.servlet.UploadRateNB</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadRateNBServlet</servlet-name>
@@ -42,7 +42,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>UploadRateCBServlet</servlet-name>
-        <servlet-class>com.zagurskaya.cash.controller.UploadRateCB</servlet-class>
+        <servlet-class>com.zagurskaya.cash.controller.servlet.UploadRateCB</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadRateCBServlet</servlet-name>
