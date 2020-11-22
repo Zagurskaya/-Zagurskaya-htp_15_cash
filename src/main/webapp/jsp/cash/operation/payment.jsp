@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="/WEB-INF/tag/rateTag.tld" prefix="seostella" %>
 <html>
 <%@ include file="/include/head.jsp" %>
 <body>
 <div class="container">
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
-    <br>
+    <seostella:rateTag rateValue="Rate Value"/>
     <br>
     <H4 style="color:#ff0000">${message}</H4>
-    <br>
     <br>
     <form class="form-horizontal" actionType="do?command=Payment" method="post">
         <fieldset>

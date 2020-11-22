@@ -28,18 +28,6 @@
                 <li><a href="do?command=User_Operations"><fmt:message key="cash.userOperations"/></a></li>
             </ul>
         </li>
-        <li><a href="#" style="padding-right:18px"><fmt:message key="cash.reporting"/></a>
-            <ul>
-                <li><a href="do?command=Entries"><fmt:message key="cash.entries"/></a></li>
-            </ul>
-        </li>
-        <li><a href="#" style="padding-right:44px"><fmt:message key="cash.reports"/></a>
-            <ul>
-                <li><a href="do?command=Report1"><fmt:message key="cash.report1"/></a></li>
-                <li><a href="do?command=Report2"><fmt:message key="cash.report2"/></a></li>
-                <li><a href="do?command=Report3"><fmt:message key="cash.report3"/></a></li>
-            </ul>
-        </li>
         <li class="last"><a href="."><fmt:message key="header.exit"/></a></li>
         <li style="float: right;"><a href="do?command=Locale"><fmt:message key="header.localEn"/></a></li>
         <li style="float: right;"><a href="do?command=Locale"><fmt:message key="header.localRu"/></a></li>

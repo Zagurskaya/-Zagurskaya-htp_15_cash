@@ -15,7 +15,7 @@ public interface RateCBService extends Service<RateCB> {
      * @param now      - date and time of the rate
      * @param coming   - code currency by the coming
      * @param spending - code currency by the spending
-     * @return true on successful creation
+     * @return value rate CB
      * @throws ServiceException error during execution of logical blocks and actions
      */
     Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException;
@@ -24,9 +24,16 @@ public interface RateCBService extends Service<RateCB> {
      * Create List of rateCB
      *
      * @param rateCBList - List of rateCB
-     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      * @throws CommandException volition error
      */
     void create(List<RateCB> rateCBList) throws ServiceException, CommandException;
+
+    /**
+     * Get map with last rateCB today
+     *
+     * @return Map with last rates CB
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    List<RateCB> allLastRateCB() throws ServiceException;
 }

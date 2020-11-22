@@ -15,7 +15,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class CurrencyServiceImpl implements CurrencyService {
@@ -136,4 +138,15 @@ public class CurrencyServiceImpl implements CurrencyService {
             transaction.endSingleQuery();
         }
     }
+
+    @Override
+    public Map<String, String> findAllToMap() throws ServiceException {
+        Map<String, String> currencyMap = new HashMap<>();
+        List<Currency> currencies = findAll();
+        currencies.forEach(currency -> {
+            currencyMap.put(currency.getId().toString(), currency.getIso());
+        });
+        return currencyMap;
+    }
+
 }

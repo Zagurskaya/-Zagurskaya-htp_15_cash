@@ -1,12 +1,15 @@
 package com.zagurskaya.cash.model.service.impl;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
+import com.zagurskaya.cash.entity.Currency;
 import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.ServiceException;
+import com.zagurskaya.cash.model.dao.CurrencyDao;
 import com.zagurskaya.cash.model.dao.RateCBDao;
+import com.zagurskaya.cash.model.dao.impl.CurrencyDaoImpl;
 import com.zagurskaya.cash.model.dao.impl.RateCBDaoImpl;
 import com.zagurskaya.cash.model.service.EntityTransaction;
 import com.zagurskaya.cash.model.service.RateCBService;
@@ -16,7 +19,10 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 public class RateCBServiceImpl implements RateCBService {
@@ -76,6 +82,49 @@ public class RateCBServiceImpl implements RateCBService {
             throw new ServiceException("Database exception during createCheckEn rateCB ", e);
         } finally {
             transaction.endSingleQuery();
+        }
+    }
+
+    @Override
+    public List<RateCB> allLastRateCB() throws ServiceException {
+        List<RateCB> lastRate = new LinkedList<>();
+        CurrencyDao currencyDao = new CurrencyDaoImpl();
+        RateCBDao rateCBDao = new RateCBDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.init(rateCBDao, currencyDao);
+        LocalDateTime now = LocalDateTime.now();
+        Double buyRate;
+        Double saleRate;
+        try {
+            List<Currency> currencies = currencyDao.findAll();
+            for (Currency currency : currencies) {
+                if (933L != currency.getId()) {
+                    buyRate = rateCBDao.rateCBToday(now, currency.getId(), 933L);
+                    lastRate.add(new RateCB.Builder()
+                            .addСoming(currency.getId())
+                            .addSpending(933L)
+                            .addLocalDateTime(now)
+                            .addSum(buyRate)
+                            .addIsBack(false)
+                            .build());
+                    saleRate = rateCBDao.rateCBToday(now, 933L, currency.getId());
+                    lastRate.add(new RateCB.Builder()
+                            .addСoming(933L)
+                            .addSpending(currency.getId())
+                            .addLocalDateTime(now)
+                            .addSum(saleRate)
+                            .addIsBack(true)
+                            .build());
+
+                }
+            }
+            return lastRate;
+        } catch (DaoException e) {
+            transaction.rollback();
+            logger.log(Level.ERROR, "Database exception during fiend all Las tRateCB", e);
+            throw new ServiceException("Database exception during fiend  all Last RateCB", e);
+        } finally {
+            transaction.end();
         }
     }
 
@@ -160,4 +209,5 @@ public class RateCBServiceImpl implements RateCBService {
             transaction.endSingleQuery();
         }
     }
+
 }
