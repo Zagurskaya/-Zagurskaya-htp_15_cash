@@ -75,6 +75,29 @@ public class RateNB {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RateNB rateNB = (RateNB) o;
+
+        if (id != null ? !id.equals(rateNB.id) : rateNB.id != null) return false;
+        if (currencyId != null ? !currencyId.equals(rateNB.currencyId) : rateNB.currencyId != null) return false;
+        if (date != null ? !date.equals(rateNB.date) : rateNB.date != null) return false;
+        return sum != null ? sum.equals(rateNB.sum) : rateNB.sum == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (currencyId != null ? currencyId.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (sum != null ? sum.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Rate NB construction.
      */

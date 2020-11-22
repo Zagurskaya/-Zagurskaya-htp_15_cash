@@ -105,6 +105,34 @@ public class RateCB {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RateCB rateCB = (RateCB) o;
+
+        if (isBack != rateCB.isBack) return false;
+        if (id != null ? !id.equals(rateCB.id) : rateCB.id != null) return false;
+        if (coming != null ? !coming.equals(rateCB.coming) : rateCB.coming != null) return false;
+        if (spending != null ? !spending.equals(rateCB.spending) : rateCB.spending != null) return false;
+        if (localDateTime != null ? !localDateTime.equals(rateCB.localDateTime) : rateCB.localDateTime != null)
+            return false;
+        return sum != null ? sum.equals(rateCB.sum) : rateCB.sum == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (coming != null ? coming.hashCode() : 0);
+        result = 31 * result + (spending != null ? spending.hashCode() : 0);
+        result = 31 * result + (localDateTime != null ? localDateTime.hashCode() : 0);
+        result = 31 * result + (sum != null ? sum.hashCode() : 0);
+        result = 31 * result + (isBack ? 1 : 0);
+        return result;
+    }
+
     /**
      * Rate CB construction.
      */

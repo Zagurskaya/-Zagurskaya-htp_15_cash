@@ -167,6 +167,41 @@ public class Kassa {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Kassa kassa = (Kassa) o;
+
+        if (id != null ? !id.equals(kassa.id) : kassa.id != null) return false;
+        if (currencyId != null ? !currencyId.equals(kassa.currencyId) : kassa.currencyId != null) return false;
+        if (received != null ? !received.equals(kassa.received) : kassa.received != null) return false;
+        if (coming != null ? !coming.equals(kassa.coming) : kassa.coming != null) return false;
+        if (spending != null ? !spending.equals(kassa.spending) : kassa.spending != null) return false;
+        if (transmitted != null ? !transmitted.equals(kassa.transmitted) : kassa.transmitted != null) return false;
+        if (balance != null ? !balance.equals(kassa.balance) : kassa.balance != null) return false;
+        if (userId != null ? !userId.equals(kassa.userId) : kassa.userId != null) return false;
+        if (date != null ? !date.equals(kassa.date) : kassa.date != null) return false;
+        return dutiesId != null ? dutiesId.equals(kassa.dutiesId) : kassa.dutiesId == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (currencyId != null ? currencyId.hashCode() : 0);
+        result = 31 * result + (received != null ? received.hashCode() : 0);
+        result = 31 * result + (coming != null ? coming.hashCode() : 0);
+        result = 31 * result + (spending != null ? spending.hashCode() : 0);
+        result = 31 * result + (transmitted != null ? transmitted.hashCode() : 0);
+        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (dutiesId != null ? dutiesId.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Kassa construction.
      */

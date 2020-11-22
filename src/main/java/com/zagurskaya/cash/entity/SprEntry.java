@@ -138,6 +138,40 @@ public class SprEntry {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SprEntry sprEntry = (SprEntry) o;
+
+        if (isSpending != sprEntry.isSpending) return false;
+        if (id != null ? !id.equals(sprEntry.id) : sprEntry.id != null) return false;
+        if (name != null ? !name.equals(sprEntry.name) : sprEntry.name != null) return false;
+        if (currencyId != null ? !currencyId.equals(sprEntry.currencyId) : sprEntry.currencyId != null) return false;
+        if (sprOperationId != null ? !sprOperationId.equals(sprEntry.sprOperationId) : sprEntry.sprOperationId != null)
+            return false;
+        if (accountDebit != null ? !accountDebit.equals(sprEntry.accountDebit) : sprEntry.accountDebit != null)
+            return false;
+        if (accountCredit != null ? !accountCredit.equals(sprEntry.accountCredit) : sprEntry.accountCredit != null)
+            return false;
+        return rate != null ? rate.equals(sprEntry.rate) : sprEntry.rate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (currencyId != null ? currencyId.hashCode() : 0);
+        result = 31 * result + (sprOperationId != null ? sprOperationId.hashCode() : 0);
+        result = 31 * result + (accountDebit != null ? accountDebit.hashCode() : 0);
+        result = 31 * result + (accountCredit != null ? accountCredit.hashCode() : 0);
+        result = 31 * result + (isSpending ? 1 : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        return result;
+    }
+
     /**
      * SprEntry construction.
      */

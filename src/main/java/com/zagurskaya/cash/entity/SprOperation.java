@@ -73,6 +73,29 @@ public class SprOperation {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SprOperation that = (SprOperation) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (nameRU != null ? !nameRU.equals(that.nameRU) : that.nameRU != null) return false;
+        if (nameEN != null ? !nameEN.equals(that.nameEN) : that.nameEN != null) return false;
+        return specification != null ? specification.equals(that.specification) : that.specification == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nameRU != null ? nameRU.hashCode() : 0);
+        result = 31 * result + (nameEN != null ? nameEN.hashCode() : 0);
+        result = 31 * result + (specification != null ? specification.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Construction directory operation.
      */

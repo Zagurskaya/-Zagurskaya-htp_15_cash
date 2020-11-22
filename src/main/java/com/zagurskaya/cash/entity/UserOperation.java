@@ -181,6 +181,46 @@ public class UserOperation {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserOperation that = (UserOperation) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (localDateTime != null ? !localDateTime.equals(that.localDateTime) : that.localDateTime != null)
+            return false;
+        if (rate != null ? !rate.equals(that.rate) : that.rate != null) return false;
+        if (sum != null ? !sum.equals(that.sum) : that.sum != null) return false;
+        if (currencyId != null ? !currencyId.equals(that.currencyId) : that.currencyId != null) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (dutiesId != null ? !dutiesId.equals(that.dutiesId) : that.dutiesId != null) return false;
+        if (operationId != null ? !operationId.equals(that.operationId) : that.operationId != null) return false;
+        if (specification != null ? !specification.equals(that.specification) : that.specification != null)
+            return false;
+        if (checkingAccount != null ? !checkingAccount.equals(that.checkingAccount) : that.checkingAccount != null)
+            return false;
+        return fullName != null ? fullName.equals(that.fullName) : that.fullName == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (localDateTime != null ? localDateTime.hashCode() : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        result = 31 * result + (sum != null ? sum.hashCode() : 0);
+        result = 31 * result + (currencyId != null ? currencyId.hashCode() : 0);
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (dutiesId != null ? dutiesId.hashCode() : 0);
+        result = 31 * result + (operationId != null ? operationId.hashCode() : 0);
+        result = 31 * result + (specification != null ? specification.hashCode() : 0);
+        result = 31 * result + (checkingAccount != null ? checkingAccount.hashCode() : 0);
+        result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+        return result;
+    }
+
     /**
      * construction executed operation.
      */

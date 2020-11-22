@@ -91,6 +91,32 @@ public class Duties {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Duties duties = (Duties) o;
+
+        if (isClose != duties.isClose) return false;
+        if (id != null ? !id.equals(duties.id) : duties.id != null) return false;
+        if (userId != null ? !userId.equals(duties.userId) : duties.userId != null) return false;
+        if (localDateTime != null ? !localDateTime.equals(duties.localDateTime) : duties.localDateTime != null)
+            return false;
+        return number != null ? number.equals(duties.number) : duties.number == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (localDateTime != null ? localDateTime.hashCode() : 0);
+        result = 31 * result + (number != null ? number.hashCode() : 0);
+        result = 31 * result + (isClose ? 1 : 0);
+        return result;
+    }
+
     /**
      * Duties construction.
      */

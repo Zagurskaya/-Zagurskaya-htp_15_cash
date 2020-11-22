@@ -73,6 +73,29 @@ public class Currency {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Currency currency = (Currency) o;
+
+        if (id != null ? !id.equals(currency.id) : currency.id != null) return false;
+        if (iso != null ? !iso.equals(currency.iso) : currency.iso != null) return false;
+        if (nameRU != null ? !nameRU.equals(currency.nameRU) : currency.nameRU != null) return false;
+        return nameEN != null ? nameEN.equals(currency.nameEN) : currency.nameEN == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (iso != null ? iso.hashCode() : 0);
+        result = 31 * result + (nameRU != null ? nameRU.hashCode() : 0);
+        result = 31 * result + (nameEN != null ? nameEN.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Currency construction.
      */

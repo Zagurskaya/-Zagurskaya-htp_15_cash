@@ -149,6 +149,42 @@ public class UserEntry {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntry userEntry = (UserEntry) o;
+
+        if (isSpending != userEntry.isSpending) return false;
+        if (id != null ? !id.equals(userEntry.id) : userEntry.id != null) return false;
+        if (userOperationId != null ? !userOperationId.equals(userEntry.userOperationId) : userEntry.userOperationId != null)
+            return false;
+        if (sprEntryId != null ? !sprEntryId.equals(userEntry.sprEntryId) : userEntry.sprEntryId != null) return false;
+        if (currencyId != null ? !currencyId.equals(userEntry.currencyId) : userEntry.currencyId != null) return false;
+        if (accountDebit != null ? !accountDebit.equals(userEntry.accountDebit) : userEntry.accountDebit != null)
+            return false;
+        if (accountCredit != null ? !accountCredit.equals(userEntry.accountCredit) : userEntry.accountCredit != null)
+            return false;
+        if (sum != null ? !sum.equals(userEntry.sum) : userEntry.sum != null) return false;
+        return rate != null ? rate.equals(userEntry.rate) : userEntry.rate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (userOperationId != null ? userOperationId.hashCode() : 0);
+        result = 31 * result + (sprEntryId != null ? sprEntryId.hashCode() : 0);
+        result = 31 * result + (currencyId != null ? currencyId.hashCode() : 0);
+        result = 31 * result + (accountDebit != null ? accountDebit.hashCode() : 0);
+        result = 31 * result + (accountCredit != null ? accountCredit.hashCode() : 0);
+        result = 31 * result + (sum != null ? sum.hashCode() : 0);
+        result = 31 * result + (isSpending ? 1 : 0);
+        result = 31 * result + (rate != null ? rate.hashCode() : 0);
+        return result;
+    }
+
     /**
      * construction проведенной проводки.
      */
