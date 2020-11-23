@@ -91,7 +91,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATENB, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, rateNB.getCurrencyId());
-                preparedStatement.setObject(2, rateNB.getDate());
+                preparedStatement.setString(2, rateNB.getDate().toString());
                 preparedStatement.setDouble(3, rateNB.getSum());
                 result = preparedStatement.executeUpdate();
                 if (1 == result) {
@@ -116,7 +116,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_RATENB)) {
                 preparedStatement.setLong(1, rateNB.getCurrencyId());
-                preparedStatement.setObject(2, rateNB.getDate());
+                preparedStatement.setString(2, rateNB.getDate().toString());
                 preparedStatement.setDouble(3, rateNB.getSum());
                 preparedStatement.setLong(4, rateNB.getId());
                 result = preparedStatement.executeUpdate();
@@ -166,7 +166,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
         RateNB rateNB = null;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_RATENB_BY_DATA_AND_RATENB)) {
-                preparedStatement.setObject(1, date);
+                preparedStatement.setString(1, date.toString());
                 preparedStatement.setLong(2, currencyId);
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
