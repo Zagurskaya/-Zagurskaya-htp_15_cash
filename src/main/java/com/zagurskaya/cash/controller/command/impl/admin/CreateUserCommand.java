@@ -54,10 +54,7 @@ public class CreateUserCommand implements Command {
         final HttpSession session = request.getSession(false);
         try {
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                if (DataValidation.isCancelOperation(request)) {
-                    return ActionType.EDIT_USERS;
-
-                } else if (DataValidation.isSaveOperation(request)) {
+                if (DataValidation.isSaveOperation(request)) {
                     UserExtractor userExtractor = new UserExtractor();
                     User createdUser = userExtractor.userNotCheckedFieldsToUser(request);
                     request.setAttribute(AttributeName.USER, createdUser);

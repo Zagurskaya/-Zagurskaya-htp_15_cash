@@ -11,7 +11,6 @@
     <br>
     <br>
     <H4><fmt:message key="page.admin.message"/></H4>
-    <%--         <H4> ${message}</H4>--%>
 </div>
 </body>
 </html>

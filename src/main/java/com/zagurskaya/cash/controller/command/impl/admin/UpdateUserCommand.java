@@ -52,10 +52,7 @@ public class UpdateUserCommand implements Command {
         if (id == null) return ActionType.INDEX;
 
         if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-            if (DataValidation.isCancelOperation(request)) {
-                return ActionType.EDIT_USERS;
-
-            } else if (DataValidation.isSaveOperation(request)) {
+            if (DataValidation.isSaveOperation(request)) {
                 UserExtractor userExtractor = new UserExtractor();
                 User updatedUser = userExtractor.userNotCheckedFieldsToUser(request);
                 request.setAttribute(AttributeName.USER, updatedUser);

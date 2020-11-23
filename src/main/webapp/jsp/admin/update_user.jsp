@@ -21,20 +21,22 @@
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login"><fmt:message
-                        key="page.editusers.label.login"/></label>
+                        key="page.editusers.label.login"/>*</label>
                 <div class="col-md-4">
                     <input id="login" name="login" value="${user.login}" type="text" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
+                           required pattern="[a-zA-Zа-яА-Я0-9_-]{1,}"
                     >
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-md-4 control-label" for="fullname"><fmt:message
-                        key="page.editusers.label.fullname"/></label>
+                        key="page.editusers.label.fullname"/>*</label>
                 <div class="col-md-4">
                     <input id="fullname" name="fullname" value="${user.fullName}" type="text" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
+                           required pattern="[a-zA-Zа-яА-Я0-9_-]{1,}"
                     >
                 </div>
             </div>
@@ -55,8 +57,10 @@
 
             <div class="form-group">
                 <div class="col-md-4">
-                    <button id="save" name="save" class="btn btn-success">Сохранить</button>
-                    <button id="cancel" name="cancel" class="btn btn-danger">Отмена</button>
+                    <button id="save" name="save" class="btn btn-success">
+                        <fmt:message key="page.createuser.button.save"/></button>
+                    <button class="btn btn-danger" onclick="location.href = 'do?command=Edit_Users'">
+                        <fmt:message key="page.createuser.button.cancel"/></button>
                 </div>
             </div>
         </fieldset>
