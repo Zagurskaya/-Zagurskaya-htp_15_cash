@@ -65,7 +65,7 @@ public class ControllerDataUtil {
      * @param source - source text
      * @return character text
      */
-    public static String convertHtmlSpecialChars(String source) {
+    static String convertHtmlSpecialChars(String source) {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < source.length(); i++) {
@@ -147,10 +147,13 @@ public class ControllerDataUtil {
         String[] keys = request.getParameterValues(key);
         String[] values = request.getParameterValues(value);
         for (int i = 0; i < keys.length; i++) {
-            map.put(Long.parseLong(keys[i]), Math.round(Double.parseDouble(values[i]) * 100.0) / 100.0);
+            if (!"".equals(values[i])) {
+                map.put(Long.parseLong(keys[i]), Math.round(Double.parseDouble(values[i]) * 100.0) / 100.0);
+            }
         }
         return map;
     }
+
     /**
      * Getting a String value
      *
@@ -161,11 +164,6 @@ public class ControllerDataUtil {
     public static Long getLong(HttpServletRequest request, String name) {
         String value = request.getParameter(name);
         return Long.parseLong(value);
-    }
-
-    public static Double getDouble(HttpServletRequest request, String name) {
-        String value = request.getParameter(name);
-        return Double.parseDouble(value);
     }
 
     /**

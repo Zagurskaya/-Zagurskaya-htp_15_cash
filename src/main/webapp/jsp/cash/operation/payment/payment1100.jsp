@@ -6,12 +6,13 @@
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
     <H4><fmt:message key="page.payment1100.title"/></H4>
+    <%@ include file="/include/infomessage.jsp" %>
     <form class="form-horizontal" actionType="do?command=Payment1100" method="post">
         <fieldset>
             <div class="row">
                 <div class=col-md-2><fmt:message key="page.payment1100.label.cod"/></div>
                 <div class=col-md-3><fmt:message key="page.payment1100.label.name"/></div>
-                <div class=col-md-2><fmt:message key="page.payment1100.label.sum"/></div>
+                <div class=col-md-2><fmt:message key="page.payment1100.label.sum"/>*</div>
             </div>
             <c:forEach items="${currencies}" var="currency">
                 <div class="row">
@@ -33,17 +34,17 @@
                     </div>
 
                     <div class="col-md-2">
-                        <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                               required="" value="500">
+                        <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md" value="">
                     </div>
 
                 </div>
             </c:forEach>
             <br>
-            <p><fmt:message key="page.payment1100.label.description"/></p>
+            <p><fmt:message key="page.payment1100.label.description"/>*</p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                       required="" value="сдано денежных средств по расходному кассовому ордеру">
+                       required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}"
+                       value="сдано денежных средств по расходному кассовому ордеру">
             </div>
             <br>
             <br>

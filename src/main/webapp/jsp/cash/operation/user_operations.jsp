@@ -37,7 +37,7 @@
                             <c:if test="${cookie.local.value=='en'}">${currency.nameEN}</c:if></c:if>
                     </c:forEach>
                 </td>
-                <td><c:out value="${operation.localDateTime}"/></td>
+                <td><c:out value="${operation.localDateTime.toString().substring(0,10)} ${operation.localDateTime.toString().substring(11,19)}"/></td>
             </tr>
         </c:forEach>
         </tbody>

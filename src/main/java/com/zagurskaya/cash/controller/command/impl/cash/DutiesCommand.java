@@ -45,6 +45,7 @@ public class DutiesCommand implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
         try {

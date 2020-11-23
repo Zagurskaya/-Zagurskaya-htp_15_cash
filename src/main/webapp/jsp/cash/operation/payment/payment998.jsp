@@ -9,28 +9,29 @@
     <form class="form-horizontal" actionType="do?command=Payment998" method="post">
         <fieldset>
             <br>
-            <p><fmt:message key="page.payment998.label.account"/></p>
+            <p><fmt:message key="page.payment998.label.account"/>*</p>
             <div class="col-md-7">
                 <input id="checkingAccount" name="checkingAccount" type="text" placeholder=""
                        class="form-control input-md"
-                       required="" value="BY53BLBB30112005500150000000">
+                       required pattern="[A-ZА-Я0-9]{1,28}" value="">
+<%--                       required="" value="BY53BLBB30112005500150000000">--%>
             </div>
             <br>
-            <p><fmt:message key="page.payment998.label.description"/></p>
+            <p><fmt:message key="page.payment998.label.description"/>*</p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                       required="" value="за коммунальные услуги">
+                       required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}" value="за коммунальные услуги">
             </div>
             <br>
-            <p><fmt:message key="page.payment998.label.name"/></p>
+            <p><fmt:message key="page.payment998.label.name"/>*</p>
             <div class="col-md-7">
                 <input id="fullname" name="fullname" type="text" placeholder="" class="form-control input-md"
-                       required="" value="Иванов Иван Иванович">
+                       required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}" value="">
             </div>
             <br>
             <div class="row">
                 <div class=col-md-3><fmt:message key="page.payment998.label.currency"/></div>
-                <div class=col-md-2><fmt:message key="page.payment998.label.sum"/></div>
+                <div class=col-md-2><fmt:message key="page.payment998.label.sum"/>*</div>
             </div>
             <div class="row">
                 <div class="col-md-3">
@@ -49,7 +50,7 @@
 
                 <div class="col-md-2">
                     <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                           required="" value="390">
+                           required pattern="[0-9.]{1,}" value="">
                 </div>
             </div>
             <br>

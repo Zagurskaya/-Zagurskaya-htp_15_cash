@@ -45,6 +45,8 @@ public class RateCBCommand implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+
         try {
             int page = 1;
             if (request.getParameter(AttributeName.PAGE) != null)

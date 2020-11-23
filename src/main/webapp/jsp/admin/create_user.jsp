@@ -48,7 +48,7 @@
                 <div class="col-md-4">
                     <input id="fullname" value="${user.fullName}" name="fullname" type="text" placeholder=""
                            class="form-control input-md" title="Допустимые символы a-zA-Zа-яА-Я0-9_-"
-                           required pattern="[a-zA-Zа-яА-Я0-9_-]{1,}"
+                           required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}"
                     >
                 </div>
             </div>

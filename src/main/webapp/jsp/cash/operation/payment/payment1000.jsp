@@ -11,7 +11,7 @@
             <div class="row">
                 <div class=col-md-2><fmt:message key="page.payment1000.label.number"/></div>
                 <div class=col-md-3><fmt:message key="page.payment1000.label.name"/></div>
-                <div class=col-md-2><fmt:message key="page.payment1000.label.sum"/></div>
+                <div class=col-md-2><fmt:message key="page.payment1000.label.sum"/>*</div>
             </div>
             <c:forEach items="${currencies}" var="currencies">
                 <div class="row">
@@ -35,15 +35,15 @@
 
                     <div class="col-md-2">
                         <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                               required="" value="1000">
+                               required pattern="[0-9.]{1,}" value="">
                     </div>
                 </div>
             </c:forEach>
             <br>
-            <p><fmt:message key="page.payment1000.label.description"/></p>
+            <p><fmt:message key="page.payment1000.label.description"/>*</p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                       required="" value="получено денежных средств по приходному кассовому ордеру">
+                       required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}" value="получено денежных средств по приходному кассовому ордеру">
             </div>
             <br>
             <br>

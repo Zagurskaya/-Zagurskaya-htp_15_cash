@@ -26,7 +26,12 @@
                 <fmt:message key="error.message.107"/> ${message.substring(4,message.length())}
             </span></p>
     </c:when>
-    <c:otherwise>${message}</c:otherwise>
+    <c:when test="${'109' == message.substring(0,3)}">
+        <p><span style="color:#08ff11">
+                <fmt:message key="error.message.109"/> ${message.substring(4,message.length())}
+            </span></p>
+    </c:when>
+    <c:otherwise><p><span style="color:#08ff11">${message}</span></p></c:otherwise>
 </c:choose>
 
 

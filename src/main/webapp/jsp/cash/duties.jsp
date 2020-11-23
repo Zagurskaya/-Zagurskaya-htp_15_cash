@@ -43,7 +43,8 @@
                     <c:if test="${duties.userId==users.id}">${users.login} </c:if>
                 </c:forEach>
             </td>
-            <td><c:out value="${duties.localDateTime}"/></td>
+            <td><c:out
+                    value="${duties.localDateTime.toString().substring(0,10)} ${duties.localDateTime.toString().substring(11,16)}"/></td>
             <td><c:out value="${duties.number}"/></td>
             <td><c:out value="${duties.isClose}"/></td>
         </tr>

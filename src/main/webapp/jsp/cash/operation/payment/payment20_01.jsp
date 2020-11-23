@@ -14,7 +14,7 @@
             <br>
             <div class="row">
                 <div class=col-md-3><fmt:message key="page.payment20.label.receive"/></div>
-                <div class=col-md-2><fmt:message key="page.payment20.label.sum"/></div>
+                <div class=col-md-2><fmt:message key="page.payment20.label.sum"/>*</div>
             </div>
 
             <div class="row">
@@ -34,15 +34,15 @@
 
                 <div class="col-md-2">
                     <input id="sum" name="sum" type="text" placeholder="" class="form-control input-md"
-                           required="" value="100">
+                           required pattern="[0-9.]{1,}" value="">
                 </div>
             </div>
             <br>
             <br>
-            <p><fmt:message key="page.payment20.label.description"/></p>
+            <p><fmt:message key="page.payment20.label.description"/>*</p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                       required="" value="продажа валюты в личное пользование">
+                       required pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}" value="продажа валюты в личное пользование">
             </div>
 
             <br>

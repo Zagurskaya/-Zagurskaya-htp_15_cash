@@ -30,7 +30,7 @@
                         <c:if test="${rateCB.spending==currency.id && cookie.local.value=='en'}">${currency.nameEN} </c:if>
                     </c:forEach>
                 </td>
-                <td><c:out value="${rateCB.localDateTime}"/></td>
+                <td><c:out value="${rateCB.localDateTime.toString().substring(0,10)} ${rateCB.localDateTime.toString().substring(11,16)}"/></td>
                 <td><c:out value="${rateCB.sum}"/></td>
             </tr>
         </c:forEach>

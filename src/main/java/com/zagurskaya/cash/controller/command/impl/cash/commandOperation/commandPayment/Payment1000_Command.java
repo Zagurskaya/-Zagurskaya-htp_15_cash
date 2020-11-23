@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,8 @@ public class Payment1000_Command implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+        final HttpSession session = request.getSession(false);
 
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
@@ -69,16 +72,16 @@ public class Payment1000_Command implements Command {
                     return ActionType.PAYMENT;
                 }
                 paymentService.implementPayment1000(values, specification, user);
-                //todo change to check
+                session.setAttribute(AttributeName.MESSAGE, "109 ");
                 return ActionType.PAYMENT;
             }
 
             List<Currency> currencies = currencyService.findAll();
-            request.getSession(false).setAttribute(AttributeName.CURRENCIES, currencies);
+            session.setAttribute(AttributeName.CURRENCIES, currencies);
             return ActionType.PAYMENT1000;
 
         } catch (ServiceException | NumberFormatException e) {
-            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

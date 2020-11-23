@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,9 @@ public class Payment1100_Command implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+        final HttpSession session = request.getSession(false);
+
 
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
@@ -70,10 +74,13 @@ public class Payment1100_Command implements Command {
                     String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
 
                     if (values.isEmpty()) {
-                        return ActionType.PAYMENT;
+                        request.setAttribute(AttributeName.MESSAGE, "Empty value");
+                        List<Currency> currencies = currencyService.findAll();
+                        request.setAttribute(AttributeName.CURRENCIES, currencies);
+                        return ActionType.PAYMENT1100;
                     }
                     paymentService.implementPayment1100(values, specification, user);
-                    //todo change to check
+                    session.setAttribute(AttributeName.MESSAGE, "109 ");
                     return ActionType.PAYMENT;
 
                 } else if (DataValidation.isGetBalanceOperation(request)) {
@@ -87,7 +94,7 @@ public class Payment1100_Command implements Command {
             return ActionType.PAYMENT1100;
 
         } catch (ServiceException | NumberFormatException e) {
-            request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
+            session.setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);
             return ActionType.ERROR;
         }

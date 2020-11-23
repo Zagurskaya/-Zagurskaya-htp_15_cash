@@ -80,10 +80,10 @@
                 </c:if>
             </c:forEach>
             <br>
-            <p><fmt:message key="page.payment20.label.description"/></p>
+            <p><fmt:message key="page.payment20.label.description"/>*</p>
             <div class="col-md-7">
                 <input id="specification" name="specification" type="text" placeholder="" class="form-control input-md"
-                       required="" value="${specification}">
+                       required  pattern="[a-zA-Zа-яА-Я0-9\s_-]{1,}" value="${specification}">
             </div>
             <br>
             <br>

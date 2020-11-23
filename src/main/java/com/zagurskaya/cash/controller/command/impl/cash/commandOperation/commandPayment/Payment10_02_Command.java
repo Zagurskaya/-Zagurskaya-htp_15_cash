@@ -58,6 +58,8 @@ public class Payment10_02_Command implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+
         String today = DataUtil.getFormattedLocalDateStartDateTime(LocalDate.now());
 
         try {
@@ -93,6 +95,7 @@ public class Payment10_02_Command implements Command {
                 String locale = localeCookie != null && (!localeCookie.getValue().equals(AttributeName.LOCALE_RU)) ? AttributeName.LOCALE_EN : AttributeName.LOCALE_RU;
                 PDFDocument document = new CheckOperation10();
                 document.createCheck(operationId, NUMBER_OPERATION, locale);
+                session.setAttribute(AttributeName.MESSAGE, "109 ");
 
                 return ActionType.PAYMENT;
             }

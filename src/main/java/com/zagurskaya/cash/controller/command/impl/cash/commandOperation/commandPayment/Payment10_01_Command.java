@@ -55,6 +55,8 @@ public class Payment10_01_Command implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+
         LocalDate date = LocalDate.now();
         LocalDateTime now = LocalDateTime.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);

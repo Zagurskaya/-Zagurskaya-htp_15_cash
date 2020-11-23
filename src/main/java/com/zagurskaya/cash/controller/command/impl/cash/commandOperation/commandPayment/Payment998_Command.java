@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,8 @@ public class Payment998_Command implements Command {
     @Override
     public ActionType execute(HttpServletRequest request, HttpServletResponse response) throws CommandException {
         ControllerDataUtil.removeAttributeError(request);
+        ControllerDataUtil.removeAttributeMessage(request);
+        final HttpSession session = request.getSession(false);
 
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
@@ -80,6 +83,7 @@ public class Payment998_Command implements Command {
                 String locale = localeCookie != null && (!localeCookie.getValue().equals(AttributeName.LOCALE_RU)) ? AttributeName.LOCALE_EN : AttributeName.LOCALE_RU;
                 PDFDocument document = new CheckOperation998();
                 document.createCheck(operationId, NUMBER_OPERATION, locale);
+                session.setAttribute(AttributeName.MESSAGE, "109 ");
                 return ActionType.PAYMENT;
             }
 
