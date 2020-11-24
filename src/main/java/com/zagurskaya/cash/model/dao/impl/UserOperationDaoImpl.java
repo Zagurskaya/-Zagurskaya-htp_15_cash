@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,8 +54,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
-                    Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
-                    Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_OPERATION_RATE);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
                     Long userId = resultSet.getLong(ColumnName.USER_OPERATION_USER_ID);
                     Long dutiesId = resultSet.getLong(ColumnName.USER_OPERATION_DUTIES_ID);
@@ -94,8 +95,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
-                    Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
-                    Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_OPERATION_RATE);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
                     Long userId = resultSet.getLong(ColumnName.USER_OPERATION_USER_ID);
                     Long dutiesId = resultSet.getLong(ColumnName.USER_OPERATION_DUTIES_ID);
@@ -131,8 +132,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER_OPERATION, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setString(1, userOperation.getLocalDateTime().toString());
-                preparedStatement.setDouble(2, userOperation.getRate());
-                preparedStatement.setDouble(3, userOperation.getSum());
+                preparedStatement.setBigDecimal(2, userOperation.getRate());
+                preparedStatement.setBigDecimal(3, userOperation.getSum());
                 preparedStatement.setLong(4, userOperation.getCurrencyId());
                 preparedStatement.setLong(5, userOperation.getUserId());
                 preparedStatement.setLong(6, userOperation.getDutiesId());
@@ -163,8 +164,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_USER_OPERATION)) {
                 preparedStatement.setString(1, userOperation.getLocalDateTime().toString());
-                preparedStatement.setDouble(2, userOperation.getRate());
-                preparedStatement.setDouble(3, userOperation.getSum());
+                preparedStatement.setBigDecimal(2, userOperation.getRate());
+                preparedStatement.setBigDecimal(3, userOperation.getSum());
                 preparedStatement.setLong(4, userOperation.getCurrencyId());
                 preparedStatement.setLong(5, userOperation.getUserId());
                 preparedStatement.setLong(6, userOperation.getDutiesId());
@@ -224,8 +225,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
-                    Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
-                    Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_OPERATION_RATE);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
                     Long userId = resultSet.getLong(ColumnName.USER_OPERATION_USER_ID);
                     Long dutiesId = resultSet.getLong(ColumnName.USER_OPERATION_DUTIES_ID);
@@ -259,7 +260,7 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
     @Override
     public List<UserOperation> findAllByUserIdAndDutiesId(Long userId, Long dutiesId, int limit, int startPosition) throws DaoException {
         List<UserOperation> userOperations = new ArrayList<>();
-        boolean isPart = (0 != limit) && (0 != startPosition);
+        boolean isPart = (0 != limit);
         String SQL = isPart ? SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID_PAGE : SQL_SELECT_ALL_BY_USER_ID_AND_DUTIES_ID;
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
@@ -273,8 +274,8 @@ public class UserOperationDaoImpl extends AbstractDao implements UserOperationDa
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.USER_OPERATION_ID);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.USER_OPERATION_TIMESTAMP, LocalDateTime.class);
-                    Double rate = resultSet.getDouble(ColumnName.USER_OPERATION_RATE);
-                    Double sum = resultSet.getDouble(ColumnName.USER_OPERATION_SUM);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_OPERATION_RATE);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_OPERATION_SUM);
                     Long currencyId = resultSet.getLong(ColumnName.USER_OPERATION_CURRENCY_ID);
                     Long operationId = resultSet.getLong(ColumnName.USER_OPERATION_OPERATION_ID);
                     String specification = resultSet.getString(ColumnName.USER_OPERATION_SPECIFICATION);

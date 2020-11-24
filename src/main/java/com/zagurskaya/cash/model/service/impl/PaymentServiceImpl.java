@@ -33,6 +33,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -74,7 +75,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException {
+    public Long implementPayment1000(Map<Long, BigDecimal> map, String specification, User user) throws ServiceException {
         Long sprOperationId = 1000L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -93,9 +94,9 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
-            Double valueForFirstKey = map.get(firstKey);
+            BigDecimal valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
+            BigDecimal rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
                     .addLocalDateTime(now)
                     .addRate(rateCBPayment)
@@ -107,9 +108,9 @@ public class PaymentServiceImpl implements PaymentService {
                     .addSpecification(specification)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
-            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+            for (Map.Entry<Long, BigDecimal> entry : map.entrySet()) {
                 Long currency = entry.getKey();
-                Double sum = entry.getValue();
+                BigDecimal sum = entry.getValue();
                 List<SprEntry> sprEntries1000 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
                 kassaService.updateKassaOuterOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries1000) {
@@ -122,7 +123,6 @@ public class PaymentServiceImpl implements PaymentService {
                             .addAccountCredit(entryElement.getAccountCredit())
                             .addSum(sum)
                             .addIsSpending(entryElement.getIsSpending())
-//                            .addRate(rateNBDao.rateNBToday(Date.valueOf(todaySQL), currency).getSum())
                             .addRate(rateNBDao.rateNBToday(date, currency).getSum())
                             .build();
                     userEntryDao.create(userEntry1000);
@@ -144,7 +144,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException {
+    public Long implementPayment1100(Map<Long, BigDecimal> map, String specification, User user) throws ServiceException {
         Long sprOperationId = 1100L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -163,9 +163,9 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
-            Double valueForFirstKey = map.get(firstKey);
+            BigDecimal valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
+            BigDecimal rateCBPayment = rateCBDao.rateCBToday(now, firstKey, AttributeName.NС);
             UserOperation userOperation = new UserOperation.Builder()
                     .addLocalDateTime(now)
                     .addRate(rateCBPayment)
@@ -177,9 +177,9 @@ public class PaymentServiceImpl implements PaymentService {
                     .addSpecification(specification)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
-            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+            for (Map.Entry<Long, BigDecimal> entry : map.entrySet()) {
                 Long currency = entry.getKey();
-                Double sum = entry.getValue();
+                BigDecimal sum = entry.getValue();
                 List<SprEntry> sprEntries1100 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
                 kassaService.updateKassaOuterOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries1100) {
@@ -213,7 +213,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
+    public Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException {
         Long sprOperationId = 10L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -232,7 +232,7 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
-            Double valueForFirstKey = map.get(firstKey);
+            BigDecimal valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             UserOperation userOperation = new UserOperation.Builder()
                     .addLocalDateTime(now)
@@ -245,9 +245,9 @@ public class PaymentServiceImpl implements PaymentService {
                     .addSpecification(specification)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
-            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+            for (Map.Entry<Long, BigDecimal> entry : map.entrySet()) {
                 Long currency = entry.getKey();
-                Double sum = entry.getValue();
+                BigDecimal sum = entry.getValue();
                 List<SprEntry> sprEntries10 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
                 kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries10) {
@@ -281,7 +281,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException {
+    public Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException {
         Long sprOperationId = 20L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -300,7 +300,7 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
-            Double valueForFirstKey = map.get(firstKey);
+            BigDecimal valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
             UserOperation userOperation = new UserOperation.Builder()
                     .addLocalDateTime(now)
@@ -313,9 +313,9 @@ public class PaymentServiceImpl implements PaymentService {
                     .addSpecification(specification)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
-            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+            for (Map.Entry<Long, BigDecimal> entry : map.entrySet()) {
                 Long currency = entry.getKey();
-                Double sum = entry.getValue();
+                BigDecimal sum = entry.getValue();
                 List<SprEntry> sprEntries20 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
                 kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries20) {
@@ -349,7 +349,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException {
+    public Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException {
         Long sprOperationId = 998L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -368,9 +368,9 @@ public class PaymentServiceImpl implements PaymentService {
         transaction.init(userOperationDao, userEntryDao, sprEntryDao, kassaDao, rateNBDao, rateCBDao);
         try {
             Long firstKey = (Long) map.keySet().toArray()[0];
-            Double valueForFirstKey = map.get(firstKey);
+            BigDecimal valueForFirstKey = map.get(firstKey);
             Duties duties = dutiesService.openDutiesUserToday(user, today);
-            double rateCBPayment = !AttributeName.NС.equals(firstKey) ? rateCBDao.rateCBToday(now, firstKey, AttributeName.NС) : 1;
+            BigDecimal rateCBPayment = !AttributeName.NС.equals(firstKey) ? rateCBDao.rateCBToday(now, firstKey, AttributeName.NС) : new BigDecimal(1);
             UserOperation userOperation = new UserOperation.Builder()
                     .addLocalDateTime(now)
                     .addRate(rateCBPayment)
@@ -384,9 +384,9 @@ public class PaymentServiceImpl implements PaymentService {
                     .addFullName(fullName)
                     .build();
             Long userOperationId = userOperationDao.create(userOperation);
-            for (Map.Entry<Long, Double> entry : map.entrySet()) {
+            for (Map.Entry<Long, BigDecimal> entry : map.entrySet()) {
                 Long currency = entry.getKey();
-                Double sum = entry.getValue();
+                BigDecimal sum = entry.getValue();
                 List<SprEntry> sprEntries998 = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationId, currency);
                 kassaService.updateKassaInnerOperation(date, duties.getId(), currency, sum, sprOperationId);
                 for (SprEntry entryElement : sprEntries998) {

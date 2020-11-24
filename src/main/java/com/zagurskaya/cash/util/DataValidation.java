@@ -15,7 +15,6 @@ public class DataValidation {
     private static final Logger logger = LogManager.getLogger(DataValidation.class);
     private static final String POST = "post";
     private static final String SAVE = "save";
-    private static final String CANCEL = "cancel";
     private static final String UPDATE = "update";
     private static final String DELETE = "delete";
     private static final String OPEN = "open";
@@ -42,16 +41,6 @@ public class DataValidation {
      */
     public static boolean isSaveOperation(HttpServletRequest request) {
         return request.getParameter(SAVE) != null;
-    }
-
-    /**
-     * Returns true if the action is "Cancel".
-     *
-     * @param request - request
-     * @return boolean
-     */
-    public static boolean isCancelOperation(HttpServletRequest request) {
-        return request.getParameter(CANCEL) != null;
     }
 
     /**
@@ -99,7 +88,7 @@ public class DataValidation {
      * @param request - request
      * @return boolean
      */
-    public static boolean isСontinueOperation(HttpServletRequest request) {
+    public static boolean isContinueOperation(HttpServletRequest request) {
         return request.getParameter(ENTER) != null;
     }   /**
      * Returns true if the action is "get balance".

@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -21,7 +22,7 @@ public class RateNB {
     /**
      * Sum
      */
-    private Double sum;
+    private BigDecimal sum;
 
     /**
      * Get field value {@link RateNB#id}
@@ -55,7 +56,7 @@ public class RateNB {
      *
      * @return sum
      */
-    public Double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
@@ -150,7 +151,7 @@ public class RateNB {
          * @param sum - sum
          * @return Builder
          */
-        public Builder addSum(Double sum) {
+        public Builder addSum(BigDecimal sum) {
             newRateNB.sum = sum;
             return this;
         }

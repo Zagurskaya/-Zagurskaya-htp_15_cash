@@ -11,8 +11,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ControllerDataUtil {
@@ -135,20 +137,20 @@ public class ControllerDataUtil {
     }
 
     /**
-     * Getting a Map<Long, Double> value
+     * Getting a Map<Long, BigDecimal> value
      *
      * @param request - request
      * @param key     - attribute of key
      * @param value   - attribute of value
-     * @return Map<Long, Double>
+     * @return Map<Long, BigDecimal>
      */
-    public static Map<Long, Double> getMapLongDouble(HttpServletRequest request, String key, String value) {
-        Map<Long, Double> map = new HashMap<>();
+    public static Map<Long, BigDecimal> getMapLongBigDecimal(HttpServletRequest request, String key, String value) {
+        Map<Long, BigDecimal> map = new LinkedHashMap<>();
         String[] keys = request.getParameterValues(key);
         String[] values = request.getParameterValues(value);
         for (int i = 0; i < keys.length; i++) {
             if (!"".equals(values[i])) {
-                map.put(Long.parseLong(keys[i]), Math.round(Double.parseDouble(values[i]) * 100.0) / 100.0);
+                map.put(Long.parseLong(keys[i]), DataUtil.round(new BigDecimal(values[i])));
             }
         }
         return map;

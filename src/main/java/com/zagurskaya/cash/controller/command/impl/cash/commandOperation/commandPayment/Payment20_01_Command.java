@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -71,8 +72,8 @@ public class Payment20_01_Command implements Command {
                 if (currencyId == null || currencySum == null) {
                     return ActionType.PAYMENT20_01;
                 }
-                Double rateCBPayment = rateCBService.rateCBToday(now, AttributeName.NС, currencyId);
-                Double sumRateCurrencyId = rateCBPayment * currencySum;
+                BigDecimal rateCBPayment = rateCBService.rateCBToday(now, AttributeName.NС, currencyId);
+                BigDecimal sumRateCurrencyId = rateCBPayment.multiply(BigDecimal.valueOf(currencySum));
 
                 HttpSession session = request.getSession(false);
                 session.setAttribute("currencyId", currencyId);

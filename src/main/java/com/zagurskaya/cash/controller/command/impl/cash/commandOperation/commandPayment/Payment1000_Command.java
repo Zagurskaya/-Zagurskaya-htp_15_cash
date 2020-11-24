@@ -23,6 +23,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +66,7 @@ public class Payment1000_Command implements Command {
                 return ActionType.DUTIES;
             }
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
+                Map<Long, BigDecimal> values = ControllerDataUtil.getMapLongBigDecimal(request, AttributeName.ID, AttributeName.SUM);
                 String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
 
                 if (values.isEmpty()) {

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +43,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                     Long id = resultSet.getLong(ColumnName.RATENB_ID);
                     Long currencyId = resultSet.getLong(ColumnName.RATENB_CURRENCY_ID);
                     LocalDate date = resultSet.getObject(ColumnName.RATENB_DATE, LocalDate.class);
-                    Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATENB_SUM);
                     RateNB rateNB = new RateNB.Builder()
                             .addId(id)
                             .addCurrencyId(currencyId)
@@ -69,7 +70,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 while (resultSet.next()) {
                     Long currencyId = resultSet.getLong(ColumnName.RATENB_CURRENCY_ID);
                     LocalDate date = resultSet.getObject(ColumnName.RATENB_DATE, LocalDate.class);
-                    Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATENB_SUM);
                     rateNB = new RateNB.Builder()
                             .addId(id)
                             .addCurrencyId(currencyId)
@@ -92,7 +93,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATENB, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, rateNB.getCurrencyId());
                 preparedStatement.setString(2, rateNB.getDate().toString());
-                preparedStatement.setDouble(3, rateNB.getSum());
+                preparedStatement.setBigDecimal(3, rateNB.getSum());
                 result = preparedStatement.executeUpdate();
                 if (1 == result) {
                     ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -117,7 +118,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_RATENB)) {
                 preparedStatement.setLong(1, rateNB.getCurrencyId());
                 preparedStatement.setString(2, rateNB.getDate().toString());
-                preparedStatement.setDouble(3, rateNB.getSum());
+                preparedStatement.setBigDecimal(3, rateNB.getSum());
                 preparedStatement.setLong(4, rateNB.getId());
                 result = preparedStatement.executeUpdate();
             }
@@ -171,7 +172,7 @@ public class RateNBDaoImpl extends AbstractDao implements RateNBDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.RATENB_ID);
-                    Double sum = resultSet.getDouble(ColumnName.RATENB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATENB_SUM);
                     rateNB = new RateNB.Builder()
                             .addId(id)
                             .addCurrencyId(currencyId)

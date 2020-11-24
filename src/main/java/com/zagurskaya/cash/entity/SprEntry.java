@@ -1,5 +1,7 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
+
 /**
  * Entry with characteristics <b>id</b>, <b>name</b>, <b>currencyId</b>, <b>sprOperationId</b>, <b>accountDebit</b>,
  * <b>accountCredit</b>, <b>isSpending</b> и <b>rate</b>.
@@ -36,7 +38,7 @@ public class SprEntry {
     /**
      * Rate
      */
-    private Double rate;
+    private BigDecimal rate;
 
     /**
      * Get field value {@link SprEntry#id}
@@ -106,11 +108,11 @@ public class SprEntry {
      *
      * @return rate
      */
-    public Double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
-    public void setRate(Double rate) {
+    public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 
@@ -268,7 +270,7 @@ public class SprEntry {
          * @param rate -  operation rate
          * @return Builder
          */
-        public Builder addRate(Double rate) {
+        public Builder addRate(BigDecimal rate) {
             newSprEntry.rate = rate;
             return this;
         }

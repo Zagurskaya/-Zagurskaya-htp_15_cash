@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -25,7 +26,7 @@ public class RateCB {
     /**
      * Sum
      */
-    private Double sum;
+    private BigDecimal sum;
     /**
      * Shift direct/back rate CB
      */
@@ -72,7 +73,7 @@ public class RateCB {
      *
      * @return sum
      */
-    public Double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
@@ -196,7 +197,7 @@ public class RateCB {
          * @param sum - sum
          * @return Builder
          */
-        public Builder addSum(Double sum) {
+        public Builder addSum(BigDecimal sum) {
             newRateCB.sum = sum;
             return this;
         }

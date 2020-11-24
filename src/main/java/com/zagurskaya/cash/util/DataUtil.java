@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -79,8 +80,8 @@ public class DataUtil {
      * @param sum - sum
      * @return round sum
      */
-    public static Double round(Double sum) {
-        return Math.round(sum * 100.0) / 100.0;
+    public static BigDecimal round(BigDecimal sum) {
+        return sum.setScale(2, BigDecimal.ROUND_HALF_EVEN);
     }
 
     /**

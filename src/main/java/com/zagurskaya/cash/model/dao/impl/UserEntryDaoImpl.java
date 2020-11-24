@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,9 +46,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
                     String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
-                    Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_ENTRY_RATE);
                     UserEntry userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
@@ -82,9 +83,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
                     String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
-                    Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_ENTRY_RATE);
                     userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
@@ -115,9 +116,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                 preparedStatement.setLong(3, userEntry.getCurrencyId());
                 preparedStatement.setString(4, userEntry.getAccountDebit());
                 preparedStatement.setString(5, userEntry.getAccountCredit());
-                preparedStatement.setDouble(6, userEntry.getSum());
+                preparedStatement.setBigDecimal(6, userEntry.getSum());
                 preparedStatement.setBoolean(7, userEntry.getIsSpending());
-                preparedStatement.setDouble(8, userEntry.getRate());
+                preparedStatement.setBigDecimal(8, userEntry.getRate());
                 result = preparedStatement.executeUpdate();
                 if (1 == result) {
                     ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -146,9 +147,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                 preparedStatement.setLong(4, userEntry.getCurrencyId());
                 preparedStatement.setString(5, userEntry.getAccountDebit());
                 preparedStatement.setString(6, userEntry.getAccountCredit());
-                preparedStatement.setDouble(7, userEntry.getSum());
+                preparedStatement.setBigDecimal(7, userEntry.getSum());
                 preparedStatement.setBoolean(8, userEntry.getIsSpending());
-                preparedStatement.setDouble(9, userEntry.getRate());
+                preparedStatement.setBigDecimal(9, userEntry.getRate());
                 result = preparedStatement.executeUpdate();
             }
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -204,9 +205,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
                     String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
-                    Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_ENTRY_RATE);
                     UserEntry userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(userOperationId)
@@ -241,9 +242,9 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
                     Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
                     String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
-                    Double sum = resultSet.getDouble(ColumnName.USER_ENTRY_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_ENTRY_SUM);
                     boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.USER_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_ENTRY_RATE);
                     UserEntry userEntry = new UserEntry.Builder()
                             .addId(id)
                             .addUserOperationId(operationId)

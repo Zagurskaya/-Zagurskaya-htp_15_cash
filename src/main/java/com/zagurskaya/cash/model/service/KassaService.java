@@ -5,6 +5,7 @@ import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.ServiceException;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface KassaService extends Service<Kassa> {
      * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    boolean updateKassaOuterOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
+    boolean updateKassaOuterOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationId) throws ServiceException;
     /**
      * Update Kassa for inner Operations
      *
@@ -32,7 +33,7 @@ public interface KassaService extends Service<Kassa> {
      * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationId) throws ServiceException;
+    boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationId) throws ServiceException;
 
     /**
      * Return balance by user and duties

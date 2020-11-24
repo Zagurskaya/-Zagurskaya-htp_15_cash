@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,7 +44,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Long coming = resultSet.getLong(ColumnName.RATECB_COMING);
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
-                    Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     RateCB rateCB = new RateCB.Builder()
                             .addId(id)
@@ -74,7 +75,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                     Long coming = resultSet.getLong(ColumnName.RATECB_COMING);
                     Long spending = resultSet.getLong(ColumnName.RATECB_SPENDING);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
-                    Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     rateCB = new RateCB.Builder()
                             .addId(id)
@@ -101,7 +102,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 preparedStatement.setLong(1, rateCB.getComing());
                 preparedStatement.setLong(2, rateCB.getSpending());
                 preparedStatement.setString(3, rateCB.getLocalDateTime().toString());
-                preparedStatement.setDouble(4, rateCB.getSum());
+                preparedStatement.setBigDecimal(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
                 result = preparedStatement.executeUpdate();
                 if (1 == result) {
@@ -128,7 +129,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 preparedStatement.setLong(1, rateCB.getComing());
                 preparedStatement.setLong(2, rateCB.getSpending());
                 preparedStatement.setString(3, rateCB.getLocalDateTime().toString());
-                preparedStatement.setDouble(4, rateCB.getSum());
+                preparedStatement.setBigDecimal(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
                 preparedStatement.setLong(6, rateCB.getId());
                 result = preparedStatement.executeUpdate();
@@ -174,7 +175,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
     }
 
     @Override
-    public Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws DaoException {
+    public BigDecimal rateCBToday(LocalDateTime now, Long coming, Long spending) throws DaoException {
         List<RateCB> rateCBList = new ArrayList<>();
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_RATECB_TODAY)) {
@@ -185,7 +186,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.RATECB_ID);
                     LocalDateTime localDateTime = resultSet.getObject(ColumnName.RATECB_TIMESTAMP, LocalDateTime.class);
-                    Double sum = resultSet.getDouble(ColumnName.RATECB_SUM);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.RATECB_SUM);
                     boolean isBack = resultSet.getBoolean(ColumnName.RATECB_IS_BACK);
                     RateCB rateCB = new RateCB.Builder()
                             .addId(id)

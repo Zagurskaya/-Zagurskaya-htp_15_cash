@@ -10,6 +10,7 @@ import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.ServiceException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment1000(Map<Long, Double> map, String specification, User user) throws ServiceException;
+    Long implementPayment1000(Map<Long, BigDecimal> map, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment transmitting money
@@ -70,7 +71,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment1100(Map<Long, Double> map, String specification, User user) throws ServiceException;
+    Long implementPayment1100(Map<Long, BigDecimal> map, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment buying currency
@@ -82,7 +83,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment10(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+    Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment selling currency
@@ -94,7 +95,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment20(Map<Long, Double> map, Double rate, String specification, User user) throws ServiceException;
+    Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException;
 
     /**
      * Implement payment communal payment
@@ -107,7 +108,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment998(Map<Long, Double> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
+    Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
 
     /**
      * Get success of the operation by Id

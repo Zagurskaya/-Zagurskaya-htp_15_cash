@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,7 +47,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountDebit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.SPR_ENTRY_RATE);
                     SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
@@ -81,7 +82,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountDebit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.SPR_ENTRY_RATE);
                     sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
@@ -113,7 +114,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                 preparedStatement.setString(5, sprEntry.getAccountDebit());
                 preparedStatement.setString(6, sprEntry.getAccountCredit());
                 preparedStatement.setBoolean(7, sprEntry.getIsSpending());
-                preparedStatement.setDouble(8, sprEntry.getRate());
+                preparedStatement.setBigDecimal(8, sprEntry.getRate());
                 result = preparedStatement.executeUpdate();
                 if (1 == result) {
                     ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -142,7 +143,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                 preparedStatement.setString(4, sprEntry.getAccountDebit());
                 preparedStatement.setString(5, sprEntry.getAccountCredit());
                 preparedStatement.setBoolean(6, sprEntry.getIsSpending());
-                preparedStatement.setDouble(7, sprEntry.getRate());
+                preparedStatement.setBigDecimal(7, sprEntry.getRate());
                 preparedStatement.setLong(8, sprEntry.getId());
                 result = preparedStatement.executeUpdate();
             }
@@ -200,7 +201,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountDebit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.SPR_ENTRY_RATE);
                     SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)
@@ -235,7 +236,7 @@ public class SprEntryDaoImpl extends AbstractDao implements SprEntryDao {
                     String accountDebit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_DEBIT);
                     String accountCredit = resultSet.getString(ColumnName.SPR_ENTRY_ACCOUNT_CREDIT);
                     boolean isSpending = resultSet.getBoolean(ColumnName.SPR_ENTRY_IS_SPENDING);
-                    Double rate = resultSet.getDouble(ColumnName.SPR_ENTRY_RATE);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.SPR_ENTRY_RATE);
                     SprEntry sprEntry = new SprEntry.Builder()
                             .addId(id)
                             .addName(name)

@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -160,6 +161,7 @@ public class DutiesServiceImpl implements DutiesService {
         LocalDateTime now = LocalDateTime.now();
         LocalDate date = LocalDate.now();
         String today = DataUtil.getFormattedLocalDateStartDateTime(date);
+        BigDecimal zeroValue = new BigDecimal(0);
 
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(dutiesDao, currencyDao, kassaDao);
@@ -176,11 +178,11 @@ public class DutiesServiceImpl implements DutiesService {
             for (Currency currencyElement : currencies) {
                 Kassa newKassa = new Kassa.Builder()
                         .addCurrencyId(currencyElement.getId())
-                        .addReceived(0.00)
-                        .addComing(0.00)
-                        .addSpending(0.00)
-                        .addTransmitted(0.00)
-                        .addBalance(0.00)
+                        .addReceived(zeroValue)
+                        .addComing(zeroValue)
+                        .addSpending(zeroValue)
+                        .addTransmitted(zeroValue)
+                        .addBalance(zeroValue)
                         .addUserId(user.getId())
                         .addData(date)
                         .addDutiesId(dutiesId)

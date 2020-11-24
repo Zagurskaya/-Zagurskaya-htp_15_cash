@@ -8,9 +8,7 @@
     <br>
     <seostella:rateTag rateValue="Rate Value"/>
     <br>
-<%--    <H4 style="color:#ff0000">${message}</H4>--%>
     <%@ include file="/include/infomessage.jsp" %>
-    <br>
     <form class="form-horizontal" actionType="do?command=Payment" method="post">
         <fieldset>
             <legend><fmt:message key="page.payment.label.select"/></legend>

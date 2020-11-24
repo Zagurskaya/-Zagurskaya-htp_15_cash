@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,8 +94,8 @@ public class RateCBServiceImpl implements RateCBService {
         EntityTransaction transaction = new EntityTransaction();
         transaction.init(rateCBDao, currencyDao);
         LocalDateTime now = LocalDateTime.now();
-        Double buyRate;
-        Double saleRate;
+        BigDecimal buyRate;
+        BigDecimal saleRate;
         try {
             List<Currency> currencies = currencyDao.findAll();
             for (Currency currency : currencies) {
@@ -196,7 +197,7 @@ public class RateCBServiceImpl implements RateCBService {
     }
 
     @Override
-    public Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException {
+    public BigDecimal rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException {
         RateCBDao rateCBDao = new RateCBDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
         transaction.initSingleQuery(rateCBDao);

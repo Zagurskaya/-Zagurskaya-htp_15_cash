@@ -1,5 +1,7 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
+
 /**
  * Executed entry with characteristics <b>id</b>, <b>userOperationId</b>, <b>sprEntryId</b>, <b>currencyId</b>, <b>accountDebit</b>,
  * <b>accountCredit</b>, <b>sum</b>, <b>isSpending</b> и <b>rate</b>.
@@ -32,7 +34,7 @@ public class UserEntry {
     /**
      * Sum
      */
-    private Double sum;
+    private BigDecimal sum;
     /**
      * Shift coming/spending
      */
@@ -40,7 +42,7 @@ public class UserEntry {
     /**
      * Rate
      */
-    private Double rate;
+    private BigDecimal rate;
 
     /**
      * Get field value {@link UserEntry#id}
@@ -101,7 +103,7 @@ public class UserEntry {
      *
      * @return sum
      */
-    public Double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
@@ -119,7 +121,7 @@ public class UserEntry {
      *
      * @return rate
      */
-    public Double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
@@ -271,7 +273,7 @@ public class UserEntry {
          * @param sum - operation sum
          * @return Builder
          */
-        public Builder addSum(Double sum) {
+        public Builder addSum(BigDecimal sum) {
             newUserEntry.sum = sum;
             return this;
         }
@@ -293,7 +295,7 @@ public class UserEntry {
          * @param rate - operation code
          * @return Builder
          */
-        public Builder addRate(Double rate) {
+        public Builder addRate(BigDecimal rate) {
             newUserEntry.rate = rate;
             return this;
         }

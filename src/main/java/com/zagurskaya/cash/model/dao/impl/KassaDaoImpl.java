@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,11 +43,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.KASSA_ID);
                     Long currencyId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
-                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
-                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
-                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
-                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
-                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    BigDecimal received = resultSet.getBigDecimal(ColumnName.KASSA_RESEIVED);
+                    BigDecimal coming = resultSet.getBigDecimal(ColumnName.KASSA_COMING);
+                    BigDecimal spending = resultSet.getBigDecimal(ColumnName.KASSA_SPENDING);
+                    BigDecimal transmitted = resultSet.getBigDecimal(ColumnName.KASSA_TRANSMITTED);
+                    BigDecimal balance = resultSet.getBigDecimal(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
@@ -81,11 +82,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long currencyId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
-                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
-                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
-                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
-                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
-                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    BigDecimal received = resultSet.getBigDecimal(ColumnName.KASSA_RESEIVED);
+                    BigDecimal coming = resultSet.getBigDecimal(ColumnName.KASSA_COMING);
+                    BigDecimal spending = resultSet.getBigDecimal(ColumnName.KASSA_SPENDING);
+                    BigDecimal transmitted = resultSet.getBigDecimal(ColumnName.KASSA_TRANSMITTED);
+                    BigDecimal balance = resultSet.getBigDecimal(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Long dutiesId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
@@ -116,11 +117,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_KASSA, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, kassa.getCurrencyId());
-                preparedStatement.setDouble(2, kassa.getReceived());
-                preparedStatement.setDouble(3, kassa.getComing());
-                preparedStatement.setDouble(4, kassa.getSpending());
-                preparedStatement.setDouble(5, kassa.getTransmitted());
-                preparedStatement.setDouble(6, kassa.getBalance());
+                preparedStatement.setBigDecimal(2, kassa.getReceived());
+                preparedStatement.setBigDecimal(3, kassa.getComing());
+                preparedStatement.setBigDecimal(4, kassa.getSpending());
+                preparedStatement.setBigDecimal(5, kassa.getTransmitted());
+                preparedStatement.setBigDecimal(6, kassa.getBalance());
                 preparedStatement.setLong(7, kassa.getUserId());
                 preparedStatement.setString(8, kassa.getDate().toString());
                 preparedStatement.setLong(9, kassa.getDutiesId());
@@ -147,11 +148,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_KASSA)) {
                 preparedStatement.setLong(1, kassa.getCurrencyId());
-                preparedStatement.setDouble(2, kassa.getReceived());
-                preparedStatement.setDouble(3, kassa.getComing());
-                preparedStatement.setDouble(4, kassa.getSpending());
-                preparedStatement.setDouble(5, kassa.getTransmitted());
-                preparedStatement.setDouble(6, kassa.getBalance());
+                preparedStatement.setBigDecimal(2, kassa.getReceived());
+                preparedStatement.setBigDecimal(3, kassa.getComing());
+                preparedStatement.setBigDecimal(4, kassa.getSpending());
+                preparedStatement.setBigDecimal(5, kassa.getTransmitted());
+                preparedStatement.setBigDecimal(6, kassa.getBalance());
                 preparedStatement.setLong(7, kassa.getUserId());
                 preparedStatement.setString(8, kassa.getDate().toString());
                 preparedStatement.setLong(9, kassa.getDutiesId());
@@ -209,11 +210,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 ResultSet resultSet = preparedStatement.executeQuery();
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.KASSA_ID);
-                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
-                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
-                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
-                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
-                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    BigDecimal received = resultSet.getBigDecimal(ColumnName.KASSA_RESEIVED);
+                    BigDecimal coming = resultSet.getBigDecimal(ColumnName.KASSA_COMING);
+                    BigDecimal spending = resultSet.getBigDecimal(ColumnName.KASSA_SPENDING);
+                    BigDecimal transmitted = resultSet.getBigDecimal(ColumnName.KASSA_TRANSMITTED);
+                    BigDecimal balance = resultSet.getBigDecimal(ColumnName.KASSA_BALANCE);
                     Long userId = resultSet.getLong(ColumnName.KASSA_USER_ID);
                     kassa = new Kassa.Builder()
                             .addId(id)
@@ -247,11 +248,11 @@ public class KassaDaoImpl extends AbstractDao implements KassaDao {
                 while (resultSet.next()) {
                     Long id = resultSet.getLong(ColumnName.KASSA_ID);
                     Long currencyId = resultSet.getLong(ColumnName.KASSA_CURRENCY_ID);
-                    Double received = resultSet.getDouble(ColumnName.KASSA_RESEIVED);
-                    Double coming = resultSet.getDouble(ColumnName.KASSA_COMING);
-                    Double spending = resultSet.getDouble(ColumnName.KASSA_SPENDING);
-                    Double transmitted = resultSet.getDouble(ColumnName.KASSA_TRANSMITTED);
-                    Double balance = resultSet.getDouble(ColumnName.KASSA_BALANCE);
+                    BigDecimal received = resultSet.getBigDecimal(ColumnName.KASSA_RESEIVED);
+                    BigDecimal coming = resultSet.getBigDecimal(ColumnName.KASSA_COMING);
+                    BigDecimal spending = resultSet.getBigDecimal(ColumnName.KASSA_SPENDING);
+                    BigDecimal transmitted = resultSet.getBigDecimal(ColumnName.KASSA_TRANSMITTED);
+                    BigDecimal balance = resultSet.getBigDecimal(ColumnName.KASSA_BALANCE);
                     LocalDate date = resultSet.getObject(ColumnName.KASSA_DATE, LocalDate.class);
                     Kassa kassa = new Kassa.Builder()
                             .addId(id)

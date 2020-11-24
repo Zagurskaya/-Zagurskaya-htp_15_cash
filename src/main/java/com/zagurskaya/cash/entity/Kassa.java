@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -18,23 +19,23 @@ public class Kassa {
     /**
      * Received
      */
-    private Double received;
+    private BigDecimal received;
     /**
      * Coming
      */
-    private Double coming;
+    private BigDecimal coming;
     /**
      * Spending
      */
-    private Double spending;
+    private BigDecimal spending;
     /**
      * Transmitted
      */
-    private Double transmitted;
+    private BigDecimal transmitted;
     /**
      * Balance
      */
-    private Double balance;
+    private BigDecimal balance;
     /**
      * User code
      */
@@ -71,7 +72,7 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Double getReceived() {
+    public BigDecimal getReceived() {
         return received;
     }
 
@@ -80,7 +81,7 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Double getComing() {
+    public BigDecimal getComing() {
         return coming;
     }
 
@@ -89,7 +90,7 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Double getSpending() {
+    public BigDecimal getSpending() {
         return spending;
     }
 
@@ -98,7 +99,7 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Double getTransmitted() {
+    public BigDecimal getTransmitted() {
         return transmitted;
     }
 
@@ -107,7 +108,7 @@ public class Kassa {
      *
      * @return идентификатор
      */
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
@@ -244,7 +245,7 @@ public class Kassa {
          * @param received - received
          * @return Builder
          */
-        public Kassa.Builder addReceived(Double received) {
+        public Kassa.Builder addReceived(BigDecimal received) {
             newKassa.received = received;
             return this;
         }
@@ -255,7 +256,7 @@ public class Kassa {
          * @param coming - coming
          * @return Builder
          */
-        public Kassa.Builder addComing(Double coming) {
+        public Kassa.Builder addComing(BigDecimal coming) {
             newKassa.coming = coming;
             return this;
         }
@@ -266,7 +267,7 @@ public class Kassa {
          * @param spending - spending
          * @return Builder
          */
-        public Kassa.Builder addSpending(Double spending) {
+        public Kassa.Builder addSpending(BigDecimal spending) {
             newKassa.spending = spending;
             return this;
         }
@@ -277,7 +278,7 @@ public class Kassa {
          * @param transmitted - transmitted
          * @return Builder
          */
-        public Kassa.Builder addTransmitted(Double transmitted) {
+        public Kassa.Builder addTransmitted(BigDecimal transmitted) {
             newKassa.transmitted = transmitted;
             return this;
         }
@@ -288,7 +289,7 @@ public class Kassa {
          * @param balance - balance
          * @return Builder
          */
-        public Kassa.Builder addBalance(Double balance) {
+        public Kassa.Builder addBalance(BigDecimal balance) {
             newKassa.balance = balance;
             return this;
         }

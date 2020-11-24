@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,7 +161,8 @@ public class KassaServiceImpl implements KassaService {
     }
 
     //внутрикассовые операции
-    public boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    @Override
+    public boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationsId) throws ServiceException {
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -169,9 +171,9 @@ public class KassaServiceImpl implements KassaService {
             List<SprEntry> sprEntries = sprEntryDao.findAllBySprOperationIdAndCurrencyId(sprOperationsId, currencyId);
 
             Kassa kassa = kassaDao.findByCurrencyIdAndDateAndDutiesId(date, dutiesId, currencyId);
-            Double kassasComing = kassa.getComing();
-            Double kassasSpending = kassa.getSpending();
-            Double kassaBalance = kassa.getBalance();
+            BigDecimal kassasComing = kassa.getComing();
+            BigDecimal kassasSpending = kassa.getSpending();
+            BigDecimal kassaBalance = kassa.getBalance();
 
             Kassa.Builder updateKassaBuilder = new Kassa
                     .Builder()
@@ -187,14 +189,14 @@ public class KassaServiceImpl implements KassaService {
             if (sprEntries.get(0).getIsSpending()) {
                 updateKassa = updateKassaBuilder
                         .addComing(kassa.getComing())
-                        .addSpending(DataUtil.round(kassasSpending + sum))
-                        .addBalance(DataUtil.round(kassaBalance - sum))
+                        .addSpending(DataUtil.round(kassasSpending.add(sum)))
+                        .addBalance(DataUtil.round(kassaBalance.subtract(sum)))
                         .build();
             } else {
                 updateKassa = updateKassaBuilder
-                        .addComing(DataUtil.round(kassasComing + sum))
+                        .addComing(DataUtil.round(kassasComing.add(sum)))
                         .addSpending(kassa.getSpending())
-                        .addBalance(DataUtil.round(kassaBalance + sum))
+                        .addBalance(DataUtil.round(kassaBalance.add(sum)))
                         .build();
             }
             boolean result = kassaDao.update(updateKassa);
@@ -214,7 +216,7 @@ public class KassaServiceImpl implements KassaService {
 
     //внекассовые операции
     @Override
-    public boolean updateKassaOuterOperation(LocalDate date, Long dutiesId, Long currencyId, Double sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaOuterOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationsId) throws ServiceException {
 
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
@@ -225,9 +227,9 @@ public class KassaServiceImpl implements KassaService {
 
             Kassa kassa = kassaDao.findByCurrencyIdAndDateAndDutiesId(date, dutiesId, currencyId);
 
-            Double kassasReceived = kassa.getReceived();
-            Double kassasTransmitted = kassa.getTransmitted();
-            Double kassaBalance = kassa.getBalance();
+            BigDecimal kassasReceived = kassa.getReceived();
+            BigDecimal kassasTransmitted = kassa.getTransmitted();
+            BigDecimal kassaBalance = kassa.getBalance();
 
 
             Kassa.Builder updateKassaBuilder = new Kassa
@@ -244,14 +246,14 @@ public class KassaServiceImpl implements KassaService {
             if (sprEntries.get(0).getIsSpending()) {
                 updateKassa = updateKassaBuilder
                         .addReceived(kassa.getReceived())
-                        .addTransmitted(DataUtil.round(kassasTransmitted + sum))
-                        .addBalance(DataUtil.round(kassaBalance - sum))
+                        .addTransmitted(DataUtil.round(kassasTransmitted.add(sum)))
+                        .addBalance(DataUtil.round(kassaBalance.subtract(sum)))
                         .build();
             } else {
                 updateKassa = updateKassaBuilder
-                        .addReceived(DataUtil.round(kassasReceived + sum))
+                        .addReceived(DataUtil.round(kassasReceived.add(sum)))
                         .addTransmitted(kassa.getTransmitted())
-                        .addBalance(DataUtil.round(kassaBalance + sum))
+                        .addBalance(DataUtil.round(kassaBalance.add(sum)))
                         .build();
             }
             boolean result = kassaDao.update(updateKassa);

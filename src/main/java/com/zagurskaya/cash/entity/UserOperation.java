@@ -1,5 +1,6 @@
 package com.zagurskaya.cash.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -18,11 +19,11 @@ public class UserOperation {
     /**
      * Rate
      */
-    private Double rate;
+    private BigDecimal rate;
     /**
      * Sum
      */
-    private Double sum;
+    private BigDecimal sum;
     /**
      * Currency code
      */
@@ -75,7 +76,7 @@ public class UserOperation {
      *
      * @return курс
      */
-    public Double getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
@@ -84,7 +85,7 @@ public class UserOperation {
      *
      * @return сумма
      */
-    public Double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
@@ -262,7 +263,7 @@ public class UserOperation {
          * @param rate - operation rate
          * @return Builder
          */
-        public Builder addRate(Double rate) {
+        public Builder addRate(BigDecimal rate) {
             newUserOperation.rate = rate;
             return this;
         }
@@ -273,7 +274,7 @@ public class UserOperation {
          * @param sum - operation sum
          * @return Builder
          */
-        public Builder addSum(Double sum) {
+        public Builder addSum(BigDecimal sum) {
             newUserOperation.sum = sum;
             return this;
         }

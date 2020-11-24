@@ -4,6 +4,7 @@ import com.zagurskaya.cash.entity.RateCB;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.ServiceException;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface RateCBService extends Service<RateCB> {
      * @return value rate CB
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Double rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException;
+    BigDecimal rateCBToday(LocalDateTime now, Long coming, Long spending) throws ServiceException;
 
     /**
      * Create List of rateCB

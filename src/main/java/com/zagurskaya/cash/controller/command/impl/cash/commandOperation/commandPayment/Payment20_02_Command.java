@@ -26,6 +26,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -66,14 +67,14 @@ public class Payment20_02_Command implements Command {
             List<Currency> currencies = currencyService.findAll();
             Long currencyIdSession = (Long) session.getAttribute(AttributeName.CURRENCY_ID);
             Long currencySumSession = (Long) session.getAttribute(AttributeName.CURRENCY_SUM);
-            Double rateCBPaymentSession = (Double) session.getAttribute(AttributeName.RATE_CB_PAYMENT);
-            Double sumRateCurrencyIdSession = (Double) session.getAttribute(AttributeName.SUM_RATE_CURRENCY_ID);
+            BigDecimal rateCBPaymentSession = (BigDecimal) session.getAttribute(AttributeName.RATE_CB_PAYMENT);
+            BigDecimal sumRateCurrencyIdSession = (BigDecimal) session.getAttribute(AttributeName.SUM_RATE_CURRENCY_ID);
             String specificationSession = (String) session.getAttribute(AttributeName.SPECIFICATION);
 
             request.setAttribute(AttributeName.CURRENCY_ID, currencyIdSession);
             request.setAttribute(AttributeName.CURRENCY_SUM, currencySumSession);
             request.setAttribute(AttributeName.RATE_CB_PAYMENT, rateCBPaymentSession);
-            request.setAttribute(AttributeName.SUM_RATE_CURRENCY_ID, Math.round(sumRateCurrencyIdSession * 100.0) / 100.0);
+            request.setAttribute(AttributeName.SUM_RATE_CURRENCY_ID, DataUtil.round(sumRateCurrencyIdSession));
             request.setAttribute(AttributeName.SPECIFICATION, specificationSession);
             request.setAttribute(AttributeName.CURRENCIES, currencies);
 
@@ -82,7 +83,7 @@ public class Payment20_02_Command implements Command {
                 return ActionType.DUTIES;
             }
             if (DataValidation.isCreateUpdateDeleteOperation(request)) {
-                Map<Long, Double> values = ControllerDataUtil.getMapLongDouble(request, AttributeName.ID, AttributeName.SUM);
+                Map<Long, BigDecimal> values = ControllerDataUtil.getMapLongBigDecimal(request, AttributeName.ID, AttributeName.SUM);
                 String specification = ControllerDataUtil.getString(request, AttributeName.SPECIFICATION);
 
                 if (values.isEmpty()) {
