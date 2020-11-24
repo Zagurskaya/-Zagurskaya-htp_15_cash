@@ -2,9 +2,8 @@ package com.zagurskaya.cash.controller.parser.impl;
 
 import com.zagurskaya.cash.controller.parser.BaseDataParser;
 import com.zagurskaya.cash.entity.RateNB;
+import com.zagurskaya.cash.util.DataUtil;
 
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
 
 public class RateNBParser implements BaseDataParser<RateNB> {
@@ -14,12 +13,9 @@ public class RateNBParser implements BaseDataParser<RateNB> {
     @Override
     public RateNB parse(String text) {
         List<String> elements = parsTextToRowList(text, ELEMENT_SEPARATOR);
-        java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-
         return new RateNB.Builder()
                 .addCurrencyId(Long.parseLong(elements.get(1)))
-//                                                .addDate(context.get(0))
-                .addDate(LocalDate.now())
+                .addDate(DataUtil.getFormattedStringToLocalDate(elements.get(0)))
                 .addSum(Double.parseDouble(elements.get(2)))
                 .build();
     }

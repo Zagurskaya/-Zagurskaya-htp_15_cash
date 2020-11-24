@@ -82,4 +82,24 @@ public class DataUtil {
     public static Double round(Double sum) {
         return Math.round(sum * 100.0) / 100.0;
     }
+
+    /**
+     * Format date : yyyy-MM-dd
+     *
+     * @param localDate - string date
+     * @return type LocalDate
+     */
+    public static LocalDate getFormattedStringToLocalDate(String localDate) {
+        return LocalDate.parse(localDate, DateTimeFormatter.ofPattern("yyyyMMdd"));
+    }
+
+    /**
+     * Format date :  yyyy.dd.MM HH:mm:ss
+     *
+     * @param localDateTime - date and time
+     * @return string type date
+     */
+    public static LocalDateTime getFormattedStringToLocalDateTime(String localDateTime) {
+        return LocalDateTime.parse(localDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 }

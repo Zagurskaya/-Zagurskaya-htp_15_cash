@@ -100,7 +100,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_RATECB, Statement.RETURN_GENERATED_KEYS)) {
                 preparedStatement.setLong(1, rateCB.getComing());
                 preparedStatement.setLong(2, rateCB.getSpending());
-                preparedStatement.setObject(3, rateCB.getLocalDateTime());
+                preparedStatement.setString(3, rateCB.getLocalDateTime().toString());
                 preparedStatement.setDouble(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
                 result = preparedStatement.executeUpdate();
@@ -127,7 +127,7 @@ public class RateCBDaoImpl extends AbstractDao implements RateCBDao {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_RATECB)) {
                 preparedStatement.setLong(1, rateCB.getComing());
                 preparedStatement.setLong(2, rateCB.getSpending());
-                preparedStatement.setObject(3, rateCB.getLocalDateTime());
+                preparedStatement.setString(3, rateCB.getLocalDateTime().toString());
                 preparedStatement.setDouble(4, rateCB.getSum());
                 preparedStatement.setBoolean(5, rateCB.getIsBack());
                 preparedStatement.setLong(6, rateCB.getId());

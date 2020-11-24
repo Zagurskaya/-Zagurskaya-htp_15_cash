@@ -30,6 +30,7 @@ import java.util.List;
         maxRequestSize = 1024 * 1024 * 5 * 5
 )
 public class UploadRateCB extends HttpServlet {
+    private final static String FILE_NAME = "ratecb.txt";
     private RateCBService rateCBService = new RateCBServiceImpl();
 
     public UploadRateCB() {
@@ -45,19 +46,20 @@ public class UploadRateCB extends HttpServlet {
 
                 while (items.hasNext()) {
                     FileItemStream item = items.next();
-//                    String fieldValue = item.getString();
-                    if (!item.isFormField()) {
-                        InputStream is = item.openStream();
-                        String fieldName = item.getName();
-                        String value = Streams.asString(is);
-                        RateCBParser rateCBParser = new RateCBParser();
-                        List<String> rows = rateCBParser.parsTextToRowList(value);
-                        rows.stream().forEach(s -> rateCBList.add(rateCBParser.parse(s)));
+                    if (!FILE_NAME.equals(item.getName())) {
+                        request.setAttribute(AttributeName.MESSAGE, "Incorrect file name");
+                    } else {
+                        if (!item.isFormField()) {
+                            InputStream is = item.openStream();
+                            String value = Streams.asString(is);
+                            RateCBParser rateCBParser = new RateCBParser();
+                            List<String> rows = rateCBParser.parsTextToRowList(value);
+                            rows.stream().forEach(s -> rateCBList.add(rateCBParser.parse(s)));
+                        }
+                        rateCBService.create(rateCBList);
+                        request.setAttribute(AttributeName.MESSAGE, "File Uploaded Successfully");
                     }
                 }
-                rateCBService.create(rateCBList);
-                request.setAttribute(AttributeName.MESSAGE, "File Uploaded Successfully");
-
             } catch (Exception ex) {
                 request.setAttribute(AttributeName.ERROR, "100 File Upload Failed due to " + ex);
             }

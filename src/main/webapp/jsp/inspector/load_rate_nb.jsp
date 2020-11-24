@@ -8,6 +8,7 @@
     <br>
     <%@ include file="/jsp/errors/errormessage.jsp" %>
     <br>
+    <H4><fmt:message key="controller.ratenb"/></H4>
     <H4> ${message}</H4>
     <fmt:message key="page.ratenb.label.file"/> <br/>
     <form action="upload_rate_nb" method="post"
