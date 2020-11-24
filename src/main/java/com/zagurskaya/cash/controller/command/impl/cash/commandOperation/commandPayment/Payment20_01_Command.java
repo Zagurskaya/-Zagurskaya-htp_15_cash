@@ -84,7 +84,7 @@ public class Payment20_01_Command implements Command {
                 return ActionType.PAYMENT20_02;
             }
 
-            List<Currency> currencies = currencyService.findAll();
+            List<Currency> currencies = currencyService.findAllCurrenciesForSaleAndBuy();
             request.getSession(false).setAttribute(AttributeName.CURRENCIES, currencies);
             return ActionType.PAYMENT20_01;
 

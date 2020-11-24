@@ -149,4 +149,19 @@ public class CurrencyServiceImpl implements CurrencyService {
         return currencyMap;
     }
 
+    @Override
+    public List findAllCurrenciesForSaleAndBuy() throws ServiceException {
+        CurrencyDao currencyDao = new CurrencyDaoImpl();
+        EntityTransaction transaction = new EntityTransaction();
+        transaction.initSingleQuery(currencyDao);
+        try {
+            return currencyDao.findAllSKV();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all SKV currency", e);
+            throw new ServiceException("Database exception during fiend all SKV currency", e);
+        } finally {
+            transaction.endSingleQuery();
+        }
+    }
+
 }

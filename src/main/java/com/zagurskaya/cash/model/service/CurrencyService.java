@@ -23,4 +23,12 @@ public interface CurrencyService extends Service<Currency> {
      */
     Map<String, String> findAllToMap() throws ServiceException;
 
+    /**
+     * Get a currency's list for sale/buy operation
+     *
+     * @return currency list
+     * @throws ServiceException error during execution of logical blocks and actions
+     */
+    List findAllCurrenciesForSaleAndBuy() throws ServiceException;
+
 }

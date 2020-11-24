@@ -23,6 +23,7 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
 
     private static final String SQL_SELECT_ALL_CURRENCIES_ON_PAGE = "SELECT id, iso, `nameRU`,`nameEN` FROM `currency`  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_CURRENCIES = "SELECT id, iso, `nameRU`,`nameEN` FROM `currency`  ORDER BY id ";
+    private static final String SQL_SELECT_ALL_SKV_CURRENCIES = "SELECT id, iso, `nameRU`,`nameEN` FROM `currency`  where id<>933 ORDER BY id ";
     private static final String SQL_SELECT_CURRENCY_BY_ID = "SELECT id, iso, `nameRU`,`nameEN` FROM `currency` WHERE id= ? ";
     private static final String SQL_INSERT_CURRENCY = "INSERT INTO currency(id, iso, `nameRU`,`nameEN`) VALUES (?, ?, ?, ?)";
     private static final String SQL_UPDATE_CURRENCY = "UPDATE currency SET iso=?, `nameRU` =?,`nameEN` = ? WHERE id= ?";
@@ -185,6 +186,33 @@ public class CurrencyDaoImpl extends AbstractDao implements CurrencyDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all currency", e);
             throw new DaoException("Database exception during fiend all currency", e);
+        }
+        return currencies;
+    }
+
+    @Override
+    public List findAllSKV() throws DaoException {
+        List<Currency> currencies = new ArrayList<>();
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_SKV_CURRENCIES)) {
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.CURRENCY_ID);
+                    String iso = resultSet.getString(ColumnName.CURRENCY_ISO);
+                    String nameRU = resultSet.getString(ColumnName.CURRENCY_NAME_RU);
+                    String nameEN = resultSet.getString(ColumnName.CURRENCY_NAME_EN);
+                    Currency currency = new Currency.Builder()
+                            .addId(id)
+                            .addIso(iso)
+                            .addNameRU(nameRU)
+                            .addNameEN(nameEN)
+                            .build();
+                    currencies.add(currency);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all SKV currency", e);
+            throw new DaoException("Database exception during fiend all SKV currency", e);
         }
         return currencies;
     }

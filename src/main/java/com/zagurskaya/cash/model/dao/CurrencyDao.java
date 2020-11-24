@@ -13,5 +13,11 @@ public interface CurrencyDao extends Dao<Currency> {
      * @throws DaoException database access error or other errors
      */
     List<Currency> findAll() throws DaoException;
-
+    /**
+     * Get a  list of SKV currencies
+     *
+     * @return list of SKV currencies
+     * @throws DaoException database access error or other errors
+     */
+    List findAllSKV() throws DaoException;
 }
