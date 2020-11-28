@@ -288,4 +288,15 @@ public class KassaServiceImpl implements KassaService {
         return kassaList;
     }
 
+    @Override
+    public boolean isBalanceValid(User user, Duties duties) throws ServiceException {
+        List<Kassa> kassaList = getBalance(user, duties);
+        for (Kassa kassa : kassaList) {
+            if (kassa.getBalance().compareTo(BigDecimal.ZERO) != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
