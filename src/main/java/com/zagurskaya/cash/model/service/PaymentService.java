@@ -82,7 +82,8 @@ public interface PaymentService {
      * @param specification - specification by operation
      * @param user          - user
      * @return id of success operation
-     * @throws ServiceException error during execution of logical blocks and actions
+     * @throws NegativeBalanceException error if balance is negative
+     * @throws ServiceException         error during execution of logical blocks and actions
      */
     Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException;
 
@@ -94,7 +95,8 @@ public interface PaymentService {
      * @param specification - specification by operation
      * @param user          - user
      * @return id of success operation
-     * @throws ServiceException error during execution of logical blocks and actions
+     * @throws NegativeBalanceException error if balance is negative
+     * @throws ServiceException         error during execution of logical blocks and actions
      */
     Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException;
 

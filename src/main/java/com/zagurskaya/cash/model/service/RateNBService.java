@@ -11,7 +11,6 @@ public interface RateNBService extends Service<RateNB> {
      * Create List of rateNB
      *
      * @param rateNBList - List of rateNB
-     * @return true on successful createCheckEn
      * @throws ServiceException error during execution of logical blocks and actions
      * @throws CommandException volition error
      */
