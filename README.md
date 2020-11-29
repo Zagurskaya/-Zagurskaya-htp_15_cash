@@ -28,11 +28,11 @@ ____
 	* View all rate NB
 	* View all rate CB
     * Make operations with clients:(Number operation - name operation)
-       *10 - Buying currency
-       *20 - Selling currency
-       *998 - Communal payment
-       *1000 - Coming
-       *1100 - Spending 
+       * 10 - Buying currency
+       * 20 - Selling currency
+       * 998 - Communal payment
+       * 1000 - Coming
+       * 1100 - Spending 
 	* View his balance
 	* View his success operationds by this number duties
     
