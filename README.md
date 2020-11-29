@@ -27,8 +27,7 @@ ____
 	* View currencies manual
 	* View all rate NB
 	* View all rate CB
-       * Make operations with clients:
-           Number operation - name operation
+    * Make operations with clients:(Number operation - name operation)
                10 - Buying currency
                20 - Selling currency
               998 - Communal payment
