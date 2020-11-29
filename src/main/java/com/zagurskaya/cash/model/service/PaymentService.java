@@ -8,6 +8,7 @@ import com.zagurskaya.cash.entity.UserOperation;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
 import com.zagurskaya.cash.exception.DaoException;
+import com.zagurskaya.cash.exception.NegativeBalanceException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.math.BigDecimal;
@@ -83,7 +84,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException;
+    Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException;
 
     /**
      * Implement payment selling currency
@@ -95,7 +96,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException;
+    Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException;
 
     /**
      * Implement payment communal payment
@@ -108,7 +109,7 @@ public interface PaymentService {
      * @return id of success operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException;
+    Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException, NegativeBalanceException;
 
     /**
      * Get success of the operation by Id

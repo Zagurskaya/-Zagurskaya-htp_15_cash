@@ -8,6 +8,7 @@ import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
+import com.zagurskaya.cash.exception.NegativeBalanceException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
 import com.zagurskaya.cash.model.dao.SprEntryDao;
@@ -45,12 +46,6 @@ public class KassaServiceImpl implements KassaService {
         }
     }
 
-    /**
-     * Создание записи в картотеке касса
-     *
-     * @param kassa - запись в картотеке касса
-     * @return true при успешном создании
-     */
     @Override
     public boolean create(Kassa kassa) throws ServiceException, CommandException {
         KassaDao kassaDao = new KassaDaoImpl();
@@ -69,12 +64,6 @@ public class KassaServiceImpl implements KassaService {
         }
     }
 
-    /**
-     * Изменение записи в картотеке касса
-     *
-     * @param kassa - запись в картотеке касса
-     * @return true при успешном изменении
-     */
     @Override
     public boolean update(Kassa kassa) throws ServiceException, CommandException {
         KassaDao kassaDao = new KassaDaoImpl();
@@ -93,12 +82,6 @@ public class KassaServiceImpl implements KassaService {
         }
     }
 
-    /**
-     * Удаление записи в картотеке касса
-     *
-     * @param kassa - запись в картотеке касса
-     * @return true при успешном удаление
-     */
     @Override
     public boolean delete(Kassa kassa) throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
@@ -114,12 +97,6 @@ public class KassaServiceImpl implements KassaService {
         }
     }
 
-    /**
-     * Количество строк картотеке касса
-     *
-     * @return количество строк
-     * @throws ServiceException ошибке во время выполнения логическтх блоков и действий.
-     */
     @Override
     public int countRows() throws ServiceException {
         KassaDao kassaDao = new KassaDaoImpl();
@@ -135,12 +112,6 @@ public class KassaServiceImpl implements KassaService {
         }
     }
 
-    /**
-     * Получение списка записие в картотеке касса на определенной странице
-     *
-     * @param page - номер страницы
-     * @return список смен
-     */
     @Override
     public List<Kassa> onePartOfListOnPage(int page) throws ServiceException {
         List kassaList = new ArrayList();
@@ -162,7 +133,7 @@ public class KassaServiceImpl implements KassaService {
 
     //внутрикассовые операции
     @Override
-    public boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationsId) throws ServiceException {
+    public boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationsId) throws ServiceException, NegativeBalanceException {
         SprEntryDao sprEntryDao = new SprEntryDaoImpl();
         KassaDao kassaDao = new KassaDaoImpl();
         EntityTransaction transaction = new EntityTransaction();
@@ -199,6 +170,9 @@ public class KassaServiceImpl implements KassaService {
                         .addBalance(DataUtil.round(kassaBalance.add(sum)))
                         .build();
             }
+            if (updateKassa.getBalance().compareTo(BigDecimal.ZERO) < 0) {
+                throw new NegativeBalanceException("incorrect balance by currency " + updateKassa.getCurrencyId());
+            }
             boolean result = kassaDao.update(updateKassa);
             transaction.commit();
             return result;
@@ -230,7 +204,6 @@ public class KassaServiceImpl implements KassaService {
             BigDecimal kassasReceived = kassa.getReceived();
             BigDecimal kassasTransmitted = kassa.getTransmitted();
             BigDecimal kassaBalance = kassa.getBalance();
-
 
             Kassa.Builder updateKassaBuilder = new Kassa
                     .Builder()

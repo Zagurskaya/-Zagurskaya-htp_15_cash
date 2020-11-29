@@ -3,6 +3,7 @@ package com.zagurskaya.cash.model.service;
 import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.Kassa;
 import com.zagurskaya.cash.entity.User;
+import com.zagurskaya.cash.exception.NegativeBalanceException;
 import com.zagurskaya.cash.exception.ServiceException;
 
 import java.math.BigDecimal;
@@ -33,7 +34,7 @@ public interface KassaService extends Service<Kassa> {
      * @return true on successful operation
      * @throws ServiceException error during execution of logical blocks and actions
      */
-    boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationId) throws ServiceException;
+    boolean updateKassaInnerOperation(LocalDate date, Long dutiesId, Long currencyId, BigDecimal sum, Long sprOperationId) throws ServiceException, NegativeBalanceException;
 
     /**
      * Return balance by user and duties

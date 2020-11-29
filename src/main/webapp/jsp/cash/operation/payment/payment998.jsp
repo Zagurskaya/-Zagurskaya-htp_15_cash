@@ -6,6 +6,7 @@
     <%@ include file="/include/menucashnew.jsp" %>
     <br>
     <H4><fmt:message key="page.payment998.title"/></H4>
+    <%@ include file="/include/infomessage.jsp" %>
     <form class="form-horizontal" actionType="do?command=Payment998" method="post">
         <fieldset>
             <br>

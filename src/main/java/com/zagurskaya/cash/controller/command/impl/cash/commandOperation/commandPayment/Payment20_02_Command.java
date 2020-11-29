@@ -5,6 +5,7 @@ import com.zagurskaya.cash.controller.command.Command;
 import com.zagurskaya.cash.controller.command.ActionType;
 import com.zagurskaya.cash.controller.check.PDFDocument;
 import com.zagurskaya.cash.controller.check.CheckOperation20;
+import com.zagurskaya.cash.exception.NegativeBalanceException;
 import com.zagurskaya.cash.util.ControllerDataUtil;
 import com.zagurskaya.cash.util.DataValidation;
 import com.zagurskaya.cash.entity.Currency;
@@ -99,7 +100,10 @@ public class Payment20_02_Command implements Command {
                 return ActionType.PAYMENT;
             }
             return ActionType.PAYMENT20_02;
-
+        } catch (NegativeBalanceException e) {
+            request.getSession(false).setAttribute(AttributeName.MESSAGE, "110 ");
+            logger.log(Level.INFO, e);
+            return ActionType.PAYMENT20_02;
         } catch (ServiceException | NumberFormatException e) {
             request.getSession(false).setAttribute(AttributeName.ERROR, "100 " + e);
             logger.log(Level.ERROR, e);

@@ -9,6 +9,7 @@ import com.zagurskaya.cash.entity.UserEntry;
 import com.zagurskaya.cash.entity.UserOperation;
 import com.zagurskaya.cash.exception.DaoException;
 import com.zagurskaya.cash.exception.DaoConstraintViolationException;
+import com.zagurskaya.cash.exception.NegativeBalanceException;
 import com.zagurskaya.cash.exception.ServiceException;
 import com.zagurskaya.cash.model.dao.KassaDao;
 import com.zagurskaya.cash.model.dao.RateCBDao;
@@ -213,7 +214,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException {
+    public Long implementPayment10(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException {
         Long sprOperationId = 10L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -281,7 +282,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException {
+    public Long implementPayment20(Map<Long, BigDecimal> map, BigDecimal rate, String specification, User user) throws ServiceException, NegativeBalanceException {
         Long sprOperationId = 20L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
@@ -349,7 +350,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException {
+    public Long implementPayment998(Map<Long, BigDecimal> map, String specification, String checkingAccount, String fullName, User user) throws ServiceException, NegativeBalanceException {
         Long sprOperationId = 998L;
         DutiesService dutiesService = new DutiesServiceImpl();
         KassaService kassaService = new KassaServiceImpl();
