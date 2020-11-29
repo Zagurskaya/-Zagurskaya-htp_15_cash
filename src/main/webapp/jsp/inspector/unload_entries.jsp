@@ -11,7 +11,17 @@
     <br>
     <br>
     <H4><fmt:message key="page.controller.message"/></H4>
-    <%--         <H4> ${message}</H4>--%>
+             <H4> ${message}</H4>
+    <form class="form-horizontal" actionType="do?command=UnloadEntries" method="post">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <button id="unload" name="unload" class="btn btn-success">
+                        <fmt:message key="page.entries.button.unload"/></button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>
 </body>
 </html>

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
 
     private static final String SQL_SELECT_ALL_USER_ENTRY_PAGE = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry`  ORDER BY id LIMIT ? Offset ? ";
     private static final String SQL_SELECT_ALL_USER_ENTRY = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` ";
+    private static final String SQL_SELECT_ALL_ENTRY_BY_DATA = "SELECT a.id, a.userOperationId, a.sprEntryId, a.currencyId, a.accountDebit, a.accountCredit, a.sum, a.isSpending, a.rate FROM userEntry as a LEFT JOIN userOperation as b ON a.userOperationId = b.id WHERE b.timestamp > ? ";
     private static final String SQL_SELECT_USER_ENTRY_BY_ID = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` WHERE id= ? ";
     private static final String SQL_SELECT_USER_ENTRY_BY_OPERATION_ID = "SELECT id, userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate FROM `userEntry` WHERE userOperationId = ? ";
     private static final String SQL_INSERT_USER_ENTRY = "INSERT INTO userEntry(userOperationId, sprEntryId, currencyId, accountDebit, accountCredit, sum, isSpending, rate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -262,6 +264,44 @@ public class UserEntryDaoImpl extends AbstractDao implements UserEntryDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "Database exception during fiend all userEntry By OperationId", e);
             throw new DaoException("Database exception during fiend all userEntry By OperationId", e);
+        }
+        return sprEntries;
+    }
+
+    @Override
+    public List<UserEntry> findAllByData(LocalDate date) throws DaoException {
+        List<UserEntry> sprEntries = new ArrayList<>();
+        try {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_ALL_ENTRY_BY_DATA)) {
+                preparedStatement.setString(1, date.toString());
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Long id = resultSet.getLong(ColumnName.USER_ENTRY_ID);
+                    Long userOperationId = resultSet.getLong(ColumnName.USER_ENTRY_USER_OPERATION_ID);
+                    Long sprEntryId = resultSet.getLong(ColumnName.USER_ENTRY_SPR_ENTRY_ID);
+                    Long currencyId = resultSet.getLong(ColumnName.USER_ENTRY_CURRENCY_ID);
+                    String accountDebit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_DEBIT);
+                    String accountCredit = resultSet.getString(ColumnName.USER_ENTRY_ACCOUNT_CREDIT);
+                    BigDecimal sum = resultSet.getBigDecimal(ColumnName.USER_ENTRY_SUM);
+                    boolean isSpending = resultSet.getBoolean(ColumnName.USER_ENTRY_IS_SPENDING);
+                    BigDecimal rate = resultSet.getBigDecimal(ColumnName.USER_ENTRY_RATE);
+                    UserEntry userEntry = new UserEntry.Builder()
+                            .addId(id)
+                            .addUserOperationId(userOperationId)
+                            .addSprEntryId(sprEntryId)
+                            .addCurrencyId(currencyId)
+                            .addAccountDebit(accountDebit)
+                            .addAccountCredit(accountCredit)
+                            .addSum(sum)
+                            .addIsSpending(isSpending)
+                            .addRate(rate)
+                            .build();
+                    sprEntries.add(userEntry);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "Database exception during fiend all by data", e);
+            throw new DaoException("Database exception during fiend all by data", e);
         }
         return sprEntries;
     }

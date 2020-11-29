@@ -85,7 +85,7 @@ public class DataUtil {
     }
 
     /**
-     * Format date : yyyy-MM-dd
+     * Format date : yyyyMMdd
      *
      * @param localDate - string date
      * @return type LocalDate
@@ -95,12 +95,22 @@ public class DataUtil {
     }
 
     /**
-     * Format date :  yyyy.dd.MM HH:mm:ss
+     * Format date : yyyy-MM-dd HH:mm:ss
      *
      * @param localDateTime - date and time
      * @return string type date
      */
     public static LocalDateTime getFormattedStringToLocalDateTime(String localDateTime) {
         return LocalDateTime.parse(localDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
+
+    /**
+     * Format date : yyyyMMdd
+     *
+     * @param date - date and time
+     * @return string type date
+     */
+    public static String getFormattedLocalDateToString(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
     }
 }

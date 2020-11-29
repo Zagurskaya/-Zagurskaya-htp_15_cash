@@ -18,10 +18,12 @@ public class DataProperty {
 
     private static final String PROPERTY_NAME = "installation.properties";
     public static String checkPatch;
+    public static String outPatch;
 
     static {
         properties = readProperties();
         checkPatch = properties.getProperty("setup.checkpatch");
+        outPatch = properties.getProperty("setup.outpatch");
     }
 
     private DataProperty() {
