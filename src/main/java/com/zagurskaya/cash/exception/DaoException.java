@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.exception;
 
 /**
- * Ошибка Dao
+ * Dao exception
  */
 public class DaoException extends Exception {
     /**

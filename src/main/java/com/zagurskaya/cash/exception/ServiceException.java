@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.exception;
 
 /**
- * Ошибка сервиса
+ * Service exception
  */
 public class ServiceException extends Exception {
     /**

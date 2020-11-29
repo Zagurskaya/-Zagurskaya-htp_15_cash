@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.exception;
 
 /**
- * Ошибка нарушения ограничений репозитория
+ * Dao constraint violation exception
  */
 public class DaoConstraintViolationException extends Exception {
 

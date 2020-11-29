@@ -1,7 +1,7 @@
 package com.zagurskaya.cash.exception;
 
 /**
- * Ошибка нарушения ограничений сервиса
+ * Service constraint violation exception
  */
 public class ServiceConstraintViolationException extends Exception {
 
