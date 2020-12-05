@@ -45,23 +45,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    private List<User> findAllSprOperation(int limit, int startPosition) throws ServiceException {
-//        UserDao userDao = new UserDaoImpl();
-//        EntityTransaction transaction = new EntityTransaction();
-//        transaction.initSingleQuery(userDao);
-//        try {
-//            List<User> users = userDao.findAllSprOperation(limit, startPosition);
-////            transaction.commit();
-//            return users;
-//        } catch (DAOException e) {
-////            transaction.rollback();
-//            logger.log(Level.ERROR, "Database exception during fiend all user", e);
-//            throw new ServiceException("Database exception during fiend all user", e);
-//        } finally {
-//            transaction.endSingleQuery();
-//        }
-//    }
-
     @Override
     public User findById(Long id) throws ServiceException {
         UserDao userDao = new UserDaoImpl();
@@ -84,12 +67,7 @@ public class UserServiceImpl implements UserService {
         transaction.initSingleQuery(userDao);
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
-                User createUser = new User.Builder()
-                        .addLogin(user.getLogin())
-                        .addFullName(user.getFullName())
-                        .addRole(user.getRole())
-                        .build();
-                return userDao.create(createUser) != 0L;
+                return userDao.create(user) != 0L;
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new CommandException("Duplicate data user's login ");
@@ -113,12 +91,7 @@ public class UserServiceImpl implements UserService {
         try {
             if (userDao.findByLogin(user.getLogin()) == null) {
                 String hashPassword = getHash(password);
-                User createUser = new User.Builder()
-                        .addLogin(user.getLogin())
-                        .addFullName(user.getFullName())
-                        .addRole(user.getRole())
-                        .build();
-                return userDao.create(createUser, hashPassword) != 0L;
+                return userDao.create(user, hashPassword) != 0L;
             } else {
                 logger.log(Level.ERROR, "Duplicate data user's login ");
                 throw new CommandException("Duplicate data user's login ");

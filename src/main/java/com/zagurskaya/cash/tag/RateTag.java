@@ -18,7 +18,6 @@ import java.util.Map;
 
 
 public class RateTag extends TagSupport {
-    private static final long serialVersionUID = 1L;
     private static final Logger logger = LogManager.getLogger(RateTag.class);
     private final RateCBService rateCBService = new RateCBServiceImpl();
     private final CurrencyService currencyService = new CurrencyServiceImpl();
