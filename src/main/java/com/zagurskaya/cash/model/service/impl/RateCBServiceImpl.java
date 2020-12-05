@@ -99,7 +99,7 @@ public class RateCBServiceImpl implements RateCBService {
         try {
             List<Currency> currencies = currencyDao.findAll();
             for (Currency currency : currencies) {
-                if (933L != currency.getId()) {
+                if (AttributeName.NС != currency.getId()) {
                     buyRate = rateCBDao.rateCBToday(now, currency.getId(), 933L);
                     lastRate.add(new RateCB.Builder()
                             .addСoming(currency.getId())
