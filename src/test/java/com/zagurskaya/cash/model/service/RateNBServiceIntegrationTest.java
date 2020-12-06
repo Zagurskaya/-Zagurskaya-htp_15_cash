@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RateNBServiceIntegrationTest extends Assert {
@@ -45,6 +46,29 @@ public class RateNBServiceIntegrationTest extends Assert {
     }
 
     @Test(priority = 3)
+    public void createListTest() throws ServiceException, CommandException {
+        int countRowsBefore = rateNBService.countRows();
+        RateNB rateNB1 = new RateNB
+                .Builder()
+                .addCurrencyId(978L)
+                .addDate(LocalDate.now())
+                .addSum(new BigDecimal(1))
+                .build();
+        RateNB rateNB2 = new RateNB
+                .Builder()
+                .addCurrencyId(840L)
+                .addDate(LocalDate.now())
+                .addSum(new BigDecimal(1))
+                .build();
+        List<RateNB> list = new ArrayList<>();
+        list.add(rateNB1);
+        list.add(rateNB2);
+        rateNBService.create(list);
+        int countRowsAfter = rateNBService.countRows();
+        assertEquals(countRowsAfter, countRowsBefore + 2);
+    }
+
+    @Test(priority = 4)
     public void updateTest() throws ServiceException, CommandException {
         int numberOfPages = (int) Math.ceil(rateNBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
         int countRowsBefore = rateNBService.countRows();
@@ -69,7 +93,7 @@ public class RateNBServiceIntegrationTest extends Assert {
         assertEquals(countRowsAfter, countRowsBefore);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     public void deleteTest() throws ServiceException {
         int numberOfPages = (int) Math.ceil(rateNBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
         int countRowsBefore = rateNBService.countRows();
@@ -81,7 +105,7 @@ public class RateNBServiceIntegrationTest extends Assert {
         assertEquals(countRowsBefore - 1, countRowsAfter);
     }
 
-    @Test(priority = 5)
+    @Test(priority = 6)
     public void countRowsTest() throws ServiceException {
         int numberOfPages = (int) Math.ceil(rateNBService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
         List<RateNB> rateNBLis = rateNBService.onePartOfListOnPage(numberOfPages);
@@ -90,7 +114,7 @@ public class RateNBServiceIntegrationTest extends Assert {
         assertEquals(actual, size);
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
     public void onePartOfListOnPage1Test() throws ServiceException {
         int rateNBLisSize = rateNBService.countRows();
         int expected = rateNBLisSize < AttributeName.RECORDS_PER_PAGE ?
