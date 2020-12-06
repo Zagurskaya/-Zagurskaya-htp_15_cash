@@ -35,69 +35,49 @@ public class DutiesServiceIntegrationTest extends Assert {
     }
 
     @Test(priority = 2)
-    public void openDutiesUserTodayTest() throws ServiceException{
+    public void openNewDutiesTest() throws ServiceException{
         int countRowsBefore = dutiesService.countRows();
         User user = userService.findById(2L);
-        dutiesService.openDutiesUserToday(user, LocalDate.now().toString());
+        dutiesService.openNewDuties(user);
         int countRowsAfter = dutiesService.countRows();
         assertEquals(countRowsAfter, countRowsBefore + 1);
     }
 
     @Test(priority = 3)
-    public void updateTest() throws ServiceException, CommandException {
-        int numberOfPages = (int) Math.ceil(dutiesService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-        int countRowsBefore = dutiesService.countRows();
-
-        List<Duties> dutiesList = dutiesService.onePartOfListOnPage(numberOfPages);
-        Long id = dutiesList.get(dutiesList.size() - 1).getId();
-        Duties duties = dutiesService.findById(id);
-        Duties updateDuties = new Duties
-                .Builder()
-                .addId(duties.getId())
-                .addUserId(duties.getUserId())
-                .addLocalDateTime(LocalDateTime.now())
-                .addIsClose(false)
-                .build();
-        assertTrue(dutiesService.update(updateDuties));
-        Duties dutiesAfter = dutiesService.findById(id);
-        assertEquals(dutiesAfter.getId(), updateDuties.getId());
-        assertNotEquals(dutiesAfter.getLocalDateTime().toString(), updateDuties.getLocalDateTime().toString());
-        assertEquals(dutiesAfter.getIsClose(), updateDuties.getIsClose());
-        int countRowsAfter = dutiesService.countRows();
-        assertEquals(countRowsAfter, countRowsBefore);
+    public void openDutiesUserTodayTest() throws ServiceException{
+        User user = userService.findById(2L);
+        Duties duties = dutiesService.openDutiesUserToday(user,LocalDate.now().toString());
+        assertNotNull(duties);
     }
 
     @Test(priority = 4)
-    public void closeOpenDutiesUserTodayTest() throws ServiceException {
-        int numberOfPages = (int) Math.ceil(dutiesService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-        int countRowsBefore = dutiesService.countRows();
-
-        List<Duties> dutiesList = dutiesService.onePartOfListOnPage(numberOfPages);
-        Long id = dutiesList.get(dutiesList.size() - 1).getId();
-        Long userId = dutiesList.get(dutiesList.size() - 1).getUserId();
-        User user = userService.findById(userId);
-        Duties dutiesBefore = dutiesService.findById(id);
-
-        dutiesService.closeOpenDutiesUserToday(user);
-
-        Duties dutiesAfter = dutiesService.findById(id);
-        assertEquals(dutiesAfter.getId(), dutiesBefore.getId());
-        assertEquals(dutiesAfter.getLocalDateTime().toString(), dutiesBefore.getLocalDateTime().toString());
-        assertNotEquals(dutiesAfter.getIsClose(), dutiesBefore.getIsClose());
-        int countRowsAfter = dutiesService.countRows();
-        assertEquals(countRowsAfter, countRowsBefore);
+    public void updateTest() throws ServiceException, CommandException {
+        User user = userService.findById(2L);
+        Duties dutiesBefore = dutiesService.openDutiesUserToday(user, LocalDate.now().toString());
+        Duties updateDuties = new Duties
+                .Builder()
+                .addId(dutiesBefore.getId())
+                .addUserId(dutiesBefore.getUserId())
+                .addLocalDateTime(LocalDateTime.now())
+                .addNumber(dutiesBefore.getNumber())
+                .addIsClose(dutiesBefore.getIsClose())
+                .build();
+        assertTrue(dutiesService.update(updateDuties));
+        Duties dutiesAfter = dutiesService.openDutiesUserToday(user, LocalDate.now().toString());
+        assertEquals(dutiesAfter.getId(), updateDuties.getId());
+        assertNotEquals(dutiesAfter.getLocalDateTime().toString(), updateDuties.getLocalDateTime().toString());
+        assertEquals(dutiesAfter.getIsClose(), updateDuties.getIsClose());
     }
 
     @Test(priority = 5)
-    public void deleteTest() throws ServiceException {
-        int numberOfPages = (int) Math.ceil(dutiesService.countRows() * 1.0 / AttributeName.RECORDS_PER_PAGE);
-        int countRowsBefore = dutiesService.countRows();
-        List<Duties> dutiesList = dutiesService.onePartOfListOnPage(numberOfPages);
-        Long id = dutiesList.get(dutiesList.size() - 1).getId();
-        Duties duties = dutiesService.findById(id);
-        assertTrue(dutiesService.delete(duties));
-        int countRowsAfter = dutiesService.countRows();
-        assertEquals(countRowsBefore - 1, countRowsAfter);
+    public void closeOpenDutiesUserTodayTest() throws ServiceException {
+        User user = userService.findById(2L);
+        Duties dutiesBefore = dutiesService.openDutiesUserToday(user, LocalDate.now().toString());
+        dutiesService.closeOpenDutiesUserToday(user);
+        Duties dutiesAfter = dutiesService.findById(dutiesBefore.getId());
+        assertEquals(dutiesAfter.getId(), dutiesBefore.getId());
+        assertEquals(dutiesAfter.getNumber(), dutiesBefore.getNumber());
+        assertNotEquals(dutiesAfter.getIsClose(), dutiesBefore.getIsClose());
     }
 
     @Test(priority = 6)

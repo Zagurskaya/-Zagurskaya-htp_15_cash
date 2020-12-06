@@ -23,7 +23,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
 
     private static final Logger logger = LogManager.getLogger(DutiesDaoImpl.class);
 
-    private static final String SQL_SELECT_ALL_DUTIES = "SELECT id, userId, timestamp, number, isClose FROM `duties`  ORDER BY login LIMIT ? Offset ? ";
+    private static final String SQL_SELECT_ALL_DUTIES = "SELECT id, userId, timestamp, number, isClose FROM `duties`  LIMIT ? Offset ? ";
     private static final String SQL_SELECT_DUTIES_BY_ID = "SELECT id, userId, timestamp, number, isClose FROM `duties` WHERE id= ? ";
     private static final String SQL_SELECT_OPEN_DUTIES_BY_USER_ID = "SELECT id, userId, timestamp, number, isClose FROM `duties` WHERE `userId`=? AND `timestamp` >= ? AND `isClose`=0";
     private static final String SQL_SELECT_CLOSE_DUTIES_BY_USER_ID = "SELECT id, userId, timestamp, number, isClose FROM `duties` WHERE `userId`=? AND `timestamp` >= ? AND `isClose`=1";
