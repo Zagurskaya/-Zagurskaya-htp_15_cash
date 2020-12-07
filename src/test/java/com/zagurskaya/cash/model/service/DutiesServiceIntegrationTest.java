@@ -2,7 +2,6 @@ package com.zagurskaya.cash.model.service;
 
 import com.zagurskaya.cash.controller.command.AttributeName;
 import com.zagurskaya.cash.entity.Duties;
-import com.zagurskaya.cash.entity.Duties;
 import com.zagurskaya.cash.entity.User;
 import com.zagurskaya.cash.exception.CommandException;
 import com.zagurskaya.cash.exception.DaoException;

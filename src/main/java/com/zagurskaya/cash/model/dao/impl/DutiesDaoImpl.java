@@ -124,7 +124,7 @@ public class DutiesDaoImpl extends AbstractDao implements DutiesDao {
         try {
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_DUTIES)) {
                 preparedStatement.setLong(1, duties.getUserId());
-                preparedStatement.setObject(2, duties.getLocalDateTime());
+                preparedStatement.setString(2, duties.getLocalDateTime().toString());
                 preparedStatement.setInt(3, duties.getNumber());
                 preparedStatement.setBoolean(4, duties.getIsClose());
                 preparedStatement.setLong(5, duties.getId());
