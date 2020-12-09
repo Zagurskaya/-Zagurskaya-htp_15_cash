@@ -53,13 +53,13 @@ public class SendEmailCommand implements Command {
                 ServletContext context = request.getServletContext();
                 String filename = context.getInitParameter(MAIL);
                 properties.load(context.getResourceAsStream(filename));
-                String to = ControllerDataUtil.getString(request, TO, RegexPattern.EMAIL_VALIDATION_REGEX);
-                String subject = ControllerDataUtil.getString(request, SUBJECT, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
-                String body = ControllerDataUtil.getString(request, BODY, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_VALIDATE_PATTERN);
+                ControllerDataUtil.getString(request, TO, RegexPattern.EMAIL_VALIDATION_REGEX);
+                ControllerDataUtil.getString(request, SUBJECT, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
+                ControllerDataUtil.getString(request, BODY, RegexPattern.ALPHABET_NUMBER_UNDERSCORE_MINUS_BLANK_VALIDATE_PATTERN);
 
                 MailThread mailOperator =
-                        new MailThread(request.getParameter(to), request.getParameter(subject),
-                                request.getParameter(body), properties);
+                        new MailThread(request.getParameter(TO), request.getParameter(SUBJECT),
+                                request.getParameter(BODY), properties);
                 mailOperator.start();
                 request.setAttribute(AttributeName.MESSAGE, "The e-mail was sent successfully");
             }
